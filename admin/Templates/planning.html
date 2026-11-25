@@ -1,0 +1,206 @@
+<div class="main">
+    <div class="limited">
+        <span>Choisissez l'année à configurer : </span>
+        <select name="annee" id="id_selecteur_annee">
+            <!-- BEGIN une_annee -->
+            <option {une_annee.SELECTED} value="{une_annee.ANNEE_ID}">{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <hr/>
+        <label class="vert">Liste des plannings du département :</label>
+        <div class="box">
+            <!-- IF HAS_PLANNING -->
+            <ul class="font_small TreeView">
+                <!-- BEGIN un_planning -->
+                <li>
+                    <a href="?p=front&amp;p2=planning&amp;delplan={un_planning.PLANNING_ID}&amp;d={DEPARTEMENT_COURANT}&amp;a={ANNEE_COURANTE}"
+                       name="confirm_suppres_planning"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                            title="Supprimer ce planning"/></a><a href="#"
+                                                                                                  class="updater"
+                                                                                                  data-bfmw="PLANNING_CONTENU"
+                                                                                                  data-bfmw2="planning_{un_planning.PLANNING_ID}"
+                                                                                                  data-bfmw3="{un_planning.PLANNING_ID}"><img
+                        src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier ce planning"/></a>&nbsp;<span
+                        id="planning_{un_planning.PLANNING_ID}">{un_planning.PLANNING_CONTENU}</span>
+                    <ul>
+                        <li>Date de début de collecte des disponibilités des enseignants&nbsp;:&nbsp;<input
+                                type="datetime-local" placeholder="JJ/MM/AAAA HHhMM"
+                                value="{un_planning.PLANNING_START_ENS_AFFICHAGE}" name="PLANNING_START_ENS"
+                                class="bfmw_no_style bind" data-bfmw="{un_planning.PLANNING_ID}"/></li>
+                        <li>Date de fin de collecte des disponibilités des enseignants&nbsp;:&nbsp;<input
+                                type="datetime-local" placeholder="JJ/MM/AAAA HHhMM"
+                                value="{un_planning.PLANNING_END_ENS_AFFICHAGE}" name="PLANNING_END_ENS"
+                                class="bfmw_no_style bind" data-bfmw="{un_planning.PLANNING_ID}"/></li>
+                        <li>Date de début de collecte des disponibilités des invités&nbsp;:&nbsp;<input
+                                type="datetime-local" placeholder="JJ/MM/AAAA HHhMM"
+                                value="{un_planning.PLANNING_START_ET_AFFICHAGE}" name="PLANNING_START_ET"
+                                class="bfmw_no_style bind" data-bfmw="{un_planning.PLANNING_ID}"/></li>
+                        <li>Date de fin de collecte des disponibilités des invités&nbsp;:&nbsp;<input
+                                type="datetime-local" placeholder="JJ/MM/AAAA HHhMM"
+                                value="{un_planning.PLANNING_END_ET_AFFICHAGE}" name="PLANNING_END_ET"
+                                class="bfmw_no_style bind" data-bfmw="{un_planning.PLANNING_ID}"/></li>
+                        <li>Date de début de la période&nbsp;:&nbsp;<input type="datetime-local"
+                                                                           placeholder="JJ/MM/AAAA HHhMM"
+                                                                           value="{un_planning.PLANNING_START_AFFICHAGE}"
+                                                                           name="PLANNING_START"
+                                                                           class="bfmw_no_style bind"
+                                                                           data-bfmw="{un_planning.PLANNING_ID}"/></li>
+                        <li>Date de fin de la période&nbsp;:&nbsp;<input type="datetime-local"
+                                                                         placeholder="JJ/MM/AAAA HHhMM"
+                                                                         value="{un_planning.PLANNING_END_AFFICHAGE}"
+                                                                         name="PLANNING_END" class="bfmw_no_style bind"
+                                                                         data-bfmw="{un_planning.PLANNING_ID}"/></li>
+                        <li>Nombre de créneaux max en parallèle&nbsp;:&nbsp;<input type="number" min="0" step="1"
+                                                                                   value="{un_planning.PLANNING_NB_PARALLELE}"
+                                                                                   name="PLANNING_NB_PARALLELE"
+                                                                                   class="bfmw_no_style bind"
+                                                                                   data-bfmw="{un_planning.PLANNING_ID}"/>
+                        </li>
+                        <li>Nombre d'enseignants dans un rendez-vous&nbsp;:&nbsp;<input type="number" min="1" step="1"
+                                                                                        value="{un_planning.PLANNING_NB_MEMBRES}"
+                                                                                        name="PLANNING_NB_MEMBRES"
+                                                                                        class="bfmw_no_style bind"
+                                                                                        data-bfmw="{un_planning.PLANNING_ID}"/>
+                        </li>
+                        <li>Ouvert vers l'extérieur&nbsp;:&nbsp;<input type="checkbox" value="1"
+                                                                       {un_planning.PLANNING_PUBLIC_AFFICHAGE}
+                                                                       name="PLANNING_PUBLIC"
+                                                                       class="bfmw_no_style bind2"
+                                                                       data-bfmw="{un_planning.PLANNING_ID}"/><span
+                                class="vert">https://odin.iut.uca.fr/rdv/?pl={un_planning.PLANNING_UID}</span></span>
+                        </li>
+                        <li>Créneaux&nbsp;:
+                            <ul id="id_list_creneau_{un_planning.PLANNING_ID}">
+                                <li><span>Générer automatiquement les créneaux</span>
+                                    <form class="specific_form_inline" method="post" action="?p=front&amp;p2=planning"
+                                          data-bfmw="{un_planning.PLANNING_ID}">
+                                        <span>de</span>
+                                        <input type="time" placeholder="HHhMM" name="CRENEAU_DEBUT" required
+                                               class="bfmw_no_style"/>
+                                        <span>à</span>
+                                        <input type="time" placeholder="HHhMM" name="CRENEAU_FIN" required
+                                               class="bfmw_no_style"/><br/>
+                                        <span>toutes les</span>
+                                        <input type="number" step="1" min="1" name="CRENEAU_PAS" required
+                                               class="bfmw_no_style specific_input_planning_4"/>
+                                        <span>minutes pour une durée de</span>
+                                        <input type="number" step="1" min="1" name="CRENEAU_DUREE" required
+                                               class="bfmw_no_style specific_input_planning_4"/>
+                                        <span>minutes</span><br/>
+                                        <input type="hidden" name="PLANNING_ID" value="{un_planning.PLANNING_ID}">
+                                        <input type="hidden" name="PLANNING_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                                        <input type="hidden" name="DEPARTEMENT_ID" value="{DEPARTEMENT_COURANT}"/>
+                                        <input type="submit" name="auto" class="specific_input_planning_3"
+                                               value="Générer automatiquement"/>
+                                    </form>
+                                </li>
+                                <br/>
+                                <li><span>Créer manuellement un créneau</span>
+                                    <form class="specific_form_inline new_creneau"
+                                          data-bfmw="{un_planning.PLANNING_ID}"><span>de</span>
+                                        <input type="time" placeholder="HHhMM" name="CRENEAU_DEBUT" required
+                                               class="bfmw_no_style"/>
+                                        <span>à</span>
+                                        <input type="time" placeholder="HHhMM" name="CRENEAU_FIN" required
+                                               class="bfmw_no_style"/><br/>
+                                        <input type="submit" class="specific_input_planning_3" value="Créer"/>
+                                    </form>
+                                </li>
+                                <!-- BEGIN un_creneau -->
+                                <!-- IF un_creneau.CRENEAU_ID != "" -->
+                                <li>
+                                    <a href="?p=front&amp;p2=planning&amp;delcre={un_creneau.CRENEAU_ID}&amp;d={DEPARTEMENT_COURANT}&amp;a={ANNEE_COURANTE}"
+                                       name="confirm_suppres_creneau"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                           alt="del" title="Supprimer ce creneau"/></a>
+                                    <span>De&nbsp;</span>
+                                    <a href="#" class="updater" data-bfmw="CRENEAU_DEBUT"
+                                       data-bfmw2="creneau_debut_{un_creneau.CRENEAU_ID}"
+                                       data-bfmw3="{un_creneau.CRENEAU_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                                 alt="update"
+                                                                                 title="Modifier ce creneau"/></a>
+                                    <span id="creneau_debut_{un_creneau.CRENEAU_ID}">{un_creneau.CRENEAU_DEBUT_AFFICHAGE}</span>
+                                    <span>&nbsp;à&nbsp;</span><a href="#" class="updater" data-bfmw="CRENEAU_FIN"
+                                                                 data-bfmw2="creneau_fin_{un_creneau.CRENEAU_ID}"
+                                                                 data-bfmw3="{un_creneau.CRENEAU_ID}"><img
+                                        src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier ce creneau"/></a>
+                                    <span id="creneau_fin_{un_creneau.CRENEAU_ID}">{un_creneau.CRENEAU_FIN_AFFICHAGE}</span>
+                                </li>
+                                <!-- ENDIF -->
+                                <!-- END un_creneau -->
+                            </ul>
+                        </li>
+                        <li>Quota par enseignant&nbsp;:
+                            <ul>
+                                <!-- BEGIN un_enseignant -->
+                                <li><span>{un_enseignant.ENS_NOM}</span><br/>
+                                    <ul>
+                                        <li>Nombre de créneaux maximums&nbsp;:&nbsp;<input type="text"
+                                                                                           value="{un_enseignant.PLANNING_SOUT_MAX}"
+                                                                                           class="bfmw_no_style bind"
+                                                                                           name="PLANNING_SOUT_MAX"
+                                                                                           data-bfmw="{un_planning.PLANNING_ID}${un_enseignant.ENS_ID}">
+                                        </li>
+                                        <li>Nombre de créneaux déjà effectués&nbsp;:&nbsp;<input type="text"
+                                                                                                 value="{un_enseignant.PLANNING_SOUT_FAITES}"
+                                                                                                 class="bfmw_no_style bind"
+                                                                                                 name="PLANNING_SOUT_FAITES"
+                                                                                                 data-bfmw="{un_planning.PLANNING_ID}${un_enseignant.ENS_ID}">
+                                        </li>
+                                        <li>Nombre de disponibilités placées&nbsp;:&nbsp;{un_enseignant.NB_DISPO}</li>
+                                        <li>Nombre de rendez-vous placés&nbsp;:&nbsp;{un_enseignant.NB_RENDEZVOUS}</li>
+                                        <li>Spécialiste&nbsp;:&nbsp;<input type="checkbox" value="1"
+                                                                           {un_enseignant.SPE_AFFICHAGE}
+                                                                           name="PLANNING_SPE" class="bind2"
+                                                                           data-bfmw="{un_planning.PLANNING_ID}${un_enseignant.ENS_ID}">
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- END un_enseignant -->
+                            </ul>
+                        </li>
+                        <li>Rendez-vous ({NB_RDV})&nbsp;:
+                            <ul>
+                                <!-- BEGIN une_date -->
+                                <li>{une_date.DATE_AFFICHAGE}
+                                    <ul>
+                                        <!-- BEGIN un_rdv-->
+                                        <li><span>De</span>&nbsp;<span
+                                                class="vert">{un_rdv.CRENEAU_DEBUT_AFFICHAGE}</span><span>&nbsp;à&nbsp;</span>
+                                            <span class="vert">{un_rdv.CRENEAU_FIN_AFFICHAGE}&nbsp</span><span
+                                                    class="blanc">{un_rdv.TYPE_AFFICHAGE}</span>
+                                            <span class="blanc">&nbsp;avec&nbsp;</span><span class="vert">{un_rdv.RDV_NOM_AFFICHAGE}</span>
+                                            <span class="blanc">&nbsp;avec&nbsp;</span><span class="vert">{un_rdv.ENS_NOM}</span>
+                                            <form method="post" action="?p=front&amp;p2=planning"
+                                                  class="specific_form_inline confirm_del_rdv">
+                                                <input class="specific_input_planning_3 specific_input_planning_5"
+                                                       type="submit" value="Annuler" name="to_del"/>
+                                                <input type="hidden" value="{un_rdv.RDV_ID}" name="RDV_ID"/>
+                                                <input type="hidden" name="d" value="{DEPARTEMENT_COURANT}"/>
+                                                <input type="hidden" name="a" value="{ANNEE_COURANTE}"/>
+                                            </form>
+                                        </li>
+                                        <!-- END un_rdv-->
+                                    </ul>
+                                    <!-- END une_date -->
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- END un_planning -->
+            </ul>
+
+            <!-- ELSE -->
+            <span>Aucun planning n'est actuellement défini</span>
+            <!-- ENDIF -->
+            <hr/>
+            <form method="POST" action="?p=front&amp;p2=planning">
+                <span class="font_medium">Créer un planning : </span>
+                <input type="text" required class="specific_input_planning_1" name="*PLANNING_CONTENU"/>
+                <input type="hidden" name="*PLANNING_DEPT_ID" value="{DEPARTEMENT_COURANT}"/>
+                <input type="hidden" name="*PLANNING_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                <input type="submit" name="creer_planning" value="Valider"/>
+            </form>
+        </div>
+    </div>
+</div>

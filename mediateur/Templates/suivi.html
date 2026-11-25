@@ -1,0 +1,56 @@
+<!-- MASTER -->
+<div class="complete_master" id="le_master">
+    <div class="filter" id="id_div_filter">
+        <select id="id_selecteur_annee"  data-bfmw="{GROUPE}">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select><br/>
+        <select id="id_selecteur_promo" data-bfmw="{ANNEE_ID}">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+                <!-- BEGIN un_groupe -->
+                <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                <!-- END un_groupe -->
+            <!-- END une_formation -->
+        </select>
+    </div>
+    <div class="master">
+        <div>
+            <!-- BEGIN un_etudiant -->
+            <a id="{un_etudiant.ET_ID}" class="{un_etudiant.SELECTED}" href="?p=suivi&amp;g={GROUPE}&amp;a={ANNEE_ID}&amp;e={un_etudiant.ET_ID}#{un_etudiant.ET_ID}" >{un_etudiant.ET_NOM}</a><br/>
+            <!-- END un_etudiant -->
+        </div>
+    </div>
+</div>
+<!-- DETAIL -->
+<div id="detail">
+    <a class="show_master" href="#"><img src="../bfmw/images/fleche.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="masque_master" alt="Menu"/></a>
+    <!-- BEGIN show -->
+    <span class="font_medium">Vous pouvez saisir ici des informations de suivi à propos de l'étudiant. Ces informations seront visibles par les autres médiateurs.</span>
+    <div class="box">
+        <form method="POST" action="?p=front&amp;p2=suivi" >
+            <span class="vert">{ET_NOM}</span><br/>
+            <img src="../trombi/{ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" class="specific_img_mediateur_2" /><br/>
+            <span>Le&nbsp;</span><input type="text" placeholder="JJ/MM/AAAA" name="date_suivi" value="{DATE_SUIVI}" id="id_date_aujourdhui" class="specific_input_mailing_1" required pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]([2][0][123][0-9])$" /><br/>
+            <textarea placeholder="Message" rows="10" name="*SUIVI_MESSAGE" id="id_saisie_message" >{MESSAGE}</textarea><br/>
+            <input type="submit" value="Enregistrer le suivi" name="save_suivi"/>
+            <input type="hidden" value="{ETUDIANT_ID}" name="*SUIVI_ET_ID" />
+            <input type="hidden" value="{ANNEE_ID}" name="ANNEE_ID"/>
+            <input type="hidden" value="{GROUPE}" name="GROUPE_ID" />
+        </form>
+    </div>
+    <span class="font_medium">Suivis sauvegardés :</span>
+    <div class="box">
+        <!-- BEGIN un_suivi -->
+        <div class="font_medium">
+            <!-- IF un_suivi.AUTEUR -->
+            <a href="?p=front&amp;p2=suivi&amp;e={ETUDIANT_ID}&amp;g={GROUPE}&amp;del_suivi={un_suivi.SUIVI_ID}" class="confirm_suppr_suivi"><img src="images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer le suivi"/></a>
+            <!-- ENDIF -->
+            <span>&bull;&nbsp;Le </span><span class="vert">{un_suivi.DATE_SUIVI}</span><span>, par </span><span class="bleu">{un_suivi.ENS_NOM}</span>&nbsp;:&nbsp;<br/>
+            <p class="font_small specific_p_mediateur_1">{un_suivi.SUIVI_MESSAGE}</p>
+        </div>
+        <!-- END un_suivi -->
+    </div>
+    <!-- END show -->
+</div>

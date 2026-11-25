@@ -1,0 +1,79 @@
+<div class="main">
+    <div class="limited specific_div_creergroupe_1">
+        <!-- IF HAS_GROUPE -->
+        <!-- BEGIN un_formation_groupe -->
+        <span class="rouge">{un_formation_groupe.FORM_NOM}</span>
+        <ul class="TreeView">
+            {un_formation_groupe.LES_GROUPES}
+        </ul>
+        <!-- END un_formation_groupe -->
+        <!-- ENDIF -->
+        <hr/>
+        <div class="no_print">
+            <form action="?p=front&amp;p2=creergroupe" method="POST">
+                <div>
+                    Créer un groupe contenant toute la promotion :<br/>
+                    <input type="hidden" name="*GROUPE_PARENT" value="NULL"/>
+                    <input type="hidden" name="*GROUPE_FEUILLE" value="0"/>
+                    <input class="specific_div_creergroupe_2" type="text" placeholder="Nom du nouveau groupe"
+                           name="*GROUPE_NOM"/>
+                    <select class="specific_div_creergroupe_2" name="*GROUPE_FORM_ID">
+                        <!-- BEGIN une_formation -->
+                        <option value="{une_formation.FORM_ID}">{une_formation.FORM_NOM}</option>
+                        <!-- END une_formation -->
+                    </select>
+                    <input class="specific_div_creergroupe_2" type="submit" value="Créer un groupe"
+                           name="create_groupe"/>
+                </div>
+            </form>
+            <!-- IF NB_GROUPES > 0 -->
+            <form action="?p=front&amp;p2=creergroupe" method="POST">
+                <div>
+                    Créer un groupe contenant un sous-groupe (par exemple, un groupe de TD contient des groupes de TP) :<br/>
+                    <input type="text" placeholder="Nom du nouveau groupe" name="*GROUPE_NOM"
+                           class="specific_div_creergroupe_3"/>
+                    <input type="hidden" name="*GROUPE_FEUILLE" value="0"/>
+                    Groupe parent :
+                    <select class="specific_div_creergroupe_2" name="PARENT">
+                        <!-- BEGIN un_departement -->
+                        <optgroup label="{un_departement.DEPT_NOM}">
+                            <!-- BEGIN une_formation -->
+                            <optgroup label="{une_formation.FORM_NOM}">
+                                <!-- BEGIN un_groupe -->
+                                <option value="{une_formation.FORM_ID}${un_groupe.GROUPE_ID}">{un_groupe.GROUPE_NOM}
+                                </option>
+                                <!-- END un_groupe -->
+                                <!-- END une_formation -->
+                                <!-- END un_departement -->
+                    </select>
+                    <input class="specific_div_creergroupe_2" type="submit" value="Créer un groupe"
+                           name="create_groupe"/>
+                </div>
+            </form>
+            <form action="?p=front&amp;p2=creergroupe" method="POST">
+                <div>
+                    Créer un groupe contenant des étudiants :<br/>
+                    <input type="text" placeholder="Nom du nouveau groupe" name="*GROUPE_NOM"
+                           class="specific_div_creergroupe_3"/>
+                    <input type="hidden" name="*GROUPE_FEUILLE" value="1"/>
+                    Groupe parent :
+                    <select class="specific_div_creergroupe_2" name="PARENT">
+                        <!-- BEGIN un_departement -->
+                        <optgroup label="{un_departement.DEPT_NOM}">
+                            <!-- BEGIN une_formation -->
+                            <optgroup label="{une_formation.FORM_NOM}">
+                                <!-- BEGIN un_groupe -->
+                                <option value="{une_formation.FORM_ID}${un_groupe.GROUPE_ID}">{un_groupe.GROUPE_NOM}
+                                </option>
+                                <!-- END un_groupe -->
+                                <!-- END une_formation -->
+                                <!-- END un_departement -->
+                    </select>
+                    <input class="specific_div_creergroupe_2" type="submit" value="Créer un groupe"
+                           name="create_groupe"/>
+                </div>
+            </form>
+            <!-- ENDIF -->
+        </div>
+    </div>
+</div>

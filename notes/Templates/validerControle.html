@@ -1,0 +1,81 @@
+<div class="main">
+    <div class="limited">
+        <div class="box">
+            <p class="font_small">Ce formulaire permet de contrôler les notes attribuées aux différents groupes pour ce
+                contrôle. Si les informations affichées vous conviennent, vous pouvez valider le contrôle. La validation
+                a pour effet de rendre le contrôle visible aux étudiants (si configuré pour cela) ou de l'intégrer à la
+                moyenne (si configuré pour cela).</p>
+        </div>
+        <label><b>Nom du contrôle : </b><a
+                href="?f={FORM_ID}&amp;m={CONTROLE_MAT_ID}&amp;c={CONTROLE_ID}&amp;a={CONTROLE_ANNEE_ID}"
+                title="Cliquez-ici pour éditer le contrôle">{CONTROLE_NOM}</a></label><br/>
+
+        <label><b>Coefficient : </b>{CONTROLE_COEFF}</label><br/>
+
+        <label><b>Barême : </b>{CONTROLE_BAREME}</label><br/>
+
+        <label><b>Compte dans la moyenne : </b>{COMPTE_MOYENNE}</label><br/>
+
+        <label><b>Visible pour les étudiants : </b>{VISIBLE}</label><br/>
+
+        <label><b>Moyenne : </b>{MOYENNE}/{CONTROLE_BAREME}</label><br/>
+
+        <label><b>Notes : </b></label>
+        <div class="box">
+            <!-- BEGIN un_groupe -->
+            <p class="font_large">{un_groupe.GROUPE_NOM}</p>
+            <div class="box">
+                <table class="width_100">
+                    <!-- BEGIN un_etudiant -->
+                    <tr>
+                        <td class="specific_td_valider_controle_1">
+                            <div class="tooltip">{un_etudiant.ET_NOM}<img
+                                    class="tooltiptext specific_img_valider_controle_1"
+                                    src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo"/></div>
+                        </td>
+                        <!-- IF un_etudiant.DISP_UE_ID == "" && un_etudiant.DISP_MAT_ID == "" -->
+                        <!-- IF (un_etudiant.NOTES_VALEUR == "ABI" || un_etudiant.NOTES_VALEUR == "ABJ") -->
+                        <td>
+                            <div class="tooltip">{un_etudiant.NOTES_VALEUR}<img
+                                    class="tooltiptext specific_img_valider_controle_1"
+                                    src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo"/>
+                        </td>
+                        <!-- ELSE -->
+                        <td>
+                            <div class="tooltip">
+                            <span>
+                            <!-- IF un_etudiant.NOTES_VALEUR == "" -->
+                            ??/{CONTROLE_BAREME}
+                                <!-- ELSE -->
+                            {un_etudiant.NOTES_VALEUR}/{CONTROLE_BAREME}
+                                <!-- ENDIF -->
+                            </span><img class="tooltiptext specific_img_valider_controle_1"
+                                        src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo"/>
+                        </td>
+                        <!-- ENDIF -->
+                        <td>
+                            <!-- IF un_etudiant.NOTES_VALEUR != "" -->
+                            <a href="?p=front&amp;p2=validerControle&amp;del={un_etudiant.NOTES_ID}&amp;c={un_etudiant.NOTES_CONTROLE_ID}&amp;m={CONTROLE_MAT_ID}"
+                               class="confirm_supprimer"><img src="images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                              title="Supprimer cette note"/></a>
+                            <!-- ENDIF -->
+                        </td>
+                        <!-- ELSE -->
+                        <td class="font_small rouge text_vertical_bottom" colspan="2">Dispensé</td>
+                        <!-- ENDIF -->
+                    </tr>
+                    <!-- END un_etudiant -->
+                </table>
+            </div>
+            <!-- END un_groupe -->
+        </div>
+        <form method="POST" action="?p=front&amp;p2=accueil">
+            <input type="hidden" name="controle" value="{CONTROLE_ID}"/>
+            <input type="hidden" name="visible" value="{CONTROLE_VISIBLE}"/>
+            <input type="hidden" name="annee" value="{CONTROLE_ANNEE_ID}"/>
+            <input type="hidden" name="f" value="{FORM_ID}"/>
+            <input type="hidden" name="m" value="{CONTROLE_MAT_ID}"/>
+            <input type="submit" name="valider_controle" value="Valider ce contrôle"/>
+        </form>
+    </div>
+</div>

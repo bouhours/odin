@@ -1,0 +1,65 @@
+<div class="main">
+    <div class="limited specific_div_accueil_1">
+        <!-- IF NB_GROUPES > 0 -->
+        <div class="box text_align_center">
+            <!-- IF AFFICHER_ANNEE -->
+            Sélectionnez l'année à afficher :
+            <select class="specific_select_accueil_1" id="id_selected_annee" data-bfmw="{GROUPE_COURANT}">
+                <!-- BEGIN une_annee -->
+                <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+                <!-- END une_annee -->
+            </select><br/>
+            <!-- ENDIF -->
+            Sélectionnez le groupe à afficher :
+            <select class="specific_select_accueil_1" id="id_selected_promo" data-bfmw="{ANNEE_COURANTE}">
+                <!-- BEGIN une_formation -->
+                <optgroup label="{une_formation.FORM_NOM}">
+                    <!-- BEGIN un_groupe -->
+                    <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_AFFICHAGE}</option>
+                    <!-- END un_groupe -->
+                </optgroup>
+                <!-- END une_formation -->
+            </select>
+        </div>
+        <div class="text_align_center"><span>Effectif&nbsp;:&nbsp;</span><span>{EFFECTIF}</span>
+            <!-- IF ALTERNANTS == 1 -->
+                <span>( dont {ALTERNANTS} alternant)</span>
+            <!-- ELSE -->
+                <!-- IF ALTERNANTS > 1 -->
+                <span>( dont {ALTERNANTS} alternants)</span>
+                <!-- ENDIF -->
+            <!-- ENDIF -->
+        </div>
+        <div class="specific_div_accueil_3">
+            <!-- BEGIN un_etudiant -->
+            <div class="specific_div_accueil_2">
+                <div class="specific_div_accueil_5">
+                    <!-- IF un_etudiant.ET_PROFESSIONNALISATION -->
+                    <span class="specific_span_accueil_1">ALTERNANT</span>
+                    <!-- ENDIF -->
+                    <img class="specific_img_accueil_1" loading="lazy" src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"/>
+                </div>
+
+                <div class="specific_div_accueil_4 text_align_center">
+                    {un_etudiant.ET_NOM}<br/>{un_etudiant.GROUPE_FEUILLE_NOM}<br/>
+                    <span class="vert">{un_etudiant.ET_NAISSANCE}<br/>{un_etudiant.ET_AGE} ans</span><br/><span
+                        class="rouge">BAC {un_etudiant.ET_BAC}</span><br/>
+                    <!-- IF un_etudiant.ET_RED != "" -->
+                    <span class="rouge">{un_etudiant.ET_RED}</span><br/>
+                    <!-- ENDIF -->
+                    <!-- IF un_etudiant.ET_TIERS == 1 -->
+                    <span class="vert">Tiers temps</span><br/>
+                    <!-- ENDIF -->
+                    <!-- IF un_etudiant.ET_SPORTIF == 1 -->
+                    <span class="vert">Sportif de haut niveau</span><br/>
+                    <!-- ENDIF -->
+                    <a href="?p=mailing&amp;e={un_etudiant.ET_ID}&amp;a={ANNEE_COURANTE}">Envoyer un mail</a>
+                </div>
+            </div>
+            <!-- END un_etudiant -->
+        </div>
+        <!-- ELSE -->
+        <div>Il n'y a pas encore de groupe dans votre département</div>
+        <!-- ENDIF -->
+    </div>
+</div>

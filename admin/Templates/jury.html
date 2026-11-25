@@ -1,0 +1,47 @@
+<div class="main">
+    <div class="limited">
+        <span>Choisissez la formation à configurer : </span>
+        <select name="formation" id="id_selecteur_form">
+            <!-- BEGIN une_formation -->
+            <option {une_formation.SELECTED} value="{une_formation.FORM_ID}">{une_formation.FORM_NOM}</option>
+            <!-- END une_formation -->
+        </select>
+        <hr/>
+        <span>Indiquez les dates du Jury : </span>
+        <div class="box">
+            <form method="post" action="?p=front&amp;p2=jury&amp;f={FORM_ID}">
+                <span class="font_small">Date de debut : </span><input type="text" required
+                                                                       pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]([2][0][123][0-9])$"
+                                                                       placeholder="JJ/MM/AAAA"
+                                                                       class="no_force specific_input_evaluation_1"
+                                                                       name="DDEBUT" value="{DDEBUT}"/>
+                <span class="font_small">Heure de debut : </span><input type="text" placeholder="HHhMM"
+                                                                        pattern="^([01]\d|2[0-3])h([0-5]\d)$" required
+                                                                        class="no_force specific_input_evaluation_1"
+                                                                        name="HDEBUT" value="{HDEBUT}"/><br/>
+                <span class="font_small">Date de clôture : </span><input type="text" required
+                                                                         pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]([2][0][123][0-9])$"
+                                                                         placeholder="JJ/MM/AAAA"
+                                                                         class="no_force specific_input_evaluation_1"
+                                                                         name="DFIN" value="{DFIN}"/>
+                <span class="font_small">Heure de clôture : </span><input type="text" placeholder="HHhMM"
+                                                                          pattern="^([01]\d|2[0-3])h([0-5]\d)$" required
+                                                                          class="no_force specific_input_evaluation_1"
+                                                                          name="HFIN" value="{HFIN}"/><br/>
+                <input type="submit" value="Enregistrer les modifications" name="saveConfig"/>
+            </form>
+        </div>
+        <hr/>
+        <span>Pour la formation sélectionnée, faire expirer les absences strictement antérieures au : </span>
+        <div class="box">
+            <form method="post" action="?p=front&amp;p2=jury&amp;f={FORM_ID}">
+                <span class="font_small">Date d'expiration : </span><input type="date" required
+                                                                           pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]([2][0][123][0-9])$"
+                                                                           placeholder="JJ/MM/AAAA"
+                                                                           class="no_force specific_input_evaluation_1"
+                                                                           name="date_expire"/>
+                <input type="submit" value="Provoquer l'expiration" name="expire"/>
+            </form>
+        </div>
+    </div>
+</div>

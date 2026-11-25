@@ -1,0 +1,24 @@
+<div class="main">
+    <div class="limited">
+        <!-- BEGIN un_enseignant -->
+        <label class="font_large vert">{un_enseignant.ENS_NOM}</label>
+        <div class="box">
+            <div class="font_small">
+                <!-- BEGIN une_periode -->
+                {une_periode.PERIODE_NOM} - {une_periode.PERIODE_DEBUT}<br/>
+                <!-- BEGIN une_matiere -->
+                <!-- IF une_matiere.FICHE_ID != "" -->
+                <span class="font_small">&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a
+                        href="?p=fiche&amp;pe={une_periode.PERIODE_ID}&amp;fi={une_matiere.FICHE_ID}&amp;ens={une_periode.ENS_ID}">{une_matiere.MAT_NOM}</a></span><br/>
+                <!-- ELSE -->
+                <span class="font_small">&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a
+                        href="?p=fiche&amp;pe={une_periode.PERIODE_ID}&amp;new=fiche&amp;ens={une_periode.ENS_ID}">{une_matiere.MAT_NOM}</a></span><br/>
+                <!-- ENDIF -->
+                <!-- END une_matiere -->
+                <!-- END une_periode -->
+            </div>
+        </div>
+        <br/><br/>
+        <!-- END une_periode -->
+    </div>
+</div>

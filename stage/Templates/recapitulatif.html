@@ -1,0 +1,54 @@
+<div class="main">
+    <div class=" specific_div_stage_1">
+        <span>Année à afficher :</span>
+        <select class="specific_select_stage_1" id="id_selection_annee" data-bfmw="{GROUPE_ID}">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <hr/>
+        <span>Groupe à afficher :</span>
+        <select class="specific_select_stage_1" id="id_selecteur_promo" data-bfmw="{ANNEE_ID}">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+                <!-- BEGIN un_groupe -->
+                <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                <!-- END un_groupe -->
+            </optgroup>
+            <!-- END une_formation -->
+        </select>
+        <hr/>
+        <table class="releve">
+            <tr class="fixed">
+                <th>Nom</th>
+                <th>Candidatures</th>
+                <th>Stage</th>
+                <th>Tuteur</th>
+                <th>Planning</th>
+            </tr>
+            <!-- BEGIN un_etudiant -->
+            <tr>
+                <td class="text_align_center text_vertical_middle">
+                    <a href="?p=etudiants&amp;g={GROUPE_ID}&amp;a={ANNEE_ID}&amp;f={un_etudiant.GROUPE_FORM_ID}&amp;e={un_etudiant.ET_ID}#{un_etudiant.ET_ID}">{un_etudiant.ET_NOM}</a>
+                </td>
+                <td class="text_align_center text_vertical_middle rouge">{un_etudiant.NB_CANDIDATURES}</td>
+                <td class="text_align_center text_vertical_middle vert">{un_etudiant.STAGE_REF}</td>
+                <td class="text_align_center text_vertical_middle jaune">{un_etudiant.ENS_NOM}</td>
+                <td class="text_vertical_middle">
+                    <ul>
+                        <!-- BEGIN un_planning -->
+                        <li>{un_planning.PLANNING_CONTENU}
+                            <!-- IF un_planning.DATE_SOUTENANCE != "" -->
+                            <span class="bleu">le </span><span>{un_planning.DATE_SOUTENANCE} </span><span class="bleu">de </span><span>{un_planning.CRENEAU_DEBUT} </span><span
+                                    class="bleu">à </span><span>{un_planning.CRENEAU_FIN} </span><span
+                                    class="bleu">avec </span><span>{un_planning.MEMBRE_JURY}</span>
+                            <!-- ENDIF -->
+                        </li>
+                        <!-- END un_planning -->
+                    </ul>
+                </td>
+            </tr>
+            <!-- END un_etudiant -->
+        </table>
+    </div>
+</div>

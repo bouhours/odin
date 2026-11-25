@@ -1,0 +1,60 @@
+<div class="main">
+    <div class="limited">
+        <span>Année à afficher :</span>
+        <select class="specific_select_accueil_1" id="id_selection_annee">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <hr/>
+        <!-- BEGIN un_planning -->
+        <span>Session de soutenance :&nbsp;</span><span
+            class="vert">{un_planning.PLANNING_CONTENU_AFFICHAGE}</span><br/>
+        <!-- BEGIN une_formation -->
+        <span class="bleu">&nbsp;&nbsp;&nbsp;&bull;&nbsp;{une_formation.FORM_NOM}</span><br/>
+        <ul class="TreeView">
+            <!-- BEGIN un_etudiant -->
+            <li>
+                <div class="tooltip">
+                    <span class="rouge font_small">{un_etudiant.ET_NOM}</span>
+                    <span class="font_small">-</span>
+                    <!-- IF un_etudiant.ET_PROFESSIONNALISATION == 1 -->
+                    <span class="jaune font_small">alternant</span>
+                    <!-- ELSE -->
+                    <span class="jaune font_small">stagiaire</span>
+                    <!-- ENDIF -->
+                    <img class="tooltiptext specific_img_accueil_1" src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                        loading="lazy"
+                        alt="photo"/>
+                </div>
+                <ul>
+                    <li>
+                        <!-- IF un_etudiant.CRENEAU_DEBUT_AFFICHAGE != "" -->
+                        <span class="">Soutenance prévue le</span>
+                        <span class="vert">{un_etudiant.STAGE_DATE_SOUTENANCE_AFFICHAGE}</span>
+                        <span class="">de&nbsp;</span><span class="vert">{un_etudiant.CRENEAU_DEBUT_AFFICHAGE}</span>
+                        <span class="">à&nbsp;</span><span class="vert">{un_etudiant.CRENEAU_FIN_AFFICHAGE}</span><br/>
+                        <span class="">avec&nbsp;</span><span class="vert">{un_etudiant.ENS_NOM}</span>
+                        <!-- ELSE -->
+                        Date de soutenance inconnue
+                        <!-- ENDIF -->
+                    </li>
+                    <!-- IF un_etudiant.ET_PROFESSIONNALISATION == 1 -->
+                    <li><span>Détail pour le contact de l'alternance</span>
+                        <ul>
+                            <li><span>Nom de l'entreprise : </span><span class="vert">{un_etudiant.ET_ENTREPRISE}</span></li>
+                            <li><span>Lieu de travail : </span><span class="vert">{un_etudiant.ET_LIEU}</span></li>
+                            <li><span>Informations complémentaires : </span><span class="vert">{un_etudiant.ET_INFO_LIEU}</span></li>
+                            <li><span>Nom du tuteur entreprise : </span><span class="vert">{un_etudiant.ET_TUTEUR}</span></li>
+                            <li><span>Mail du tuteur entreprise : </span><span class="vert">{un_etudiant.ET_MAIL_TUTEUR}</span></li>
+                            <li><span>Téléphone du tuteur entreprise : </span><span class="vert">{un_etudiant.ET_TEL_TUTEUR}</span></li></ul>
+                    </li>
+                    <!-- ENDIF -->
+                </ul>
+            </li>
+            <!-- END un_etudiant -->
+        </ul>
+        <!-- END une_formation -->
+        <!-- END un_planning -->
+    </div>
+</div>

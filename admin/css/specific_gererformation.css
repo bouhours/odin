@@ -1,0 +1,64 @@
+/*
+ * Auteur : Cédric BOUHOURS
+ * Ce code est mis à disposition selon les termes de la Licence Creative Commons Attribution
+ * Pas d'Utilisation Commerciale - Pas de Modification 4.0 International.
+ *
+ * Attribution — Vous devez créditer l'Œuvre, intégrer un lien vers la licence. Vous devez indiquer ces informations par tous les moyens raisonnables, sans toutefois suggérer que l'Offrant vous soutient ou soutient la façon dont vous avez utilisé son Oeuvre.
+ *
+ * Pas d’Utilisation Commerciale — Vous n'êtes pas autorisé à faire un usage commercial de cette Oeuvre, tout ou partie du matériel la composant.
+ *
+ * Pas de modifications — Dans le cas où vous effectuez un remix, que vous transformez, ou créez à partir du matériel composant l'Oeuvre originale, vous n'êtes pas autorisé à distribuer ou mettre à disposition l'Oeuvre modifiée.
+ *
+ * Pas de restrictions complémentaires — Vous n'êtes pas autorisé à appliquer des conditions légales ou des mesures techniques qui restreindraient légalement autrui à utiliser l'Oeuvre dans les conditions décrites par la licence.
+ *
+ *
+ */
+
+
+.specific_div_gererformation_1 {
+    max-width: inherit !important;
+}
+
+.specific_input_gererformation_1 {
+    width: 300px !important;
+    vertical-align: middle;
+}
+
+.specific_input_gererformation_2 {
+    width: 150px !important;
+    vertical-align: middle;
+}
+
+.specific_input_gererformation_3 {
+    width: 500px !important;
+}
+
+.specific_input_gererformation_4 {
+    width: 50px !important;
+}
+
+.specific_select_gererformation_1 {
+    width: 200px !important;
+}
+
+.specific_div_gererformation_4 {
+    display: inline !important;
+    vertical-align: top !important;
+}
+
+.specific_div_gererformation_5 {
+    min-width: 1400px !important;
+}
+
+.specific_select_gererformation_9 {
+    width: 200px !important;
+}
+
+.specific_select_gererformation_10 {
+    vertical-align: top;
+    max-height: 100px;
+}
+
+.specific_img_gererformation_1 {
+    width: 20px !important;
+}

@@ -1,0 +1,26 @@
+
+<ul>
+    <!-- BEGIN un_departement -->
+    <!-- BEGIN une_formation -->
+    <li class="rouge">{une_formation.FORM_NOM}
+        <ul>
+            <!-- BEGIN un_semestre -->
+            <li class="bleu">{un_semestre.SEM_NOM}
+                <ul>
+                    <!-- BEGIN une_ue -->
+                    <li class="jaune">{une_ue.UE_NOM}
+                        <ul>
+                            <!-- BEGIN une_hierarchie -->
+                            {une_hierarchie.HIERARCHIE}
+                            <!-- END une_hierarchie -->
+                        </ul>
+                    </li>
+                    <!-- END une_ue -->
+                </ul>
+            </li>
+            <!-- END un_semestre -->
+        </ul>
+    </li>
+    <!-- END une_formation -->
+    <!-- END un_departement -->
+</ul>

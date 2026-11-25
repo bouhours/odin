@@ -1,0 +1,16 @@
+<li class="blanc">{MAT_NOM}
+<ul class="TreeView">
+    <!-- BEGIN un_enseignant -->
+    <li>
+        <a href="?p=front&amp;p2=gererenseignant&amp;delm={MAT_ID}&amp;dele={un_enseignant.ENS_ID}&amp;dela={ANNEE_COURANTE}&amp;s={SEMESTRE_COURANT}" name="confirm_suppres_affectation"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer cette affectation"/></a></td>
+        <b>{un_enseignant.ENS_NOM}&nbsp;(&asymp;<span class="rouge font_bold charge_eqtd" id="charge_{un_enseignant.ENS_ID}_{MAT_ID}" data-bfmw="{un_enseignant.ENS_ID}"  data-bfmw2="{MAT_ID}"></span><span>&nbsp;h</span>)</b>
+        <span class="vert font_small">noteur ?</span><input class="specific_input_gererenseignant_1 bind" {un_enseignant.NOTEUR} name="CHECK" value="1" type="checkbox" data-bfmw="{MAT_ID}${un_enseignant.ENS_ID}${ANNEE_COURANTE}" />
+        <ul id="{un_enseignant.ID}">
+            <!-- IF ! ANNEE_CLOSE -->
+            <li><a href="#" class="ajouter_une_charge" data-bfmw="{un_enseignant.ID}" >Cliquez ici pour ajouter une nouvelle charge</a></li>
+            <!-- ENDIF -->
+        </ul>
+    </li>
+    <!-- END un_enseignant -->
+</ul>
+</li>

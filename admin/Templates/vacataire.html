@@ -1,0 +1,117 @@
+<div class="main">
+    <div class="limited">
+        <div class="no_print">
+            <span>Année à afficher :</span>
+            <select class="specific_select_vacataire_1" id="id_selection_annee" data-bfmw="{COMPLEMENT}">
+                <!-- BEGIN une_annee -->
+                <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+                <!-- END une_annee -->
+            </select>
+            <hr/>
+            <form action="?generate=FicheVacataire&amp;a={ANNEE_COURANTE}&amp;c={COMPLEMENT}" method="POST">
+                <input type="submit" value="Extaire le prévisionnel" class="specific_submit_vacataire">
+            </form>
+            <hr/>
+        </div>
+        <div class="no_wrap">
+            <ul class="TreeView">
+                <!-- BEGIN un_enseignant -->
+                <!-- IF un_enseignant.TOTAL_ANNEE > 0 -->
+                <li>&nbsp;<span class="font_medium">{un_enseignant.ENS_NOM}&nbsp;(&asymp;</span><span class="vert">{un_enseignant.TOTAL_ANNEE}&nbsp;h</span><span>)</span><br/>
+                    <ul>
+                        <!-- BEGIN une_formation -->
+                        <li>
+                            <span class="vert">{une_formation.FORM_NOM}</span>
+                            <ul>
+                                <!-- BEGIN un_semestre -->
+                                <li>
+                                    <span class="bleu">{un_semestre.SEM_NOM}</span>
+                                    <ul>
+                                        <!-- BEGIN une_ue -->
+                                        <li>
+                                            <span class="bleu">{une_ue.UE_NOM}</span><br/>
+                                            <!-- BEGIN une_matiere -->
+                                            <span class="rouge">&nbsp;&nbsp;{une_matiere.MAT_NOM}</span>&nbsp;<span
+                                                class="vert font_small">{une_matiere.MAT_CODE_APOGE}</span><br/>
+                                            <!-- BEGIN une_charge -->
+                                            <!-- IF une_charge.CHARGE_TOTALE != "" -->
+                                            <span>
+                                                <!-- IF une_charge.CHARGE_TYPE == 'CM' -->
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CM :
+                                                <!-- ELSEIF une_charge.CHARGE_TYPE == 'TD' -->
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TD :
+                                                <!-- ELSEIF une_charge.CHARGE_TYPE == 'TP' -->
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TP :
+                                                <!-- ELSEIF une_charge.CHARGE_TYPE == 'DS' -->
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DS :
+                                                <!-- ENDIF -->
+                                                {une_charge.CHARGE_TOTALE} h
+                                                </span><br/>
+                                            <!-- ENDIF -->
+                                            <!-- END une_charge -->
+                                            <!-- IF une_charge.CHARGE_TOTALE != "" -->
+                                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total : {une_matiere.TOTAL_MATIERE} h eq TD</span><br/>
+                                            <!-- ENDIF -->
+                                            <!-- IF COMPLEMENT == 1 -->
+                                            <!-- IF (une_charge.REEL_ID != "") -->
+                                            <div id="bloc_mise_en_paiement_{une_charge.REEL_ID}">
+                                                <a href="#" name="delete_mise_en_paiement"
+                                                   class="delete_mise_en_paiement" data-bfmw="{une_charge.REEL_ID}"><img
+                                                        src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="supprimer"
+                                                        title="Supprimer la mise en paiement"/></a>
+                                                <img src="../bfmw/images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="payé"
+                                                     title="déjà mis en paiement" class="specific_img_vacataire"/>
+                                                <span>Fiche de mise en paiement générée le </span><span class="vert">{une_charge.DATE_PAYEE}</span>
+                                            </div>
+                                            <!-- ENDIF -->
+                                            <!-- IF (un_enseignant.ENS_ADE != "" && une_matiere.MAT_CODE_APOGE != "") -->
+                                            <form action="?generate=FicheVacataire&amp;a={ANNEE_COURANTE}&amp;c={COMPLEMENT}"
+                                                  method="POST">
+                                                <input type="hidden" value="{une_charge.CHARGE_AFFECTATION_ID}"
+                                                       name="affect_id"/>
+                                                <input type="hidden" value="{un_enseignant.ENS_ID}" name="ens_id"/>
+                                                <input type="hidden" value="{une_matiere.MAT_CODE_APOGE}"
+                                                       name="code_apogee"/>
+                                                <input type="submit" value="Générer la fiche de mise en paiement"
+                                                       name="submit_paiement" class="specific_submit_vacataire"/>
+                                            </form>
+                                            <!-- ELSE -->
+                                            <span class="jaune">Impossible de générer une mise en paiement, le numéro ADE ou le code APOGEE est inconnu.</span><br/>
+                                            <!-- ENDIF -->
+                                            <!-- ENDIF -->
+                                            <!-- END une_matiere -->
+                                        </li>
+                                        <!-- END une_ue -->
+                                    </ul>
+                                </li>
+                                <!-- END un_semestre -->
+                            </ul>
+                        </li>
+                        <!-- END une_formation -->
+                    </ul>
+                </li>
+                <!-- ENDIF -->
+                <!-- END un_enseignant -->
+            </ul>
+        </div>
+        <div class="no_print">
+            <hr/>
+            <!-- IF COMPLEMENT == 0 -->
+            <form method="POST" action="?p=front&amp;p2=vacataire&amp;a={ANNEE_COURANTE}&amp;perm=vac" id="id_form"
+                  enctype="multipart/form-data">
+            <!-- ELSE -->
+            <form method="POST" action="?p=front&amp;p2=vacataire&amp;a={ANNEE_COURANTE}" id="id_form"
+                  enctype="multipart/form-data">
+                <!-- ENDIF -->
+                <input type="text" class="specific_input_mailing_1" placeholder="Sujet du mail" name="sujet_mail"
+                       value="{SUJET_MAIL}"/><br/>
+                <textarea placeholder="Message" rows="15" name="message" id="id_saisie_message">{MESSAGE}</textarea><br/>
+                <input type="checkbox" id="id_add_piece_jointe"/> Ajouter une pièce jointe ? (maxi : {MAXI})
+                <div class="specific_input_mailing_2" id="id_div_piece_jointe">
+                    <input type="file" name="piece_jointe"/><br/>
+                </div>
+                <input type="submit" value="Envoyer le mail à tous les enseignants ci-dessus"/>
+            </form>
+        </div>
+    </div>
+</div>

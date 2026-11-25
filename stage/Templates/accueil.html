@@ -1,0 +1,125 @@
+<div class="main">
+    <div class="limited">
+        <span>Année à afficher :</span>
+        <select class="specific_select_accueil_1" id="id_selection_annee" data-bfmw="{FORMATION_COURANTE}">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <hr/>
+        <span>Formation à afficher :</span>
+        <select class="specific_select_accueil_1" id="id_selection_formation" data-bfmw="{ANNEE_COURANTE}">
+            <!-- BEGIN une_formation -->
+            <option value="{une_formation.FORM_ID}" {une_formation.SELECTED}>{une_formation.FORM_NOM}</option>
+            <!-- END une_formation -->
+        </select>
+        <div class="font_small hide">
+            <span class="vert">{NB_ETUDIANTS_FORMATION}</span><span>&nbsp;étudiants</span><br/>
+            <span class="vert">{NB_ETUDIANTS_FORMATION_SANS_CANDIDATURE}</span><span>&nbsp;étudiants sans candidature</span><br/>
+            <span class="vert">{NB_ETUDIANTS_FORMATION_SANS_AFFECTATION}</span><span>&nbsp;étudiants sans affectation</span>
+        </div>
+        <hr/>
+        <a href="#" id="id_show_depose_complet"><span>Déposer un stage :</span>&nbsp;<span
+                id="id_show_depose">[+]</span></a>
+        <form class="box hide" id="id_depose" method="post"
+              action="?p=front&amp;p2=accueil&amp;a={ANNEE_COURANTE}&amp;f={FORMATION_COURANTE}">
+            <span class="vert font_medium">Référence du stage&nbsp;:</span>
+            <input type="text" name="*STAGE_REF" required/><br/>
+            <span class="vert font_medium">Sujet du stage&nbsp;:</span>
+            <textarea name="*STAGE_SUJET" required></textarea><br/>
+            <span class="vert font_medium">Adresse(s) mail(s), séparées par des virgules, où les CV et les LM seront envoyés (non visible aux étudiants)&nbsp;:</span><br/>
+            <input name="*STAGE_MAIL" type="text" required
+                   pattern="^([a-zA-Z0-9_\-\.]+)@((([a-zA-Z0-9\-]+\.)+))([a-zA-Z]+|[0-9]+)(\]?)(,([a-zA-Z0-9_\-\.]+)@((([a-zA-Z0-9\-]+\.)+))([a-zA-Z]+|[0-9]+)(\]?))*$"/><br/>
+            <span class="vert font_medium">Informations de contact (non visible aux étudiants)&nbsp;:</span>
+            <textarea name="*STAGE_CONTACT" required></textarea><br/>
+            <span class="vert font_medium">Formations concernées&nbsp;:</span><br/>
+            <!-- BEGIN une_formation -->
+            <input type="checkbox" value="{une_formation.FORM_ID}" name="FORM_ID[]"/><span class="font_small">&nbsp;{une_formation.FORM_NOM}</span><br/>
+            <!-- END une_formation -->
+            <input type="hidden" name="*STAGE_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+            <input type="submit" value="Déposer le stage" name="depose_stage"/>
+        </form>
+        <hr/>
+        <span>Nombre de candidatures maximum par stage :</span>
+        <input type="text" value="{FORM_CANDIDATURES_STAGE_MAX}" name="FORM_CANDIDATURES_STAGE_MAX"
+               data-bfmw="{FORMATION_COURANTE}" class="bind specific_input_accueil_1"/><br/>
+        <span>Nombre de candidatures maximum par étudiant :</span>
+        <input type="text" value="{FORM_CANDIDATURES_STAGE_ET_MAX}" name="FORM_CANDIDATURES_STAGE_ET_MAX"
+               data-bfmw="{FORMATION_COURANTE}" class="bind specific_input_accueil_1"/><br/>
+        <hr/>
+        <span>Liste des stages</span><span>&nbsp;({NOMBRE_STAGES})&nbsp;:</span>
+        <!-- BEGIN un_stage -->
+        <div class="box">
+            <div class="hide" id="modif_{un_stage.STAGE_ID}">
+                <span class="vert font_medium">Référence du stage&nbsp;:</span>
+                <input type="text" name="STAGE_REF" value="{un_stage.STAGE_REF}" data-bfmw="{un_stage.STAGE_ID}"
+                       class="bind"/><br/>
+                <span class="vert font_medium">Sujet du stage&nbsp;:</span>
+                <textarea name="STAGE_SUJET" class="bind"
+                          data-bfmw="{un_stage.STAGE_ID}">{un_stage.STAGE_SUJET_NL}</textarea><br/>
+                <span class="vert font_medium">Adresse(s) mail(s), séparées par des virgules, où les CV et les LM seront envoyés (non visible aux étudiants)&nbsp;:</span><br/>
+                <input name="STAGE_MAIL" type="text" value="{un_stage.STAGE_MAIL}" data-bfmw="{un_stage.STAGE_ID}"
+                       class="bind"
+                       pattern="^([a-zA-Z0-9_\-\.]+)@((([a-zA-Z0-9\-]+\.)+))([a-zA-Z]+|[0-9]+)(\]?)(,([a-zA-Z0-9_\-\.]+)@((([a-zA-Z0-9\-]+\.)+))([a-zA-Z]+|[0-9]+)(\]?))*$"/><br/>
+                <span class="vert font_medium">Informations de contact (non visible aux étudiants)&nbsp;:</span>
+                <textarea name="STAGE_CONTACT" class="bind"
+                          data-bfmw="{un_stage.STAGE_ID}">{un_stage.STAGE_CONTACT_NL}</textarea><br/>
+                <span class="vert font_medium">Formations concernées&nbsp;:</span><br/>
+                <!-- BEGIN une_formation -->
+                <div id="confirm_{un_stage.STAGE_ID}${une_formation.FORM_ID}"><input type="checkbox"
+                                                                                     value="{une_formation.FORM_ID}"
+                                                                                     {une_formation.CHECKED}
+                                                                                     name="STAGE_FORM_ID" class="bind2"
+                                                                                     data-bfmw="{un_stage.STAGE_ID}${une_formation.FORM_ID}"/><span
+                        class="font_small">&nbsp;{une_formation.FORM_NOM}</span></div>
+                <!-- END une_formation -->
+            </div>
+            <div id="consult_{un_stage.STAGE_ID}">
+                <p class="font_small">
+                    <a href="#" data-bfmw="{un_stage.STAGE_ID}" class="show_edit"><img
+                            src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" title="Modifier le stage"/></a>
+                    <a href="?p=front&amp;p2=accueil&amp;dels={un_stage.STAGE_ID}&amp;a={ANNEE_COURANTE}&amp;f={FORMATION_COURANTE}"
+                       id="id_confirm_suppression"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                        title="Supprimer le stage, ses affectations et ses candidatures"/></a>
+                    Déposé le {un_stage.DATE_STAGE}
+                    <!-- IF un_stage.NB_CANDIDATS > 0 -->
+                    - <span class="vert">{un_stage.NB_CANDIDATS}</span>
+                    <!-- IF un_stage.NB_CANDIDATS > 1 -->
+                    candidats
+                    <!-- ELSE -->
+                    candidat
+                    <!-- ENDIF -->
+                    <!-- ENDIF -->
+                    <!-- IF un_stage.ET_NOM != "" -->
+                    - Stage affecté à <span class="vert">{un_stage.ET_NOM}</span> le {un_stage.DATE_AFFECTATION}
+                    <!-- ENDIF -->
+                </p>
+                <p class="font_medium"><span class="vert">Référence : </span>{un_stage.STAGE_REF}</p>
+                <p class="font_small">{un_stage.STAGE_SUJET}<br/>
+                    <a href="#" class="font_smal afficheur" data-bfmw="{un_stage.STAGE_ID}">[+]</a></p>
+                <div class="hide" id="detail_{un_stage.STAGE_ID}">
+                    <span class="font_medium vert">Information de contact :</span><br/>
+                    <p class="font_small">{un_stage.STAGE_MAIL}<br/>{un_stage.STAGE_CONTACT}</p>
+                    <!-- IF un_stage.ET_NOM != "" -->
+                    <span class="font_medium vert">Etudiants sélectionné :</span><br/>
+                    <p class="font_small">{un_stage.ET_NOM} ({un_stage.DATE_AFFECTATION})</p>
+                    <!-- ENDIF -->
+                    <!-- IF un_stage.NB_CANDIDATS > 0 -->
+                    <span class="font_medium vert">Etudiants candidats :</span><br/>
+                    <p class="font_small">
+                        <!-- BEGIN un_etudiant -->
+                        <!-- IF un_stage.ET_NOM == "" -->
+                        <a href="?p=front&amp;p2=accueil&amp;delaff={un_etudiant.ET_ID}&amp;s={un_stage.STAGE_ID}&amp;a={ANNEE_COURANTE}&amp;f={FORMATION_COURANTE}"
+                           class="confirm_suppression"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                            title="Supprimer la candidature de cet étudiant à ce stage"/></a>
+                        <!-- ENDIF -->
+                        &bull;&nbsp;{un_etudiant.ET_NOM} ({un_etudiant.DATE_CANDIDATURE})<br/>
+                        <!-- END un_etudiant -->
+                    </p>
+                    <!-- ENDIF -->
+                </div>
+            </div>
+        </div>
+        <!-- END un_stage -->
+    </div>
+</div>

@@ -1,0 +1,140 @@
+<div class="main">
+    <div class="limited specific_div_periodes_1">
+        <!-- IF HAS_FORMATION -->
+        <span>Liste des périodes existantes :</span>
+        <ul class="TreeView">
+            <!-- BEGIN une_periode -->
+            <li>
+                <!-- IF ! une_periode.AFFECTED -->
+                <a href="?p=front&amp;p2=periodes&amp;delperiode={une_periode.PERIODE_ID}" name="confirm_supress"
+                   title="Supprimer la période"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Supprimer"/></a>
+                <!-- ENDIF -->
+                <span>{une_periode.PERIODE_NOM}</span>
+                <ul>
+                    <li>Formation 1 :&nbsp;
+                        <!-- IF ! une_periode.FORM1_AFFECTED -->
+                        <select class="specific_div_periodes_2 bind2 bfmw_no_style" data-bfmw="{une_periode.PERIODE_ID}"
+                                name="PERIODE_FORM_ID_1">
+                            <!-- BEGIN une_formation -->
+                            <option value="{une_formation.FORM_ID}" {une_formation.SELECTED1}>{une_formation.FORM_NOM}
+                            </option>
+                            <!-- END une_formation -->
+                        </select>
+                        <!-- ELSE -->
+                        <!-- BEGIN une_formation -->
+                        <!-- IF une_formation.SELECTED1 != "" -->
+                        <span>{une_formation.FORM_NOM}</span>
+                        <!-- ENDIF -->
+                        <!-- END une_formation -->
+                        <!-- ENDIF -->
+                    </li>
+                    <li>Formation 2 :&nbsp;
+                        <!-- IF ! une_periode.FORM2_AFFECTED -->
+                        <select class="specific_div_periodes_2 bind2 bfmw_no_style" data-bfmw="{une_periode.PERIODE_ID}"
+                                name="PERIODE_FORM_ID_2">
+                            <option value="NULL" {une_periode.NOT_FORMATION_2}></option>
+                            <!-- BEGIN une_formation -->
+                            <option value="{une_formation.FORM_ID}" {une_formation.SELECTED2}>{une_formation.FORM_NOM}
+                            </option>
+                            <!-- END une_formation -->
+                        </select>
+                        <!-- ELSE -->
+                        <!-- BEGIN une_formation -->
+                        <!-- IF une_formation.SELECTED2 != "" -->
+                        <span>{une_formation.FORM_NOM}</span>
+                        <!-- ENDIF -->
+                        <!-- END une_formation -->
+                        <!-- ENDIF -->
+                    </li>
+                    <li>Période de paiement : <input data-bfmw="{une_periode.PERIODE_ID}" name="PERIODE_PAIEMENT"
+                                                     type="text" class=" bfmw_no_style specific_div_periodes_2 bind"
+                                                     value="{une_periode.PERIODE_PAIEMENT}"/>
+                    </li>
+                    <li>Date limite de saisie des notes : <input placeholder="JJ/MM/AAAA"
+                                                                 data-bfmw="{une_periode.PERIODE_ID}"
+                                                                 name="PERIODE_LIMIT_NOTES" type="text"
+                                                                 class=" bfmw_no_style specific_div_periodes_2 bind"
+                                                                 value="{une_periode.PERIODE_LIMITF_NOTES}"/>
+                    </li>
+                    <!-- IF IS_ADMIN -->
+                    <li>Date limite de saisie des fiches de voeux d'emploi du temps : <input placeholder="JJ/MM/AAAA"
+                                                                                             data-bfmw="{une_periode.PERIODE_ID}"
+                                                                                             name="PERIODE_LIMIT"
+                                                                                             type="text"
+                                                                                             class="bfmw_no_style specific_div_periodes_2 bind"
+                                                                                             value="{une_periode.PERIODE_LIMITF}"/>
+                    </li>
+                    <li>Date de début signalant aux enseignants qu'ils peuvent saisir leur fiche de voeux d'emploi du
+                        temps : <input placeholder="JJ/MM/AAAA" data-bfmw="{une_periode.PERIODE_ID}"
+                                       name="PERIODE_DEBUT_WARNING" type="text"
+                                       class="bfmw_no_style specific_div_periodes_2 bind"
+                                       value="{une_periode.PERIODE_DEBUT_WARNINGF}"/>
+                    </li>
+                    <li>Année d'emploi du temps concernée : <select class="bfmw_no_style specific_div_periodes_2 bind2"
+                                                                    data-bfmw="{une_periode.PERIODE_ID}"
+                                                                    name="PERIODE_ANNEE_ID">
+                        <!-- BEGIN une_annee -->
+                        <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+                        <!-- END une_annee -->
+                    </select>
+                    </li>
+                    <li>Type de fiche : <select class="bfmw_no_style specific_div_periodes_2 bind2"
+                                                data-bfmw="{une_periode.PERIODE_ID}" name="PERIODE_TYPE">
+                        <option value="A" {une_periode.SELECTEDA}>sans jeudi après-midi</option>
+                        <option value="B" {une_periode.SELECTEDB}>avec jeudi après-midi</option>
+                    </select>
+                    </li>
+                    <li>Date de début d'enseignement : <input placeholder="JJ/MM/AAAA" name="PERIODE_DEBUT"
+                                                              data-bfmw="{une_periode.PERIODE_ID}" type="text"
+                                                              class="bfmw_no_style specific_div_periodes_2 bind"
+                                                              value="{une_periode.PERIODE_DEBUTF}"/>
+                    </li>
+                    <li>Date de fin d'enseignement : <input placeholder="JJ/MM/AAAA" name="PERIODE_FIN"
+                                                            data-bfmw="{une_periode.PERIODE_ID}" type="text"
+                                                            class="bfmw_no_style specific_div_periodes_2 bind"
+                                                            value="{une_periode.PERIODE_FINF}"/>
+                    </li>
+                    <li>Date de début des examens : <input placeholder="JJ/MM/AAAA" name="PERIODE_EXAM_DEBUT"
+                                                           data-bfmw="{une_periode.PERIODE_ID}" type="text"
+                                                           class="bfmw_no_style specific_div_periodes_2 bind"
+                                                           value="{une_periode.PERIODE_EXAM_DEBUTF}"/>
+                    </li>
+                    <li>Date de fin des examens : <input placeholder="JJ/MM/AAAA" name="PERIODE_EXAM_FIN"
+                                                         data-bfmw="{une_periode.PERIODE_ID}" type="text"
+                                                         class="bfmw_no_style specific_div_periodes_2 bind"
+                                                         value="{une_periode.PERIODE_EXAM_FINF}"/>
+                    </li>
+                    <li>Nombre de semaines d'enseignement : <input type="text" name="PERIODE_SEMAINES"
+                                                                   data-bfmw="{une_periode.PERIODE_ID}"
+                                                                   class="bfmw_no_style specific_div_periodes_2 bind"
+                                                                   value="{une_periode.PERIODE_SEMAINES}"/>
+                    </li>
+                    <!-- ENDIF -->
+                </ul>
+            </li>
+            <!-- END une_periode -->
+        </ul>
+        <hr/>
+        <form action="?p=front&amp;p2=periodes" method="POST">
+            <div>
+                Créer une nouvelle période (une à deux formations par période) :<br/>
+                <input class="specific_div_periodes_2" required type="text" placeholder="Nom de la période&nbsp:"
+                       name="*PERIODE_NOM"/>
+                <input type="hidden" name="*PERIODE_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                <select class="specific_div_periodes_2" name="*PERIODE_FORM_ID_1">
+                    <!-- BEGIN une_formation -->
+                    <option value="{une_formation.FORM_ID}">{une_formation.FORM_NOM}</option>
+                    <!-- END une_formation -->
+                </select>
+                <select class="specific_div_periodes_2" name="*PERIODE_FORM_ID_2">
+                    <option value="NULL"></option>
+                    <!-- BEGIN une_formation -->
+                    <option value="{une_formation.FORM_ID}">{une_formation.FORM_NOM}</option>
+                    <!-- END une_formation -->
+                </select>
+                <input class="specific_div_periodes_2" type="submit" value="Créer une période" name="create_periode"/>
+            </div>
+        </form>
+        <!-- ENDIF -->
+    </div>
+</div>

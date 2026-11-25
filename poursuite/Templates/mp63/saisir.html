@@ -1,0 +1,96 @@
+<div class="main">
+    <div class="limited specific_div_saisir_1">
+        <span>Choisissez le groupe pour lequel vous souhaitez saisir les fiches : </span>
+        <select id="selecteur_promo" data-bfmw="{MATIERE_ID}">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+                <!-- BEGIN un_groupe -->
+                <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                <!-- END un_groupe -->
+                <!-- END une_formation -->
+        </select>
+        <!-- BEGIN open_matiere -->
+        <label>Sélectionnez la matière :</label>
+        <select name="matiere" id="id_selecteur_matiere" data-bfmw="{GROUPE_ID}">
+            <!-- BEGIN une_matiere -->
+            <option value="{une_matiere.PMAT_ID}" {une_matiere.SELECTED}>{une_matiere.PMAT_NOM}</option>
+            <!-- END une_matiere -->
+        </select>
+        <!-- END open_matiere -->
+        <!-- BEGIN locked -->
+        <label class="rouge">Impossible de saisir les fiches de poursuites d'études, <span class="vert">{ENS_NOM}</span>
+            est en train d'effectuer une saisie.</label>
+        <label class="rouge"><a href="?p=front&amp;p2=saisir&amp;m={PMAT_ID}&amp;mail=mail">Cliquez ici</a> pour le
+            prévenir que vous souhaitez saisir.</label>
+        <!-- END locked -->
+        <!-- BEGIN unlocked -->
+        <div class="box">
+            <p class="font_small">-> Vous pouvez trier le tableau en cliquant sur les entêtes<br/>
+                -> Vous pouvez voir les fiches individuelles en cliquant sur le nom des étudiants<br/>
+                -> Lorsqu'une case passe au vert, c'est qu'elle a été bien sauvegardée. Si jamais une case passe au
+                rouge, c'est que la sauvegarde a échoué. Dans ce cas, rafraîchissez la page et recommencez.</p>
+        </div>
+
+        <table class="releve width_100">
+            <tr>
+                <th colspan="3" class="font_large text_align_left">Fiche <span class="vert">{NOM_MATIERE}</span></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th><a href="?p=saisir&amp;m={MATIERE_ID}&amp;g={GROUPE_ID}&amp;o=ET_NOM {O1}">Nom Prenom</a> (<a
+                        href="?p=saisir&amp;g={GROUPE_ID}&amp;m={MATIERE_ID}&amp;o=GROUPE_ID {O2},ET_NOM">Groupe</a>)
+                </th>
+                <th>
+                    <a href="?p=saisir&amp;m={MATIERE_ID}&amp;g={GROUPE_ID}&amp;o=AVIS_APPRECIATION {O4},ET_NOM">Avis</a>
+                </th>
+            </tr>
+            <!-- BEGIN une_ligne -->
+            <tr>
+                <td class="text_align_center text_vertical_middle"><img class="specific_img_saisir_1"
+                                                                        src="../trombi/{une_ligne.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                        loading="lazy" alt=""
+                                                                        title="{une_ligne.ET_NOM}"/></td>
+                <td class="text_align_center text_vertical_middle font_large"><a
+                        href="?p=accueil&amp;e={une_ligne.ET_ID}&amp;g={une_ligne.GROUPE_ID}">{une_ligne.ET_NOM}
+                    ({une_ligne.GROUPE_NOM})</a>
+                    <br/>BAC : <span class="vert">{une_ligne.ET_BAC}</span>
+                    <!-- IF une_ligne.ET_RED != "" -->
+                    <br/>{une_ligne.ET_RED}
+                    <!-- ENDIF -->
+                    <!-- IF une_ligne.ET_TIERS != 0 -->
+                    <br/>Tiers temps
+                    <!-- ENDIF -->
+                </td>
+                <td class="align_center vertical_align_middle"><textarea class="font_large bind bfmw_no_style" rows="6"
+                                                                         cols="70" name="AVIS_APPRECIATION"
+                                                                         data-bfmw="{une_ligne.ET_ID}${MATIERE_ID}">{une_ligne.AVIS_APPRECIATION}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="font_large specific_td_saisir_1">
+                    <!-- BEGIN une_matiere -->
+                    &bull;&nbsp;<u>{une_matiere.MAT_NOM} :</u><br/>
+                    <!-- BEGIN une_annee -->
+                    {une_annee.ANNEE_NOM}&nbsp;:&nbsp;
+                    <!-- BEGIN un_controle -->
+                    {un_controle.CONTROLE_NOM} : <span class="rouge">{un_controle.NOTES}</span>
+                    <!-- END un_controle -->
+                    Moyenne : <span class="vert">{une_annee.MOYENNE}</span><br/>
+                    <!-- END une_annee -->
+                    <!-- END une_matiere -->
+                    <!-- BEGIN une_absence -->
+                    &bull;&nbsp;<u>Nombre d'absences en {une_absence.MAT_NOM} :</u><br/>
+                    <!-- BEGIN une_annee -->
+                    <span>{une_annee.ANNEE_NOM}&nbsp;:&nbsp;</span><span class="vert">{une_annee.TOTAL}</span> dont
+                    <span class="rouge">{une_annee.NB_ABS_NONJUSTIF}</span> {une_annee.TXT_ABS_NONJUSTIF}<br/>
+                    <!-- END une_annee -->
+                    <!-- END une_absence -->
+                </td>
+            </tr>
+            <!-- END une_ligne -->
+        </table>
+
+        <input type="hidden" value="{MATIERE_ID}" name="free" id="id_specific_matiere_free"/>
+        <!-- END unlocked -->
+    </div>
+</div>

@@ -1,0 +1,104 @@
+<!-- BEGIN une_matiere -->
+{une_matiere.MAT_ID}¤¤§£$§£$§£¤¤
+    <!-- BEGIN un_enseignant -->
+        <span>&bull;&nbsp;</span>
+        <!-- IF ! un_enseignant.ANNEE_CLOSE -->
+        <a href="#"  data-bfmw="{un_enseignant.ID}" data-bfmw2="{une_matiere.MAT_ID}" class="confirm_supress_enseignant"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer cette charge"/></a>
+        <!-- ENDIF -->
+        <span class="bleu">{un_enseignant.ENS_NOM}</span>
+        <br/>
+    <!-- BEGIN une_charge -->
+    <!-- IF une_charge.CHARGE_ID != "" -->
+    <div>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <!-- IF ! un_enseignant.ANNEE_CLOSE -->
+            <a href="#"  data-bfmw="{une_matiere.MAT_ID}" data-bfmw2="{une_charge.CHARGE_ID}"  data-bfmw3="{une_charge.MAT_ID}" class="confirm_supress_charge"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer cette charge"/></a>
+
+            <input type="text" name="CHARGE_VALEUR" value="{une_charge.CHARGE_VALEUR}" class="specific_input_equipe bind_charge"  data-bfmw="{une_charge.CHARGE_ID}${une_charge.MAT_ENS_ID}" data-bfmw3="{une_charge.MAT_ENS_ID}" data-bfmw2="{une_charge.ENS_MAT_ID}" />
+            <span>heures de</span>
+            <select class="specific_input_equipe bind_charge2" name="CHARGE_TYPE" data-bfmw="{une_charge.CHARGE_ID}${une_charge.MAT_ENS_ID}"  data-bfmw3="{une_charge.MAT_ENS_ID}" data-bfmw2="{une_charge.ENS_MAT_ID}">
+                <option
+                <!-- IF une_charge.CHARGE_TYPE == 'CM' -->
+                selected
+                <!-- ENDIF -->
+                value="CM">CM</option>
+                <option
+                <!-- IF une_charge.CHARGE_TYPE == 'TD' -->
+                selected
+                <!-- ENDIF -->
+                value="TD">TD</option>
+                <option
+                <!-- IF une_charge.CHARGE_TYPE == 'TP' -->
+                selected
+                <!-- ENDIF -->
+                value="TP">TP</option>
+                <option
+                <!-- IF une_charge.CHARGE_TYPE == 'DS' -->
+                selected
+                <!-- ENDIF -->
+                value="DS">DS</option>
+            </select>
+            <span>pour</span>
+            <input type="number" min="1" step="1" name="CHARGE_GROUPE" value="{une_charge.CHARGE_GROUPE}" class="specific_input_equipe bind_charge"  data-bfmw="{une_charge.CHARGE_ID}${une_charge.MAT_ENS_ID}"  data-bfmw3="{une_charge.MAT_ENS_ID}" data-bfmw2="{une_charge.ENS_MAT_ID}" />
+            <!-- IF une_charge.CHARGE_GROUPE > 1 -->
+            <span>groupes</span>
+            <!-- ELSE -->
+            <span>groupe</span>
+            <!-- ENDIF -->
+        <!-- ELSE -->
+            <span class="vert">{une_charge.CHARGE_VALEUR}</span><span>&nbsp;heures de</span>
+            <span class="vert">{une_charge.CHARGE_TYPE}</span><span>&nbsp;pour</span>
+            <span class="vert">{une_charge.CHARGE_GROUPE}</span>
+            <!-- IF une_charge.CHARGE_GROUPE > 1 -->
+            <span>groupes</span>
+            <!-- ELSE -->
+            <span>groupe</span>
+            <!-- ENDIF -->
+        <!-- ENDIF -->
+    </div>
+    <!-- ENDIF -->
+    <!-- END une_charge -->
+    <!-- IF ! un_enseignant.ANNEE_CLOSE -->
+    <div>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;</span>
+        <a href="#" class="ajouter_une_charge" data-bfmw="{un_enseignant.ID}"  data-bfmw2="{une_matiere.MAT_ID}" >Cliquez ici pour ajouter une nouvelle charge</a>
+    </div>
+    <!-- ENDIF -->
+    <!-- END un_enseignant -->
+    <!-- IF ! une_matiere.ANNEE_CLOSE -->
+    <div>
+        <span>&nbsp;&gt;&nbsp;</span>
+        <a href="#" class="ajouter_un_enseignant" data-bfmw="{une_matiere.MAT_ID}" >Cliquez ici pour ajouter un nouvel enseignant</a>
+        <div class="box hide" id="ajouter_{une_matiere.MAT_ID}" >
+            <form class="box formulaire_ajout_enseignant_existant" data-bfmw="{une_matiere.MAT_ID}">
+                <span class="font_medium">Sélectionnez un enseignant existant :</span>
+                <select name="a_ajouter" class="font_medium specific_input_equipe_2">
+                {SELECT_ENSEIGNANT}
+                </select><br/>
+                <input class="specific_submit_equipe" type="submit" name="ajouter_enseignant_existe" value="Ajouter l'enseignant" />
+            </form>
+            <div class="hide">
+            <span>ou</span>
+            <form class="box formulaire_ajout_enseignant_universitaire" action="#">
+                <label class="font_small" for="nom_univ_{une_matiere.MAT_ID}">NOM Prénom :</label>
+                <input id="nom_univ_{une_matiere.MAT_ID}" type="text" class="specific_input_equipe_3" /><br/>
+                <input class="specific_submit_equipe" type="submit" name="ajouter_enseignant_nouvel" value="Ajouter un enseignant de l'université" />
+            </form>
+            <span>ou</span>
+            <form class="box formulaire_ajout_nouvel_enseignant" action="#">
+                <label class="font_small" for="nom_{une_matiere.MAT_ID}">NOM Prénom :</label>
+                <input id="nom_{une_matiere.MAT_ID}" type="text" class="specific_input_equipe_3" /><br/>
+                <label class="font_small" for="adresse_{une_matiere.MAT_ID}">Adresse mail :</label>
+                <input id="adresse_{une_matiere.MAT_ID}" type="text" class="specific_input_equipe_3" /><br/>
+                <label class="font_small" for="entreprise_{une_matiere.MAT_ID}">Entreprise :</label>
+                <input id="entreprise_{une_matiere.MAT_ID}" type="text" class="specific_input_equipe_3" /><br/>
+                <label class="font_small" for="emploi_{une_matiere.MAT_ID}">Emploi :</label>
+                <input id="emploi_{une_matiere.MAT_ID}" type="text" class="specific_input_equipe_3" /><br/>
+                <input class="specific_submit_equipe" type="submit" name="ajouter_enseignant_nouvel" value="Ajouter un vacataire n'existant pas encore" />
+            </form>
+            </div>
+        </div>
+    </div>
+    <!-- ENDIF -->
+¤¤¤$§£$§£$§£$§£¤¤¤
+<!-- END une_matiere -->

@@ -1,0 +1,75 @@
+<div class="main">
+    <div class="limited specific_div_export_1">
+        Année à exporter :
+        <select id="id_selection_annee" data-bfmw="{FORM_ID}" data-bfmw2="{SEM_ID}">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECT}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <!-- BEGIN par_formation -->
+        Formation à exporter :
+        <select id="id_selection_formation" data-bfmw="{ANNEE_ID}">
+            <!-- BEGIN une_formation -->
+            <option value="{une_formation.FORM_ID}" {une_formation.SELECT}>{une_formation.FORM_NOM}</option>
+            <!-- END une_formation -->
+        </select>
+        <!-- END par_formation -->
+        <!-- BEGIN par_semestre -->
+        Semestre à exporter :
+        <select id="id_selection_semestre" data-bfmw="{ANNEE_ID}">
+            <!-- BEGIN une_formation_select -->
+            <optgroup label="{une_formation_select.FORM_NOM}">
+                <!-- BEGIN un_semestre -->
+                <option value="{un_semestre.SEM_ID}" {un_semestre.SELECT}>{un_semestre.SEM_NOM}</option>
+                <!-- END un_semestre -->
+                <!-- END une_formation_select -->
+        </select>
+        <!-- END par_semestre -->
+        <hr/>
+        <!-- BEGIN no_matiere -->
+        <span class="rouge">A ce jour, aucune matière ne contient des notes. L'exportation est donc impossible.</span>
+        <!-- END no_matiere -->
+        <!-- BEGIN une_formation -->
+        <label class="bleu">{une_formation.FORM_NOM}</label>
+        <div class="box">
+            <!-- BEGIN un_sem -->
+            <label class="font_large">{un_sem.SEM_NOM}</label>
+            <div class="box">
+                <!-- BEGIN une_ue -->
+                <span class="jaune font_large">{une_ue.UE_NOM}</span><br/>
+                <!-- BEGIN une_matiere -->
+                &nbsp; <span
+                    class="vert font_large">&bull;&nbsp;{une_matiere.MAT_CODE_APOGE} ({une_matiere.MAT_NOM})</span>
+                <div class="tooltip"><span class="tooltiptext font_small">{une_matiere.ENSEIGNANT}</span><span
+                        class="rouge">{une_matiere.BROUILLONS}</span></div>
+                <div class="tooltip"><span class="tooltiptext font_small">{une_matiere.VALIDATEUR}</span><span
+                        class="bleu">{une_matiere.CONTROLES}</span></div>
+                <span class="rouge">{une_matiere.PAS_DE_CONTROLES}</span>
+                <!-- IF une_matiere.MAT_LOCK === 0 -->
+                <img src="images/tick.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Matière expotée" title="La matière a correctement été exportée"
+                     class="specific_img_export_1"/>
+                <!-- ENDIF -->
+                <br/>
+                <!-- END une_matiere -->
+                <!-- END une_ue -->
+            </div>
+            <!-- END un_sem -->
+        </div>
+        <div class="box">
+            <span class="font_medium">Indiquez le code APOGEE à saisir en cas d'absence de note pour un étudiant : </span>
+            <input type="text" class="specific_input_export_1 bind" data-bfmw="{une_formation.FORM_ID}"
+                   value="{une_formation.FORM_CODE_APOGEE}"/>
+            <form action="?generate=Export" method="post" enctype="multipart/form-data" id="id_submiter"
+                  data-bfmw="{ANNEE_ID}" data-bfmw2="{SEM_ID}" data-bfmw3="{FORM_ID}">
+                <span class="font_medium">Fournissez ici le fichier issu d'APOGEE : </span>
+                <input type="hidden" name="export" value="{MATIERES}"/>
+                <input type="hidden" name="a" value="{ANNEE_ID}"/>
+                <input type="hidden" name="s" value="{SEM_ID}"/>
+                <input type="hidden" name="f" value="{FORM_ID}"/>
+                <input type="file" name="fichier" id="fichier" accept=".txt" required class="bfmw_no_style"/><input
+                    type="submit" value="Télécharger les résultats" class="specific_input_export_1">
+            </form>
+        </div>
+        <!-- END une_formation -->
+    </div>
+</div>

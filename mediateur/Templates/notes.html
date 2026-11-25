@@ -1,0 +1,206 @@
+<!-- MASTER -->
+<div class="complete_master" id="le_master">
+    <div class="filter" id="id_div_filter">
+        <select id="id_selecteur_promo">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+            <!-- BEGIN un_groupe -->
+            <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+            <!-- END un_groupe -->
+            </optgroup>
+            <!-- END une_formation -->
+        </select>
+    </div>
+    <div class="master">
+        <div>
+            <!-- BEGIN un_etudiant -->
+            <a id="{un_etudiant.ET_ID}" class="{un_etudiant.SELECTED}" href="?p=notes&amp;g={GROUPE}&amp;a={ANNEE_ID}&amp;e={un_etudiant.ET_ID}#{un_etudiant.ET_ID}" >{un_etudiant.ET_NOM}</a><br/>
+            <!-- END un_etudiant -->
+        </div>
+    </div>
+</div>
+<!-- DETAIL -->
+<div id="detail">
+    <a class="show_master" href="#"><img src="../bfmw/images/fleche.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="masque_master" alt="Menu"/></a>
+    <!-- BEGIN show -->
+    Choisissez l'année à afficher : <select class="specific_select_mediateur_1" id="id_selecteur_annee" data-bfmw="{GROUPE}" data-bfmw2="{ETUDIANT_ID}">
+        <!-- BEGIN une_annee -->
+        <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+        <!-- END une_annee -->
+    </select><br/>
+    <!-- BEGIN releve -->
+    BAC : <span class="vert">{releve.ET_BAC}</span><br/>
+    <span class="vert">{releve.ET_RED}</span><br/>
+    <!-- IF releve.ET_TIERS == 1 -->
+    <span class="vert">Tiers temps</span><br/>
+    <!-- ENDIF -->
+    <table class="releve">
+        <tr>
+            <td colspan="10" class="text_align_center"><img src="../trombi/{releve.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" class="specific_img_mediateur_2" /></td>
+        </tr>
+        <tr>
+            <td colspan="5" class="text_align_right">{releve.ET_NOM}</td>
+            <th class="vert text_align_center">{releve.GENERAL_NOTE}</th>
+            <th class="text_align_center">{releve.GENERAL_RANK}</th>
+            <th class="text_align_center">{releve.GENERAL_MOY}</th>
+            <th class="text_align_center">{releve.GENERAL_MAX}</th>
+            <th class="text_align_center">{releve.GENERAL_MIN}</th>
+        </tr>
+        <tr>
+            <th colspan="4" class="text_align_left">{releve.SEM_NOM}</th>
+            <th class="text_align_center">Coeff</th>
+            <th class="text_align_center">Note</th>
+            <th class="text_align_center">Rang</th>
+            <th class="text_align_center">Moy</th>
+            <th class="text_align_center">Maxi</th>
+            <th class="text_align_center">Mini</th>
+        </tr>
+        <!-- BEGIN une_ue -->
+        <tr>
+            <td colspan="4" class="bleu text_vertical_middle">{une_ue.UE_NOM}</td>
+            <td class="text_align_center text_vertical_middle ">{une_ue.UE_COEF}</td>
+            <td class="text_align_center">{une_ue.UE_NOTE}<br/><span class="text_barre">{une_ue.UE_BARREE}</span></td>
+            <td class="text_align_center text_vertical_middle">{une_ue.UE_RANK}</td>
+            <th class="text_align_center text_vertical_middle">{une_ue.UE_MOY}</th>
+            <th class="text_align_center text_vertical_middle ">{une_ue.UE_MAX}</th>
+            <th class="text_align_center text_vertical_middle">{une_ue.UE_MIN}</th>
+        </tr>
+        <!-- BEGIN un_module -->
+        <tr>
+            <td>&nbsp;</td>
+            <!-- IF un_module.MAT_SURMAT_ID != null -->
+            <td>&nbsp;</td>
+            <td colspan="2">
+                <!-- IF un_module.MAT_HAS_NOTE == 1 -->
+                <span class="bfmw_auto_hidder" data-bfmw="specific_afficher_note_{un_module.MAT_ID}"></span>
+                <!-- ENDIF -->
+                <span class="vert">{un_module.MAT_NOM}</span>
+            <!-- ELSE -->
+            <td colspan="3">
+                <!-- IF un_module.MAT_HAS_NOTE == 1 -->
+                <span class="bfmw_auto_hidder" data-bfmw="specific_afficher_note_{un_module.MAT_ID}"></span>
+                <!-- ENDIF -->
+                <span class="vert">{un_module.MAT_NOM}</span>
+            <!-- ENDIF -->
+            </td>
+            <td class="text_align_center">{un_module.MAT_COEF}</td>
+            <td class="vert text_align_center">{un_module.MAT_NOTE}</td>
+            <td class="text_align_center">{un_module.MAT_RANK}</td>
+            <th class="text_align_center">{un_module.MAT_MOY}</th>
+            <th class="text_align_center">{un_module.MAT_MAX}</th>
+            <th class="text_align_center">{un_module.MAT_MIN}</th>
+        </tr>
+        <!-- BEGIN une_note -->
+        <tr class="specific_th_mediateur_3 specific_afficher_note_{un_module.MAT_ID}">
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>
+                <!-- IF IS_ADMIN -->
+
+                <a href="?p=front&amp;p2=notes&amp;g={GROUPE}&amp;e={ETUDIANT_ID}&amp&deln={une_note.NOTES_ID}" class="confirm_supprimer" ><img src="images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer cette note"/></a>
+                <!-- ENDIF -->
+                <!-- IF une_note.CONTROLE_MOYENNE == "2" -->
+                {une_note.CONTROLE_NOM}
+                <!-- ELSE -->
+                {une_note.CONTROLE_NOM}&nbsp;(sur&nbsp;{une_note.CONTROLE_BAREME})
+                <!-- ENDIF -->
+                <!-- BEGIN moyenne -->
+                <img src="images/sum.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" title="Compte dans la moyenne" alt="moyenne" class="specific_img_mediateur_4"/>
+                <!-- END moyenne -->
+                <!-- BEGIN nonvisible -->
+                <img src="images/hidden.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" title="Non visible" alt="non visible" class="specific_img_mediateur_5"/>
+                <!-- END nonvisible-->
+                <!-- IF une_note.NOTES_AVIS != "" -->
+                <div class="tooltip">
+                    <span class="tooltiptext specific_span_notes_1">{une_note.ENS_NOM} :<br/>{une_note.NOTES_AVIS}</span>
+                    <img src="../bfmw/images/bulle.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_5" alt="info"/>
+                </div>
+                <!-- ENDIF -->
+            </td>
+            <td class="text_align_center">
+                <!-- IF une_note.CONTROLE_MOYENNE == "1" -->
+                {une_note.CONTROLE_COEFF}
+                <!-- ENDIF -->
+                </td>
+            <td class="rouge text_align_center">
+                <!-- IF IS_RESPONSABLE && un_module.MAT_LOCK_ANNEE_ID < ANNEE_ID -->
+                <a href="#" class="updater" data-bfmw="NOTE" data-bfmw2="{un_module.MAT_ID}_{une_note.NOTES_ID}" data-bfmw3="{une_note.NOTES_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier la note"/></a>
+                <!-- ENDIF -->
+                <span id="{un_module.MAT_ID}_{une_note.NOTES_ID}">
+                <b>{une_note.NOTES_AFFICHE}{une_note.NOTES_SPECIAL}</b>
+                </span>
+            </td>
+            <td class="text_align_center">{une_note.NOTE_RANK}</td>
+            <th class="text_align_center">{une_note.NOTE_MOY}</th>
+            <th class="text_align_center">{une_note.NOTE_MAXI}</th>
+            <th class="text_align_center">{une_note.NOTE_MINI}</th>
+        </tr>
+        <!-- END une_note -->
+        <!-- END un_module -->
+        <tr>
+            <td colspan="10"></td>
+        </tr>
+        <!-- END une_ue -->
+    </table>
+    <!-- END releve -->
+    <!-- END show -->
+    <!-- BEGIN pv -->
+
+        <table class="releve">
+            <tr class="fixed">
+                <th class="specific_th_mediateur_1 fixed_col"><a class="{TRI_SELON_NOM}" href="?p=notes&amp;g={GROUPE}&amp;selon=NOM" title="Trier selon les noms des étudiants">NOM - PRENOM</a></th>
+                <th class="specific_th_mediateur_1"><a class="{TRI_SELON}" href="?p=notes&amp;g={GROUPE}&amp;selon=AN{ANNEE_ID}" title="Trier selon les moyennes de l'année">ANNEE</a></th>
+                <!-- BEGIN un_semestre -->
+                <th class="specific_th_mediateur_1"><a class="{un_semestre.TRI_SELON}" href="?p=notes&amp;g={GROUPE}&amp;selon=SEM{un_semestre.SEM_ID}" title="Trier selon les moyennes du semestre">{un_semestre.SEM_NOM}</a></th>
+                <!-- BEGIN une_ue -->
+                <th class="specific_th_mediateur_1"><a class="{une_ue.TRI_SELON}" href="?p=notes&amp;g={GROUPE}&amp;selon=UE{une_ue.UE_ID}"  title="Trier selon les moyennes de l'UE">{une_ue.UE_NOM}</a></th>
+                <!-- BEGIN une_matiere -->
+                <th class="specific_th_mediateur_2"><a class="{une_matiere.TRI_SELON}" href="?p=notes&amp;g={GROUPE}&amp;selon=MAT{une_matiere.MAT_ID}"  title="Trier selon les moyennes de cette matière">{une_matiere.MAT_NOM}</a></th>
+                <!-- END une_matiere -->
+                <!-- END une_ue -->
+                <!-- END un_semestre -->
+            </tr>
+            <!-- BEGIN un_etudiant -->
+            <tr>
+                <th class="vert nowrap fixed_col"><div class="tooltip"><a id="{un_etudiant.ET_ID}" href="?p=notes&amp;g={GROUPE}&amp;e={un_etudiant.ET_ID}#{un_etudiant.ET_ID}" >{un_etudiant.ET_NOM}</a><img class="tooltiptext specific_img_mediateur_2" src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" /></div></th>
+                <td class="rouge text_align_center specific_td_mediateur_1">
+                    <!-- IF un_etudiant.MOYAN_VALEUR != "" -->
+                    <div class="tooltip">{un_etudiant.MOYAN_VALEUR}<div class="tooltiptext">Moyenne à l'année pour<br/>{un_etudiant.ET_NOM}<br/><img src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" class="specific_img_mediateur_2" /></div></div>
+                    <!-- ENDIF -->
+                </td>
+                <!-- BEGIN un_semestre -->
+                <th class="specific_td_mediateur_1">
+                    <!-- IF un_etudiant.un_semestre.MOYSEM_VALEUR != "" -->
+                    <div class="tooltip">{un_etudiant.un_semestre.MOYSEM_VALEUR}<div class="tooltiptext">Moyenne au<br/>{un_etudiant.un_semestre.SEM_NOM}<br/>pour<br/>{un_etudiant.ET_NOM}<br/><img src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" class="specific_img_mediateur_2" /></div></div>
+                    <!-- ENDIF -->
+                </th>
+                <!-- BEGIN une_ue -->
+                <th class="vert specific_td_mediateur_1">
+                    <!-- IF un_etudiant.un_semestre.une_ue.MOYUE_VALEUR != "" -->
+                    <div class="tooltip">{un_etudiant.un_semestre.une_ue.MOYUE_VALEUR}
+                        <!-- IF un_etudiant.un_semestre.une_ue.MOYUE_BARREE != "" -->
+                        <br/><span class="text_barre">{un_etudiant.un_semestre.une_ue.MOYUE_BARREE}</span>
+                        <!-- ENDIF -->
+
+                        <div class="tooltiptext">Moyenne à<br/>l'{un_etudiant.un_semestre.une_ue.UE_NOM}<br/>pour<br/>{un_etudiant.ET_NOM}<br/><img src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" class="specific_img_mediateur_2" /></div></div>
+                    <!-- ENDIF -->
+                </th>
+                <!-- BEGIN une_matiere -->
+                <td class="rouge text_align_center specific_td_mediateur_1">
+                    <!-- IF un_etudiant.un_semestre.une_ue.une_matiere.MOYMAT_VALEUR != "" -->
+                    <div class="tooltip">{un_etudiant.un_semestre.une_ue.une_matiere.MOYMAT_VALEUR}<div class="tooltiptext"><img src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="photo"  loading="lazy" class="specific_img_mediateur_2"/></div></div>
+                    <!-- ELSE -->
+                    <!-- IF un_etudiant.un_semestre.une_ue.DISP || un_etudiant.un_semestre.une_ue.une_matiere.DISP -->
+                    <div class="tooltip">X<div class="tooltiptext">{un_etudiant.ET_NOM}<br/>est dispensé<br/><img src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" class="specific_img_mediateur_2"/></div></div>
+                    <!-- ENDIF -->
+                    <!-- ENDIF -->
+                </td>
+                <!-- END une_matiere -->
+                <!-- END une_ue -->
+                <!-- END un_semestre -->
+            </tr>
+            <!-- END un_etudiant -->
+        </table>
+    <!-- END pv -->
+</div>

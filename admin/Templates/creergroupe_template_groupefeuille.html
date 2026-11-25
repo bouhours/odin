@@ -1,0 +1,41 @@
+<li>
+    <span class="no_wrap">
+        <a href="?p=front&amp;p2=creergroupe&amp;delgroupe={GROUPE_ID}" name="confirm_suppres_groupe"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer ce groupe"/></a>&nbsp;
+        <input type="text" value="{GROUPE_NOM}" name="GROUPE_NOM" data-bfmw="{GROUPE_ID}" class="specific_div_creergroupe_3 bind" />
+    </span>
+    <ul>
+        <li>
+            <span class="no_wrap vert">
+                Responsable de groupe&nbsp;:&nbsp;
+                <select class="specific_div_creergroupe_2 bind2" name="GROUPE_ENS_ID" data-bfmw="{GROUPE_ID}">
+                    <option value="NULL">Aucun</option>
+                    <!-- BEGIN un_enseignant -->
+                    <option value="{un_enseignant.ENS_ID}" {un_enseignant.SELECTED}>{un_enseignant.ENS_NOM}</option>
+                    <!-- END un_enseignant -->
+                </select>
+            </span>
+        </li>
+        <li>
+            <span class="no_wrap vert">
+                Semestres&nbsp;:&nbsp;
+                <span class="">
+                    <div class="CheckBoxList specific_select_creergroupe_2">
+                        <!-- BEGIN un_semestre -->
+                        <input type="checkbox" value="{un_semestre.SEM_ID}" class="bind4" {un_semestre.SEM_SEL} name="SEMESTRES_GROUPES" data-bfmw="{un_semestre.SEM_ID}${GROUPE_ID}" /><span>&nbsp;{un_semestre.SEM_NOM}</span><br/>
+                        <!-- END un_semestre -->
+                </span>
+            </span>
+        </li>
+        <li>
+            <span class="no_wrap vert">
+                Numéro ADE&nbsp;:&nbsp;
+                <input class="specific_div_creergroupe_2 bind" type="text" maxlength="20" value="{GROUPE_ADE}" name="GROUPE_ADE" data-bfmw="{GROUPE_ID}"/>
+            </span>
+        </li>
+        <!-- IF FORM_PRO -->
+        <li>
+            <span class="no_wrap vert">Groupe en alternance ?&nbsp;<input type="checkbox" class="bind4" {GROUPE_PRO_SELECTED} value="1" name="GROUPE_PRO" data-bfmw="{GROUPE_ID}" /></span>
+        </li>
+        <!-- ENDIF -->
+    </ul>
+</li>

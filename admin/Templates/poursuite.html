@@ -1,0 +1,164 @@
+<div class="main">
+    <div class="limited specific_div_poursuite_1">
+        <label class="vert">Cochez les groupes concernés par les avis de poursuite d'études :</label>
+        <div class="box">
+            <!-- BEGIN un_groupe -->
+            <input type="checkbox" value="1" name="{un_groupe.GROUPE_CODE}" {un_groupe.SELECTED} class="bind2"
+                   data-bfmw="{un_groupe.GROUPE_ID}"/>&nbsp;{un_groupe.GROUPE_NOM}<br/>
+            <!-- END un_groupe -->
+        </div>
+        <label class="vert">Création du jury :</label>
+        <div class="box">
+            <p class="font_medium">Avec le BUT, il n'est plus nécessaire de créer un jury. Cependant, il est nécessaire
+                d'avoir défini le détail du diplôme dans l'onglet "Configuration des résultats".</p>
+        </div>
+        <label class="vert">Choix des avis :</label>
+        <div class="box">
+            <ul class="font_medium">
+                <!-- BEGIN les_avis -->
+                <li><a href="?p=front&amp;p2=poursuite&amp;delavis={les_avis.MODELE_ID}"
+                       class="confirm_suppres_avis"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                         title="Supprimer cet avis (Ne supprimera pas les avis déjà donnés)"/></a>
+                    <a href="#" class="updater" data-bfmw="MODELE_AVIS" data-bfmw2="nom_{les_avis.MODELE_ID}"
+                       data-bfmw3="{les_avis.MODELE_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                              title="Modifier le nom de l'avis"/></a>
+                    <span id="nom_{les_avis.MODELE_ID}">{les_avis.MODELE_AVIS}</span><span> (ordre : </span>
+                    <a href="#" class="updater" data-bfmw="MODELE_ORDRE" data-bfmw2="ordre_{les_avis.MODELE_ID}"
+                       data-bfmw3="{les_avis.MODELE_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                              title="Modifier l'ordre de l'avis"/></a>
+                    <span id="ordre_{les_avis.MODELE_ID}">{les_avis.MODELE_ORDRE}</span><span>)</span>
+                </li>
+                <!-- END les_avis -->
+            </ul>
+            <form method="POST" action="?p=front&amp;p2=poursuite">
+                <span class="font_medium">Saisissez l'avis de poursuite d'études à ajouter :</span>
+                <input class="specific_input_poursuite_2" name="*MODELE_AVIS" type="text"/><br/>
+                <input type="submit" name="creer_avis" value="Ajouter un avis de poursuite d'études"/>
+            </form>
+        </div>
+        <label class="vert">Choix des catégories d'avis :</label>
+        <div class="box">
+            <ul class="font_medium">
+                <!-- BEGIN les_categories -->
+                <li><a href="?p=front&amp;p2=poursuite&amp;delcateg={les_categories.CATEGORIE_ID}"
+                       class="confirm_suppres_avis"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                         title="Supprimer cette catégorie (Ne supprimera pas les avis déjà donnés)"/></a>
+                    <a href="#" class="updater" data-bfmw="CATEGORIE_NOM" data-bfmw2="nom_{les_categories.CATEGORIE_ID}"
+                       data-bfmw3="{les_categories.CATEGORIE_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                                       title="Modifier le nom de la catégorie"/></a>
+                    <span id="nom_{les_categories.CATEGORIE_ID}">{les_categories.CATEGORIE_NOM}</span><span> (ordre : </span>
+                    <a href="#" class="updater" data-bfmw="CATEGORIE_ORDRE"
+                       data-bfmw2="ordre_{les_categories.CATEGORIE_ID}" data-bfmw3="{les_categories.CATEGORIE_ID}"><img
+                            src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier l'ordre de la catégorie"/></a>
+                    <span id="ordre_{les_categories.CATEGORIE_ID}">{les_categories.CATEGORIE_ORDRE}</span><span>)</span>
+                </li>
+                <!-- END les_categories -->
+            </ul>
+            <form method="POST" action="?p=front&amp;p2=poursuite">
+                <span class="font_medium">Saisissez la catégorie d'avis à ajouter :</span>
+                <input class="specific_input_poursuite_2" name="*CATEGORIE_NOM" type="text"/><br/>
+                <input type="submit" name="creer_categorie" value="Ajouter une catégorie d'avis"/>
+            </form>
+        </div>
+        <!-- BEGIN OFF -->
+        <label class="vert">[Mode buletin de conseil de classe] Si vous souhaitez autoriser la saisie par matières
+            :</label>
+        <div class="box">
+            <label class="bleu  font_medium">Saisissez la période pendant laquelle les étudiants peuvent choisir leurs
+                enseignants (facultatif) :</label>
+            <div class="box">
+                <span class="font_small">Date de debut : </span><input type="text"
+                                                                       pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]([2][0][123][0-9]) ([01]\d|2[0-3])h([0-5]\d)$"
+                                                                       placeholder="JJ/MM/AAAA HHhMM"
+                                                                       class="specific_input_evaluation_1 bind3"
+                                                                       name="DEPT_POURSUITE_DDEB" value="{DDEBUT}"/>
+                <span class="font_small">Date de clôture : </span><input type="text"
+                                                                         pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]([2][0][123][0-9]) ([01]\d|2[0-3])h([0-5]\d)$"
+                                                                         placeholder="JJ/MM/AAAA HHhMM"
+                                                                         class="specific_input_evaluation_1 bind3"
+                                                                         name="DEPT_POURSUITE_DFIN" value="{DFIN}"/>
+            </div>
+            <label class="bleu  font_medium">Créer des matières de poursuite d'étude :</label>
+            <div class="box">
+                <form method="POST" action="?p=front&amp;p2=poursuite">
+                    <span class="font_medium">Saisissez la matière de poursuite d'études à créer :</span>
+                    <input class="specific_input_poursuite_2" name="*PMAT_NOM" type="text"/><br/>
+                    <input type="submit" name="creer_pmat" value="Créer la matière de poursuite d'études"/>
+                </form>
+            </div>
+            <label class="bleu  font_medium">Matières de poursuite d'études :</label>
+            <div class="box">
+                <form method="POST" action="?p=front&amp;p2=poursuite">
+                    <span class="font_medium">Affecter </span>
+                    <select name="*PMAT_MAT_ID" class="specific_select_poursuite_1">
+                        <!-- BEGIN un_departement -->
+                        <optgroup label="{un_departement.DEPT_NOM}"></optgroup>
+                        <!-- BEGIN une_formation -->
+                        <optgroup class="rouge" label="&nbsp;{une_formation.FORM_NOM}"></optgroup>
+                        <!-- BEGIN un_semestre -->
+                        <optgroup class="bleu" label="&nbsp;&nbsp;{un_semestre.SEM_NOM}"></optgroup>
+                        <!-- BEGIN une_ue -->
+                        <optgroup class="jaune" label="&nbsp;&nbsp;&nbsp;{une_ue.UE_NOM}"></optgroup>
+                        <!-- BEGIN une_hierarchie -->
+                        {une_hierarchie.HIERARCHIE}
+                        <!-- END une_hierarchie -->
+                        <!-- END une_ue -->
+                        <!-- END un_semestre -->
+                        <!-- END une_formation -->
+                        <!-- END un_departement -->
+                    </select>
+                    <span class="font_medium"> à la matière de poursuite </span>
+                    <select name="*MAT_PMAT_ID" class="specific_select_poursuite_1">
+                        <!-- BEGIN une_matiere_de_poursuite -->
+                        <option value="{une_matiere_de_poursuite.PMAT_ID}">{une_matiere_de_poursuite.PMAT_NOM}</option>
+                        <!-- END une_matiere_de_poursuite -->
+                    </select>
+                    <input type="submit" name="affecter_poursuite" value="Valider"/>
+                </form>
+                <ul class="font_small">
+                    <li class="font_medium">Matières actuelles :
+                        <ul class="TreeView">
+                            <!-- BEGIN une_matiere_de_poursuite -->
+                            <li>{une_matiere_de_poursuite.PMAT_NOM}
+                                <!-- IF une_matiere_de_poursuite.NO_SUPPR -->
+                                &nbsp;<a href="?p=front&amp;p2=poursuite&amp;delmatp={une_matiere_de_poursuite.PMAT_ID}"
+                                         name="confirm_suppres_pmatiere"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                              alt="del"
+                                                                              title="Supprimer cette matière de poursuite d'études"/></a>
+                                <!-- ENDIF -->
+                                <ul>
+                                    <!-- BEGIN une_matiere -->
+                                    <!-- IF une_matiere.MAT_ID != "" -->
+                                    <li>{une_matiere.MAT_NOM}&nbsp;<a
+                                            href="?p=front&amp;p2=poursuite&amp;delmat={une_matiere.MAT_ID}&amp;delmatp={une_matiere_de_poursuite.PMAT_ID}"
+                                            name="confirm_suppres_matiere"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                                alt="del"
+                                                                                title="Supprimer cette matière"/></a>
+                                        <ul>
+                                            <!-- BEGIN un_enseignant-->
+                                            <!-- IF un_enseignant.ENS_ID != "" -->
+                                            <li>{un_enseignant.ENS_NOM}&nbsp;<span
+                                                    class="font_small vert">Peut saisir ?</span><input type="checkbox"
+                                                                                                       value="1"
+                                                                                                       class="specific_input_poursuite_1 bind"
+                                                                                                       data-bfmw="{un_enseignant.ID}"
+                                                                                                       {un_enseignant.CHECKED}
+                                                                                                       name="POURSUITE_PEUT_SAISIR">
+                                            </li>
+                                            <!-- ENDIF -->
+                                            <!-- END un_enseignant-->
+                                        </ul>
+                                    </li>
+                                    <!-- ENDIF -->
+                                    <!-- END une_matiere -->
+                                </ul>
+                            </li>
+                            <!-- END une_matiere_de_poursuite -->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- END OFF -->
+    </div>
+</div>

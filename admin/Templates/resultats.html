@@ -1,0 +1,143 @@
+<div class="main">
+    <div class="limited">
+        <div class="box">
+            <span class="font_medium">Sélectionnez le diplôme à gérer :</span>
+            <select class="specific_select_resultats_1" id="id_select_diplome">
+                <!-- BEGIN un_diplome_filtre -->
+                <option value="{un_diplome_filtre.DIPLOME_ID}" {un_diplome_filtre.SELECTED}>
+                    {un_diplome_filtre.DIPLOME_NOM}
+                </option>
+                <!-- END un_diplome_filtre -->
+            </select><br/>
+            <span class="font_medium">Ou </span>
+            <form class="specific_form_resultats_1" action="?p=front&amp;p2=resultats" method="POST">
+                <input class="specific_input_resultats_1" type="submit" value="Créer un nouveau diplôme"
+                       name="creer_diplome">
+            </form>
+        </div>
+        <!-- IF DIPLOME_COURANT != -1 -->
+        <div class="box specific_box_resultats_1">
+            <!-- BEGIN un_diplome -->
+            <a class="alert_diplome" href="?p=front&amp;p2=resultats&amp;deld={un_diplome.DIPLOME_ID}"><img
+                    src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="delete" title="Supprimer le diplôme"/></a>
+            <a href="#" class="updater" data-bfmw="DIPLOME_NOM" data-bfmw2="id_diplome_nom"
+               data-bfmw3="{un_diplome.DIPLOME_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                         title="Modifier le nom du diplôme"/></a>
+            <span class="vert" id="id_diplome_nom">{un_diplome.DIPLOME_NOM}</span>
+            <span>( note éliminatoire : </span>
+            <a href="#" class="updater" data-bfmw="DIPLOME_ELIM" data-bfmw2="id_diplome_elim"
+               data-bfmw3="{un_diplome.DIPLOME_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                         title="Modifier la note éliminatoir du diplôme"/></a>
+            <span class="vert" id="id_diplome_elim">{un_diplome.DIPLOME_ELIM}</span>
+            <span>note de validation : </span>
+            <a href="#" class="updater" data-bfmw="DIPLOME_VAL" data-bfmw2="id_diplome_val"
+               data-bfmw3="{un_diplome.DIPLOME_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                         title="Modifier la note de validation du diplôme"/></a>
+            <span class="vert" id="id_diplome_val">{un_diplome.DIPLOME_VAL}</span>
+            <span>)</span><br/>
+            <!-- IF un_diplome.NIVEAU_ID != "" -->
+            <!-- BEGIN un_niveau -->
+            <a class="specific_niveau_resultat_1 alert_niveau"
+               href="?p=front&amp;p2=resultats&amp;deln={un_niveau.NIVEAU_ID}&amp;d={un_diplome.DIPLOME_ID}"><img
+                    src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="delete" title="Supprimer le niveau"/></a>
+            <span>Niveau : </span>
+            <a href="#" class="updater" data-bfmw="NIVEAU_NOM" data-bfmw2="id_niveau_nom_{un_niveau.NIVEAU_ID}"
+               data-bfmw3="{un_niveau.NIVEAU_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                       title="Modifier le nom du niveau"/></a>
+            <span class="vert" id="id_niveau_nom_{un_niveau.NIVEAU_ID}">{un_niveau.NIVEAU_NOM}</span>
+            <span>pour la formation </span>
+            <span class="vert">{un_niveau.FORM_NOM}</span>
+            <br/>
+            <!-- IF un_niveau.REGROUP_ID_1 != "" -->
+            <!-- BEGIN un_regroupement -->
+            <a class="specific_regroup_resultat_1 alert_regroup"
+               href="?p=front&amp;p2=resultats&amp;delr={un_regroupement.REGROUP_ID_1}&amp;d={un_diplome.DIPLOME_ID}"><img
+                    src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="delete" title="Supprimer le regroupement"/></a>
+            <span class="">Regroupement cohérent : </span>
+            <a href="#" class="updater" data-bfmw="REGROUP_NOM"
+               data-bfmw2="id_regroupement_nom_{un_regroupement.REGROUP_ID_1}"
+               data-bfmw3="{un_regroupement.REGROUP_ID_1}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                                title="Modifier le nom du regroupement"/></a>
+            <span id="id_regroupement_nom_{un_regroupement.REGROUP_ID_1}"
+                  class="vert">{un_regroupement.REGROUP_NOM_1}</span>
+            <!-- IF un_regroupement.REGROUP_ID_2 != "" -->
+            <span class="">suivant </span>
+            <span class="vert">{un_regroupement.REGROUP_NOM_2}</span>
+            <!-- ENDIF -->
+            <!-- IF un_regroupement.RESULTAT_UE_ID != "" -->
+            <!-- BEGIN une_ue -->
+            <div class="specific_ue_resultat_1">
+                <a class="alert_ue"
+                   href="?p=front&amp;p2=resultats&amp;delrue={une_ue.RESULTAT_UE_ID}&amp;r={un_regroupement.REGROUP_ID_1}&amp;d={un_diplome.DIPLOME_ID}"><img
+                        src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="delete" title="Supprimer le regroupement"/></a>
+                <span class="">Coefficient : </span>
+                <a href="#" class="updater" data-bfmw="RESULTAT_UE_COEF"
+                   data-bfmw2="id_ue_nom_{une_ue.RESULTAT_UE_ID}{un_regroupement.REGROUP_ID_1}"
+                   data-bfmw3="{une_ue.RESULTAT_UE_ID}${un_regroupement.REGROUP_ID_1}"><img
+                        src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                        title="Modifier le coefficient de l'UE dans le regroupement"/></a>
+                <span id="id_ue_nom_{une_ue.RESULTAT_UE_ID}{un_regroupement.REGROUP_ID_1}" class="vert">{une_ue.RESULTAT_UE_COEF}</span>
+                <span class="">pour </span>
+                <span class="bleu">{une_ue.UE_NOM}</span>
+            </div>
+            <!-- END une_ue -->
+            <!-- ENDIF -->
+            <span class="jaune specific_ue_resultat_1 bfmw_auto_hidder"
+                  data-bfmw="id_creation_ue{un_regroupement.REGROUP_ID_1}">Ajouter une UE</span>
+            <div class="box" id="id_creation_ue{un_regroupement.REGROUP_ID_1}">
+                <form action="?p=front&amp;p2=resultats" method="POST">
+                    <label class="font_medium">Ajouter l'UE </label>
+                    <input type="hidden" name="DIPLOME_ID" value="{DIPLOME_COURANT}"/>
+                    <input type="hidden" name="*RESULTAT_REGROUP_ID" value="{un_regroupement.REGROUP_ID_1}"/>
+                    <select name="*RESULTAT_UE_ID" class="specific_select_resultats_2">
+                        <!-- BEGIN un_semestre -->
+                        <optgroup label="{un_semestre.SEM_NOM}"></optgroup>
+                        <!-- BEGIN une_ue2 -->
+                        <option value="{une_ue2.UE_ID}">{une_ue2.UE_NOM}</option>
+                        <!-- END une_ue2 -->
+                        <!-- END un_semestre -->
+                    </select>
+                    <label class="font_medium">avec le coefficient </label>
+                    <input required class="bfmw_no_style" type="number" name="*RESULTAT_UE_COEF"/>
+                    <input class="specific_input_resultats_1" type="submit" value="Valider" name="creer_resultat_ue">
+                </form>
+            </div>
+            <!-- END un_regroupement -->
+            <!-- ENDIF -->
+            <span class="jaune specific_regroup_resultat_1 bfmw_auto_hidder"
+                  data-bfmw="id_creation_competence{un_niveau.NIVEAU_ID}">Ajouter un regroupement cohérent d'UE</span>
+            <div class="box" id="id_creation_competence{un_niveau.NIVEAU_ID}">
+                <form action="?p=front&amp;p2=resultats" method="POST">
+                    <label class="font_medium">Créer le regroupement </label>
+                    <input type="hidden" name="DIPLOME_ID" value="{DIPLOME_COURANT}"/>
+                    <input type="hidden" name="*REGROUP_NIVEAU_ID" value="{un_niveau.NIVEAU_ID}"/>
+                    <input required class="bfmw_no_style" type="text" name="*REGROUP_NOM"/>
+                    <label class="font_medium">qui suit </label>
+                    <select name="*REGROUP_PREC_REGROUP_ID" class="specific_select_resultats_1">
+                        <option value="NULL">Aucune</option>
+                        {REGROUPEMENTS}
+                    </select>
+                    <input class="specific_input_resultats_1" type="submit" value="Valider" name="creer_regroupement">
+                </form>
+            </div>
+            <br/>
+            <!-- END un_niveau -->
+            <!-- ENDIF -->
+            <span class="jaune specific_niveau_resultat_1 bfmw_auto_hidder" data-bfmw="id_creation_niveau">Ajouter un niveau</span>
+            <div class="box" id="id_creation_niveau">
+                <form action="?p=front&amp;p2=resultats" method="POST">
+                    <label class="font_medium">Créer le niveau </label>
+                    <input type="hidden" name="*NIVEAU_DIPLOME_ID" value="{DIPLOME_COURANT}"/>
+                    <input required class="bfmw_no_style" type="text" name="*NIVEAU_NOM"/>
+                    <label class="font_medium">pour la formation</label>
+                    <select name="*NIVEAU_FORM_ID" class="specific_select_resultats_1">
+                        {FORMATIONS_DU_DEPARTEMENT}
+                    </select>
+                    <input class="specific_input_resultats_1" type="submit" value="Valider" name="creer_niveau">
+                </form>
+            </div>
+            <!-- END un_diplome -->
+        </div>
+        <!-- ENDIF -->
+    </div>
+</div>

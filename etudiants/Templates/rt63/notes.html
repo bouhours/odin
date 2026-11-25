@@ -1,0 +1,88 @@
+<div class="main">
+    <div class="limited">
+        <!-- BEGIN show -->
+        Choisissez l'année à afficher : <select data-bfmw="{SEM_COURANT}" class="specific_select_accueil_1"
+                                                id="id_selecteur_annee">
+        <!-- BEGIN une_annee -->
+        <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+        <!-- END une_annee -->
+    </select><br/>
+        Choisissez le semestre à afficher : <select class="specific_select_accueil_1" data-bfmw="{ANNEE_COURANTE}"
+                                                    id="id_selecteur_semestre">
+        <!-- BEGIN un_semestre_filtre -->
+        <option value="{un_semestre_filtre.SEM_ID}" {un_semestre_filtre.SELECTED}>{un_semestre_filtre.SEM_NOM}</option>
+        <!-- END un_semestre_filtre -->
+    </select><br/>
+        <br/><br/>
+        <span>Les notes affichées ci-dessous sont provisoires et peuvent être amenées à changer.</span><br/>
+        <span> Seul le jury de semestre est habilité à les confirmer.</span><br/>
+        <!-- BEGIN releve -->
+        <table class="releve">
+            <tr>
+                <td colspan="5" class="text_align_right">{releve.ET_NOM}</td>
+                <th class="vert text_align_center">-</th>
+                <th class="text_align_center">-</th>
+                <th class="text_align_center">-</th>
+                <th class="text_align_center">-</th>
+            </tr>
+            <tr>
+                <th colspan="4" class="text_align_left">{releve.SEM_NOM}</th>
+                <th class="text_align_center">Coeff</th>
+                <th class="text_align_center">Note</th>
+                <th class="text_align_center">Moy</th>
+                <th class="text_align_center">Maxi</th>
+                <th class="text_align_center">Mini</th>
+            </tr>
+            <!-- BEGIN une_ue -->
+            <tr>
+                <td colspan="4" class="bleu">{une_ue.UE_NOM}</td>
+                <td class="text_align_center">{une_ue.UE_COEF}</td>
+                <td class="text_align_center">-</td>
+                <th class="text_align_center">-</th>
+                <th class="text_align_center">-</th>
+                <th class="text_align_center">-</th>
+            </tr>
+            <!-- BEGIN un_module -->
+            <tr>
+                <td>&nbsp;</td>
+                <!-- IF un_module.MAT_SURMAT_ID != null -->
+                <td>&nbsp;</td>
+                <td colspan="2" class="vert">{un_module.MAT_NOM}&nbsp;</td>
+                <!-- ELSE -->
+                <td colspan="3" class="vert">{un_module.MAT_NOM}</td>
+                <!-- ENDIF -->
+                <td class="text_align_center">{un_module.MAT_COEF}</td>
+                <td class="vert text_align_center">{un_module.MAT_NOTE}</td>
+                <th class="text_align_center">{un_module.MAT_MOY}</th>
+                <th class="text_align_center">{un_module.MAT_MAX}</th>
+                <th class="text_align_center">{un_module.MAT_MIN}</th>
+            </tr>
+            <!-- BEGIN une_note -->
+            <!-- IF une_note.CONTROLE_VISIBLE == "1" -->
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <!-- IF une_note.CONTROLE_MOYENNE == "2" -->
+                <td>{une_note.CONTROLE_NOM}</td>
+                <!-- ELSE -->
+                <td>{une_note.CONTROLE_NOM}&nbsp;(sur&nbsp;{une_note.CONTROLE_BAREME})</td>
+                <!-- ENDIF -->
+                <td class="text_align_center">{une_note.CONTROLE_COEFF}</td>
+                <td class="rouge text_align_center"><b>{une_note.NOTES_AFFICHE}{une_note.NOTES_SPECIAL}</b></td>
+                <th class="text_align_center">{une_note.NOTE_MOY}</th>
+                <th class="text_align_center">{une_note.NOTE_MAXI}</th>
+                <th class="text_align_center">{une_note.NOTE_MINI}</th>
+            </tr>
+            <!-- ENDIF -->
+            <!-- END une_note -->
+            <!-- END un_module -->
+            <tr>
+                <td colspan="10"></td>
+            </tr>
+            <!-- END une_ue -->
+        </table>
+        <!-- END releve -->
+        <!-- END show -->
+    </div>
+</div>

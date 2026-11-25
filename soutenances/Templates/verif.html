@@ -1,0 +1,65 @@
+<div class="main">
+    <div class="limited">
+        <div class="bfmw_align_center text_align_center">
+            <span>Choisissez la formation à vérifier : </span>
+            <select name="formation" id="id_selecteur_form" data-bfmw="{SESSION_COURANTE}"
+                    class="specific_div_harmonisation_1">
+                <!-- BEGIN une_formation -->
+                <option {une_formation.SELECTED} value="{une_formation.FORM_ID}">{une_formation.FORM_NOM}</option>
+                <!-- END une_formation -->
+            </select>
+        </div>
+        <!-- IF AUCUN -->
+        <div class="text_align_center"><span class="vert">Aucun enseignant n'a encore effectué de saisie.</span></div>
+        <!-- ELSE -->
+        <table class="releve bfmw_align_center">
+            <tr>
+                <!-- IF HAS_GROUPE -->
+                <th class="text_vertical_middle">Groupe</th>
+                <!-- ENDIF -->
+                <th class="text_vertical_middle">Nom de l'étudiant</th>
+                <th class="text_vertical_middle">Vérification</th>
+            </tr>
+            <!-- BEGIN un_groupe -->
+            <tr>
+                <td colspan="3" class="rouge">{un_groupe.GROUPE_NOM}</td>
+            </tr>
+            <!-- BEGIN un_etudiant -->
+            <!-- IF un_etudiant.ET_DEM == 0 -->
+            <tr>
+                <td class="no_border_top "></td>
+                <td class="text_align_right">
+                    <div class="tooltip">
+                        <img class="tooltiptext specific_img_harmonisation_1"
+                             src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo">
+                        <span>{un_etudiant.ET_NOM}</span>
+                    </div>
+                </td>
+                <td class="rouge text_align_center">
+                    <a href="#" data-bfmw="{un_etudiant.ET_ID}" data-bfmw2="{FORMATION_COURANTE}"
+                       data-bfmw3="{ANNEE_COURANTE}" data-bfmw4="{SESSION_COURANTE}" class="do_detail">[+]</a>
+                </td>
+            </tr>
+            <!-- ENDIF -->
+            <!-- END un_etudiant -->
+            <!-- END un_groupe -->
+            <!-- BEGIN un_etudiant -->
+            <tr>
+                <td class="text_align_center">
+                    <div class="tooltip">
+                        <img class="tooltiptext specific_img_harmonisation_1"
+                             src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo">
+                        <span>{un_etudiant.ET_NOM}</span>
+                    </div>
+                </td>
+                <td class="rouge text_align_center">
+                    <a href="#" data-bfmw="{un_etudiant.ET_ID}" data-bfmw2="{FORMATION_COURANTE}"
+                       data-bfmw3="{ANNEE_COURANTE}" data-bfmw4="{SESSION_COURANTE}" class="do_detail">[+]</a>
+                </td>
+            </tr>
+            <!-- END un_etudiant -->
+        </table>
+        <!-- ENDIF -->
+    </div>
+
+</div>

@@ -1,0 +1,75 @@
+<!-- IF IS_ETUDIANT -->
+<div class="main">
+    <div class="limited">
+        <label>Nom :&nbsp;</label>
+        {ET_NOM}<br/>
+        <label>Mail :&nbsp;</label>
+        {ET_MAIL}<br/>
+        <label for="tel_id">Téléphone :&nbsp;</label>
+        <input id="tel_id" type="text" value="{ET_TEL}" name="ET_TEL" class="bind"/>
+        <label for="adresse_id">Adresse personnelle :&nbsp;</label>
+        <input type="text" id="adresse_id" name="ET_ADRESSE" class="bind" value="{ET_ADRESSE}"/>
+        <label for="adresse_2_id">Adresse personnelle (code postal + ville) :&nbsp;</label>
+        <input type="text" id="adresse_2_id" name="ET_ADRESSE_2" class="bind" value="{ET_ADRESSE_2}"/>
+        <label>Tuteur universitaire :&nbsp;</label>
+        {ENS_NOM}&nbsp;({ENS_MAIL})<br/>
+        <label for="entreprise_id">Nom de l'entreprise :&nbsp;</label>
+        <input id="entreprise_id" type="text" value="{ET_ENTREPRISE}" name="ET_ENTREPRISE" class="bind"/>
+        <label for="entreprise_adresse_id">Adresse de l'entreprise :&nbsp;</label>
+        <textarea rows="5" cols="20" id="entreprise_adresse_id" name="ET_ADRESSE_ENTREPRISE" class="bind">{ET_ADRESSE_ENTREPRISE}</textarea>
+        <label for="date_id">Date de début de contrat :&nbsp;</label>
+        <input id="date_id" type="text" value="{ET_DEBUT}" name="ET_DEBUT" class="bind3"/>
+        <label for="lieu_id">Lieu de travail quotidien :&nbsp;</label>
+        <textarea rows="5" cols="20" id="lieu_id" name="ET_LIEU" class="bind">{ET_LIEU}</textarea>
+        <label for="info_id">Informations spécifiques pour atteindre le lieu de travail :&nbsp;</label>
+        <textarea rows="5" cols="20" id="info_id" name="ET_INFO_LIEU" class="bind">{ET_INFO_LIEU}</textarea>
+        <label for="tuteur_id">Nom du tuteur entreprise :&nbsp;</label>
+        <input id="tuteur_id" type="text" value="{ET_TUTEUR}" name="ET_TUTEUR" class="bind"/>
+        <label for="mail_tuteur_id">Mail du tuteur entreprise :&nbsp;</label>
+        <input id="mail_tuteur_id" type="text" value="{ET_MAIL_TUTEUR}" name="ET_MAIL_TUTEUR" class="bind"/>
+        <label for="tel_tuteur_id">Téléphone du tuteur entreprise :&nbsp;</label>
+        <input id="tel_tuteur_id" type="text" value="{ET_TEL_TUTEUR}" name="ET_TEL_TUTEUR" class="bind"/>
+    </div>
+    <!-- ENDIF -->
+    <!-- IF IS_ENSEIGNANT -->
+    <div class="specific_div_accueil_1">
+        <span class="vert">Vos alternants / stagiaires</span>
+        <table class="releve font_medium">
+            <tr>
+                <th>Etudiant</th>
+                <th>Mail</th>
+                <th>Entreprise</th>
+                <th>Lieu de travail</th>
+                <th>Infos lieu</th>
+                <th>Tuteur</th>
+                <th>Mail tuteur</th>
+                <th>Tel tuteur</th>
+            </tr>
+            <!-- BEGIN une_formation -->
+            <tr>
+                <td colspan="8" class="bleu font_small">
+                    <b>{une_formation.FORM_NOM}</b>
+                </td>
+            </tr>
+            <!-- BEGIN un_etudiant -->
+            <tr>
+                <td>
+                    <div class="tooltip"><span class="rouge">{un_etudiant.ET_NOM}</span><img
+                            class="tooltiptext specific_img_accueil_1" src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                            loading="lazy"
+                            alt="photo"/></div>
+                </td>
+                <td>{un_etudiant.ET_MAIL}</td>
+                <td><span class="rouge">{un_etudiant.ET_ENTREPRISE}</span></td>
+                <td>{un_etudiant.ET_LIEU}</td>
+                <td>{un_etudiant.ET_INFO_LIEU}</td>
+                <td><span class="rouge">{un_etudiant.ET_TUTEUR}</span></td>
+                <td>{un_etudiant.ET_MAIL_TUTEUR}</td>
+                <td>{un_etudiant.ET_TEL_TUTEUR}</td>
+            </tr>
+            <!-- END un_etudiant -->
+            <!-- END une_formation -->
+        </table>
+    </div>
+</div>
+<!-- ENDIF -->

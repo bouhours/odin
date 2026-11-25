@@ -1,0 +1,119 @@
+<div class="main">
+    <div class="limited specific_div_gererenseignant_1">
+        <div class="no_print">
+            Année à afficher :
+            <select class="specific_select_gererenseignant_1" id="id_selection_annee" data-bfmw="{SEMESTRE_COURANT}">
+                <!-- BEGIN une_annee -->
+                <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+                <!-- END une_annee -->
+            </select>
+            <br/>
+            Semestre à afficher :
+            <select class="specific_select_gererenseignant_1" id="id_selection_semestre" data-bfmw="{ANNEE_COURANTE}">
+                <!-- BEGIN un_departement_filtre -->
+                <optgroup label="{un_departement_filtre.DEPT_NOM}">
+                    <!-- BEGIN une_formation_filtre -->
+                    <optgroup class="rouge" label="{une_formation_filtre.FORM_NOM}">
+                        <!-- BEGIN un_semestre_filtre -->
+                        <option class="noir" value="{un_semestre_filtre.SEM_ID}" {un_semestre_filtre.SELECTED}>
+                            {un_semestre_filtre.SEM_NOM}
+                        </option>
+                        <!-- END un_semestre_filtre -->
+                        <!-- END une_formation_filtre -->
+                        <!-- END un_departement_filtre -->
+            </select>
+            <hr/>
+            <span class="vert">Charge équivalent TD du semestre :&nbsp;&asymp;</span><span class="rouge font_bold"
+                                                                                           id="id_charge_eqtd"></span><span
+                class="vert">&nbsp;h</span><br/>
+            <input type="hidden" value="{SEMESTRE_COURANT}" id="id_s"/>
+            <input type="hidden" value="{ANNEE_COURANTE}" id="id_a"/>
+            <hr/>
+            <!-- IF OK_AFFECTATION -->
+            <form method="POST" action="?p=front&amp;p2=gererenseignant&amp;s={SEMESTRE_COURANT}">
+                <table>
+                    <tr>
+                        <td>Affecter</td>
+                        <td>
+                            <select name="*MAT_ENS_ID">
+                                <!-- BEGIN un_enseignant -->
+                                <option value="{un_enseignant.ENS_ID}" {un_enseignant.SELECTED}>
+                                    {un_enseignant.ENS_NOM}
+                                </option>
+                                <!-- END un_enseignant -->
+                            </select>
+                        </td>
+                        <td> à</td>
+                        <td>
+                            <select name="*ENS_MAT_ID">
+                                <!-- BEGIN un_departement -->
+                                <optgroup label="{un_departement.DEPT_NOM}"></optgroup>
+                                <!-- BEGIN une_formation -->
+                                <optgroup class="rouge" label="&nbsp;{une_formation.FORM_NOM}"></optgroup>
+                                <!-- BEGIN un_semestre -->
+                                <optgroup class="bleu" label="&nbsp;&nbsp;{un_semestre.SEM_NOM}"></optgroup>
+                                <!-- BEGIN une_ue -->
+                                <optgroup class="jaune" label="&nbsp;&nbsp;&nbsp;{une_ue.UE_NOM}"></optgroup>
+                                <!-- BEGIN une_hierarchie -->
+                                {une_hierarchie.HIERARCHIE}
+                                <!-- END une_hierarchie -->
+                                <!-- END une_ue -->
+                                <!-- END un_semestre -->
+                                <!-- END une_formation -->
+                                <!-- END un_departement -->
+                            </select>
+                        </td>
+                        <td> pour l'année</td>
+                        <td>
+                            <select name="*ENS_MAT_ANNEE_ID">
+                                <!-- BEGIN une_annee -->
+                                <!-- IF une_annee.ANNEE_CLOSE == 0 -->
+                                <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+                                <!-- ENDIF -->
+                                <!-- END une_annee -->
+                            </select>
+                        </td>
+                        <td>
+                            <input type="submit" name="affecter_enseignant" value="Valider"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <!-- ELSE -->
+            <span class="rouge">Pour pouvoir affecter des enseignants à des matières, il est nécessaire de saisir des matières dans votre maquette.</span>
+            <!-- ENDIF -->
+            <!-- BEGIN isAdmin -->
+            <br/>
+            <a href="?p=front&amp;p2=gererenseignant&amp;copie=copie&amp;a1={ANNEE_COURANTE}&amp;s={SEMESTRE_COURANT}">Recopier
+                vers année suivante...</a>
+            <!-- END isAdmin -->
+            <br/>
+
+        </div>
+        <hr/>
+
+        <!-- BEGIN arbre_un_departement -->
+        <span class="vert">{un_departement.DEPT_NOM}</span>
+        <ul>
+            <!-- BEGIN une_formation -->
+            <li class="rouge">{une_formation.FORM_NOM}</li>
+            <ul>
+                <!-- BEGIN un_semestre -->
+                <li class="bleu">{un_semestre.SEM_NOM}</li>
+                <ul>
+                    <!-- BEGIN une_ue -->
+                    <li class="jaune">{une_ue.UE_NOM}</li>
+                    <ul>
+                        <!-- BEGIN une_hierarchie -->
+                        {une_hierarchie.HIERARCHIE}
+                        <!-- END une_hierarchie -->
+                    </ul>
+                    <!-- END une_ue -->
+                </ul>
+                <!-- END un_semestre -->
+            </ul>
+            <!-- END une_formation -->
+        </ul>
+        <!-- END un_departement -->
+    </div>
+</div>

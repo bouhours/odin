@@ -1,0 +1,51 @@
+<Files "common.php">
+    <IfModule mod_authz_core.c>
+        # Apache 2.4+
+        Require all denied
+    </IfModule>
+
+    <IfModule !mod_authz_core.c>
+        # Apache 2.2
+        Order Allow,Deny
+        Deny from All
+    </IfModule>
+</Files>
+
+<Files "self_server_concrete.php">
+    <IfModule mod_authz_core.c>
+        # Apache 2.4+
+        Require all denied
+    </IfModule>
+
+    <IfModule !mod_authz_core.c>
+        # Apache 2.2
+        Order Allow,Deny
+        Deny from All
+    </IfModule>
+</Files>
+
+<Files "refresh.php">
+    <IfModule mod_authz_core.c>
+        # Apache 2.4+
+        Require all denied
+    </IfModule>
+
+    <IfModule !mod_authz_core.c>
+        # Apache 2.2
+        Order Allow,Deny
+        Deny from All
+    </IfModule>
+</Files>
+
+<Files "do_real_date.php">
+    <IfModule mod_authz_core.c>
+        # Apache 2.4+
+        Require all denied
+    </IfModule>
+
+    <IfModule !mod_authz_core.c>
+        # Apache 2.2
+        Order Allow,Deny
+        Deny from All
+    </IfModule>
+</Files>

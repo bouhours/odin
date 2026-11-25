@@ -1,0 +1,18 @@
+<li>
+    <a href="?p=front&amp;p2=creergroupe&amp;delgroupe={GROUPE_ID}" name="confirm_suppres_groupe"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer ce groupe"/></a>&nbsp;
+    <input type="text" value="{GROUPE_NOM}" name="GROUPE_NOM" data-bfmw="{GROUPE_ID}" class="specific_div_creergroupe_2 bind" />
+    <ul>
+        <li>
+            <span class="no_wrap vert">
+                Responsable de groupe&nbsp;:&nbsp;
+                <select class="specific_div_creergroupe_3 bind2" name="GROUPE_ENS_ID" data-bfmw="{GROUPE_ID}">
+                    <option value="NULL">Aucun</option>
+                    <!-- BEGIN un_enseignant -->
+                    <option value="{un_enseignant.ENS_ID}" {un_enseignant.SELECTED}>{un_enseignant.ENS_NOM}</option>
+                    <!-- END un_enseignant -->
+                </select>
+            </span>
+        </li>
+    <!-- IF !(HAS_CHILDREN) -->
+    </ul>
+    <!-- ENDIF -->

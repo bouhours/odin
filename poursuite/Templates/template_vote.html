@@ -1,0 +1,14 @@
+<hr/>
+<!-- IF IS_RESPONSABLE -->
+<input type="submit" class="specific_input_vote_0 specific_input_vote_Contre vote" data-bfmw="{VOTE_ID}" name="CLOSE" value="Fermer vote"/>
+<span>(</span><span class="vert" title="{VOTANTS}" >{NB_VOTANTS}</span><span class="blanc">&nbsp;votants</span><span>)</span>
+<!-- ENDIF -->
+<span class="jaune">Vote {VOTE_NOM} ?</span><br/>
+<input type="submit" class="specific_input_vote_0 specific_input_vote_Pour vote" data-bfmw="{VOTE_ID}" name="VOTE" value="Pour"/><br/>
+<input type="submit" class="specific_input_vote_0 specific_input_vote_Contre vote" data-bfmw="{VOTE_ID}" name="VOTE" value="Contre"/><br/>
+<input type="submit" class="specific_input_vote_0 specific_input_vote_Abstention vote" data-bfmw="{VOTE_ID}" name="VOTE" value="Abstention"/><br/>
+<span class="rouge" id="en_cours_de_sauvegarde_{VOTE_ID}"></span><br/>
+<!-- IF VOTE_VALEUR !== null -->
+<span class="bleu">&nbsp;Vous avez voté&nbsp;: </span><br/>
+<span class="blanc" id="vient_de_voter_resultat_{VOTE_ID}">{VOTE_VALEUR}</span>
+<!-- ENDIF -->

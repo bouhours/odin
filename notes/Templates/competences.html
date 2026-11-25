@@ -1,0 +1,31 @@
+<div class="main">
+    <div class="limited specific_div_bilan_1">
+        <form action="?generate=CompetencesMultiFormats" method="POST" id="id_formulaire">
+            <label>&bull;&nbsp;Sélectionnez l'année : </label>
+            <select id="id_selection_annee" name="a" data-bfmw="{GROUPE_COURANT}">
+                <!-- BEGIN une_annee -->
+                <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+                <!-- END une_annee -->
+            </select>
+
+            <label>&bull;&nbsp;Sélectionnez le groupe : </label>
+            <select id="id_selecteur_groupe" name="groupe" data-bfmw="{ANNEE_COURANTE}">
+                <!-- BEGIN une_formation -->
+                <optgroup label="{une_formation.FORM_NOM}">
+                    <!-- BEGIN un_groupe -->
+                    <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                    <!-- END un_groupe -->
+                    <!-- END une_formation -->
+            </select>
+
+            <!-- IF HAS_COMPETENCES -->
+            <input type="submit" name="generer_competences" value="Générer le bilan de compétences au format Excel"/>
+            <input type="submit" name="generer_competences_ods"
+                   value="Générer le bilan de compétences au format OpenOffice"/>
+            <input type="submit" name="generer_competences_csv" value="Générer le bilan de compétences au format CSV"/>
+            <!-- ELSE -->
+            <span class="rouge">Aucune compétence n'est configurée pour cette formation.</span>
+            <!-- ENDIF -->
+        </form>
+    </div>
+</div>

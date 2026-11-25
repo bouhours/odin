@@ -1,0 +1,45 @@
+<div class="main">
+    <div class="limited">
+        <span>Année à afficher :</span>
+        <select class="specific_select_accueil_1" id="id_selection_annee">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <hr/>
+        <!-- IF HAS_SOUTENANCES -->
+        <!-- BEGIN un_planning -->
+        <span>Session de soutenance :&nbsp;</span><span
+            class="vert">{un_planning.PLANNING_CONTENU_AFFICHAGE}</span><br/>
+        <!-- BEGIN une_formation -->
+        <span class="bleu">&nbsp;&nbsp;&nbsp;&bull;&nbsp;{une_formation.FORM_NOM}</span><br/>
+        <ul>
+            <!-- BEGIN une_soutenance -->
+            <!-- IF une_soutenance.CRENEAU_DEBUT_AFFICHAGE != "" -->
+            <li>Le <span class="jaune">{une_soutenance.STAGE_DATE_SOUTENANCE_AFFICHAGE}</span>
+                <ul>
+                    <!-- BEGIN un_creneau -->
+                    <li><span class="">de&nbsp;</span><span class="vert">{un_creneau.CRENEAU_DEBUT_AFFICHAGE}</span>
+                        <span class="">à&nbsp;</span><span class="vert">{un_creneau.CRENEAU_FIN_AFFICHAGE}</span>
+                        <ul>
+                            <!-- BEGIN un_etudiant -->
+                            <li>
+                                <span class="rouge font_small">{un_etudiant.ET_NOM}</span>
+                                <span class="">avec&nbsp;</span><span class="vert">{un_etudiant.ENS_NOM}</span>
+                            </li>
+                            <!-- END un_etudiant -->
+                        </ul>
+                    </li>
+                    <!-- END un_creneau -->
+                </ul>
+            </li>
+            <!-- ENDIF -->
+            <!-- END une_soutenance -->
+        </ul>
+        <!-- END une_formation -->
+        <!-- END un_planning -->
+        <!-- ELSE -->
+        <span>Aucune soutenance n'est actuellement planifiée.</span>
+        <!-- ENDIF -->
+    </div>
+</div>

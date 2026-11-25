@@ -1,0 +1,23 @@
+<div class="main">
+    <div class="limited">
+        <div class="box">
+            <!-- BEGIN un_jour -->
+            <div class="no_wrap">
+                <a href="?p=front&amp;p2=feries&amp;dele={un_jour.FERIE_ID}"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                                  alt="Supprimer"/></a>
+                <span>Semaine : {un_jour.FERIE_SEMAINE}</span>
+                <span>Jour : {un_jour.FERIE_JOUR}</span>
+            </div>
+            <!-- END un_jour -->
+        </div>
+        <div class="box">
+            <form method="POST" action="?p=front&amp;p2=feries">
+                <span>Semaine :</span>
+                <input type="text" name="*FERIE_SEMAINE"/>
+                <span>Jour :</span>
+                <input type="text" name="*FERIE_JOUR"/>
+                <input type="submit" value="Créer un jour férier" name="CREATE_FERIE">
+            </form>
+        </div>
+    </div>
+</div>

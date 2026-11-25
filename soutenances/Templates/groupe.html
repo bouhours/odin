@@ -1,0 +1,40 @@
+<!-- MASTER -->
+<div class="complete_master" id="le_master">
+    <div class="filter" id="id_div_filter">
+        <select id="id_selecteur_promo" data-bfmw="{SESSION_COURANTE}">
+            <!-- BEGIN une_formation -->
+                <option value="{une_formation.FORM_ID}" {une_formation.SELECTED}>{une_formation.FORM_NOM}</option>
+            <!-- END une_formation -->
+        </select>
+    </div>
+    <div class="master">
+        <div>
+            <ul class="TreeView">
+            <!-- BEGIN un_groupe -->
+            <li><a id="{un_groupe.GROUPE_ID}" class="{un_groupe.SELECTED}" href="?p=groupe&amp;s={SESSION_COURANTE}&amp;gp={un_groupe.GROUPE_ID}#{un_groupe.GROUPE_ID}&amp;a={ANNEE_COURANTE}" class="specific_a_groupe_1" >{un_groupe.GROUPE_NOM}</a><br/>
+                <ul>
+                    <!-- BEGIN un_etudiant -->
+                    <!-- IF un_etudiant.ET_DEM == 0 -->
+                    <li>
+                        <div class="tooltip specific_div_groupe_1">
+                            {un_etudiant.ET_NOM}
+                            <img class="tooltiptext specific_div_groupe_1 specific_img_groupe_1"  loading="lazy" src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="photo" >
+                        </div>
+                    </li>
+                    <!-- ENDIF -->
+                    <!-- END un_etudiant -->
+                </ul>
+            </li>
+            <!-- END un_groupe -->
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- DETAIL -->
+<div id="detail">
+    <a class="show_master" href="#"><img src="../bfmw/images/fleche.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="masque_master" alt="Menu"/></a>
+    <!-- IF GROUPE != -1 -->
+    {GRILLE}
+    <!-- ENDIF -->
+</div>
+

@@ -1,0 +1,43 @@
+<div class="main">
+    <div class="limited">
+        <ul>
+            <!-- BEGIN un_edt -->
+            <!-- IF RED == un_edt.UID -->
+            <li id="{un_edt.UID}" class="rouge">
+                <!-- ELSE -->
+            <li id="{un_edt.UID}">
+                <!-- ENDIF -->
+                <span class="">{un_edt.DATE_DEBUT}</span><span> de </span>
+                <span class="vert">{un_edt.HEURE_DEBUT}</span><span> à </span>
+                <span class="vert">{un_edt.HEURE_FIN}</span>
+                <span> {un_edt.NOM}</span>
+                <form method="POST" action="?p=do_show_edt&amp;r={un_edt.UID}">
+                    <input type="hidden" name="*EDT_DATE_DEBUT" value="{un_edt.REAL_DATE_DEBUT}"/>
+                    <input type="hidden" name="*EDT_DATE_FIN" value="{un_edt.REAL_DATE_FIN}"/>
+                    <input type="hidden" name="*EDT_HEURE_DEBUT" value="{un_edt.REAL_HEURE_DEBUT}"/>
+                    <input type="hidden" name="*EDT_HEURE_FIN" value="{un_edt.REAL_HEURE_FIN}"/>
+                    <input type="hidden" name="*EDT_SALLE" value="{un_edt.SALLE_PROTECTED}"/>
+                    <input type="hidden" name="*EDT_NOM" value="{un_edt.NOM_PROTECTED}"/>
+                    <input type="hidden" name="*EDT_UID" value="{un_edt.UID}"/>
+                    <!-- IF ENS != null -->
+                    <input type="hidden" name="EDT_ENS_ID" value="{ENS_ID}"/>
+                    <input type="hidden" name="ENS" value="{ENS}"/>
+                    <!-- ENDIF -->
+                    <!-- IF GROUPE != null -->
+                    <input type="hidden" name="EDT_GROUPE_ID" value="{GROUPE_ID}"/>
+                    <input type="hidden" name="GROUPE" value="{GROUPE}"/>
+                    <!-- ENDIF -->
+                    <input type="hidden" name="EDT_ET" value="{un_edt.GROUPES}"/>
+                    <input type="hidden" name="*EDT_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                    <!-- IF (un_edt.ENSEIGNANTS !== "" && ENS != null) -->
+                    <input type="submit" class="bfmw_no_style" name="ens_val" value="Sauvegarde enseignants"/>
+                    <!-- ENDIF -->
+                    <!-- IF (un_edt.GROUPES !== "") -->
+                    <input type="submit" class="bfmw_no_style" name="et_val" value="Sauvegarde etudiants"/>
+                    <!-- ENDIF -->
+                </form>
+            </li>
+            <!-- END un_edt -->
+        </ul>
+    </div>
+</div>

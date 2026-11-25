@@ -1,0 +1,50 @@
+<div class="main">
+    <div class="limited">
+        <!-- IF ! VALID -->
+        <div class="text_align_center">
+            <span class="font_large">Vous êtes ici sur la plateforme de prise de rendez-vous de l'IUT de Clermont Auvergne.</span><br/>
+            <span class="font_large">Cependant, il semble que l'adresse que vous avez utilisé n'est plus valable.</span><br/>
+            <span class="font_large">Pour plus de renseignements, contactez la personne qui vous a fourni le lien.</span><br/>
+        </div>
+        <!-- ELSE -->
+        <div class="text_align_center">
+            <span class="font_large">Vous êtes ici sur la plateforme de prise de rendez-vous de l'IUT de Clermont Auvergne.</span><br/>
+            <span class="font_large">La première étape consiste à choisir un créneau parmi les disponibilités ci-dessous.</span><br/>
+            <div class="box text_align_left">
+                <!-- IF NO_DISPO -->
+                <div class="vert font_medium text_align_center">Plus aucune date n'est actuellement disponible.<br/>Veuillez
+                    réessayer dans quelques heures.
+                </div>
+                <!-- ENDIF -->
+                <!-- BEGIN une_date -->
+                <span class="vert">{une_date.DATE_DISPO_AFFICHAGE}</span><br/>
+                <ul>
+                    <!-- BEGIN un_creneau -->
+                    <li>
+                        <form method="post" action="?pl={PLANNING_UID}&amp;p=front&amp;p2=info">
+                            <input type="hidden" name="DISPO" value="{une_date.DISPO_DATE}"/>
+                            <input type="hidden" name="CRENEAU" value="{un_creneau.CRENEAU_ID}"/>
+                            De {un_creneau.CRENEAU_DEBUT_AFFICHAGE} à {un_creneau.CRENEAU_FIN_AFFICHAGE}
+                            <ul>
+                                <!-- IF un_creneau.DISPO_PRESENTIEL > 0 || un_creneau.DISPO_FORCE == 1 -->
+                                <li><input type="submit" name="PRES"
+                                           value="réserver un rendez-vous en présentiel (sur Aubière)"/></li>
+                                <!-- ENDIF -->
+                                <!-- IF un_creneau.DISPO_TELEPHONIQUE > 0 || un_creneau.DISPO_FORCE == 1  -->
+                                <li><input type="submit" name="TEL" value="réserver un rendez-vous téléphonique"/></li>
+                                <!-- ENDIF -->
+                                <!-- IF un_creneau.DISPO_VISIO > 0 || un_creneau.DISPO_FORCE == 1  -->
+                                <li><input type="submit" name="VIS"
+                                           value="réserver un rendez-vous en visio (caméra obligatoire)"/></li>
+                                <!-- ENDIF -->
+                            </ul>
+                        </form>
+                    </li>
+                    <!-- END un_creneau -->
+                </ul>
+                <!-- END une_date -->
+            </div>
+        </div>
+        <!-- ENDIF -->
+    </div>
+</div>

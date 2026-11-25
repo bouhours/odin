@@ -1,0 +1,96 @@
+<div class="main">
+    <div class="limited">
+        <span>Choisissez l'année :</span>
+        <select id="id_selecteur_annee" data-bfmw="{FORMATION_COURANTE}">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <span>Choisissez la formation :</span>
+        <select id="id_selecteur_promo" data-bfmw="{ANNEE_COURANTE}">
+            <!-- BEGIN une_formation -->
+            <option value="{une_formation.FORM_ID}" {une_formation.SELECTED}>{une_formation.FORM_NOM}</option>
+            <!-- END une_formation -->
+        </select>
+        <span>Liste des jurys :</span>
+        <div class="box">
+            <!-- IF HAS_JURY -->
+            <!-- BEGIN un_jury -->
+            <ul class="TreeView font_small">
+                <li>
+                    <a href="?p=front&amp;p2=preparation&amp;delj={un_jury.JURY_ID}&amp;f={FORMATION_COURANTE}&amp;a={ANNEE_COURANTE}"
+                       name="confirm_suppres_jury"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                        title="Supprimer ce jury"/></a>&nbsp;<span class="font_medium">{un_jury.JURY_NOM}</span>
+                    <ul>
+                        <li><span class="font_small">&nbsp;&nbsp;&nbsp;&nbsp;Date de début du jury : </span><input
+                                class="bfmw_no_style bind2" type="text" placeholder="JJ/MM/AAAA HHhMM"
+                                value="{un_jury.JURY_START_AFFICHAGE}" name="JURY_START" data-bfmw="{un_jury.JURY_ID}"/>
+                        </li>
+                        <li><span class="font_small">&nbsp;&nbsp;&nbsp;&nbsp;Date de fin du jury : </span><input
+                                class="bfmw_no_style bind2" type="text" placeholder="JJ/MM/AAAA HHhMM"
+                                value="{un_jury.JURY_END_AFFICHAGE}" name="JURY_END" data-bfmw="{un_jury.JURY_ID}"/>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- END un_jury -->
+            <hr/>
+            <!-- ENDIF -->
+            <form class="font_medium" method="post" action="?p=front&amp;p2=preparation">
+                <span>Nom du jury : </span>
+                <input class="specific_input_preparation_1" name="*JURY_NOM" type="text"/>
+                <input name="*JURY_FORM_ID" type="hidden" value="{FORMATION_COURANTE}"/>
+                <input name="*JURY_ANNEE_ID" type="hidden" value="{ANNEE_COURANTE}"/>
+                <input type="submit" name="create_jury" value="Créer un nouveau jury"/>
+            </form>
+        </div>
+        <!-- IF HAS_JURY -->
+        <span>Sélectionnez le jury que vous souhaitez préparer :</span>
+        <select id="id_selecteur_jury" data-bfmw="{FORMATION_COURANTE}" data-bfmw2="{ANNEE_COURANTE}">
+            <!-- BEGIN un_jury -->
+            <option value="{un_jury.JURY_ID}" {un_jury.SELECTED}>{un_jury.JURY_NOM}</option>
+            <!-- END un_jury -->
+        </select>
+        <span>Liste des regroupement du jury sélectionné :</span>
+        <div class="box">
+            <div class="font_small">
+                <!-- IF HAS_GROUPE -->
+                <ul class="TreeView">
+                    <!-- BEGIN un_groupe -->
+                    <li>
+                        <a href="?p=front&amp;p2=preparation&amp;delg={un_groupe.GROUPE_ID}&amp;f={FORMATION_COURANTE}&amp;a={ANNEE_COURANTE}&amp;j={JURY_COURANT}"
+                           name="confirm_suppres_groupe"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                              title="Supprimer ce regroupement"/></a>&nbsp;
+                        <a href="#" class="updater" data-bfmw="GROUPE_NOM" data-bfmw2="groupe_{un_groupe.GROUPE_ID}"
+                           data-bfmw3="{un_groupe.GROUPE_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                                   title="Modifier le nom de ce regroupement"/></a>
+                        <span class="font_medium" id="groupe_{un_groupe.GROUPE_ID}">{un_groupe.GROUPE_NOM}</span><br/>
+                        <ul>
+                            <li>
+                                <div class="CheckBoxList text_vertical_top specific_input_preparation_2">
+                                    <!-- BEGIN un_etudiant -->
+                                    <input type="checkbox" value="{un_etudiant.ET_ID}" name="SELECT_GROUPE"
+                                           {un_etudiant.CHECKED} class="bind"
+                                           data-bfmw="{un_etudiant.ET_ID}${un_groupe.GROUPE_ID}"><span>&nbsp;{un_etudiant.ET_NOM}</span><br/>
+                                    <!-- END un_etudiant -->
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END un_groupe -->
+                </ul>
+                <hr/>
+                <!-- ENDIF -->
+                <form class="font_medium" method="post" action="?p=front&amp;p2=preparation">
+                    <span>Nom du regroupement : </span>
+                    <input class="specific_input_preparation_1" name="*GROUPE_NOM" type="text"/>
+                    <input name="*GROUPE_FORM_ID" type="hidden" value="{FORMATION_COURANTE}"/>
+                    <input name="*GROUPE_JURY_ID" type="hidden" value="{JURY_COURANT}"/>
+                    <input name="ANNEE_ID" type="hidden" value="{ANNEE_COURANTE}"/>
+                    <input type="submit" name="create_groupe" value="Créer un nouveau regroupement"/>
+                </form>
+            </div>
+        </div>
+        <!-- ENDIF -->
+    </div>
+</div>

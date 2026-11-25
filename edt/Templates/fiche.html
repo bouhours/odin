@@ -1,0 +1,411 @@
+<div class="main">
+    <div class="limited specific_div_fiche_1">
+        <label class="font_large"><span class="vert">Fiche de voeux {PERIODE_NOM}</span>
+            <!-- IF READONLY == "" -->
+            &nbsp;(date limite de saisie : <span class="rouge">{PERIODE_LIMIT_AFFICHAGE}</span>)
+            <!-- ENDIF -->
+        </label>
+        <div class="box">
+            <div class="font_small"><span class="bleu">Voici vos interventions
+                <!-- IF READONLY == "" -->
+            pour la période du </span>{PERIODE_DEBUT_AFFICHAGE}<span class="bleu"> au </span>{PERIODE_FIN_AFFICHAGE}
+                <!-- ENDIF -->
+                :
+            </div>
+            <ul class="font_medium">
+                <!-- BEGIN un_semestre -->
+                <li>{un_semestre.SEM_NOM}
+                    <!-- BEGIN une_ue -->
+                    <ul class="TreeView">
+                        <!-- BEGIN une_matiere -->
+                        <li>
+                            <span class="rouge">{une_matiere.MAT_NOM}</span><br/>
+                            <ul>
+                                <!-- BEGIN une_charge -->
+                                <li>
+                                    <span class="vert">{une_charge.CHARGE_VALEUR}</span><span>&nbsp;heures de</span>
+                                    <span class="vert">{une_charge.CHARGE_TYPE}</span><span>&nbsp;pour</span>
+                                    <span class="vert">{une_charge.CHARGE_GROUPE}</span>
+                                    <!-- IF une_charge.CHARGE_GROUPE > 1 -->
+                                    <span>groupes</span>
+                                    <!-- ELSE -->
+                                    <span>groupe</span>
+                                    <!-- ENDIF -->
+                                </li>
+                                <!-- END une_charge -->
+                                <li><span>Commentaire éventuel :</span>
+                                    <!-- IF READONLY == "" -->
+                                    <textarea name="CHARGE_COMMENTAIRE" {READONLY}
+                                              data-bfmw="{une_matiere.CHARGE_AFFECTATION_ID}${FICHE_ID}{FICHE_ENSEIGNANT_ID}"
+                                              class="bind bfmw_no_style text_vertical_top" rows="2">{une_matiere.COMMENTAIRE}</textarea>
+                                    <!-- ELSE -->
+                                    <div class="jaune">
+                                        {une_matiere.COMMENTAIRE_BR}
+                                    </div>
+                                    <!-- ENDIF -->
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END une_matiere -->
+                    </ul>
+                    <!-- END une_ue -->
+                </li>
+                <!-- END un_semestre -->
+            </ul>
+
+            <span class="font_small bleu">Cliquez sur les créneaux ci-dessous pour indiquer vos indisponibilités récurrentes :</span><br/>
+            <span class="font_small bleu">Indiquez vos indisponibilités occasionnelles dans la zone de commentaire située sous les matières ci-dessus</span>
+            <!-- IF READONLY == "" -->
+            <table class="releve font_small" id="id_disponibilites">
+                <tr>
+                    <th>&nbsp;</th>
+                    <th class="border_left">Lundi</th>
+                    <th class="border_left">Mardi</th>
+                    <th class="border_left">Mercredi</th>
+                    <th class="border_left">Jeudi</th>
+                    <th class="border_left">Vendredi</th>
+                    <th class="border_left border_right">Samedi</th>
+                </tr>
+                <tr>
+                    <td>8h - 9h</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="0"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_0}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="1"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_1}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="2"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_2}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="3"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_3}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="4"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_4}
+                    </td>
+                    <td class="border_left border_right dispo text_vertical_middle" data-bfmw="5"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_5}
+                    </td>
+                </tr>
+                <tr>
+                    <td>9h - 10h</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="6"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_6}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="7"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_7}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="8"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_8}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="9"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_9}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="10"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_10}
+                    </td>
+                    <td class="border_left border_right dispo text_vertical_middle" data-bfmw="11"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_11}
+                    </td>
+                </tr>
+                <tr>
+                    <td>10h - 11h</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="12"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_12}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="13"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_13}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="14"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_14}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="15"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_15}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="16"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_16}
+                    </td>
+                    <td class="border_left border_right dispo text_vertical_middle" data-bfmw="17"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_17}
+                    </td>
+                </tr>
+                <tr>
+                    <td>11h - 12h</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="18"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_18}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="19"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_19}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="20"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_20}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="21"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_21}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="22"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_22}
+                    </td>
+                    <td class="border_left border_right dispo text_vertical_middle" data-bfmw="23"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_23}
+                    </td>
+                </tr>
+                <tr>
+                    <td>13h30 - 14h30</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="24"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_24}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="25"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_25}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="26"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_26}
+                    </td>
+                    <!-- IF FICHE_A -->
+                    <td class="border_left text_vertical_middle"></td>
+                    <!-- ELSE -->
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="27"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_27}
+                    </td>
+                    <!-- ENDIF -->
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="28"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_28}
+                    </td>
+                    <td class="border_left " rowspan="6"></td>
+                </tr>
+                <tr>
+                    <td>14h30 - 15h30</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="30"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_30}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="31"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_31}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="32"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_32}
+                    </td>
+                    <!-- IF FICHE_A -->
+                    <td class="border_left text_vertical_middle"></td>
+                    <!-- ELSE -->
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="33"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_33}
+                    </td>
+                    <!-- ENDIF -->
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="34"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_34}
+                    </td>
+                </tr>
+                <tr>
+                    <td>15h30 - 16h30</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="35"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_35}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="36"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_36}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="37"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_37}
+                    </td>
+                    <!-- IF FICHE_A -->
+                    <td class="border_left text_vertical_middle"></td>
+                    <!-- ELSE -->
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="38"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_38}
+                    </td>
+                    <!-- ENDIF -->
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="39"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_39}
+                    </td>
+                </tr>
+                <tr>
+                    <td>16h30 - 17h30</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="40"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_40}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="41"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_41}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="42"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_42}
+                    </td>
+                    <!-- IF FICHE_A -->
+                    <td class="border_left text_vertical_middle"></td>
+                    <!-- ELSE -->
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="43"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_43}
+                    </td>
+                    <!-- ENDIF -->
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="44"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_44}
+                    </td>
+                </tr>
+                <tr>
+                    <td>17h30 - 18h30</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="45"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_45}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="46"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_46}
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="47"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_47}
+                    </td>
+                    <!-- IF FICHE_A -->
+                    <td class="border_left text_vertical_middle"></td>
+                    <!-- ELSE -->
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="48"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_48}
+                    </td>
+                    <!-- ENDIF -->
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="49"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_49}
+                    </td>
+                </tr>
+                <tr>
+                    <td>18h30 - 19h30</td>
+                    <td class="border_left dispo border_bottom text_vertical_middle" data-bfmw="50"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_50}
+                    </td>
+                    <td class="border_left dispo border_bottom text_vertical_middle" data-bfmw="51"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_51}
+                    </td>
+                    <td class="border_left dispo border_bottom text_vertical_middle" data-bfmw="52"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_52}
+                    </td>
+                    <!-- IF FICHE_A -->
+                    <td class="border_left border_bottom text_vertical_middle"></td>
+                    <!-- ELSE -->
+                    <td class="border_left dispo border_bottom text_vertical_middle" data-bfmw="53"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_53}
+                    </td>
+                    <!-- ENDIF -->
+                    <td class="border_left dispo border_bottom text_vertical_middle" data-bfmw="54"
+                        data-bfmw2="{FICHE_ID}{FICHE_ENSEIGNANT_ID}">{DISPO_54}
+                    </td>
+                </tr>
+            </table>
+            <!-- ELSE -->
+            <table class="releve font_small">
+                <tr>
+                    <th>&nbsp;</th>
+                    <th class="border_left">Lundi</th>
+                    <th class="border_left">Mardi</th>
+                    <th class="border_left">Mercredi</th>
+                    <th class="border_left">Jeudi</th>
+                    <th class="border_left">Vendredi</th>
+                    <th class="border_left border_right">Samedi</th>
+                </tr>
+                <tr>
+                    <td>8h - 9h</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_0}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_1}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_2}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_3}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_4}</td>
+                    <td class="border_left border_right dispo text_vertical_middle">{DISPO_5}</td>
+                </tr>
+                <tr>
+                    <td>9h - 10h</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_6}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_7}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_8}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_9}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_10}</td>
+                    <td class="border_left border_right dispo text_vertical_middle">{DISPO_11}</td>
+                </tr>
+                <tr>
+                    <td>10h - 11h</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_12}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_13}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_14}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_15}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_16}</td>
+                    <td class="border_left border_right dispo text_vertical_middle">{DISPO_17}</td>
+                </tr>
+                <tr>
+                    <td>11h - 12h</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_18}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_19}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_20}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_21}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_22}</td>
+                    <td class="border_left border_right dispo text_vertical_middle">{DISPO_23}</td>
+                </tr>
+                <tr>
+                    <td>13h30 - 14h30</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_24}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_25}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_26}</td>
+                    <!-- IF FICHE_A -->
+                    <td class="border_left text_vertical_middle"></td>
+                    <!-- ELSE -->
+                    <td class="border_left dispo text_vertical_middle">{DISPO_27}</td>
+                    <!-- ENDIF -->
+                    <td class="border_left dispo text_vertical_middle">{DISPO_28}</td>
+                    <td class="border_left " rowspan="6"></td>
+                </tr>
+                <tr>
+                    <td>14h30 - 15h30</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_30}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_31}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_32}</td>
+                    <!-- IF FICHE_A -->
+                    <td class="border_left text_vertical_middle"></td>
+                    <!-- ELSE -->
+                    <td class="border_left dispo text_vertical_middle">{DISPO_33}</td>
+                    <!-- ENDIF -->
+                    <td class="border_left dispo text_vertical_middle">{DISPO_34}</td>
+                </tr>
+                <tr>
+                    <td>15h30 - 16h30</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_35}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_36}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_37}</td>
+                    <!-- IF FICHE_A -->
+                    <td class="border_left text_vertical_middle"></td>
+                    <!-- ELSE -->
+                    <td class="border_left dispo text_vertical_middle">{DISPO_38}</td>
+                    <!-- ENDIF -->
+                    <td class="border_left dispo text_vertical_middle">{DISPO_39}</td>
+                </tr>
+                <tr>
+                    <td>16h30 - 17h30</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_40}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_41}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_42}</td>
+                    <!-- IF FICHE_A -->
+                    <td class="border_left text_vertical_middle"></td>
+                    <!-- ELSE -->
+                    <td class="border_left dispo text_vertical_middle">{DISPO_43}</td>
+                    <!-- ENDIF -->
+                    <td class="border_left dispo text_vertical_middle">{DISPO_44}</td>
+                </tr>
+                <tr>
+                    <td>17h30 - 18h30</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_45}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_46}</td>
+                    <td class="border_left dispo text_vertical_middle">{DISPO_47}</td>
+                    <!-- IF FICHE_A -->
+                    <td class="border_left text_vertical_middle"></td>
+                    <!-- ELSE -->
+                    <td class="border_left dispo text_vertical_middle">{DISPO_48}</td>
+                    <!-- ENDIF -->
+                    <td class="border_left dispo text_vertical_middle">{DISPO_49}</td>
+                </tr>
+                <tr>
+                    <td>18h30 - 19h30</td>
+                    <td class="border_left dispo border_bottom text_vertical_middle">{DISPO_50}</td>
+                    <td class="border_left dispo border_bottom text_vertical_middle">{DISPO_51}</td>
+                    <td class="border_left dispo border_bottom text_vertical_middle">{DISPO_52}</td>
+                    <!-- IF FICHE_A -->
+                    <td class="border_left border_bottom text_vertical_middle"></td>
+                    <!-- ELSE -->
+                    <td class="border_left dispo border_bottom text_vertical_middle">{DISPO_53}</td>
+                    <!-- ENDIF -->
+                    <td class="border_left dispo border_bottom text_vertical_middle">{DISPO_54}</td>
+                </tr>
+            </table>
+            <!-- ENDIF -->
+        </div>
+    </div>
+</div>

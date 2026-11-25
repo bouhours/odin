@@ -1,0 +1,47 @@
+<span class="font_large rouge">Veuillez remplir les grilles suivantes pour </span><span class="font_large vert">{TEXTE}</span><span class="font_large rouge">&nbsp;:</span><br/>
+<span class="font_large bleu">{DETAIL}</span><br/>
+<ul class="TreeView">
+<!-- BEGIN une_destination -->
+<li><span>&bull;&nbsp;{une_destination.DEST_CONTENU}</span>
+<ul>
+    <!-- BEGIN une_section -->
+    <li><span>&bull;&nbsp;{une_section.SECTION_CONTENU}</span>
+        <ul><li>
+    <table class="releve wrap">
+        <!-- BEGIN un_critere -->
+        <tr>
+            <th class="vert text_vertical_middle" rowspan="1">{un_critere.CRITERE_CONTENU}</th>
+            <!-- BEGIN un_niveau -->
+            <!-- BEGIN une_explication -->
+            <td>{une_explication.EXPLICATION_CONTENU}</td>
+            <!-- END une_explication -->
+            <!-- END un_niveau -->
+        </tr>
+        <tr>
+            <th class="vert text_vertical_middle no_border_top text_align_right" rowspan="1">
+                <img class="masque_master hide" id="id_critere_check_{un_critere.CRITERE_ID}${SESSION_COURANTE}" alt="tick" title="Vous avez correctement choisi une valeur" src="../bfmw/images/tick.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" />
+                <img class="masque_master" id="id_critere_nocheck_{un_critere.CRITERE_ID}${SESSION_COURANTE}" alt="croix" title="Aucune valeur n'est saisie" src="../bfmw/images/croix.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" />
+            </th>
+            <!-- BEGIN un_niveau -->
+            <!-- BEGIN une_explication -->
+            <td class="no_border_top border_bottom rouge no_wrap" >
+            <!-- IF un_niveau.NIVEAU_NUMERIQUE == 0 -->
+            <input type="radio" value="{une_explication.NIVEAU_ID}" {une_explication.CHECKED} name="{une_explication.CRITERE_ID}${SESSION_COURANTE}" class="bind_grille" data-bfmw="{IDENTIFIANT}">{une_explication.NIVEAU_CONTENU}
+            <!-- ELSE -->
+            <input type="text" value="{une_explication.SOUT_NIVEAU_NUMERIQUE}" name="{une_explication.CRITERE_ID}${SESSION_COURANTE}" class="specific_input_grille bind_grille_2" data-bfmw="flhgljkh${une_explication.NIVEAU_ID}${IDENTIFIANT}">
+            <input type="submit" value="Valider" class="text_vertical_bottom specific_input_grille_2">
+            <!-- ENDIF -->
+            </td>
+            <!-- END une_explication -->
+            <!-- END un_niveau -->
+        </tr>
+        <!-- END un_critere -->
+    </table>
+        </li></ul>
+    <!-- END une_section -->
+    </li>
+</ul>
+</li>
+<!-- END une_destination -->
+</ul>
+<a href="?p=front&amp;p2={PAGE}&amp;{IDDEL}={VALDEL}&amp;s={SESSION_COURANTE}&amp;f={FORMATION_COURANTE}&amp;a={ANNEE_COURANTE}" id="id_clic_supprimer">Cliquez-ici pour supprimer toutes vos notes</a>

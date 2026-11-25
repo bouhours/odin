@@ -1,0 +1,75 @@
+<div class="main">
+    <div class="limited">
+        <!-- IF HAS_FORMATIONS -->
+        <span>Choisissez la formation à configurer : </span>
+        <select name="formation" id="id_selecteur_form">
+            <!-- BEGIN une_formation -->
+            <option {une_formation.SELECTED} value="{une_formation.FORM_ID}">{une_formation.FORM_NOM}</option>
+            <!-- END une_formation -->
+        </select>
+        <span>Choisissez la session à configurer : </span>
+        <select name="formation" id="id_selecteur_session" data-bfmw="{FORMATION_COURANTE}">
+            <!-- BEGIN une_session -->
+            <option {une_session.SELECTED} value="{une_session.SESSION_ID}">{une_session.SESSION_CONTENU}</option>
+            <!-- END une_session -->
+        </select>
+        <hr/>
+
+        <label class="vert">Liste des groupes :</label>
+        <div class="box">
+            <!-- IF HAS_GROUPES -->
+            <ul class="font_small TreeView">
+                <!-- BEGIN un_groupe -->
+                <li>
+                    <a href="?p=front&amp;p2=creergroupe&amp;delg={un_groupe.GROUPE_ID}&amp;f={FORMATION_COURANTE}&amp;s={SESSION_COURANTE}"
+                       name="confirm_suppres_groupe"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                          title="Supprimer ce groupe"/></a>&nbsp;{un_groupe.GROUPE_NOM}
+                    <ul>
+                        <!-- BEGIN un_etudiant -->
+                        <li>
+                            <a href="?p=front&amp;p2=creergroupe&amp;dele={un_etudiant.ET_ID}&amp;g={un_groupe.GROUPE_ID}&amp;f={FORMATION_COURANTE}&amp;s={SESSION_COURANTE}"
+                               name="confirm_suppres_etudiant"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                                    title="Supprimer cet étudiant de ce groupe"/></a>&nbsp;{un_etudiant.ET_NOM}
+                        </li>
+                        <!-- END un_etudiant -->
+                    </ul>
+                </li>
+                <!-- END un_groupe -->
+            </ul>
+            <hr/>
+            <div class="font_small">
+                <span>Sélectionnez un groupe </span><br/>
+                <select id="id_selecteur_groupe" data-bfmw="{FORMATION_COURANTE}" data-bfmw2="{SESSION_COURANTE}">
+                    <!-- BEGIN un_groupe -->
+                    <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                    <!-- END un_groupe -->
+                </select><br/>
+                <span>Sélectionnez les étudiants du groupe</span><br/>
+                <div class="CheckBoxList specific_div_creergroupe_1">
+                    <!-- BEGIN un_etudiant_formation -->
+                    <input type="checkbox" class="bind" value="1"
+                           name="AJOUTER_ETUDIANT_DANS_GROUPE" data-bfmw="{un_etudiant_formation.ET_ID}${GROUPE_COURANT}"
+                           {un_etudiant_formation.ET_SELECTED}/><span>&nbsp;{un_etudiant_formation.ET_NOM}</span><br/>
+                    <!-- END un_etudiant_formation -->
+                </div>
+                <br/>
+            </div>
+            <hr/>
+            <!-- ENDIF -->
+            <form method="POST" action="?p=front&amp;p2=creergroupe">
+                <span class="font_medium">Créer un groupe de projet : </span>
+                <input type="text" required class="specific_input_creergroupe_1" name="*GROUPE_NOM"/>
+                <input type="hidden" name="*GROUPE_FORM_ID" value="{FORMATION_COURANTE}"/>
+                <input type="hidden" name="*GROUPE_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                <input type="hidden" name="*GROUPE_SESSION_ID" value="{SESSION_COURANTE}"/>
+                <input type="submit" name="creer_groupe" value="Valider"/>
+            </form>
+        </div>
+        <!-- ELSE -->
+        <div class="text_align_center font_medium">
+            <span>Vous n'avez configuré aucune grille d'évaluation pour les formations dont vous êtes responsables</span><br/>
+            <span>Pour configurer des grilles, rendez-vous dans l'administration, onglet Soutenances</span>
+        </div>
+        <!-- ENDIF -->
+    </div>
+</div>

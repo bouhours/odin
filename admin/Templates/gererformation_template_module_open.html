@@ -1,0 +1,39 @@
+<li class="vert_doux"><span class="no_wrap">
+    <!-- IF MAT_SURMAT_ID == "" -->
+    <a href="?p=front&amp;p2=gererformation&amp;move={MAT_ID}&amp;down=-1&amp;po={MAT_ORDRE}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}&amp;tu=matue&amp;u={MAT_UE_ID}" class="monter" title="monter" ></a>
+    <a href="?p=front&amp;p2=gererformation&amp;move={MAT_ID}&amp;down=1&amp;po={MAT_ORDRE}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}&amp;tu=matue&amp;u={MAT_UE_ID}" class="descendre" title="descendre" ></a>
+    <!-- ELSE -->
+    <a href="?p=front&amp;p2=gererformation&amp;move={MAT_ID}&amp;down=-1&amp;po={MAT_ORDRE}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}&amp;tu=matmod&amp;u={MAT_SURMAT_ID}" class="monter" title="monter" ></a>
+    <a href="?p=front&amp;p2=gererformation&amp;move={MAT_ID}&amp;down=1&amp;po={MAT_ORDRE}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}&amp;tu=matmod&amp;u={MAT_SURMAT_ID}" class="descendre" title="descendre" ></a>
+    <!-- ENDIF -->
+    <!-- IF  VIDE && NEW_MAT != 1-->
+        <a href="?p=front&amp;p2=gererformation&amp;hidematiere={MAT_ID}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}" name="confirm_hide_matiere"><img
+                src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="hide" title="Enlever ce module de la maquette pour l'année en cours"/></a>
+    <!-- ENDIF -->
+    <!-- IF NEW_MAT == 1 -->
+    <!-- IF  VIDE -->
+        <a href="?p=front&amp;p2=gererformation&amp;delmatiere={MAT_ID}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}" name="confirm_suppres_matiere"><img
+                src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer définitivement cette matiere"/></a>
+    <!-- ENDIF -->
+        <a href="#" class="updater" data-bfmw="MAT_NOM" data-bfmw2="module_{MAT_ID}" data-bfmw3="{MAT_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier le nom de ce module"/></a>
+        <span id="module_{MAT_ID}">{MAT_NOM}</span>
+        <span>(coef : </span>
+        <a href="#" class="updater" data-bfmw="MAT_COEF" data-bfmw2="module_coeff_{MAT_ID}" data-bfmw3="{MAT_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier le coefficien de ce module"/></a>
+        <span id="module_coeff_{MAT_ID}">{MAT_COEF}</span>
+        <span>)</span>
+    <!-- ELSE -->
+        <a href="?p=front&amp;p2=gererformation&amp;switchmatiere={MAT_ID}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}" name="confirm_switch_matiere"><img
+                src="../bfmw/images/clone.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="icon" alt="clone" title="Rendre ce module à nouveau modifiable"/></a>
+        <span>{MAT_NOM}</span>
+        <span>(coef : </span>
+        <span>{MAT_COEF}</span>
+        <span>)</span>
+    <!-- ENDIF -->
+    </span>
+<ul>
+    <li>
+            <span class="no_wrap">Code APOGEE : </span>
+            <a href="#" class="updater" data-bfmw="MAT_CODE_APOGE" data-bfmw2="module_apogee_{MAT_ID}" data-bfmw3="{MAT_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier le code APOGEE de ce module"/></a>
+            <span id="module_apogee_{MAT_ID}" >{MAT_CODE_APOGE}</span>
+            <span class="rouge">Attention, ne mettez un code que si ce module doit être exporté dans APOGEE</span>
+    </li>

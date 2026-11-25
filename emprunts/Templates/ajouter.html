@@ -1,0 +1,38 @@
+<div class="main">
+    <div class="limited specific_div_ajouter_1">
+        <div class="box">
+            <label>Ajouter un nouveau matériel</label>
+            <form method="POST" action="?p=front&amp;p2=ajouter">
+                <table class="releve">
+                    <tr>
+                        <td><input type="text" name="*OBJ_NOM" required placeholder="Nom de l'objet" value=""/></td>
+                        <td><input class="specific_input_ajouter_1" type="number" step="1" min="1" name="*OBJ_STOCK"
+                                   required placeholder="Stock" value="1"/></td>
+                        <td><input type="text" name="*OBJ_LIEU" required placeholder="Lieu de stockage" value=""/></td>
+                        <td><input type="submit" value="Ajouter un nouvel objet" name="ajouter"/></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="box">
+            <label>Modifier le matériel existant</label>
+            <table class="releve">
+                <tr>
+                    <th>Nom</th>
+                    <th>Stock</th>
+                    <th>Lieu de stockage</th>
+                </tr>
+                <!-- BEGIN un_objet -->
+                <tr>
+                    <td><input type="text" class="bind" value="{un_objet.OBJ_NOM}" name="OBJ_NOM"
+                               data-bfmw="{un_objet.OBJ_ID}"/></td>
+                    <td><input class="specific_input_ajouter_1 bind" type="number" value="{un_objet.OBJ_STOCK}" min="1"
+                               step="1" data-bfmw="{un_objet.OBJ_ID}" name="OBJ_STOCK"/></td>
+                    <td><input type="text" class="bind" value="{un_objet.OBJ_LIEU}" name="OBJ_LIEU"
+                               data-bfmw="{un_objet.OBJ_ID}"/></td>
+                </tr>
+                <!-- END un_objet -->
+            </table>
+        </div>
+    </div>
+</div>

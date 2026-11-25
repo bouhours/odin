@@ -1,0 +1,46 @@
+<div class="main">
+    <div class="limited">
+        <!-- BEGIN show -->
+        <br/>
+        <span class="rouge">Le bilan de compétence ci-dessous est temporaire.</span><br/>
+        <span class="rouge">Seul le jury pourra confirmer ce bilan ainsi que ses conséquences. Il est présenté ici pour vous aider visualiser votre moyenne à chaque compétence.</span><br/>
+        <span class="bleu">&bull;&nbsp;Vous passez de droit en année suivante si vous avez au moins la moitié plus une compétence supérieure à 10 et aucune inférieure à 8. Sinon, le jury statuera sur votre sort.</span><br/>
+        <span class="bleu">&bull;&nbsp;En deuxième année, la même règle s'applique. Mais en plus, il faut que toutes les compétences inférieures à 10 de première année soient supérieures ou égales à 10 en deuxième année. Enfin, il faut que toutes les compétences qui se terminent en deuxième année soient supérieures ou égales à 10.</span><br/>
+        <span class="bleu">&bull;&nbsp;En troisième année, vous obtenez votre displôme si toutes les compétences sont supérieures ou égales à 10.</span><br/><br/>
+        <div>
+            <!-- BEGIN un_niveau -->
+            <span class="resultat_niveau">{un_niveau.NIVEAU_NOM}</span>
+            <!-- BEGIN une_annee -->
+            <div class="resultat_ligne">
+                <span class="resultat_annee">{une_annee.ANNEE_NOM}</span>
+                <!-- BEGIN un_regroupement -->
+                <div class="resultat_regroupement">
+                    <span class="resultat_nom_regroupement">{un_regroupement.REGROUP_NOM}</span>
+                    <!-- BEGIN une_moyenne -->
+                    <!-- IF une_moyenne.SPECIAL != "" -->
+                    <span class="rouge resultat_moyenne">{une_moyenne.SPECIAL}</span>
+                    <!-- ELSE -->
+                    <!-- IF une_moyenne.VALEUR < 8 -->
+                    <span class="jaune resultat_moyenne">
+                        <!-- ELSEIF une_moyenne.VALEUR < 10 -->
+                        <span class="bleu resultat_moyenne">
+                        <!-- ELSE -->
+                        <span class="vert resultat_moyenne">
+                        <!-- ENDIF -->
+                    {une_moyenne.VALEUR}
+                            <!-- IF une_moyenne.BARREE != "" -->
+                                        <br/>
+                                        <span class="text_barre">{une_moyenne.BARREE}</span>
+                            <!-- ENDIF -->
+                                        </span>
+                            <!-- ENDIF -->
+                            <!-- END une_moyenne -->
+                </div>
+                <!-- END un_regroupement -->
+            </div>
+            <!-- END une_annee -->
+            <!-- END un_niveau -->
+        </div>
+        <!-- END show -->
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="top_page">
+    <div class="menu" id="GeneralMenu">
+        <a href=".." title="Retour au portail" class="not_menu retour_portail_menu"><img class="retour_portail" src="../bfmw/images/home.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"/></a>
+        <a href=".." title="Retour au portail" class="not_menu">Poursuites d'études</a>
+        <!-- BEGIN OFF -->
+            <a href="?" {ACTIVE_CONSULTER}>Consulter</a>
+            <!-- BEGIN saisisseur -->
+            <a href="?p=saisir" {ACTIVE_SAISIR}>Saisir</a>
+            <!-- END saisisseur -->
+        <!-- END OFF -->
+        <!-- BEGIN une_categ -->
+            <a href="?p=jury&amp;categ={une_categ.CATEGORIE_ID}" {une_categ.ACTIVE_JURY}>Jury {une_categ.CATEGORIE_NOM}</a>
+        <!-- END une_categ -->
+        <!-- BEGIN OFF -->
+            <!-- BEGIN orthographe -->
+            <a href="?p=orthographe" {ACTIVE_ORTHO}>Orthographe</a>
+            <!-- END orthographe -->
+        <!-- END OFF -->
+        <a href="?p=logout">Se déconnecter</a>
+        <a href="#" class="icon texte_menu"><img src="../bfmw/images/menu.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="image_menu" alt="Menu"/></a>
+    </div>
+</div>
+<div id="id_margin_top"></div>

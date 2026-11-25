@@ -1,0 +1,36 @@
+<div class="main">
+    <div class="limited">
+        Année à afficher :
+        <select id="id_selection_annee" data-bfmw="{GROUPE_ID}">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <!-- IF NB_GROUPES > 0 -->
+        <hr/>
+        Groupe à gérer :
+        <select id="id_selection_groupe" data-bfmw="{ANNEE_ID}">
+            <!-- BEGIN une_formation -->
+            <optgroup class="rouge" label="{une_formation.FORM_NOM}">
+                <!-- BEGIN un_groupe -->
+                <option class="noir" value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                <!-- END un_groupe -->
+                <!-- END une_formation -->
+        </select>
+        <hr/>
+
+        <form id="{GROUPE_ID}" action="?p=front&amp;p2=groupe&amp;g={GROUPE_ID}" method="POST">
+            Ajoutez ou supprimez des numéros d'étudiants dans la colonne de gauche (Groupe {GROUPE_NOM}) :<br/>
+            <textarea rows="{NB}" class="specific_input_groupe_1 synchro count" id="x_{GROUPE_ID}"
+                      data-bfmw="{GROUPE_ID}" name="lesEtudiants"><!-- BEGIN un_etudiant -->{un_etudiant.ET_NUMERO}{un_etudiant.RETURN}<!-- END un_etudiant --></textarea>
+            <textarea rows="{NB}" readonly class="specific_input_groupe_2 synchro" id="y_{GROUPE_ID}"
+                      data-bfmw="{GROUPE_ID}"><!-- BEGIN un_etudiant -->{un_etudiant.ET_NOM}{un_etudiant.RETURN}<!-- END un_etudiant --></textarea>
+            <br/><span id="nbinscrits_{GROUPE_ID}"></span><br/>
+            <input type="hidden" value="{GROUPE_CODE}" name="groupe_code"/>
+            <input type="hidden" value="{ANNEE_ID}" name="a"/>
+            <input type="hidden" value="{GROUPE_ID}" name="g"/>
+            <input type="submit" value="Mettre à jour le groupe" name="update_groupe"/>
+        </form>
+        <!-- ENDIF -->
+    </div>
+</div>

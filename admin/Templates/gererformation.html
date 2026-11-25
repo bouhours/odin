@@ -1,0 +1,501 @@
+<div class="main">
+    <div class="limited specific_div_gererformation_1">
+        <div class="no_print">
+            Année à gérer :
+            <select class="specific_select_gererformation_9" id="id_selection_annee" data-bfmw="{FORM_ID}">
+                <!-- BEGIN une_annee -->
+                <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+                <!-- END une_annee -->
+            </select>
+            <hr/>
+            <span class="no_wrap">
+        <!-- IF IS_ADMIN -->
+            <a href="?p=front&amp;p2=gererformation&amp;deldepartement={DEPT_ID}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}"
+               name="confirm_suppres_departement"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                       title="Supprimer définitivement ce département"/></a>&nbsp;
+        <!-- ENDIF -->
+        <!-- IF IS_CHEF -->
+            <a href="#" class="updater" data-bfmw="DEPT_NOM" data-bfmw2="dept_{DEPT_ID}" data-bfmw3="{DEPT_ID}"><img
+                    src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier le nom du département"/></a>
+        <!-- ENDIF -->
+        <span id="dept_{DEPT_ID}" class="vert">{DEPT_NOM}</span>
+        <!-- IF IS_CHEF -->
+        <br/>
+        Chef :
+        <select title="Chef de département" class="specific_select_gererformation_9 bind2" name="DEPT_ENS_ID"
+                data-bfmw="{DEPT_ID}">
+            <option value="NULL"></option>
+            <!-- BEGIN un_enseignant -->
+            <option value="{un_enseignant.ENS_ID}" {un_enseignant.SELECTED}>{un_enseignant.ENS_NOM}</option>
+            <!-- END un_enseignant -->
+        </select>
+        <!-- ELSE -->
+        <br/>
+                <span>Chef :&nbsp;</span><span class="bleu">{NOM_DU_CHEF}</span>
+        <!-- ENDIF -->
+    </span>
+            <br/>
+            <span>Sélectionnez la formation à gérer :</span>
+            <select id="id_select_formation" class="specific_input_gererformation_1" data-bfmw="{ANNEE_COURANTE}">
+                <!-- BEGIN une_formation_filtre -->
+                <option value="{une_formation_filtre.FORM_ID}" {une_formation_filtre.SELECTED}>
+                    {une_formation_filtre.FORM_NOM}
+                </option>
+                <!-- END une_formation_filtre -->
+            </select>
+            <hr/>
+        </div>
+        <!-- BEGIN une_formation -->
+        <div class="blanc no_wrap">
+            <ul class="TreeView">
+                <li>
+                    <!-- IF IS_ADMIN -->
+                    <a href="?p=front&amp;p2=gererformation&amp;delformation={une_formation.FORM_ID}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}"
+                       name="confirm_suppres_formation"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                             title="Supprimer définitivement cette formation"/></a>&nbsp;
+                    <!-- ENDIF -->
+                    <a href="?p=front&amp;p2=gererformation&amp;hideformation={une_formation.FORM_ID}&amp;a={ANNEE_COURANTE}"
+                       name="confirm_hide_formation"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                          title="Enlever cette formation de la maquette pour l'année en cours"/></a>
+                    <span>Formation&nbsp;:&nbsp;</span>
+                    <a href="#" class="updater" data-bfmw="FORM_NOM" data-bfmw2="form_{une_formation.FORM_ID}"
+                       data-bfmw3="{une_formation.FORM_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                                 title="Modifier le nom de la formation"/></a>
+                    <span class="vert" id="form_{une_formation.FORM_ID}">{une_formation.FORM_NOM}</span>
+                    <ul>
+                        <li>
+                            Reponsable :
+                            <div class="CheckBoxList specific_select_gererformation_10">
+                                <!-- BEGIN un_enseignant_responsable -->
+                                <input type="checkbox" class="bind4" value="{un_enseignant_responsable.ENS_ID}"
+                                       name="responsable" {un_enseignant_responsable.CHECKED}
+                                       data-bfmw="{un_enseignant_responsable.ENS_ID}${une_formation.FORM_ID}"/><span>&nbsp;{un_enseignant_responsable.ENS_NOM}</span><br/>
+                                <!-- END un_enseignant_responsable -->
+                            </div>
+                            Secrétaire :
+                            <div class="CheckBoxList specific_select_gererformation_10">
+                                <!-- BEGIN un_enseignant_secretaire -->
+                                <input type="checkbox" class="bind4" value="{un_enseignant_secretaire.ENS_ID}"
+                                       name="secretaires" {un_enseignant_secretaire.CHECKED}
+                                       data-bfmw="{un_enseignant_secretaire.ENS_ID}${une_formation.FORM_ID}"/><span>&nbsp;{un_enseignant_secretaire.ENS_NOM}</span><br/>
+                                <!-- END un_enseignant_secretaire -->
+                            </div>
+                            <br/><br/>
+                        </li>
+                        <li>
+                            <span>Identifiant unique de la formation&nbsp;:</span>
+                            <span class="vert" >{une_formation.FORM_ID}</span>
+                        </li>
+                        <li>
+                            <span>Ratio de charge pour les TP des enseignants-chercheurs&nbsp;:&nbsp;</span><a href="#"
+                                                                                                               class="updater"
+                                                                                                               data-bfmw="FORM_RATIO_ES"
+                                                                                                               data-bfmw2="form_ratio_es_{une_formation.FORM_ID}"
+                                                                                                               data-bfmw3="{une_formation.FORM_ID}"><img
+                                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                title="Modifier le ratio pour les enseignants-chercheurs"/></a>
+                            <span class="vert"
+                                  id="form_ratio_es_{une_formation.FORM_ID}">{une_formation.FORM_RATIO_ES}</span>
+                        </li>
+                        <li>
+                            <span>Ratio de charge pour les TP des enseignants&nbsp;:&nbsp;</span><a href="#"
+                                                                                                    class="updater"
+                                                                                                    data-bfmw="FORM_RATIO_E"
+                                                                                                    data-bfmw2="form_ratio_e_{une_formation.FORM_ID}"
+                                                                                                    data-bfmw3="{une_formation.FORM_ID}"><img
+                                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                title="Modifier le ratio pour les enseignants"/></a>
+                            <span class="vert"
+                                  id="form_ratio_e_{une_formation.FORM_ID}">{une_formation.FORM_RATIO_E}</span>
+                        </li>
+                        <li>
+                            <span>Ratio de charge pour les TP des vacataires&nbsp;:&nbsp;</span><a href="#"
+                                                                                                   class="updater"
+                                                                                                   data-bfmw="FORM_RATIO_V"
+                                                                                                   data-bfmw2="form_ratio_v_{une_formation.FORM_ID}"
+                                                                                                   data-bfmw3="{une_formation.FORM_ID}"><img
+                                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                title="Modifier le ratio pour les vacataires"/></a>
+                            <span class="vert"
+                                  id="form_ratio_v_{une_formation.FORM_ID}">{une_formation.FORM_RATIO_V}</span>
+                        </li>
+                        <li>
+                            <span>Nom court de la formation&nbsp;:&nbsp;</span><a href="#" class="updater"
+                                                                                  data-bfmw="FORM_NOM_COURT"
+                                                                                  data-bfmw2="form_court_{une_formation.FORM_ID}"
+                                                                                  data-bfmw3="{une_formation.FORM_ID}"><img
+                                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                title="Modifier le nom court de la formation"/></a>
+                            <span class="vert"
+                                  id="form_court_{une_formation.FORM_ID}">{une_formation.FORM_NOM_COURT}</span>
+                        </li>
+                        <!--<li>
+                            <span>Régime de la formation&nbsp;:&nbsp;</span><a href="#" class="updater" data-bfmw="FORM_REGIME" data-bfmw2="form_regime_{une_formation.FORM_ID}" data-bfmw3="{une_formation.FORM_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier le régime de la formation"/></a>
+                            <span class="vert" id="form_regime_{une_formation.FORM_ID}" >{une_formation.FORM_REGIME}</span>
+                        </li>-->
+                        <li>
+                            La formation contient des alternants ?&nbsp;<input type="checkbox" class="bind_pro"
+                                                                               {une_formation.FORM_PRO} value="1"
+                                                                               name="FORM_PRO"
+                                                                               data-bfmw="{une_formation.FORM_ID}"/>
+                        </li>
+                        <li>
+                            Les étudiants en FI peuvent déclarer leur présence avec des signatures ?&nbsp;<input
+                                type="checkbox" class="bind_pro" {une_formation.FORM_ABSENCES_AUTO} value="1"
+                                name="FORM_ABSENCES_AUTO" data-bfmw="{une_formation.FORM_ID}"/>
+                        </li>
+                        <li>
+                            Les étudiants doivent signer avec une tablette ?&nbsp;<input type="checkbox"
+                                                                                         class="bind_pro"
+                                                                                         {une_formation.FORM_SIGNATURE_SUR_TABLETTES}
+                                                                                         value="1"
+                                                                                         name="FORM_SIGNATURE_SUR_TABLETTES"
+                                                                                         data-bfmw="{une_formation.FORM_ID}"/>
+                        </li>
+                        <li>
+                            Les étudiants peuvent signer avant les cours ?&nbsp;<input type="checkbox" class="bind_pro"
+                                                                                       {une_formation.FORM_AUTORISE_SIGNATURES_ANTICIPEES}
+                                                                                       value="1"
+                                                                                       name="FORM_AUTORISE_SIGNATURES_ANTICIPEES"
+                                                                                       data-bfmw="{une_formation.FORM_ID}"/>
+                        </li>
+                        <li>
+                            Nombre de minutes qu'ont les étudiants pour déclarer une présence après la fin d'un cours ?
+                            (-1 pour une durée illimitée)&nbsp;<input type="number" step="1" min="-1"
+                                                                      class="bind5 specific_input_gererformation_4"
+                                                                      value="{une_formation.FORM_MINUTES_SIGNATURES}"
+                                                                      name="FORM_MINUTES_SIGNATURES"
+                                                                      data-bfmw="{une_formation.FORM_ID}"/>
+                        </li>
+                        <li>
+                            Les étudiants peuvent donner un FeedBack sur un enseignement ?&nbsp;<input type="checkbox"
+                                                                                                       class="bind_pro"
+                                                                                                       {une_formation.FORM_EVALUABLE}
+                                                                                                       value="1"
+                                                                                                       name="FORM_EVALUABLE"
+                                                                                                       data-bfmw="{une_formation.FORM_ID}"/>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- END une_formation -->
+        <ul>
+            <!-- BEGIN arbre_un_departement -->
+            <!-- BEGIN une_formation -->
+            <!-- BEGIN un_semestre -->
+            <li class="bleu"><span class="no_wrap">
+                <!-- IF $_un_semestre_count > 1 -->
+                <a href="?p=front&amp;p2=gererformation&amp;move={un_semestre.SEM_ID}&amp;down=-1&amp;po={un_semestre.SEM_ORDRE}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}&amp;tu=sem&amp;u={FORM_ID}"
+                   class="monter" title="monter"></a>
+                <a href="?p=front&amp;p2=gererformation&amp;move={un_semestre.SEM_ID}&amp;down=1&amp;po={un_semestre.SEM_ORDRE}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}&amp;tu=sem&amp;u={FORM_ID}"
+                   class="descendre" title="descendre"></a>
+                <!-- ENDIF -->
+                <!-- IF un_semestre.SEM_VIDE && un_semestre.NEW_SEM != 1 -->
+                        <a href="?p=front&amp;p2=gererformation&amp;hidesemestre={un_semestre.SEM_ID}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}"
+                           name="confirm_hide_semestre"><img
+                                src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="hide"
+                                title="Enlever ce semestre de la maquette pour l'année en cours"/></a>
+                <!-- ENDIF -->
+                <!-- IF  un_semestre.NEW_SEM == 1 -->
+                <!-- IF un_semestre.SEM_VIDE -->
+                            <a href="?p=front&amp;p2=gererformation&amp;delsemestre={un_semestre.SEM_ID}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}"
+                               name="confirm_suppres_semestre"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                                    title="Supprimer définitivement ce semestre"/></a>
+                <!-- ENDIF -->
+                        <a href="#" class="updater" data-bfmw="SEM_NOM" data-bfmw2="sem_{un_semestre.SEM_ID}"
+                           data-bfmw3="{un_semestre.SEM_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                                  title="Modifier le nom du semestre"/></a>
+                        <span id="sem_{un_semestre.SEM_ID}">{un_semestre.SEM_NOM}</span>
+                        <span>&nbsp;(coef : </span>
+                        <a href="#" class="updater" data-bfmw="SEM_COEF" data-bfmw2="sem_coef_{un_semestre.SEM_ID}"
+                           data-bfmw3="{un_semestre.SEM_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                                  title="Modifier le coefficient du semestre"/></a>
+                        <span id="sem_coef_{un_semestre.SEM_ID}">{un_semestre.SEM_COEF}</span>
+                        <span>)</span>
+                <!-- ELSE -->
+                        <a href="?p=front&amp;p2=gererformation&amp;switchsemestre={un_semestre.SEM_ID}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}"
+                           name="confirm_switch_semestre"><img
+                                src="../bfmw/images/clone.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="icon" alt="clone"
+                                title="Rendre ce semestre à nouveau modifiable"/></a>
+                        <span>{un_semestre.SEM_NOM}</span>
+                        <span>(coef : </span><span>{un_semestre.SEM_COEF}</span><span>)</span>
+                <!-- ENDIF -->
+                    </span>
+                <ul class="TreeView">
+                    <!-- BEGIN une_ue -->
+                    <li class="jaune"><span class="no_wrap">
+                    <!-- IF $_une_ue_count > 1 -->
+                        <a href="?p=front&amp;p2=gererformation&amp;move={une_ue.UE_ID}&amp;down=-1&amp;po={une_ue.UE_ORDRE}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}&amp;tu=ue&amp;u={un_semestre.SEM_ID}"
+                           class="monter" title="monter"></a>
+                        <a href="?p=front&amp;p2=gererformation&amp;move={une_ue.UE_ID}&amp;down=1&amp;po={une_ue.UE_ORDRE}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}&amp;tu=ue&amp;u={un_semestre.SEM_ID}"
+                           class="descendre" title="descendre"></a>
+                        <!-- ENDIF -->
+                        <!-- IF  une_ue.UE_VIDE && une_ue.NEW_UE != 1 -->
+                            <a href="?p=front&amp;p2=gererformation&amp;hideue={une_ue.UE_ID}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}"
+                               name="confirm_hide_ue"><img
+                                    src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="hide"
+                                    title="Enlever cette ue de la maquette pour l'année en cours"/></a>
+                        <!-- ENDIF -->
+                        <!-- IF  une_ue.NEW_UE == 1 -->
+                        <!-- IF  une_ue.UE_VIDE -->
+                                <a href="?p=front&amp;p2=gererformation&amp;delue={une_ue.UE_ID}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}"
+                                   name="confirm_suppres_ue"><img
+                                        src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                        title="Supprimer définitivement cette ue"/></a>
+                        <!-- ENDIF -->
+                        <a href="#" class="updater" data-bfmw="UE_NOM" data-bfmw2="ue_{une_ue.UE_ID}"
+                           data-bfmw3="{une_ue.UE_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                            title="Modifier le nom de l'UE"/></a>
+                        <span id="ue_{une_ue.UE_ID}">{une_ue.UE_NOM}</span>
+                        <span>(coef : </span>
+                        <a href="#" class="updater" data-bfmw="UE_COEF" data-bfmw2="ue_coef_{une_ue.UE_ID}"
+                           data-bfmw3="{une_ue.UE_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                            title="Modifier le coefficient de l'UE"/></a>
+                        <span id="ue_coef_{une_ue.UE_ID}">{une_ue.UE_COEF}</span><span>)</span>
+                        <!-- ELSE -->
+                        <a href="?p=front&amp;p2=gererformation&amp;switchue={une_ue.UE_ID}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}"
+                           name="confirm_switch_ue"><img
+                                src="../bfmw/images/clone.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="icon" alt="clone"
+                                title="Rendre cette UE à nouveau modifiable"/></a>
+                        <span>{une_ue.UE_NOM}</span>
+                        <span>(coef : </span><span>{une_ue.UE_COEF}</span><span>)</span>
+                        <!-- ENDIF -->
+                            </span>
+                        <ul>
+                            <li>
+                                <span class="no_wrap">Code APOGEE : </span>
+                                <a href="#" class="updater" data-bfmw="UE_CODE_APOGEE"
+                                   data-bfmw2="module_apogee_{une_ue.UE_ID}" data-bfmw3="{une_ue.UE_ID}"><img
+                                        src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                        title="Modifier le code APOGEE de cette UE"/></a>
+                                <span id="module_apogee_{une_ue.UE_ID}">{une_ue.UE_CODE_APOGEE}</span>
+                                <span class="rouge">Le code APOGEE n'est necessaire que pour la génération des fiches prévisionnelles</span>
+                            </li>
+                            <!-- BEGIN une_hierarchie -->
+                            {une_hierarchie.HIERARCHIE}
+                            <!-- END une_hierarchie -->
+                        </ul>
+                    </li>
+                    <!-- END une_ue -->
+                </ul>
+            </li>
+            <!-- END un_semestre -->
+            <!-- END une_formation -->
+            <!-- END un_departement_arbre -->
+        </ul>
+        <div class="no_print">
+            <hr/>
+            <a href="#" class="bfmw_auto_hidder" data-bfmw="afficheur_formulaire">Formulaires de création :</a>
+            <div id="afficheur_formulaire" class="">
+                <!-- IF IS_ADMIN -->
+                <form class="specific_div_gererformation_5" method="POST"
+                      action="?p=front&amp;p2=gererformation&amp;t=departement&amp;a={ANNEE_COURANTE}">
+                    <input type="text" name="*DEPT_NOM" required placeholder="Nom du département"
+                           class="specific_input_gererformation_1"/>
+                    <input type="text" name="*DEPT_CODE" required placeholder="Code"
+                           class="specific_input_gererformation_2"/>
+                    <input class="specific_input_gererformation_1" type="submit" class="specific_input_gererformation_1"
+                           name="add_formation" value="Ajouter un département"/>
+                </form>
+                <hr/>
+                <!-- ENDIF -->
+                <!-- IF IS_CHEF -->
+                <form method="POST"
+                      action="?p=front&amp;p2=gererformation&amp;t=formation&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}">
+                    <div class="specific_div_gererformation_5">
+                        <input type="text" name="*FORM_NOM" required placeholder="Nom de la formation"
+                               class="specific_input_gererformation_1"/>
+                        <input type="hidden" name="*FORM_DEPT_ID" value="{DEPT_ID}"/>
+                        <input type="hidden" name="RESPONSABLE_ENS_ID" value="{ENS_ID}"/>
+                        <input type="submit" class="specific_input_gererformation_1" name="add_formation"
+                               value="Ajouter une formation"/>
+                    </div>
+                </form>
+                <hr/>
+                <!-- ENDIF -->
+                <span class="bleu">Utiliser un fichier de création automatique&nbsp;:</span><br/>
+                <span>==>&nbsp;</span><a href="?generate=ModeleCreationMaquette">Cliquez-ici pour télécharger le modèle
+                à compléter</a>
+                <form method="POST" enctype="multipart/form-data"
+                      action="?p=front&amp;p2=gererformation&amp;generateur=auto&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}">
+                    <div class="specific_div_gererformation_5">
+                        <input type="file" name="FICHIER_MODELE" required placeholder="Fichier à importer"
+                               class="specific_input_gererformation_1"/>
+                        <input type="submit" class="specific_input_gererformation_1" name="add_maquette"
+                               value="Importer la maquette"/>
+                    </div>
+                </form>
+                <hr/>
+                <form method="POST"
+                      action="?p=front&amp;p2=gererformation&amp;t=semestre&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}">
+                    <div class="specific_div_gererformation_5">
+                        <input type="text" name="*SEM_NOM" required placeholder="Nom du semestre"
+                               class="specific_input_gererformation_1"/>
+                        <input type="number" class="specific_input_gererformation_2" required name="*SEM_COEF" min="0"
+                               max="999.99" step="0.01" placeholder="Coef du semestre"/>
+                        <select class="specific_input_gererformation_1" name="*SEM_FORM_ID" required>
+                            <!-- BEGIN une_formation -->
+                            <option value="{une_formation.FORM_ID}">{une_formation.FORM_NOM}</option>
+                            <!-- END une_formation -->
+                        </select>
+                        <input type="hidden" name="*SEM_START_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                        <input type="submit" class="specific_input_gererformation_1" name="add_semestre"
+                               value="Ajouter un semestre"/>
+                    </div>
+                </form>
+                <form method="POST"
+                      action="?p=front&amp;p2=gererformation&amp;t=ue&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}">
+                    <div class="specific_div_gererformation_5">
+                        <input type="text" placeholder="Nom de l'UE" required name="*UE_NOM"
+                               class="specific_input_gererformation_1"/>
+                        <input type="number" placeholder="Coef de l'UE" required min="0" max="999.99" step="0.01"
+                               name="*UE_COEF"
+                               class="specific_input_gererformation_2"/>
+                        <select class="specific_input_gererformation_1" name="*UE_SEM_ID" required>
+                            <!-- BEGIN un_semestre -->
+                            <!-- IF un_semestre.SEM_ID != "" -->
+                            <option value="{un_semestre.SEM_ID}">{un_semestre.SEM_NOM}</option>
+                            <!-- ENDIF -->
+                            <!-- END un_semestre -->
+                        </select>
+                        <input type="hidden" name="*UE_START_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                        <input type="submit" class="specific_input_gererformation_1" name="add_ue"
+                               value="Ajouter une ue"/>
+                    </div>
+                </form>
+                <hr/>
+                <span>Pour créer des modules (regroupement de matières) :</span>
+                <br/><span class="vert">Attention, ne mettez le code APOGEE que si cet élément doit être exporté</span>
+                <form method="POST"
+                      action="?p=front&amp;p2=gererformation&amp;t=matiere&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}">
+                    <div class="specific_div_gererformation_5">
+                        <input type="text" class="specific_input_gererformation_1" name="*MAT_NOM"
+                               placeholder="Nom du module" required/>
+                        <input type="text" class="specific_input_gererformation_1" name="*MAT_CODE_APOGE"
+                               placeholder="Code apogee"/>
+                        <input type="number" class="specific_input_gererformation_2" required name="*MAT_COEF" min="0"
+                               max="999.99" step="0.01" placeholder="Coef du module"/>
+                        <input type="hidden" name="*MAT_HAS_NOTE" value="0"/>
+                        <input type="hidden" name="*MAT_SURMAT_ID" value="NULL"/>
+                        <select class="specific_input_gererformation_1" name="*MAT_UE_ID" required>
+                            <!-- BEGIN un_semestre -->
+                            <optgroup class="bleu" label="{un_semestre.SEM_NOM}">
+                                <!-- BEGIN une_ue -->
+                                <!-- IF une_ue.UE_ID != "" -->
+                                <option class="noir" value="{une_ue.UE_ID}">{une_ue.UE_NOM}</option>
+                                <!-- ENDIF -->
+                                <!-- END une_ue -->
+                            </optgroup>
+                            <!-- END un_semestre -->
+                        </select>
+                        <input type="hidden" name="*MAT_START_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                        <input type="submit" class="specific_input_gererformation_1" name="add_matiere"
+                               value="Ajouter un module"/>
+                    </div>
+                </form>
+                <span>Pour créer des sous-modules (contenus dans des modules) :</span>
+                <br/><span class="vert">Attention, ne mettez le code APOGEE que si cet élément doit être exporté</span>
+                <form method="POST"
+                      action="?p=front&amp;p2=gererformation&amp;t=matiere&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}">
+                    <div class="specific_div_gererformation_5">
+                        <input type="text" class="specific_input_gererformation_1" name="*MAT_NOM"
+                               placeholder="Nom du sous-module" required/>
+                        <input type="text" class="specific_input_gererformation_1" name="*MAT_CODE_APOGE"
+                               placeholder="Code apogee"/>
+                        <input type="number" class="specific_input_gererformation_2" required name="*MAT_COEF" min="0"
+                               max="999.99" step="0.01" placeholder="Coef du sous-module"/>
+                        <input type="hidden" name="*MAT_HAS_NOTE" value="0"/>
+                        <select class="specific_input_gererformation_1" name="UE_MAT" required>
+                            <!-- BEGIN un_semestre -->
+                            <optgroup class="bleu" label="{un_semestre.SEM_NOM}"></optgroup>
+                            <!-- BEGIN une_ue -->
+                            <optgroup class="jaune" label="{une_ue.UE_NOM}">
+                                <!-- BEGIN une_matiere -->
+                                <!-- IF une_matiere.MAT_ID != "" -->
+                                <!-- IF une_matiere.MAT_HAS_NOTE == 0 -->
+                                <option class="noir" value="{une_ue.UE_ID}${une_matiere.MAT_ID}">{une_matiere.MAT_NOM}
+                                </option>
+                                <!-- ENDIF -->
+                                <!-- ENDIF -->
+                                <!-- END une_matiere -->
+                            </optgroup>
+                            <!-- END une_ue -->
+                            <!-- END un_semestre -->
+                        </select>
+                        <input type="hidden" name="*MAT_START_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                        <input type="submit" class="specific_input_gererformation_1" name="add_matiere"
+                               value="Ajouter un sous-module"/>
+                    </div>
+                </form>
+                <hr/>
+                <span>Pour créer des matières (contenant des contrôles) :</span>
+                <br/><span class="vert">Attention, ne mettez le code APOGEE que si cet élément doit être exporté</span>
+                <form method="POST"
+                      action="?p=front&amp;p2=gererformation&amp;t=matiere&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}">
+                    <div class="specific_div_gererformation_5">
+                        <input type="text" class="specific_input_gererformation_1" name="*MAT_NOM"
+                               placeholder="Nom de la matière" required/>
+                        <input type="text" class="specific_input_gererformation_1" name="*MAT_CODE_APOGE"
+                               placeholder="Code apogee"/>
+                        <input type="hidden" name="*MAT_SURMAT_ID" value="NULL"/>
+                        <input type="number" class="specific_input_gererformation_2" required name="*MAT_COEF" min="0"
+                               max="999.99" step="0.01" placeholder="Coef de la matière"/>
+                        <input type="hidden" name="*MAT_HAS_NOTE" value="1"/>
+                        <select class="specific_input_gererformation_1" name="*MAT_UE_ID" required>
+                            <!-- BEGIN un_semestre -->
+                            <optgroup class="bleu" label="{un_semestre.SEM_NOM}">
+                                <!-- BEGIN une_ue -->
+                                <!-- IF une_ue.UE_ID != "" -->
+                                <option class="noir" value="{une_ue.UE_ID}">{une_ue.UE_NOM}</option>
+                                <!-- ENDIF -->
+                                <!-- END une_ue -->
+                            </optgroup>
+                            <!-- END un_semestre -->
+                        </select>
+                        <input type="hidden" name="*MAT_START_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                        <input type="submit" class="specific_input_gererformation_1" name="add_matiere"
+                               value="Ajouter une matière"/>
+                    </div>
+                </form>
+                <span>Pour créer des matières contenues dans des modules ou des sous-modules (contenant des contrôles) :</span>
+                <br/><span class="vert">Attention, ne mettez le code APOGEE que si cet élément doit être exporté</span>
+                <form method="POST"
+                      action="?p=front&amp;p2=gererformation&amp;t=matiere&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}">
+                    <div class="specific_div_gererformation_5">
+                        <input type="text" class="specific_input_gererformation_1" name="*MAT_NOM"
+                               placeholder="Nom de la matière" required/>
+                        <input type="text" class="specific_input_gererformation_1" name="*MAT_CODE_APOGE"
+                               placeholder="Code apogee"/>
+                        <input type="number" class="specific_input_gererformation_2" required name="*MAT_COEF" min="0"
+                               max="999.99" step="0.01"
+                               placeholder="Coef de la matière"/>
+                        <input type="hidden" name="*MAT_HAS_NOTE" value="1"/>
+                        <select class="specific_input_gererformation_1" name="UE_MAT" required>
+                            <!-- BEGIN un_semestre -->
+                            <optgroup class="bleu" label="{un_semestre.SEM_NOM}"></optgroup>
+                            <!-- BEGIN une_ue -->
+                            <!-- IF une_ue.UE_ID != "" -->
+                            <optgroup class="jaune" label="{une_ue.UE_NOM}">
+                                <!-- BEGIN une_matiere -->
+                                <!-- IF une_matiere.MAT_ID != "" -->
+                                <!-- IF une_matiere.MAT_HAS_NOTE == 0 -->
+                                <option class="noir" value="{une_ue.UE_ID}${une_matiere.MAT_ID}">{une_matiere.MAT_NOM}
+                                </option>
+                                <!-- ENDIF -->
+                                <!-- ENDIF -->
+                                <!-- END une_matiere -->
+                                <!-- ENDIF -->
+                            </optgroup>
+                            <!-- END une_ue -->
+                            <!-- END un_semestre -->
+                        </select>
+                        <input type="hidden" name="*MAT_START_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                        <input type="submit" class="specific_input_gererformation_1" name="add_matiere"
+                               value="Ajouter une matière"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

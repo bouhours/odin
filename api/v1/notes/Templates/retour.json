@@ -1,0 +1,70 @@
+
+<!-- BEGIN show -->
+{
+  "semesters": [
+    <!-- BEGIN releve -->
+    <!-- IF ! releve.S_FIRST_ROW -->
+  ,
+    <!-- ENDIF -->
+    {
+      "semester": "{releve.SEM_NOM}",
+      "ues": [
+        <!-- BEGIN une_ue -->
+        <!-- IF ! une_ue.S_FIRST_ROW -->
+      ,
+        <!-- ENDIF -->
+        {
+          "name": "{une_ue.UE_NOM}",
+          "coef": "{une_ue.UE_COEF}",
+          "grade": "{une_ue.UE_NOTE}",
+          "avg": "{une_ue.UE_MOY}",
+          "max": "{une_ue.UE_MAX}",
+          "min": "{une_ue.UE_MIN}",
+          "ressources": [
+            <!-- BEGIN un_module -->
+            <!-- IF ! un_module.S_FIRST_ROW -->
+          ,
+            <!-- ENDIF -->
+            {
+              "id" : "{un_module.MAT_ID}",
+              "ref" : "{un_module.MAT_SURMAT_ID}",
+              "name": "{un_module.MAT_NOM}",
+              "coef": "{un_module.MAT_COEF}",
+              "grade": "{un_module.MAT_NOTE}",
+              "avg": "{un_module.MAT_MOY}",
+              "max": "{un_module.MAT_MAX}",
+              "min": "{un_module.MAT_MIN}",
+              "grades": [
+                <!-- BEGIN une_note -->
+                <!-- IF une_note.CONTROLE_VISIBLE == "1" -->
+                <!-- IF ! une_note.S_FIRST_ROW -->
+              ,
+                <!-- ENDIF -->
+                {
+                  <!-- IF une_note.CONTROLE_MOYENNE == "2" -->
+                  "name" : "{une_note.CONTROLE_NOM}",
+                  <!-- ELSE -->
+                  "name" : "{une_note.CONTROLE_NOM} (sur {une_note.CONTROLE_BAREME})",
+                  <!-- ENDIF -->
+                  <!-- IF une_note.CONTROLE_MOYENNE == "1" -->
+                  "coef" : "{une_note.CONTROLE_COEFF}",
+                  <!-- ENDIF -->
+                  "grade" : "{une_note.NOTES_AFFICHE}{une_note.NOTES_SPECIAL}",
+                  "avg" : "{une_note.NOTE_MOY}",
+                  "max" : "{une_note.NOTE_MAXI}",
+                  "min" : "{une_note.NOTE_MINI}"
+                }
+                <!-- ENDIF -->
+                <!-- END une_note -->
+              ]
+            }
+            <!-- END un_module -->
+          ]
+        }
+        <!-- END une_ue -->
+      ]
+    }
+    <!-- END releve -->
+  ]
+}
+<!-- END show -->

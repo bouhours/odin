@@ -1,0 +1,44 @@
+<div class="main">
+    <div class="limited">
+        <span>Cochez ci-dessous les groupes pour lesquels vous souhaitez obtenir un feedback des étudiants.</span><br>
+        <span>N'oubliez pas de choisir les dates pendant lesquelles les étudiants pourront saisir leur feedback.</span><br>
+        <span>Si les champs permettant le choix des dates n'apparaissent pas, c'est que la date est choisie par le responsable de formation.</span><br>
+        <span class="jaune">GARANTIE : personne d'autre que vous n'aura accès au feedback des étudiants.</span>
+        <ul>
+            <!-- BEGIN une_formation -->
+            <li><span class="rouge">{une_formation.FORM_NOM}</span>
+                <ul>
+                    <!-- BEGIN une_mat -->
+                    <li class="vert">{une_mat.MAT_NOM}
+                        <ul class="bleu">
+                            <!-- IF (une_mat.FORM_EVAL_DEBUT == "" && une_mat.FORM_EVAL_FIN == "") -->
+                            <li><span class="font_small">Date de debut : </span><input type="datetime-local"
+                                                                                       data-bfmw="{une_mat.ID}"
+                                                                                       placeholder="JJ/MM/AAAA HHhMM"
+                                                                                       class="bfmw_no_style no_retour_{une_mat.ID} specific_input_accueil_1 bind2"
+                                                                                       name="ENS_MAT_EVAL_DATE_DEBUT"
+                                                                                       value="{une_mat.EVAL_DEBUT}"/>
+                            </li>
+                            <li><span class="font_small">Date de clôture : </span><input type="datetime-local"
+                                                                                         data-bfmw="{une_mat.ID}"
+                                                                                         placeholder="JJ/MM/AAAA HHhMM"
+                                                                                         class="bfmw_no_style no_retour_{une_mat.ID} specific_input_accueil_1 bind2"
+                                                                                         name="ENS_MAT_EVAL_DATE_FIN"
+                                                                                         value="{une_mat.EVAL_FIN}"/>
+                            </li>
+                            <!-- ENDIF -->
+                            <!-- BEGIN un_groupe -->
+                            <li><input type="checkbox" {un_groupe.CHECKED}
+                                       data-bfmw="{un_groupe.GROUPE_ID}${une_mat.ID}"
+                                       class="no_retour_{une_mat.ID} specific_input_accueil_2 bind" name="EVAL_GROUPE"
+                                       value="1"/>&nbsp;<span>{un_groupe.GROUPE_NOM}</span></li>
+                            <!-- END un_groupe -->
+                        </ul>
+                    </li>
+                    <!-- END une_mat -->
+                </ul>
+            </li>
+            <!-- END une_formation -->
+        </ul>
+    </div>
+</div>

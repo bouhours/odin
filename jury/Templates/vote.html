@@ -1,0 +1,102 @@
+<div class="main">
+    <div class="limited specific_div_vote_2">
+        <!-- BEGIN un_groupe -->
+        <span class="bfmw_auto_hidder"
+              data-bfmw="id_groupe_{un_groupe.GROUPE_ID}"></span><span>Regroupement </span><span class="vert">{un_groupe.GROUPE_NOM}</span><span> (</span><span
+            class="bleu">{un_groupe.GROUPE_NOMBRE}</span><span> - </span><span
+            class="bleu">{un_groupe.POURCENTAGE}%</span><span>)</span>
+        <div class="box" id="id_groupe_{un_groupe.GROUPE_ID}">
+            <div class="font_medium">
+                <!-- BEGIN un_etudiant -->
+                <ul id="{un_etudiant.ET_ID}">
+                    <li><span class="bleu">{un_etudiant.ET_NOM}</span><span>&nbsp;</span><span class="vert">{un_etudiant.ET_GROUPE_COURANT}</span><br/>
+                        <img src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" class="specific_img_vote_2"/><br/>
+                        <!-- IF IS_RESPONSABLE -->
+                        <form method="post" class="bfmw_submit_ajax"
+                              action="?do=openvote&amp;f={FORMATION_COURANTE}&amp;a={ANNEE_COURANTE}"
+                              data-bfmw="ok_{JURY_COURANT}{un_etudiant.ET_ID}{un_groupe.GROUPE_ID}"
+                              data-bfmw2="ko_{JURY_COURANT}{un_etudiant.ET_ID}{un_groupe.GROUPE_ID}">
+                            <span class="blanc">Demander un vote </span>
+                            <input class="specific_input_vote_1 bfmw_no_style" type="text" name="*VOTE_NOM" value=""/>
+                            <input type="hidden" name="*VOTE_JURY_ID" value="{JURY_COURANT}"/>
+                            <input type="hidden" name="*VOTE_ET_ID" value="{un_etudiant.ET_ID}"/>
+                            <input type="hidden" name="*VOTE_GROUPE_ID" value="{un_groupe.GROUPE_ID}"/>
+                            <input type="submit" class="specific_input_vote_0" name="creer_vote" value="Ouvrir"/>
+                            <img id="ok_{JURY_COURANT}{un_etudiant.ET_ID}{un_groupe.GROUPE_ID}"
+                                 src="../bfmw/images/tick.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="force_hide specific_img_vote_7"
+                                 title="Ouverture validée" alt="ok"/>
+                            <img id="ko_{JURY_COURANT}{un_etudiant.ET_ID}{un_groupe.GROUPE_ID}"
+                                 src="../bfmw/images/croix.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="force_hide specific_img_vote_7"
+                                 title="Impossible d'ouvrir le vote" alt="ko"/>
+                        </form>
+                        <!-- ENDIF -->
+                        <div id="vote_{un_etudiant.ET_ID}{un_groupe.GROUPE_ID}"></div>
+                        <ul class="TreeView" id="competences_treeview_{un_etudiant.ET_ID}{un_groupe.GROUPE_ID}">
+                            <li id="competences_li_{un_etudiant.ET_ID}{un_groupe.GROUPE_ID}"><span>Bilan des compétences :</span><br/>
+                                <ul id="competences_{un_etudiant.ET_ID}{un_groupe.GROUPE_ID}">
+                                    <li><a href="#" data-bfmw="{un_etudiant.ET_ID}" data-bfmw2="{ANNEE_COURANTE}"
+                                           data-bfmw3="{un_groupe.GROUPE_ID}" class="show_competences">[charger]</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Résumé :
+                                <ul>
+                                    <img src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo"
+                                         class="specific_img_vote_2"/><br/>
+                                    <!-- BEGIN une_annee -->
+                                    <span class="vert">&bull;&nbsp;{une_annee.ANNEE_NOM}</span><br/>
+                                    <!-- BEGIN un_semestre -->
+                                    <span class="jaune">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;{un_semestre.SEM_NOM} : </span></span>
+                                    <span class="rouge"><b>{un_semestre.MOYSEM_VALEUR}</b></span><br/>
+                                    <!-- BEGIN une_ue -->
+                                    <span class="bleu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;{une_ue.UE_NOM} : </span><span
+                                        class="rouge">
+                                <!-- IF une_ue.MOYUE_BARREE != '' -->
+                                            <span class="rouge text_barre">{une_ue.MOYUE_BARREE}</span><span
+                                        class="rouge">{une_ue.MOYUE_VALEUR}</span>
+                                    <!-- ELSE -->
+                                            <span class="rouge">{une_ue.MOYUE_VALEUR}</span>
+                                    <!-- ENDIF -->
+                                    </br>
+                                    <!-- END une_ue -->
+                                    <!-- END un_semestre -->
+                                    <!-- END une_annee -->
+                                </ul>
+                            </li>
+                            <li id="resume_matieres_li_{un_etudiant.ET_ID}{un_groupe.GROUPE_ID}">
+                                <span>Résumé matières :</span><br/>
+                                <ul id="resume_matieres_{un_etudiant.ET_ID}{un_groupe.GROUPE_ID}">
+                                    <li><a href="#" data-bfmw="{un_etudiant.ET_ID}" data-bfmw2="{ANNEE_COURANTE}"
+                                           data-bfmw3="{un_groupe.GROUPE_ID}" class="show_resume_matieres">[charger]</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="TreeView">
+                            <li>Résultats des votes :
+                                <ul>
+                                    <div id="a_vote_{un_etudiant.ET_ID}{un_groupe.GROUPE_ID}"></div>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="TreeView" id="detail_treeview_{un_etudiant.ET_ID}{un_groupe.GROUPE_ID}">
+                            <li id="detail_li_{un_etudiant.ET_ID}{un_groupe.GROUPE_ID}"><span>Détail dossier :</span>
+                                <ul id="detail_{un_etudiant.ET_ID}{un_groupe.GROUPE_ID}">
+                                    <li><a href="#" data-bfmw="{un_etudiant.ET_ID}" data-bfmw2="{ANNEE_COURANTE}"
+                                           data-bfmw3="{un_groupe.GROUPE_ID}" class="show_bilan">[charger]</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <hr/>
+                    </li>
+                </ul>
+                <!-- END un_etudiant -->
+            </div>
+        </div>
+        <br/>
+        <!-- END un_groupe -->
+    </div>
+    <input type="hidden" id="data_comp1" value="{FORMATION_COURANTE}"/>
+    <input type="hidden" id="data_comp2" value="{ANNEE_COURANTE}"/>
+    <input type="hidden" id="data_comp3" value="{JURY_COURANT}"/>
+</div>

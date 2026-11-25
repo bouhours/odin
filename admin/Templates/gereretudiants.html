@@ -1,0 +1,138 @@
+<!-- MASTER -->
+<div class="complete_master" id="le_master">
+    <div class="filter" id="id_div_filter">
+        <select id="id_selecteur_annee" data-bfmw="{FORM_ID}">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <select id="id_selecteur_promo" data-bfmw="{ANNEE_ID}">
+            <!-- BEGIN un_departement -->
+            <optgroup label="{un_departement.DEPT_NOM}">
+                <!-- BEGIN une_formation -->
+                <option value="{une_formation.FORM_ID}" {une_formation.SELECTED}>{une_formation.FORM_NOM}</option>
+                <!-- END une_formation -->
+            <!-- END un_departement -->
+        </select>
+    </div>
+    <div class="master">
+        <div>
+            <!-- BEGIN un_etudiant -->
+            <a id="{un_etudiant.ET_ID}" class="{un_etudiant.SELECTED}" href="?p=gereretudiants&amp;f={FORM_ID}&amp;a={ANNEE_ID}&amp;e={un_etudiant.ET_ID}#{un_etudiant.ET_ID}" >{un_etudiant.ET_NOM}</a><br/>
+            <!-- END un_etudiant -->
+        </div>
+    </div>
+</div>
+<!-- DETAIL -->
+<div id="detail">
+    <a class="show_master" href="#"><img src="../bfmw/images/fleche.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="masque_master" alt="Menu"/></a>
+    <!-- IF ! COMPLET -->
+    <div>
+        <div class="box specific_div_gereretudiants_2">
+            <!-- BEGIN un_etudiant_selected -->
+            <img class="specific_input_gereretudiants_2" src="../trombi/{un_etudiant_selected.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" title="{un_etudiant_selected.ET_NOM}" /><br/>
+            <span class="bleu">Nom : </span>{un_etudiant_selected.ET_NOM}<br/>
+            <!-- IF un_etudiant_selected.ET_DEM == 1 -->
+            <span class="rouge">A démissionné</span><br/>
+            <!-- ENDIF -->
+            <span class="bleu">Login : </span>{un_etudiant_selected.ET_LOGIN}<br/>
+            <span class="bleu">Numéro APOGEE : </span>{un_etudiant_selected.ET_NUMERO}<br/>
+            <span class="bleu">Mail : </span>{un_etudiant_selected.ET_MAIL}<br/>
+            <span class="bleu">Date de naissance : </span>{un_etudiant_selected.ET_NAISSANCE}<br/>
+            <span class="bleu">Fiche de renseignement : </span><span class="plus TreeViewCursor" id="clic_show_fiche"></span><br/>
+            <div class="box hide" id="id_show_fiche">
+                <!-- BEGIN un_champ -->
+                <span class="font_small specific_div_gereretudiants_3">{un_champ.CHAMPS_LABEL}</span>
+                <span class="font_small">&nbsp;:&nbsp;</span>
+                <span class="font_small vert">{un_champ.CHAMPS_ET_VALEUR_AFF}</span>
+                <br/>
+                <!-- END un_champ -->
+            </div>
+            <span class="bleu">Information cachée : </span><input type="text" value="{un_etudiant_selected.ET_QUIZZBOX}" name="ET_QUIZZBOX" data-bfmw="{un_etudiant_selected.ET_ID}" class="bind specific_input_gereretudiants_1" />&nbsp;<br/>
+            <span class="bleu">Bac : </span><input type="text" value="{un_etudiant_selected.ET_BAC}" name="ET_BAC"  data-bfmw="{un_etudiant_selected.ET_ID}" class="bind specific_input_gereretudiants_1" /><br/>
+            <span class="bleu">Tiers temps : </span><input type="checkbox" value="1" name="ET_TIERS" {un_etudiant_selected.TIERS} data-bfmw="{un_etudiant_selected.ET_ID}" class="bind2" /><br/>
+            <span class="bleu">Sportif de haut niveau : </span><input type="checkbox" value="1" name="ET_SPORTIF" {un_etudiant_selected.SPORTIF} data-bfmw="{un_etudiant_selected.ET_ID}" class="bind2" /><br/>
+            <span class="bleu">Redoublant : </span><input type="text" value="{un_etudiant_selected.ET_RED}" name="ET_RED"  data-bfmw="{un_etudiant_selected.ET_ID}" class="bind specific_input_gereretudiants_1" /><br/>
+            <span class="bleu">Activer l'affichage automatique de la meilleure ue : </span><input type="checkbox" value="1" name="MEILLEUR_ET_ID" {un_etudiant_selected.ET_MEILLEURE} data-bfmw="{un_etudiant_selected.ET_ID}${ANNEE_ID}" class="bind2" /><br/>
+            <!-- IF IS_ANNEE_COURANTE -->
+            <span class="bleu">Accéder à son suivi : </span><a href="../mediateur/?p=accueil&amp;g={GROUPE_ID}&amp;e={un_etudiant_selected.ET_ID}#{un_etudiant_selected.ET_ID}">Cliquez-ici</a><br/>
+            <!-- ENDIF -->
+            <span class="bleu">Inscriptions : </span>
+            <div class="box specific_div_gereretudiants_2">
+                <!-- BEGIN une_formation -->
+                <span class="font_small rouge">{une_formation.FORM_NOM}</span><br/>
+                <!-- BEGIN un_semestre -->
+                &bull;&nbsp;{un_semestre.SEM_NOM} :
+                <!-- BEGIN une_annee -->
+                <a href="?p=front&amp;p2=gereretudiants&amp;f={FORM_ID}&amp;a={une_annee.ANNEE_ID}&amp;e={un_etudiant_selected.ET_ID}&amp;retrieveSEM={un_semestre.SEM_ID}" title="Cliquez-ici pour faire remonter toutes les notes du semestre sur l'année suivante">{une_annee.ANNEE_NOM}</a>
+                <!-- END une_annee -->
+                <br/>
+                <!-- END un_semestre -->
+                <!-- END une_formation -->
+            </div>
+            <span class="bleu">Groupes : </span>
+            <div class="box specific_div_gereretudiants_2">
+                <!-- BEGIN une_formation_groupe -->
+                <span class="font_small rouge">{une_formation_groupe.FORM_NOM}</span><br/>
+                <!-- BEGIN un_groupe -->
+                &bull;&nbsp;{un_groupe.GROUPE_NOM} :
+                <!-- BEGIN une_annee -->
+                {une_annee.ANNEE_NOM}
+                <!-- END une_annee -->
+                <br/>
+                <!-- END un_groupe -->
+                <!-- END une_formation_groupe -->
+            </div>
+            <span class="bleu">Dispenses d'UE : </span>
+            <div class="box specific_div_gereretudiants_2">
+                <!-- BEGIN un_semestre -->
+                <span class="font_small rouge">{un_semestre.SEM_NOM} :</span><br/>
+                <!-- BEGIN une_ue -->
+                <input type="checkbox" class="bind2" {une_ue.UE_CHECKED} value="1" data-bfmw="{un_etudiant_selected.ET_ID}${une_ue.UE_ID}${ANNEE_ID}" name="ET_DISPENSE" />&nbsp;&nbsp;{une_ue.UE_NOM}
+                <br/>
+                <!-- END une_ue -->
+                <!-- END un_semestre -->
+            </div>
+            <span class="bleu">Dispenses de matières : </span>
+            <div class="box specific_div_gereretudiants_2">
+                <!-- BEGIN un_semestre_mat -->
+                <span class="font_small rouge">{un_semestre_mat.SEM_NOM} :</span><br/>
+                <!-- BEGIN une_ue_mat -->
+                <span class="font_small vert">{une_ue_mat.UE_NOM} :</span><br/>
+                <!-- BEGIN une_matiere_mat -->
+                <input type="checkbox" class="bind2" {une_matiere_mat.MAT_CHECKED} value="1" data-bfmw="{un_etudiant_selected.ET_ID}${une_matiere_mat.MAT_ID}${ANNEE_ID}" name="MAT_DISPENSE" />&nbsp;&nbsp;{une_matiere_mat.MAT_NOM}
+                <!-- IF une_matiere_mat.MAT_CHECKED != "" -->
+                <span class="font_small"> - <a href="?p=front&amp;p2=gereretudiants&amp;f={FORM_ID}&amp;a={ANNEE_ID}&amp;e={un_etudiant_selected.ET_ID}&amp;retrieveMAT={une_matiere_mat.MAT_ID}">Récupérer les notes de l'année précédente</a></span>
+                <!-- ENDIF -->
+                <br/>
+                <!-- END un_semestre_mat -->
+                <!-- END une_ue_mat -->
+                <!-- END une_matiere_mat -->
+            </div>
+            <!-- IF un_etudiant_selected.ET_DEM == 0 -->
+            <span class="bleu">Déclarer démissionnaire : </span><a href="?p=front&amp;p2=gereretudiants&amp;e={un_etudiant_selected.ET_ID}&amp;dem=dem&amp;f={FORM_ID}&amp;a={ANNEE_ID}" id="confirm_dem">Cliquez-ici</a>
+            <!-- ENDIF -->
+            <!-- END un_etudiant_selected -->
+        </div>
+    </div>
+    <!-- ENDIF -->
+    <!-- IF COMPLET -->
+    <div class="specific_div_gereretudiants_1">
+        <!-- IF PERSONNE -->
+        <span>Aucun étudiant n'est inscrit.</span>
+        <!-- ELSE -->
+        <div class="box">
+            <!-- BEGIN un_etudiant -->
+            &bull;
+            <!-- IF IS_ADMIN -->
+            <a href="?p=front&amp;p2=gereretudiants&amp;deletu={un_etudiant.ET_ID}" name="confirm_supress_etudiant"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer cet étudiant"/></a>
+            <!-- ENDIF -->
+            <span class="font_medium">{un_etudiant.ET_NOM}</span>&nbsp;
+            <input type="text" value="{un_etudiant.ET_QUIZZBOX}" placeholder="Info cachée" name="ET_QUIZZBOX" data-bfmw="{un_etudiant.ET_ID}" class="bind specific_input_gereretudiants_3" />
+            <input type="text" value="{un_etudiant.ET_BAC}" placeholder="BAC" name="ET_BAC"  data-bfmw="{un_etudiant.ET_ID}" class="bind specific_input_gereretudiants_1" /><br/>
+            <!-- END un_etudiant -->
+        </div>
+        <!-- ENDIF -->
+    </div>
+    <!-- ENDIF -->
+</div>

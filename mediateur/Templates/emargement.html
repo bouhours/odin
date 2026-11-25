@@ -1,0 +1,62 @@
+<div class="main">
+    <div class="limited specific_div_emargement_1">
+        <span>Choisissez le groupe : </span>
+        <select id="selecteur_groupe">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+                <!-- BEGIN un_groupe -->
+                <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                <!-- END un_groupe -->
+            </optgroup>
+            <!-- END une_formation -->
+        </select>
+
+        <div class="box">
+            <div class="no_wrap specific_div_emargement_2">
+                <!-- IF !(PAS_DE_FICHE) -->
+                <!-- BEGIN un_jour -->
+                <span class="font_small vert">{un_jour.DEBUT}</span>
+                    <!-- BEGIN un_cours -->
+                    <div class="font_small">
+                        <!-- IF un_cours.NONFACTURE_EDT_UID == "" -->
+                            <!-- IF un_cours.EDT_MASQUE != 1 || GROUPE_PRO -->
+                            <a href="?p=fiche&amp;u={un_cours.EDT_UID}&amp;g={GROUPE_ID}" class="text_vertical_top">
+                                <!-- IF un_cours.PUCE == 0 -->
+                                <img src="images/rond_rouge.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_emargement_2" alt="KO"
+                                     title="L'enseignant n'a pas signé"/>
+                                <!-- ELSE -->
+                                <img src="images/rond_vert.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_emargement_1" alt="OK"
+                                     title="La fiche est complète"/>
+                                <!-- ENDIF -->
+
+                            </a>
+                            <!-- ELSE -->
+                        <span class="text_vertical_top">
+                            <img src="images/lock.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_emargement_1 text_vertical_middle" alt="Non signé"
+                                 title="L'enseignant n'a pas signé"/></span>
+                            <!-- ENDIF -->
+                        <!-- ELSE -->
+                        <span class="text_vertical_top">
+                        <img src="../bfmw/images/croix.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_emargement_1" alt="NOB"
+                             title="Cours non pris en compte"/></span>
+                        <!-- ENDIF -->
+                        &bull;&nbsp;{un_cours.EDT_NOM} (<span>de&nbsp;</span><span
+                            class="rouge">{un_cours.HORAIRE_START}</span><span>&nbsp;à&nbsp;</span><span class="rouge">{un_cours.HORAIRE_END}</span>)
+                        <!-- IF un_cours.EDT_MASQUE != 1 && !(GROUPE_PRO) -->
+                        &nbsp;Prendre en compte :&nbsp;<input type="checkbox" class="specific_input_emargement_1 bind"
+                                                   {un_cours.FACTURER} data-bfmw="{un_cours.EDT_UID}" value="1"
+                                                   name="EDT_FACTURE" title="Indique si le cours doit être pris en compte.">
+                        <!-- ENDIF -->
+                    </div>
+                    <!-- END un_cours -->
+                <!-- END un_jour -->
+
+                <!-- ELSE -->
+                <span class="font_small">Pas de fiche pour ce groupe</span><br/>
+                <!-- ENDIF -->
+            </div>
+        </div>
+
+
+    </div>
+</div>

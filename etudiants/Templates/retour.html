@@ -1,0 +1,23 @@
+<div class="main">
+    <div class="limited">
+        <span>Liste des enseignants ayant demandé un retour de votre part :</span>
+        <ul>
+            <!-- BEGIN un_cours -->
+            <li>{un_cours.MAT_NOM} avec {un_cours.ENS_NOM}</li>
+            <ul>
+                <!-- IF !(un_cours.OK) -->
+                <li>
+                    <form method="POST" action="?p=retour&amp;a={ANNEE_COURANTE}&amp;nonclose={ANNEE_COURANTE}">
+                        <input type="hidden" value="{un_cours.ID}" name="val"/>
+                        <input type="submit" class="specific_input_retour_1"
+                               value="Cliquez ici pour répondre au questionnaire" name="REPONSES"/>
+                    </form>
+                </li>
+                <!-- ELSE -->
+                <li><img src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Réponses enregistrées" class="specific_img_retour_1"/></li>
+                <!-- ENDIF -->
+            </ul>
+            <!-- END un_cours -->
+        </ul>
+    </div>
+</div>

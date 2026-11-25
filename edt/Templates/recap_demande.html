@@ -1,0 +1,30 @@
+<div class="main">
+    <div class="limited">
+        <form action="?p=front&amp;p2=demande" method="POST">
+            <!-- IF MODIFICATION -->
+            <div class="font_large">
+                Indiquez, dans le champ de commentaire de chaque créneau, les modifications que vous souhaitez, puis
+                validez en cliquant sur le bouton au bas de la page.
+            </div>
+            <!-- ENDIF -->
+            <!-- IF ANNULATION -->
+            <div class="font_large">
+                Indiquez, dans le champ de commentaire de chaque créneau, le motif d'annulation, puis validez en
+                cliquant sur le bouton au bas de la page.
+            </div>
+            <!-- ENDIF -->
+            <br/>
+            <div id="dest_lazyLoad" data-bfmw="{CODE}">
+                <img src="images/loading.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Chargement en cours" class="specific_img_recap_demande_1"
+                     title="Emploi du temps en chargement"/>
+            </div>
+            <br/>
+            <!-- IF MODIFICATION -->
+            <input type="submit" value="Valider la demande de modification" name="submit_modif"/>
+            <!-- ENDIF -->
+            <!-- IF ANNULATION -->
+            <input type="submit" value="Valider la demande d'annulation" name="submit_cancel"/>
+            <!-- ENDIF -->
+        </form>
+    </div>
+</div>

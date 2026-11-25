@@ -1,0 +1,18 @@
+<select class="selecteur_affectations specific_select_signature_1" name="MAT_ID">
+    <option value="-1">Sélectionnez la matière concernée</option>
+    <!-- BEGIN un_departement -->
+    <!-- BEGIN une_formation -->
+    <optgroup class="rouge" label="{une_formation.FORM_NOM}"></optgroup>
+    <!-- BEGIN un_semestre -->
+    <optgroup class="bleu" label="&nbsp;{un_semestre.SEM_NOM}"></optgroup>
+    <!-- BEGIN une_ue -->
+    <optgroup class="jaune" label="&nbsp;&nbsp;{une_ue.UE_NOM}">
+        <!-- BEGIN une_hierarchie -->
+        {une_hierarchie.HIERARCHIE}
+        <!-- END une_hierarchie -->
+    </optgroup>
+    <!-- END une_ue -->
+    <!-- END un_semestre -->
+    <!-- END une_formation -->
+    <!-- END un_departement -->
+</select>

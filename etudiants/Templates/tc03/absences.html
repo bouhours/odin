@@ -1,0 +1,144 @@
+<div class="main">
+    <div class="limited">
+        <span class="font_large vert">{ET_NOM}</span><br/>
+        <span class="">&bull;&nbsp;Nombre d'absences déclarées&nbsp;:&nbsp;</span><span
+            class="bleu"><b>{NB_ABSENCES}</b></span><br/>
+        <hr/>
+        <span class="">&bull;&nbsp;Nombre d'absences justifiées&nbsp;:&nbsp;</span><span class="vert"><b>{NB_ABSENCES_JUSTIF}</b></span><br/>
+        <span class="">&bull;&nbsp;Nombre d'absences non justifiées&nbsp;:&nbsp;</span><span class="rouge"><b>{NB_ABSENCES_NON}</b></span><br/>
+        <span class="">&bull;&nbsp;Nombre d'absences avec motifs présentés&nbsp;:&nbsp;</span><span class="vert"><b>{NB_ABSENCES_EXCUSES}</b></span><br/>
+        <span class="">&bull;&nbsp;Nombre de journées d'absences non justifiées&nbsp;:&nbsp;</span>
+        <!-- IF NB_DEMI >= 5 -->
+        <span class="rouge"><b>{NB_DEMI}</b></span>
+        <!-- ELSE -->
+        <span><b>{NB_DEMI}</b></span>
+        <!-- ENDIF -->
+        <hr/>
+        <span class="bfmw_auto_hidder" data-bfmw="id_liste_absences"></span><span class="">Liste des absences qui ont été déclarées</span><br/>
+        <div class="font_small" id="id_liste_absences">
+            <ul>
+                <!-- BEGIN une_absence -->
+                <li>
+                    <span class="vert">{une_absence.REAL_DATE}</span><span> : </span><span>{une_absence.ABST_NOM} {une_absence.MAT_NOM} (</span><span
+                        class="bleu">{une_absence.ENS_NOM}</span><span>) : </span><span class="vert">{une_absence.CRENEAU_NOM}</span>
+                    <!-- IF une_absence.ABS_JUSTIFICATION == "medical" -->
+                    <img src="images/medical.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_absences_1" alt="Justifiée pour raisons médicales"
+                         title="Cette absence est justifiée pour raisons médicales"/>
+                    <!-- ENDIF -->
+                    <!-- IF une_absence.ABS_JUSTIFICATION == "convocation" -->
+                    <img src="images/convocation.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_absences_1"
+                         alt="Justifiée par convocation administrative"
+                         title="Cette absence est justifiée par une convocation administrative"/>
+                    <!-- ENDIF -->
+                    <!-- IF une_absence.ABS_JUSTIFICATION == "chef" -->
+                    <img src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_absences_1"
+                         alt="Justifiée par le responsable de la formation"
+                         title="Cette absence est justifiée par le responsable de la formation"/>
+                    <!-- ENDIF -->
+                    <!-- IF une_absence.ABS_JUSTIFICATION == "credit" -->
+                    <img src="../bfmw/images/credit.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_absences_1"
+                         alt="Justifiée avec un crédit-jour"
+                         title="Cette absence est justifiée avec un crédit-jour"/>
+                    <!-- ENDIF -->
+                    <!-- IF une_absence.ABS_EXCUSE !== "" -->
+                    &nbsp;<br/><span class="rouge" title="Commentaire">{une_absence.ABS_EXCUSE}</span>
+                    <!-- ENDIF -->
+                </li>
+                <!-- END une_absence -->
+            </ul>
+        </div>
+        <!-- IF HAS_JUSTIFICATIONS -->
+        <span class="bfmw_auto_hidder" data-bfmw="id_liste_justifications"></span><span class="">Liste de vos déclarations</span><br/>
+        <div class="font_small" id="id_liste_justifications">
+            <!-- BEGIN une_justification -->
+            &bull;&nbsp;Du&nbsp;<span class="vert">{une_justification.DATE_START}</span>&nbsp;à&nbsp;<span class="vert">{une_justification.HEURE_START}</span>&nbsp;au&nbsp;<span
+                class="vert">{une_justification.DATE_END}</span>&nbsp;à&nbsp;<span class="vert">{une_justification.HEURE_END}</span>&nbsp;
+            <!-- IF une_justification.DATE_DEPOT != "" -->
+            <span>(Déposée le </span><span class="rouge">{une_justification.DATE_DEPOT}</span><span>&nbsp;à&nbsp;</span><span
+                class="rouge">{une_justification.HEURE_DEPOT}</span><span>)</span>
+            <!-- ENDIF -->
+            <!-- IF une_justification.JUSTIF_JUSTIFICATION == 'non' && ! une_justification.JUSTIF_ATTENTE -->
+            <img src="images/hidden.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_absences_1" alt="Non justifiée"
+                 title="Cette absence n'est pas justifiée"/>
+            <!-- ENDIF -->
+            <!-- IF une_justification.JUSTIF_JUSTIFICATION == 'non' && une_justification.JUSTIF_ATTENTE -->
+            <img src="images/loading.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_absences_1" alt="Non justifiée"
+                 title="Cette justification est en cours de validation"/>
+            <!-- ENDIF -->
+            <!-- IF une_justification.JUSTIF_JUSTIFICATION == 'medical' -->
+            <img src="images/medical.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_absences_1" alt="Justifiée pour raisons médicales"
+                 title="Cette absence est justifiée pour raisons médicales"/>
+            <!-- ENDIF -->
+            <!-- IF une_justification.JUSTIF_JUSTIFICATION == 'convocation' -->
+            <img src="images/convocation.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_absences_1"
+                 alt="Justifiée par convocation administrative"
+                 title="Cette absence est justifiée par une convocation administrative"/>
+            <!-- ENDIF -->
+            <!-- IF une_justification.JUSTIF_JUSTIFICATION == 'chef' -->
+            <img src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_absences_1"
+                 alt="Justifiée par le responsable de la formation"
+                 title="Cette absence est justifiée par le responsable de la formation"/>
+            <!-- ENDIF -->
+            <!-- IF une_justification.JUSTIF_JUSTIFICATION == 'credit' -->
+            <img src="../bfmw/images/credit.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_absences_1"
+                 alt="Justifiée avec un crédit-jour"
+                 title="Cette absence est justifiée avec un crédit-jour"/>
+            <!-- ENDIF -->
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Motif&nbsp;:&nbsp;</span><span class="rouge">{une_justification.JUSTIF_EXCUSE}</span><br/>
+            <!-- END une_justification -->
+        </div>
+        <!-- ENDIF -->
+        <span class="bfmw_auto_hidder" data-bfmw="id_declaration"></span><span class="">Déclarer vos absences passées ou à venir</span>
+        <div class="box specific_input_absences_4" id="id_declaration">
+            <form method="post" action="?p=front&amp;p2=absences&amp;a={ANNEE_COURANTE}&amp;nonclose={ANNEE_COURANTE}"
+                  enctype="multipart/form-data">
+                Du&nbsp;<input type="date" class="specific_input_absences_1" placeholder="JJ/MM/AAAA" required
+                               pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]([2][0][123][0-9])$"
+                               name="DATE_START"/>&nbsp;à&nbsp;<input type="time" class="specific_input_absences_2"
+                                                                      placeholder="HHhMM"
+                                                                      pattern="^([01]\d|2[0-3])h([0-5]\d)$" required
+                                                                      name="HEURE_START"><br/>
+                Au&nbsp;<input type="date" class="specific_input_absences_1" placeholder="JJ/MM/AAAA"
+                               pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]([2][0][123][0-9])$" required
+                               name="DATE_END"/>&nbsp;à&nbsp;<input type="time" class="specific_input_absences_2"
+                                                                    placeholder="HHhMM"
+                                                                    pattern="^([01]\d|2[0-3])h([0-5]\d)$" required
+                                                                    name="HEURE_END"><br/>
+                Motif de l'absence&nbsp;:&nbsp;<input required type="text" class="specific_input_absences_5"
+                                                      name="*JUSTIF_EXCUSE"/><br/>
+                Justification&nbsp;:&nbsp;
+                <input type="file" class="specific_input_absences_3" name="justification"/>
+                <input type="submit" value="Enregistrer" name="autojustif"/>
+            </form>
+        </div>
+        <div class="box">
+            <p class="font_small text_align_justify"><u>Rappel du règlement, une absence ne peut être justifiée que pour
+                5 raisons&nbsp;:</u><br/>
+                &bull;&nbsp;<span class="vert">Obligation imposée par une autorité publique investie d’une mission de service public</span>&nbsp;;&nbsp;la
+                convocation ou sa photocopie constitue la justification.<br/>
+                &bull;&nbsp;<span class="vert">Maladie</span>&nbsp;;&nbsp;un certificat médical avec les dates
+                d’absences ou avis du Service de médecine préventive ou de l’infirmière de l’I.U.T. constituent la
+                justification.<br/>
+                &bull;&nbsp;<span class="vert">Force majeure appréciée par le chef de département</span>&nbsp;;&nbsp;l’étudiant
+                doit fournir une explication de l’absence par écrit, datée et signée.<br/>
+                &bull;&nbsp;<span class="vert">Crédit-jours maladie prévus par le règlement des études de l’UCA</span>&nbsp;;&nbsp;réserve
+                de 4 jours par an dans la limite de 2 jours consécutifs.<br/>
+                &bull;&nbsp;<span class="vert">Crédit-jours pour troubles menstruels prévus par le règlement des études de l’UCA</span>&nbsp;;&nbsp;réserve
+                de 10 jours par an sous réserve d’activation du dispositif avant la date mentionnée dans le règlement intérieur
+                universitaire.<br/><br/>
+
+                <span class="rouge"><u>Au-delà de 2 absences non justifiées sur l’année</u></span>,
+                l’obligation d’assiduité est considérée comme non remplie. Après avertissement et entretien avec le ou
+                la responsable de la formation ou la direction des études du département, le manquement à l’obligation
+                d’assiduité sera transmis, avec l’avis de l’équipe pédagogique du département, à la direction de
+                l’I.U.T. Chaque manquement à l’obligation d’assiduité sera examiné par le Conseil de Direction de
+                l’I.U.T. qui pourra prononcer la défaillance de l’usager. De la même façon que le Conseil de Direction
+                de l’I.U.T. peut prononcer une défaillance, celui-ci peut, à tout moment, lever ladite défaillance sur
+                avis de l’équipe pédagogique du département, transmis à la direction de l’I.U.T. En cas de défaillance,
+                les résultats ne sont pas calculés et l’usager ne peut donc pas valider les Unités d’Enseignement. Le
+                jury ne peut qu’entériner le défaut d’assiduité de l’usager et ne délibère pas sur son cas. Si la
+                défaillance n’est pas levée au jury de fin d’année universitaire, l’usager ne pourra ni être diplômé, ni
+                passer en année supérieure, ni redoubler.</p>
+        </div>
+    </div>
+</div>

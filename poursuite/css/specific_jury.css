@@ -1,0 +1,98 @@
+/*
+ * Auteur : Cédric BOUHOURS
+ * Ce code est mis à disposition selon les termes de la Licence Creative Commons Attribution
+ * Pas d'Utilisation Commerciale - Pas de Modification 4.0 International.
+ *
+ * Attribution — Vous devez créditer l'Œuvre, intégrer un lien vers la licence. Vous devez indiquer ces informations par tous les moyens raisonnables, sans toutefois suggérer que l'Offrant vous soutient ou soutient la façon dont vous avez utilisé son Oeuvre.
+ *
+ * Pas d’Utilisation Commerciale — Vous n'êtes pas autorisé à faire un usage commercial de cette Oeuvre, tout ou partie du matériel la composant.
+ *
+ * Pas de modifications — Dans le cas où vous effectuez un remix, que vous transformez, ou créez à partir du matériel composant l'Oeuvre originale, vous n'êtes pas autorisé à distribuer ou mettre à disposition l'Oeuvre modifiée.
+ *
+ * Pas de restrictions complémentaires — Vous n'êtes pas autorisé à appliquer des conditions légales ou des mesures techniques qui restreindraient légalement autrui à utiliser l'Oeuvre dans les conditions décrites par la licence.
+ *
+ *
+ */
+
+
+.specific_div_jury_2 {
+    max-width: inherit !important;
+}
+
+.specific_img_jury_1 {
+    height: 30px !important;
+}
+
+.specific_img_jury_3 {
+    display:none;
+    width:30px !important;
+    vertical-align: middle !important;
+}
+
+.specific_img_jury_4 {
+    width: 13px !important;
+}
+
+.specific_img_jury_5 {
+    width: 15px !important;
+}
+
+.specific_div_jury_1 {
+    overflow-x:auto !important;
+}
+
+.specific_th_jury_1 {
+    white-space: nowrap !important;
+    border-left: 1px solid white !important;
+    vertical-align: middle !important;
+}
+
+.specific_th_jury_2 {
+    border-left: 1px solid white !important;
+    vertical-align: middle !important;
+}
+
+.specific_td_jury_1 {
+    border-left: 1px solid white !important;
+}
+
+.specific_td_jury_2 {
+    padding: 5px !important;
+    border-top: 1px solid #888 !important;
+}
+
+.specific_select_jury_1 {
+    width: 350px !important;
+}
+
+.specific_input_vote_Pour {
+    background-color: #4CAF50 !important;
+}
+
+.specific_input_vote_Contre {
+    background-color: red !important;
+}
+
+.specific_input_vote_Abstention {
+    background-color: orange !important;
+}
+
+
+.specific_input_vote_0 {
+    padding: 0 !important;
+    width: 80px !important;
+    font-weight: bold;
+    margin: 0 !important;
+}
+
+.specific_img_vote_7 {
+    width: 20px !important;
+    vertical-align: middle !important;
+}
+
+.specific_input_modele_0 {
+    padding: 0 !important;
+    width: 120px !important;
+    font-weight: bold;
+    margin: 0 !important;
+}

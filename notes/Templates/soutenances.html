@@ -1,0 +1,44 @@
+<!-- MASTER -->
+<div class="complete_master" id="le_master">
+    <div class="filter" id="id_div_filter">
+        <select id="id_selecteur_annee">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <!-- IF ! OUT -->
+        <select id="id_selecteur_promo" data-bfmw="{ANNEE_COURANTE}">
+            <!-- BEGIN une_formation -->
+            <option value="{une_formation.FORM_ID}" {une_formation.SELECTED}>{une_formation.FORM_NOM}</option>
+            <!-- END une_formation -->
+        </select>
+        <select id="id_selecteur_session" data-bfmw="{FORMATION_COURANTE}" data-bfmw2="{ANNEE_COURANTE}">
+            <!-- BEGIN une_session -->
+            <option value="{une_session.SESSION_ID}" {une_session.SELECTED}>{une_session.SESSION_CONTENU}</option>
+            <!-- END une_session -->
+        </select>
+        <!-- ENDIF -->
+    </div>
+    <div class="master">
+        <div>
+            <!-- IF HAS_ETUDIANT -->
+            <span class="vert">Etudiants que vous avez noté :</span><br/>
+            <!-- ENDIF -->
+            <!-- BEGIN un_etudiant -->
+            <a id="{un_etudiant.ET_ID}" class="{un_etudiant.SELECTED}" href="?p=soutenances&amp;f={FORMATION_COURANTE}&amp;s={SESSION_COURANTE}&amp;a={ANNEE_COURANTE}&amp;e={un_etudiant.ET_ID}#{un_etudiant.ET_ID}" >{un_etudiant.ET_NOM}</a><br/>
+            <!-- END un_etudiant -->
+            <!-- IF ! HAS_ETUDIANT -->
+            <span class="rouge">Vous n'avez noté aucun étudiant</span><br/>
+            <!-- ENDIF -->
+        </div>
+    </div>
+</div>
+<!-- DETAIL -->
+<div id="detail">
+    <a class="show_master" href="#"><img src="../bfmw/images/fleche.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="masque_master" alt="Menu"/></a>
+    <!-- IF ETUDIANT_ID != -1 -->
+    <img class="specific_img_accueil_1 specific_div_accueil_1" src="../trombi/{ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" ><br/>
+    {GRILLE}
+    <!-- ENDIF -->
+</div>
+

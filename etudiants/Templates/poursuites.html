@@ -1,0 +1,18 @@
+<div class="main">
+    <div class="limited">
+        <span class="vert">Veuillez choisir les enseignants qui effectueront la saisie de vos fiches de poursuites d'études :</span>
+        <div class="box">
+            <!-- BEGIN une_discipline -->
+            <span class="rouge">{une_discipline.PMAT_NOM}</span><br/>
+            <!-- BEGIN un_enseignant -->
+            <div class="font_small">&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" data-bfmw="{une_discipline.PMAT_ID}"
+                                                                   {un_enseignant.SELECTED}
+                                                                   value="{un_enseignant.ENS_ID}"
+                                                                   name="affect_{une_discipline.PMAT_ID}" class="bind"/><span>&nbsp;{un_enseignant.ENS_NOM}</span>
+            </div>
+            <!-- END un_enseignant -->
+            <!-- END une_discipline -->
+        </div>
+
+    </div>
+</div>

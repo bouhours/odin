@@ -1,0 +1,41 @@
+<div class="text_align_center">
+    <span class="font_large">{NOM_ETUDIANT}</span><br/>
+    <img src="../trombi/{NUMERO_ETUDIANT}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="photo" title="{NOM_ETUDIANT}" class="specific_img_harmonisation_2"/>
+</div>
+<table class="releve bfmw_align_center">
+    <tr>
+        <th class="specific_table_hamonisation_1">Support</th>
+        <th class="specific_table_hamonisation_1">Section</th>
+        <th class="specific_table_hamonisation_1">Critère</th>
+        <!-- BEGIN un_enseignant -->
+        <th class="specific_table_hamonisation_1">{un_enseignant.ENS_NOM}</th>
+        <!-- END un_enseignant -->
+    </tr>
+    <!-- BEGIN une_destination -->
+    <tr>
+        <td class="specific_table_hamonisation_1 specific_td_hamonisation_1" colspan="{NB_COLS}">{une_destination.DEST_CONTENU}</td>
+    </tr>
+        <!-- BEGIN une_section -->
+    <tr>
+        <td class="specific_table_hamonisation_1 no_border_top">&nbsp;</td>
+        <td class="specific_table_hamonisation_1 no_border_bottom specific_td_hamonisation_2" colspan="{NB_COLS_1}">{une_section.SECTION_CONTENU}</td>
+    </tr>
+        <!-- BEGIN un_critere -->
+    <tr>
+        <td class="specific_table_hamonisation_1 no_border_top">&nbsp;</td>
+        <td class="specific_table_hamonisation_1 no_border_top">&nbsp;</td>
+        <td class="specific_table_hamonisation_1 no_border_bottom" >{un_critere.CRITERE_CONTENU}</td>
+        <!-- BEGIN un_enseignant -->
+        <td class="specific_table_hamonisation_1 text_align_center">
+            <!-- IF un_enseignant.NIVEAU_NUMERIQUE != 1 -->
+            <b>{un_enseignant.NIVEAU_CONTENU}</b>
+            <!-- ELSE -->
+            <b>{un_enseignant.SOUT_NIVEAU_NUMERIQUE}</b>
+            <!-- ENDIF -->
+        </td>
+        <!-- END un_enseignant -->
+    </tr>
+        <!-- END un_critere -->
+        <!-- END une_section -->
+    <!-- END une_destination -->
+</table>

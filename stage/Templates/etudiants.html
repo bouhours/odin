@@ -1,0 +1,147 @@
+<!-- MASTER -->
+<div class="complete_master" id="le_master">
+    <div class="filter" id="id_div_filter">
+        <select id="id_selection_annee" data-bfmw="{GROUPE_ID}">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <!-- IF ! HIDE -->
+        <hr/>
+        <select id="id_selecteur_promo" data-bfmw="{ANNEE_ID}">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+                <!-- BEGIN un_groupe -->
+                <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                <!-- END un_groupe -->
+            </optgroup>
+            <!-- END une_formation -->
+        </select><br/>
+        <!-- ENDIF -->
+    </div>
+    <div class="master">
+        <div>
+            <!-- BEGIN un_etudiant -->
+            <a id="{un_etudiant.ET_ID}" class="{un_etudiant.SELECTED}" href="?p=etudiants&amp;g={GROUPE_ID}&amp;a={ANNEE_ID}&amp;f={un_etudiant.GROUPE_FORM_ID}&amp;e={un_etudiant.ET_ID}#{un_etudiant.ET_ID}">{un_etudiant.ET_NOM}</a>
+            <!-- IF un_etudiant.ET_ID == un_etudiant.STAGE_ET_ID -->
+            <img src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_etudiants_2" alt="Stage affecté" title="Stage affecté" />
+            <!-- ENDIF -->
+            <br/>
+            <!-- END un_etudiant -->
+        </div>
+    </div>
+</div>
+<!-- DETAIL -->
+<div id="detail">
+    <a class="show_master" href="#"><img src="../bfmw/images/fleche.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="masque_master" alt="Menu"/></a>
+    <!-- IF SHOW_DETAIL -->
+    <div class="box">
+        <span class="font_medium">Stage affecté&nbsp;:&nbsp;</span>
+        <select class="specific_select_etudiants_1 bind" name="STAGE_ET_ID" data-bfmw="{ETUDIANT_ID}${ANNEE_ID}${FORMATION_COURANTE}">
+            <option value="NULL">Aucun</option>
+            <option value="CSPON">Candidature spontanée</option>
+            <!-- BEGIN un_stage -->
+            <!-- IF (un_stage.STAGE_ET_ID === null || un_stage.STAGE_ET_ID == ETUDIANT_ID ) -->
+            <option value="{un_stage.STAGE_ID}" {un_stage.SELECTED}>{un_stage.STAGE_REF}</option>
+            <!-- ENDIF -->
+            <!-- END un_stage -->
+        </select><br/>
+        <span class="font_medium">Enseignant affecté&nbsp;:&nbsp;</span>
+        <select class="specific_select_etudiants_1 bind" name="STAGE_ENS_ID" data-bfmw="{STAGE_ID}">
+            <!-- BEGIN un_enseignant -->
+            <option value="{un_enseignant.ENS_ID}" {un_enseignant.SELECTED}>{un_enseignant.ENS_NOM}</option>
+            <!-- END un_enseignant -->
+        </select>
+        <!-- IF HAS_SESSION && HAS_TUTEUR -->
+        <br/>
+        <span class="font_medium">Membre du jury suggéré (cas spéciaux)&nbsp;:&nbsp;</span>
+        <select class="specific_select_etudiants_1 bind" name="STAGE_SUGGESTION_ENS_ID" data-bfmw="{STAGE_ID}">
+            <option value="NULL">Laisser Odin choisir</option>
+            <!-- BEGIN un_enseignant_suggere -->
+            <option value="{un_enseignant_suggere.ENS_ID}" {un_enseignant_suggere.SELECTED}>{un_enseignant_suggere.ENS_NOM}</option>
+            <!-- END un_enseignant_suggere -->
+        </select>
+        <br/>
+        <span class="font_medium">Panning de soutenance&nbsp;:&nbsp;</span>
+        <div class="font_small CheckBoxList specific_div_etudiants_1" >
+            <!-- BEGIN un_planning -->
+            <input class="bfmw_no_style bind2" {un_planning.CHECKED} id="ck_planning_{un_planning.PLANNING_ID}" name="STAGE_PLANNING_ID" value="{un_planning.PLANNING_ID}" type="checkbox" data-bfmw="{STAGE_ID}${un_planning.PLANNING_ID}" />
+            <label for="ck_planning_{un_planning.PLANNING_ID}">{un_planning.PLANNING_CONTENU}</label><br/>
+            <!-- END un_planning -->
+        </div>
+        <!-- ENDIF -->
+    </div>
+    <div class="box">
+        <span class="font_medium">Candidatures&nbsp;:&nbsp;</span><br/>
+        <!-- IF AUCUNE_CANDIDATURE -->
+        <span class="rouge">Aucune</span>
+        <!-- ENDIF -->
+        <!-- BEGIN une_candidature -->
+            <div class="font_medium">
+                <!-- IF une_candidature.STAGE_DATE_AFFECTATIONF == "" -->
+                <a href="?p=front&amp;p2=etudiants&amp;delaff={ETUDIANT_ID}&amp;s={une_candidature.STAGE_ID}&amp;a={ANNEE_ID}&amp;g={GROUPE_ID}" class="confirm_suppression"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" title="Supprimer la candidature de cet étudiant à ce stage" /></a>
+                <!-- ENDIF -->
+                <span>&bull;&nbsp;</span><span class="vert">Stage </span><span> {une_candidature.STAGE_REF}</span>
+                <span class="vert">candidature le </span><span> {une_candidature.ET_STAGE_DATEF}</span>
+                <!-- IF une_candidature.ETUDIANT_AFFECTE == ETUDIANT_ID  -->
+                    <span class="vert">sélectionné le </span><span> {une_candidature.STAGE_DATE_AFFECTATIONF}</span>
+                <!-- ELSEIF une_candidature.STAGE_DATE_AFFECTATIONF != "" -->
+                <span class="rouge">éliminé le </span><span> {une_candidature.STAGE_DATE_AFFECTATIONF}</span>
+                <!-- ENDIF -->
+            </div>
+        <!-- END une_candidature -->
+    </div>
+    <!-- IF STAGE_ID === -1 -->
+    <a href="?p=front&amp;p2=etudiants&amp;e={ETUDIANT_ID}&amp;a={ANNEE_ID}&amp;disp=sqkrty&amp;f={FORMATION_COURANTE}&amp;g={GROUPE_ID}">Cliquez ici pour dispenser cet étudiant de stage pour cette année.</a>
+    <!-- ENDIF -->
+    <!-- BEGIN un_planning_soutenances -->
+    <div class="box">
+        <span class="font_medium bleu">Planning {un_planning_soutenances.PLANNING_CONTENU}&nbsp;:&nbsp;</span><br/>
+        <!-- IF un_planning_soutenances.HAS_CRENEAU -->
+        <div class="box">
+            <div  class="font_medium"><span>Possibilités</span><span>&nbsp;(</span><span>{un_planning_soutenances.NB_CRENEAUX_POSSIBLES}</span><span>) &nbsp;:&nbsp;</span></div>
+            <form method="POST" action="?p=front&amp;p2=etudiants&amp;g={GROUPE_ID}&amp;a={ANNEE_ID}&amp;f={FORMATION_COURANTE}&amp;e={ETUDIANT_ID}" class="font_medium">
+                <!-- BEGIN un_creneau -->
+                <input type="radio" name="selection_creneau" value="{un_creneau.DISPO_DATE}${un_creneau.CRENEAU_ID}${un_creneau.DISPO_ID}${un_planning_soutenances.PLANNING_ID}${STAGE_ID}" /><span class="vert">{un_creneau.CRENEAU_DATE_AFFICHAGE}</span><span> de </span><span class="vert">{un_creneau.CRENEAU_DEBUT_AFFICHAGE}</span><span> à </span><span class="vert">{un_creneau.CRENEAU_FIN_AFFICHAGE}</span><br/>
+                <!-- END un_creneau -->
+                <input type="submit" value="Imposer la date de soutenance" />
+            </form>
+        </div>
+        <!-- ENDIF -->
+        <!-- IF ! un_planning_soutenances.HAS_CRENEAU  && ! un_planning_soutenances.HAS_SOUTENANCE -->
+        <div class="box">
+            <span class="font_medium rouge">Aucune soutenance possible !</span><br/>
+        </div>
+        <!-- ENDIF -->
+        <!-- IF un_planning_soutenances.HAS_SOUTENANCE -->
+        <div class="font_medium">
+            <span class="">La soutenance est prévue le</span>
+            <span class="vert">{un_planning_soutenances.DISPO_DATE_AFFICHAGE}</span>
+            <span class="">de&nbsp;</span><span class="vert">{un_planning_soutenances.CRENEAU_DEBUT_AFFICHAGE}</span>
+            <span class="">à&nbsp;</span><span class="vert">{un_planning_soutenances.CRENEAU_FIN_AFFICHAGE}</span>
+            <span class="">avec&nbsp;</span><span class="vert">{un_planning_soutenances.JURY}</span>
+        </div>
+
+        <div class="box">
+            <div class="font_medium">
+                <span class="">Modifier le membre du jury&nbsp;:&nbsp;</span>
+                <select class="specific_select_etudiants_1 bind" name="CHANGE_JURY" data-bfmw="{ETUDIANT_ID}${STAGE_ID}${un_planning_soutenances.PLANNING_ID}${ANNEE_ID}${DEPT_ID}${un_planning_soutenances.STAGE_SOUTENANCE_CRENEAU_ID}${un_planning_soutenances.STAGE_DATE_SOUTENANCE}">
+                    <option ></option>
+                    <!-- BEGIN un_enseignant_remplacant -->
+                    <option value="{un_enseignant_remplacant.ENS_ID}">{un_enseignant_remplacant.ENS_NOM} (x={un_enseignant_remplacant.X})</option>
+                    <!-- END un_enseignant_remplacant -->
+                </select>
+            </div>
+        </div>
+        <div class="box">
+            <form method="POST" action="?p=front&amp;p2=etudiants&amp;g={GROUPE_ID}&amp;a={ANNEE_ID}&amp;f={FORMATION_COURANTE}&amp;e={ETUDIANT_ID}" id="confirm_annuler_soutenance">
+                <input type="hidden" value="{STAGE_ID}" name="del_soutenance" />
+                <input type="hidden" value="{un_planning_soutenances.PLANNING_ID}" name="p" />
+                <input type="submit" class="specific_input_etudiants_1" name="del_sout" value="Annuler la soutenance" />
+            </form>
+        </div>
+        <!-- ENDIF -->
+    </div>
+    <!-- END un_planning_soutenances -->
+    <!-- ENDIF -->
+</div>

@@ -1,0 +1,131 @@
+<!-- MASTER -->
+<div class="complete_master" id="le_master">
+    <div class="filter" id="id_div_filter">
+        <select id="id_selecteur_matiere" class="specific_select_accueil_1">
+            <!-- BEGIN une_form -->
+            <optgroup class="rouge" label="{une_form.FORM_NOM}" >
+            <!-- BEGIN un_sem -->
+            <optgroup label="-{un_sem.SEM_NOM}" >
+            <!-- BEGIN une_ue -->
+            <optgroup label="--{une_ue.UE_NOM}" >
+            <!-- BEGIN un_module -->
+            <optgroup label="{un_module.MAT_NOM}" >
+            <!-- BEGIN une_matiere -->
+            <option value="{une_matiere.MAT_ID}" {une_matiere.SELECTED}>{une_matiere.MAT_NOM}</option>
+            <!-- END une_matiere -->
+            </optgroup>
+            <!-- END un_module -->
+            <!-- BEGIN une_matiere -->
+            <option value="{une_matiere.MAT_ID}" {une_matiere.SELECTED}>{une_matiere.MAT_NOM}</option>
+            <!-- END une_matiere -->
+            </optgroup>
+            <!-- END une_ue -->
+            </optgroup>
+            <!-- END un_sem -->
+            </optgroup>
+            <!-- END une_form -->
+        </select>
+    </div>
+    <div class="master">
+        <div>
+            <!-- BEGIN un_controle -->
+            <a href="?m={un_controle.CONTROLE_MAT_ID}&amp;c={un_controle.CONTROLE_ID}" id="controle_{un_controle.CONTROLE_ID}">{un_controle.CONTROLE_NOM}</a>&nbsp;<a class="nomaster confirm_supprimer" href="?p=front&amp;p2=accueil&amp;del={un_controle.CONTROLE_ID}&amp;m={un_controle.CONTROLE_MAT_ID}"><img src="images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer ce contrôle"/></a><br/>
+            <!-- END un_controle -->
+            <!-- BEGIN no_controle -->
+            <p>Aucun contrôle non validé dans cette matière</p>
+            <!-- END no_controle -->
+            <!-- IF MAT_LOCK === "" -->
+            <br/><a href="?p=front&amp;p2=accueil&amp;m={MATIERE}&amp;newc=mlj5sef">Créer un nouveau contrôle</a>
+            <!-- ENDIF -->
+            <!-- IF MAT_LOCK !== "" -->
+            <br/><img src="images/lock.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Matière verrouillée" title="La matière est verrouillée, aucune modification n'est possible" class="specific_img_accueil_1" /><br/>
+            <!-- ENDIF -->
+        </div>
+    </div>
+</div>
+<!-- DETAIL -->
+<div id="detail">
+    <a class="show_master" href="#"><img src="../bfmw/images/fleche.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="masque_master" alt="Menu"/></a>
+    <!-- BEGIN show -->
+    <form id="form">
+        <div class="box">
+            <p  class="font_small">Ce formulaire permet de modifier directement le contrôle, d'ajouter, de modifier ou de supprimer une note. Le tick vert ou la croix rouge, qui vont apparaître à côté des notes, signalent si les notes sont valides ou invalides. Du côté des modifications, elles sont instantanées et signalées par le changement de la couleur de fond du champ (en vert). Si, lors de vos modifications, un champ passe au rouge, attention, ça veut dire qu'il n'a pas été sauvegardé. Dans ce cas, il vaut mieux rafraichir la page.</p>
+        </div>
+
+        <label class="bleu"><b>Nom du contrôle : </b></label>
+        <input type="text" value="{CONTROLE_NOM}" {MAT_LOCK} name="CONTROLE_NOM" data-bfmw="{CONTROLE_ID}" id="id_controle_nom" />
+
+        <!-- IF IS_RESPONSABLE -->
+        <label class="bleu"><b>Année du contrôle : </b></label><br/>
+        <select id="id_selecteur_annee" name="CONTROLE_ANNEE_ID" data-bfmw="{CONTROLE_ID}"  data-bfmw2="{MAT_ID}" >
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select><br/>
+        <!-- ENDIF -->
+
+        <label class="bleu"><b>Coefficient (entre 0.01 et 99.99) : </b></label>
+        <input type="text" value="{CONTROLE_COEFF}" {MAT_LOCK} name="CONTROLE_COEFF" data-bfmw="{CONTROLE_ID}" id="id_controle_coeff"/>
+
+        <label class="bleu"><b>Barême : </b></label>
+        <input type="text" id="bareme" value="{CONTROLE_BAREME}" {MAT_LOCK} name="CONTROLE_BAREME" data-bfmw="{CONTROLE_ID}"/>
+
+        <label class="bleu"><b>Compte dans la moyenne (une fois le contrôle validé) : </b></label>
+        <div class="box" id="boxMoyenne">
+            <input type="radio" name="CONTROLE_MOYENNE" {OUI} {MAT_LOCK} value="1" data-bfmw="{CONTROLE_ID}"/>Oui&nbsp
+            <input type="radio" name="CONTROLE_MOYENNE" {NON} {MAT_LOCK} value="0" data-bfmw="{CONTROLE_ID}"/>Non&nbsp
+            <div class="tooltip"><input type="radio" name="CONTROLE_MOYENNE" {BONUS} {MAT_LOCK} value="2" data-bfmw="{CONTROLE_ID}" />Sous forme de bonus ou malus<span class="tooltiptext">Le bonus ou malus ne tiendra pas compte du barême ni du coefficient</span></div>
+        </div>
+
+        <label class="bleu"><b>Visible aux étudiants (une fois le contrôle validé) : </b></label>
+        <div class="box" id="boxVisible">
+            <input type="radio" name="CONTROLE_VISIBLE" {MAT_LOCK} {VISIBLE} value="1" data-bfmw="{CONTROLE_ID}" />Oui&nbsp
+            <input type="radio" name="CONTROLE_VISIBLE" {MAT_LOCK} {NONVISIBLE} value="0" data-bfmw="{CONTROLE_ID}" />Non
+        </div>
+        <!-- IF NB_GROUPES != 0 -->
+        <label class="bleu"><b>Utiliser un fichier (facultatif) : </b></label>
+        <div class="box">
+            <p class="font_small">Ne sélectionnez que les colonnes NUMERO|NOTE. Attention, les notes existantes seront écrasées.</p>
+            <input type="text" {MAT_LOCK} placeholder="Collez ici les colonnes de votre fichier" id="id_zone_paste"/>
+        </div>
+
+        <label class="bleu"><b>Notes : </b></label>
+        <div class="box">
+            <select id="selecteur_promo">
+                <!-- BEGIN un_groupe -->
+                <option value="{un_groupe.GROUPE_ID}">{un_groupe.GROUPE_NOM}</option>
+                <!-- END un_groupe -->
+            </select>
+            <span class="vert">Téléchargez le fichier de ce groupe : </span>
+                <a href="?" id="id_download_excel"  data-bfmw="{CONTROLE_ANNEE_ID}">Excel</a>&nbsp;
+                <a href="?" id="id_download_ods"  data-bfmw="{CONTROLE_ANNEE_ID}">OpenOffice</a>&nbsp;
+                <a href="?" id="id_download_csv"  data-bfmw="{CONTROLE_ANNEE_ID}">csv</a><br/><br/>
+            <div>
+                <!-- BEGIN un_etudiant -->
+                <div class="filtrable no_wrap tooltip" data-filter="id_{un_etudiant.GROUPE_ID}">
+                    <img class="tooltiptext specific_img_accueil_3" src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" />
+                    <div class="specific_div_accueil_1 specific_div_accueil_2">{un_etudiant.ET_NOM}</div>
+                    <!-- IF un_etudiant.DISP_ET_ID !== un_etudiant.ET_ID -->
+                    <div class="specific_div_accueil_1">
+                        <img src="images/tick.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" name="ok_{un_etudiant.ET_NUMERO}" class="specific_img_accueil_2" alt="ok"/>
+                        <img src="images/croix.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" name="ko_{un_etudiant.ET_NUMERO}" class="specific_img_accueil_2" alt="ko"/>
+                        <!-- IF MAT_LOCK !== "" -->
+                        <img src="images/lock.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Matière verrouillée" title="La matière est verrouillée, aucune modification n'est possible" class="specific_img_accueil_1" />
+                        <!-- ENDIF -->
+                        <input type="text" {MAT_LOCK} class="specific_input_accueil_1 creneau_special valuable excel" data-me="{un_etudiant.ME}" data-next="{un_etudiant.NEXT}" data-numetudiant="{un_etudiant.ET_NUMERO}" data-propage="note_{un_etudiant.ET_ID}" data-binding="{un_etudiant.NOTES_ID}${CONTROLE_ID}${un_etudiant.ET_ID}" placeholder="Note, ABI, ABJ" value="{un_etudiant.NOTES_VALEUR}" name="NOTES_VALEUR"/>
+                    </div>
+                    <div class="specific_div_accueil_1">
+                        <input type="text" {MAT_LOCK} class="specific_input_accueil_1 creneau_special valuable excel" data-me="avis_{un_etudiant.ME}" data-next="avis_{un_etudiant.NEXT}" data-numetudiant="{un_etudiant.ET_NUMERO}" data-propage="avis_{un_etudiant.ET_ID}" data-binding="{un_etudiant.NOTES_ID}${CONTROLE_ID}${un_etudiant.ET_ID}" placeholder="Avis masqué" value="{un_etudiant.NOTES_AVIS}" name="NOTES_AVIS"/>
+                    </div>
+                    <!-- ELSE -->
+                    <span class="rouge text_vertical_top">Cet étudiant ne refait pas l'UE</span>
+                    <!-- ENDIF -->
+                </div>
+                <!-- END un_etudiant -->
+            </div>
+        </div>
+        <!-- ENDIF -->
+    </form>
+    <!-- END show -->
+
+</div>

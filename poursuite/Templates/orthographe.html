@@ -1,0 +1,21 @@
+<div class="main">
+    <div class="limited specific_div_orthographe_1">
+        <!-- BEGIN locked -->
+        <label class="rouge">Impossible de corriger l'orthographe des fiches de poursuites d'études, des enseignants
+            sont en train d'effectuer une saisie.</label>
+        <!-- END locked -->
+        <!-- BEGIN unlocked -->
+        <table class="releve">
+            <!-- BEGIN une_ligne -->
+            <tr>
+                <td><input class="bind" type="text" name="AVIS_NIVEAU" value="{une_ligne.AVIS_NIVEAU}"
+                           data-bfmw="{une_ligne.ET_ID}${une_ligne.AVIS_PMAT_ID}"/></td>
+                <td><textarea class="font_large bind" rows="4" cols="50" name="AVIS_APPRECIATION"
+                              data-bfmw="{une_ligne.ET_ID}${une_ligne.AVIS_PMAT_ID}">{une_ligne.AVIS_APPRECIATION}</textarea>
+                </td>
+            </tr>
+            <!-- END une_ligne -->
+        </table>
+        <!-- END unlocked -->
+    </div>
+</div>

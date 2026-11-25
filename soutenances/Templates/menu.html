@@ -1,0 +1,23 @@
+<div class="top_page">
+    <div class="menu" id="GeneralMenu">
+        <a href=".." title="Retour au portail" class="not_menu retour_portail_menu"><img class="retour_portail" src="../bfmw/images/home.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"/></a>
+        <a href=".." title="Retour au portail" class="not_menu">Soutenances</a>
+        <!-- BEGIN une_session_menu -->
+        <a href="?p=individuel&amp;s={une_session_menu.SESSION_ID}&amp;a={ANNEE_COURANTE}" {une_session_menu.ACTIVE_INDIVIDUEL}>Notation {une_session_menu.SESSION_CONTENU}</a>
+        <!-- IF une_session_menu.HAS_GROUPE -->
+        <a href="?p=groupe&amp;s={une_session_menu.SESSION_ID}&amp;a={ANNEE_COURANTE}" {une_session_menu.ACTIVE_GROUPE}>Notation de groupe {une_session_menu.SESSION_CONTENU}</a>
+        <!-- ENDIF -->
+        <a href="?p=verif&amp;s={une_session_menu.SESSION_ID}&amp;a={ANNEE_COURANTE}" {une_session_menu.ACTIVE_VERIF}>Vérification {une_session_menu.SESSION_CONTENU}</a>
+        <!-- END une_session_menu -->
+        <!-- BEGIN une_session_menu_harmonisation -->
+        <a href="?p=harmonisation&amp;s={une_session_menu_harmonisation.SESSION_ID}&amp;a={ANNEE_COURANTE}" {une_session_menu_harmonisation.ACTIVE_HARMONISATION}>Harmonisation {une_session_menu_harmonisation.SESSION_CONTENU}</a>
+        <!-- END une_session_menu_harmonisation -->
+        <!-- IF IS_ADMINISTRATIF -->
+        <a href="?p=creergroupe&amp;a={ANNEE_COURANTE}" {ACTIVE_CREERGROUPE}>Groupes de projet</a>
+        <!-- ENDIF -->
+        <a href="?p=logout">Déconnexion</a>
+        <a href="#" class="icon texte_menu"><img src="../bfmw/images/menu.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="image_menu" alt="Menu"/></a>
+    </div>
+</div>
+<div id="id_margin_top"></div>
+

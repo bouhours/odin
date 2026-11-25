@@ -1,0 +1,89 @@
+<div class="main">
+    <div class="limited specific_div_lire_1">
+        <label class="rouge"><b>Filtrer les absences par :</b></label><br/>
+
+        <ul class="TreeView font_medium">
+            <li>Cours
+                <ul>
+                    <!-- BEGIN un_cours -->
+                    <li><a href="?&p=lire&amp;show={un_cours.MAT_ID}&amp;showp={un_cours.ABS_EDT_UID}"
+                           class="font_small">{un_cours.MAT_NOM}</a></li>
+                    <!-- END un_cours -->
+                    <!-- IF FILTER_ACTIVE -->
+                    <li class=""><a href="?&p=lire" class="font_small rouge">Supprimer le filtre</a></li>
+                    <!-- ENDIF -->
+                </ul>
+            <li>Groupes
+                <ul>
+                    <!-- BEGIN une_formation_filtre -->
+                    <li class="jaune font_medium">{une_formation_filtre.FORM_NOM}
+                        <ul>
+                            <!-- BEGIN un_groupe -->
+                            <li><a href="?&p=lire&amp;showG={un_groupe.GROUPE_ID}" class="font_small">{un_groupe.GROUPE_NOM}</a>
+                            </li>
+                            <!-- END un_groupe -->
+                        </ul>
+                    </li>
+                    <!-- END une_formation_filtre -->
+                </ul>
+            </li>
+        </ul>
+
+        <!-- IF ! FILTER_ACTIVE && ! ALL_ACTIVE -->
+        <hr/>
+        <a href="?p=lire&amp;all=all{FILTER}">Cliquez ici pour voir les absences déclarées par les autres
+            enseignants.</a>
+        <!-- ENDIF -->
+        <hr/>
+        <!-- IF FILTER !== "" -->
+        <span class="rouge font_medium"><b>Groupe&nbsp;{GROUPE_NOM}</b></span>
+        <!-- ENDIF -->
+        <ul class="TreeView">
+            <!-- BEGIN un_etudiant -->
+            <li>
+                <div class="tooltip"><label class="bleu">{un_etudiant.ET_NOM} </label><img
+                        class="tooltiptext specific_img_lire_1" src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                        loading="lazy" alt="photo"/></div>
+                &nbsp
+                <!-- IF un_etudiant.NOMBRE_ABSENCES != "" -->
+                <label class="bleu font_small">({un_etudiant.NOMBRE_ABSENCES})</label>
+                <!-- ENDIF -->
+                <ul>
+                    <!-- BEGIN une_absence -->
+                    <li class="font_small">
+                        <!-- IF une_absence.OK_DEL -->
+                        <a href="?p=front&amp;p2=lire&amp;del={une_absence.ABS_ID}" class="confirm_suppr"><img
+                                src="images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer cette absence"/></a>
+                        <!-- ENDIF -->
+                        <span>{une_absence.REAL_DATE} : {une_absence.ABST_NOM} {une_absence.MAT_NOM} ({une_absence.ENS_NOM}) : {une_absence.CRENEAU_NOM}&nbsp;</span>
+                        <!-- IF une_absence.ABS_ENS_ID == CURRENT_ID || une_absence.ABS_JUSTIFICATION != 'non' -->
+                        <!-- IF une_absence.ABS_JUSTIFICATION == "medical" -->
+                        <img src="images/medical.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_lire_2" alt="Justifiée pour raisons médicales"
+                             title="Cette absence est justifiée pour raisons médicales"/>
+                        <!-- ENDIF -->
+                        <!-- IF une_absence.ABS_JUSTIFICATION == "convocation" -->
+                        <img src="images/convocation.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_lire_2"
+                             alt="Justifiée par convocation administrative"
+                             title="Cette absence est justifiée par une convocation administrative"/>
+                        <!-- ENDIF -->
+                        <!-- IF une_absence.ABS_JUSTIFICATION == "chef" -->
+                        <img src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_lire_2"
+                             alt="Justifiée par le responsable de la formation"
+                             title="Cette absence est justifiée par le responsable de la formation"/>
+                        <!-- ENDIF -->
+                        <!-- IF une_absence.ABS_JUSTIFICATION == "credit" -->
+                        <img src="../bfmw/images/credit.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_lire_2"
+                             alt="Justifiée avec un crédit-jour"
+                             title="Cette absence est justifiée avec un crédit-jour"/>
+                        <!-- ENDIF -->
+                        &nbsp;<span class="rouge" title="Commentaire">{une_absence.ABS_EXCUSE}</span>
+                        <!-- ENDIF -->
+                    </li>
+                    <!-- END une_absence -->
+                </ul>
+            </li>
+            <!-- END un_etudiant -->
+
+        </ul>
+    </div>
+</div>

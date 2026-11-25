@@ -1,0 +1,13 @@
+<div class="main">
+    <div class="limited specific_div_clotures_1">
+        <form method="POST" action="?p=front&amp;p2=clotures">
+            Choisissez l'année à clôturer :
+            <select name="clot_annee">
+                <!-- BEGIN une_annee -->
+                <option value="{une_annee.ANNEE_ID}">{une_annee.ANNEE_NOM}</option>
+                <!-- END une_annee -->
+            </select>
+            <input type="submit" value="Clôturer l'année"/>
+        </form>
+    </div>
+</div>

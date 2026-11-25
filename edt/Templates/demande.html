@@ -1,0 +1,37 @@
+<div class="main">
+    <div class="limited specific_div_demande_1">
+        <form method="POST" action="?p=recap_demande&amp;p2=demande">
+            <div class="text_align_center" id="les_boutons">
+                <button class="button" id="nouveau_creneau"><span>Demander un nouveau créneau</span></button>
+                <button class="button" id="modification_creneau"><span>Demander une modification de créneau</span>
+                </button>
+                <button class="button" id="suppression_creneau"><span>Demander une annulation de créneau</span></button>
+            </div>
+            <div class="text_align_center" id="nouveau">
+                Donnez ci-dessous les informations nécessaires à la création du nouveau créneau (date, horaire,
+                salle...)
+                <textarea name="commentaire" id="commentaire" rows="10"></textarea>
+                <input type="submit" value="Valider" name="submit_nouveau" class="specific_input_demande_1"
+                       id="submit_nouveau"/>
+            </div>
+            <div class="text_align_left font_large" id="modification">
+                Sélectionnez ci-dessous le ou les créneaux que vous désirez modifier, plus cliquez sur&nbsp;&nbsp;
+                <input type="submit" value="Valider" name="submit_modification" class="specific_input_demande_1"
+                       id="submit_modification"/>
+                <br/>
+                <br/>
+            </div>
+            <div class="text_align_left font_large" id="suppression">
+                Sélectionnez ci-dessous le ou les créneaux que vous désirez annuler, plus cliquez sur&nbsp;&nbsp;
+                <input type="submit" value="Valider" name="submit_suppression" class="specific_input_demande_1"
+                       id="submit_suppression"/>
+                <br/>
+                <br/>
+            </div>
+            <div id="dest_lazyLoad">
+                <img src="images/loading.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Chargement en cours" class="specific_img_demande_1"
+                     title="Emploi du temps en chargement"/>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<!-- BEGIN une_affectation -->
+{une_affectation.ID}¤¤§£$§£$§£¤¤
+    <!-- BEGIN une_charge -->
+    <!-- IF une_charge.CHARGE_ID != "" -->
+    <li>
+        <!-- IF ! une_affectation.ANNEE_CLOSE -->
+        <a href="#"  data-bfmw="{une_affectation.ID}" data-bfmw2="{une_charge.CHARGE_ID}" class="confirm_supress_charge"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer cette charge"/></a>
+        <!-- ENDIF -->
+        <input type="number" min="0" step="0.5" name="CHARGE_VALEUR" value="{une_charge.CHARGE_VALEUR}" class="specific_input_gererenseignant_3 bind_charge"  data-bfmw="{une_charge.CHARGE_ID}${une_charge.MAT_ENS_ID}" data-bfmw3="{une_charge.MAT_ENS_ID}" data-bfmw2="{une_charge.ENS_MAT_ID}" />
+        <span>heures pour</span>
+        <input type="number" min="1" step="1" name="CHARGE_GROUPE" value="{une_charge.CHARGE_GROUPE}" class="specific_input_gererenseignant_3 bind_charge"  data-bfmw="{une_charge.CHARGE_ID}${une_charge.MAT_ENS_ID}"  data-bfmw3="{une_charge.MAT_ENS_ID}" data-bfmw2="{une_charge.ENS_MAT_ID}" />
+        <span>groupe en</span>
+        <select class="specific_input_gererenseignant_3 bind_charge2" name="CHARGE_TYPE" data-bfmw="{une_charge.CHARGE_ID}${une_charge.MAT_ENS_ID}"  data-bfmw3="{une_charge.MAT_ENS_ID}" data-bfmw2="{une_charge.ENS_MAT_ID}">
+            <option
+                    <!-- IF une_charge.CHARGE_TYPE == 'CM' -->
+                        selected
+                    <!-- ENDIF -->
+                    value="CM">CM</option>
+            <option
+                <!-- IF une_charge.CHARGE_TYPE == 'TD' -->
+                selected
+                <!-- ENDIF -->
+                    value="TD">TD</option>
+            <option
+            <!-- IF une_charge.CHARGE_TYPE == 'TP' -->
+            selected
+            <!-- ENDIF -->
+                    value="TP">TP</option>
+            <option
+            <!-- IF une_charge.CHARGE_TYPE == 'DS' -->
+            selected
+            <!-- ENDIF -->
+                    value="DS">DS</option>
+        </select>
+        <span>( multiplicateur : </span>
+        <input type="number" min="0" step="0.5" name="CHARGE_MULTIPLICATEUR" value="{une_charge.CHARGE_MULTIPLICATEUR}" class="specific_input_gererenseignant_3 bind_charge"  data-bfmw="{une_charge.CHARGE_ID}${une_charge.MAT_ENS_ID}"  data-bfmw3="{une_charge.MAT_ENS_ID}" data-bfmw2="{une_charge.ENS_MAT_ID}" />
+        <span>)</span>
+    </li>
+    <!-- ENDIF -->
+    <!-- END une_charge -->
+    <!-- IF ! une_affectation.ANNEE_CLOSE -->
+    <li>
+        <a href="#" class="ajouter_une_charge" data-bfmw="{une_affectation.ID}" >Cliquez ici pour ajouter une nouvelle charge</a>
+    </li>
+    <!-- ENDIF -->
+¤¤¤$§£$§£$§£$§£¤¤¤
+<!-- END une_affectation -->

@@ -1,0 +1,77 @@
+<li class="blanc">
+    <span class="no_wrap">
+    <!-- IF MAT_SURMAT_ID == "" -->
+        <a href="?p=front&amp;p2=gererformation&amp;move={MAT_ID}&amp;down=-1&amp;po={MAT_ORDRE}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}&amp;tu=matue&amp;u={MAT_UE_ID}" class="monter" title="monter" ></a>
+        <a href="?p=front&amp;p2=gererformation&amp;move={MAT_ID}&amp;down=1&amp;po={MAT_ORDRE}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}&amp;tu=matue&amp;u={MAT_UE_ID}" class="descendre" title="descendre" ></a>
+    <!-- ELSE -->
+        <a href="?p=front&amp;p2=gererformation&amp;move={MAT_ID}&amp;down=-1&amp;po={MAT_ORDRE}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}&amp;tu=matmod&amp;u={MAT_SURMAT_ID}" class="monter" title="monter" ></a>
+        <a href="?p=front&amp;p2=gererformation&amp;move={MAT_ID}&amp;down=1&amp;po={MAT_ORDRE}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}&amp;tu=matmod&amp;u={MAT_SURMAT_ID}" class="descendre" title="descendre" ></a>
+    <!-- ENDIF -->
+    <!-- IF  VIDE && NEW_MAT != 1 -->
+        <a href="?p=front&amp;p2=gererformation&amp;hidematiere={MAT_ID}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}" name="confirm_hide_matiere"><img
+                src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="hide" title="Enlever cette matiere de la maquette pour l'année en cours"/></a>
+    <!-- ENDIF -->
+    <!-- IF NEW_MAT == 1 -->
+        <!-- IF VIDE -->
+            <a href="?p=front&amp;p2=gererformation&amp;delmatiere={MAT_ID}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}" name="confirm_suppres_matiere"><img
+                    src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer définitivement cette matiere"/></a>
+        <!-- ENDIF -->
+        <a href="#" class="updater" data-bfmw="MAT_NOM" data-bfmw2="matiere_{MAT_ID}" data-bfmw3="{MAT_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier le nom de cette matière"/></a>
+        <span id="matiere_{MAT_ID}">{MAT_NOM}</span>
+        <span>(coef : </span>
+        <a href="#" class="updater" data-bfmw="MAT_COEF" data-bfmw2="matiere_coeff_{MAT_ID}" data-bfmw3="{MAT_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier le coefficien de cette matière"/></a>
+        <span id="matiere_coeff_{MAT_ID}">{MAT_COEF}</span>
+        <span>)</span>
+    <!-- ELSE -->
+        <a href="?p=front&amp;p2=gererformation&amp;switchmatiere={MAT_ID}&amp;f={FORM_ID}&amp;a={ANNEE_COURANTE}" name="confirm_switch_matiere"><img
+                src="../bfmw/images/clone.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="icon" alt="clone" title="Rendre cette matière à nouveau modifiable"/></a>
+        <span>{MAT_NOM}</span>
+        <span>(coef : </span>
+        <span>{MAT_COEF}</span>
+        <span>)</span>
+    <!-- ENDIF -->
+    </span>
+    <ul>
+        <li>
+            <span class="no_wrap">Code APOGEE : </span>
+            <a href="#" class="updater" data-bfmw="MAT_CODE_APOGE" data-bfmw2="matiere_apogee_{MAT_ID}" data-bfmw3="{MAT_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier le code APOGEE de cette matière"/></a>
+            <span id="matiere_apogee_{MAT_ID}" >{MAT_CODE_APOGE}</span>
+            <span class="rouge">Attention, ne mettez un code que si cette matière doit être exportée dans APOGEE</span>
+        </li>
+        <!-- IF MAT_HAS_NOTE == 1 -->
+        <!-- IF NEW_MAT == 1 -->
+        <li>
+            <span class="no_wrap">Matière identique à : </span>
+            <select class="specific_input_gererformation_3 bind25" data-bfmw="{MAT_ID}" name="MAT_COPIE_MAT_ID">
+                <option value="NULL">Aucune</option>
+                <!-- BEGIN un_departement -->
+                <!-- BEGIN une_formation -->
+                <!-- BEGIN un_semestre -->
+                <!-- BEGIN une_ue -->
+                <optgroup class="jaune" label="{une_ue.UE_NOM}"></optgroup>
+                <!-- BEGIN une_hierarchie -->
+                {une_hierarchie.HIERARCHIE}
+                <!-- END une_hierarchie -->
+                <!-- END une_ue -->
+                <!-- END un_semestre -->
+                <!-- END une_formation -->
+                <!-- END un_departement -->
+            </select>
+        </li>
+        <!-- ELSE -->
+        <span class="no_wrap">Matière identique à </span><span class="vert">{NOM_COPIE}</span>
+        <!-- ENDIF -->
+        <!-- ENDIF -->
+        <!-- IF (NB_PERIODE > 0 && MAT_COPIE_MAT_ID == "") -->
+        <li>
+            <span class="no_wrap">
+                Périodes d'enseignement :</span>
+                <div class="CheckBoxList specific_select_gererformation_10">
+                    <!-- BEGIN une_periode -->
+                    <input type="checkbox" name="MAT_PERIODE_ID" class="bind3" value="{une_periode.PERIODE_ID}" {une_periode.CHECKED} data-bfmw="{FORM_ID}${MAT_ID}${une_periode.PERIODE_ID}"/><span>&nbsp;{une_periode.PERIODE_NOM}</span><br/>
+                    <!-- END une_periode -->
+                </div>
+        </li>
+        <!-- ENDIF -->
+    </ul>
+</li>

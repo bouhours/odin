@@ -1,0 +1,308 @@
+<div class="main">
+    <div class="limited specific_div_gestion_voeux_1">
+        <div class="no_print">
+            Choisissez la période :
+            <select class="specific_select_gestion_voeux_1" id="select_periode">
+                <!-- BEGIN une_periode -->
+                <option value="{une_periode.PERIODE_ID}" {une_periode.SELECTED}>{une_periode.PERIODE_NOM}</option>
+                <!-- END une_periode -->
+            </select>
+            <br/>
+            <br/>
+            <!-- IF ! IS_SPECIFIC -->
+            <h1>Retardataires</h1>
+            <ul>
+                <!-- BEGIN un_retard -->
+                <li><span class="vert">{un_retard.ENS_NOM}</span>&nbsp;({un_retard.MATS_NOM})</li>
+                <!-- END un_retard -->
+            </ul>
+            <br/>
+            <hr/>
+            <!-- ENDIF -->
+            <h1>Disponibilités</h1>
+            <!-- IF IS_SPECIFIC -->
+            <a href="?p=gestion_voeux&amp;periode={PERIODE}">Afficher tous</a>
+            <!-- ELSE -->
+            <!-- BEGIN une_fiche -->
+            <a href="?p=gestion_voeux&amp;specific={une_fiche.ENS_ID}&amp;fiche={une_fiche.FICHE_ID}&amp;periode={une_fiche.PERIODE_ID}">{une_fiche.ENS_NOM}
+                [{une_fiche.TOTAL}]</a><br/>
+            <!-- END une_fiche -->
+            <!-- ENDIF -->
+            <!-- IF IS_SPECIFIC -->
+            <table class="releve font_small">
+                <tr>
+                    <th>&nbsp;</th>
+                    <th class="border_left">Lundi</th>
+                    <th class="border_left">Mardi</th>
+                    <th class="border_left">Mercredi</th>
+                    <th class="border_left">Jeudi</th>
+                    <th class="border_left">Vendredi</th>
+                    <th class="border_left border_right">Samedi</th>
+                    <td class="no_border_top"></td>
+                </tr>
+                <tr>
+                    <td>8h - 9h</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="0">
+                        <div>{DISPO_0}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="1">
+                        <div>{DISPO_1}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="2">
+                        <div>{DISPO_2}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="3">
+                        <div>{DISPO_3}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="4">
+                        <div>{DISPO_4}</div>
+                    </td>
+                    <td class="border_left border_right dispo text_vertical_middle" data-bfmw="5">
+                        <div>{DISPO_5}</div>
+                    </td>
+                    <td class="no_border_top"></td>
+                </tr>
+                <tr>
+                    <td>9h - 10h</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="6">
+                        <div>{DISPO_6}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="7">
+                        <div>{DISPO_7}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="8">
+                        <div>{DISPO_8}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="9">
+                        <div>{DISPO_9}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="10">
+                        <div>{DISPO_10}</div>
+                    </td>
+                    <td class="border_left border_right dispo text_vertical_middle" data-bfmw="11">
+                        <div>{DISPO_11}</div>
+                    </td>
+                    <td class="no_border_top"></td>
+                </tr>
+                <tr>
+                    <td>10h - 11h</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="12">
+                        <div>{DISPO_12}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="13">
+                        <div>{DISPO_13}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="14">
+                        <div>{DISPO_14}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="15">
+                        <div>{DISPO_15}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="16">
+                        <div>{DISPO_16}</div>
+                    </td>
+                    <td class="border_left border_right dispo text_vertical_middle" data-bfmw="17">
+                        <div>{DISPO_17}</div>
+                    </td>
+                    <td class="no_border_top"></td>
+                </tr>
+                <tr>
+                    <td>11h - 12h</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="18">
+                        <div>{DISPO_18}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="19">
+                        <div>{DISPO_19}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="20">
+                        <div>{DISPO_20}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="21">
+                        <div>{DISPO_21}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="22">
+                        <div>{DISPO_22}</div>
+                    </td>
+                    <td class="border_left border_right border_bottom dispo text_vertical_middle" data-bfmw="23">
+                        <div>{DISPO_23}</div>
+                    </td>
+                    <td class="no_border_top"></td>
+                </tr>
+                <tr>
+                    <td>13h30 - 14h30</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="24">
+                        <div>{DISPO_24}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="25">
+                        <div>{DISPO_25}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="26">
+                        <div>{DISPO_26}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="27">
+                        <div>{DISPO_27}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="28">
+                        <div>{DISPO_28}</div>
+                    </td>
+                    <td class="border_left no_border_top specific_td_gestion_voeux_2" colspan="2" rowspan="6"></td>
+                </tr>
+                <tr>
+                    <td>14h30 - 15h30</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="30">
+                        <div>{DISPO_30}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="31">
+                        <div>{DISPO_31}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="32">
+                        <div>{DISPO_32}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="33">
+                        <div>{DISPO_33}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="34">
+                        <div>{DISPO_34}</div>
+                    </td>
+                    <td class="no_border_top"></td>
+                </tr>
+                <tr>
+                    <td>15h30 - 16h30</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="35">
+                        <div>{DISPO_35}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="36">
+                        <div>{DISPO_36}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="37">
+                        <div>{DISPO_37}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="38">
+                        <div>{DISPO_38}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="39">
+                        <div>{DISPO_39}</div>
+                    </td>
+                    <td class="no_border_top"></td>
+                </tr>
+                <tr>
+                    <td>16h30 - 17h30</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="40">
+                        <div>{DISPO_40}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="41">
+                        <div>{DISPO_41}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="42">
+                        <div>{DISPO_42}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="43">
+                        <div>{DISPO_43}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="44">
+                        <div>{DISPO_44}</div>
+                    </td>
+                    <td class="no_border_top"></td>
+                </tr>
+                <tr>
+                    <td>17h30 - 18h30</td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="45">
+                        <div>{DISPO_45}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="46">
+                        <div>{DISPO_46}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="47">
+                        <div>{DISPO_47}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="48">
+                        <div>{DISPO_48}</div>
+                    </td>
+                    <td class="border_left dispo text_vertical_middle" data-bfmw="49">
+                        <div>{DISPO_49}</div>
+                    </td>
+                    <td class="no_border_top"></td>
+                </tr>
+                <tr>
+                    <td>18h30 - 19h30</td>
+                    <td class="border_left dispo border_bottom text_vertical_middle" data-bfmw="50">
+                        <div>{DISPO_50}</div>
+                    </td>
+                    <td class="border_left dispo border_bottom text_vertical_middle" data-bfmw="51">
+                        <div>{DISPO_51}</div>
+                    </td>
+                    <td class="border_left dispo border_bottom text_vertical_middle" data-bfmw="52">
+                        <div>{DISPO_52}</div>
+                    </td>
+                    <td class="border_left dispo border_bottom text_vertical_middle" data-bfmw="53">
+                        <div>{DISPO_53}</div>
+                    </td>
+                    <td class="border_left dispo border_bottom text_vertical_middle" data-bfmw="54">
+                        <div>{DISPO_54}</div>
+                    </td>
+                    <td class="no_border_top"></td>
+                </tr>
+            </table>
+            <!-- ENDIF -->
+        </div>
+
+        <hr/>
+        <h1>Matières</h1>
+        <table class="releve specific_td_gestion_voeux_3 ">
+            <tr>
+                <th>Matière</th>
+                <th>Enseignant</th>
+                <th>Charge</th>
+                <th>Groupes</th>
+                <th>Type</th>
+                <th>Commentaire</th>
+                <th>Notes</th>
+                <th>Fait ?</th>
+            </tr>
+            <!-- BEGIN une_matiere -->
+            <tr>
+                <td colspan="8" class="specific_td_gestion_voeux specific_td_gestion_voeux_3">{une_matiere.MAT_NOM}&nbsp;({une_matiere.FORM_NOM})</td>
+            </tr>
+            <!-- BEGIN un_enseignant -->
+            <tr>
+                <td class="specific_td_gestion_voeux_1 ">&nbsp;</td>
+                <td colspan="7" class="border_right text_vertical_middle specific_td_gestion_voeux_3">
+                    {un_enseignant.ENS_NOM}
+                </td>
+            </tr>
+            <!-- BEGIN une_charge -->
+            <tr>
+                <td class="specific_td_gestion_voeux_1 ">&nbsp;</td>
+                <td class="specific_td_gestion_voeux_1 ">&nbsp;</td>
+                <td class="text_align_center text_vertical_middle specific_td_gestion_voeux_3">
+                    {une_charge.CHARGE_VALEUR}
+                </td>
+                <td class="text_align_center text_vertical_middle specific_td_gestion_voeux_3">
+                    {une_charge.CHARGE_GROUPE}
+                </td>
+                <td class="border_right text_align_center text_vertical_middle specific_td_gestion_voeux_3">
+                    {une_charge.CHARGE_TYPE}
+                </td>
+                <!-- IF une_charge.NUMERO_CHARGES == 1 -->
+                <td rowspan="{une_charge.NB_CHARGES}"
+                    class="border_right text_align_center text_vertical_middle specific_td_gestion_voeux_3">
+                    {une_charge.COMMENTAIRE}
+                </td>
+                <!-- ENDIF -->
+                <td class="text_align_center text_vertical_middle specific_td_gestion_voeux_3"><textarea
+                        name="COMMENTAIRE_GESTIONNAIRE" data-bfmw="{une_charge.ID}${une_charge.FICHE_ID}" class="bind"
+                        rows="1">{une_charge.COMMENTAIRE_GESTIONNAIRE}</textarea></td>
+                <td class="text_align_center text_vertical_middle specific_td_gestion_voeux_3"><input type="checkbox"
+                                                                                                      {une_charge.COMMENTAIRE_CHECKED}
+                                                                                                      name="COMMENTAIRE_DONE"
+                                                                                                      class="bind2"
+                                                                                                      value="1"
+                                                                                                      data-bfmw="{une_charge.ID}${une_charge.FICHE_ID}"/>
+                </td>
+            </tr>
+            <!-- END une_charge -->
+            <!-- END un_enseignant -->
+            <!-- END une_matiere -->
+        </table>
+    </div>
+</div>

@@ -1,0 +1,585 @@
+<div class="main">
+    <div class="limited">
+        <span>Choisissez l'année à configurer : </span>
+        <select name="annee" id="id_selecteur_annee">
+            <!-- BEGIN une_annee -->
+            <option {une_annee.SELECTED} value="{une_annee.ANNEE_ID}">{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <hr/>
+        <label class="vert">Liste des soutenances de stage du département :</label>
+        <div class="box">
+            <!-- IF HAS_PLANNING -->
+            <ul class="font_small TreeView">
+                <!-- BEGIN un_planning -->
+                <li>
+                    <a href="?p=front&amp;p2=soutenances&amp;delplan={un_planning.PLANNING_ID}&amp;f={FORMATION_COURANTE}&amp;a={ANNEE_COURANTE}"
+                       name="confirm_suppres_planning"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                            title="Supprimer ce planning"/></a><a href="#"
+                                                                                                  class="updater"
+                                                                                                  data-bfmw="PLANNING_CONTENU"
+                                                                                                  data-bfmw2="planning_{un_planning.PLANNING_ID}"
+                                                                                                  data-bfmw3="{un_planning.PLANNING_ID}"><img
+                        src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier ce planning"/></a>&nbsp;<span
+                        id="planning_{un_planning.PLANNING_ID}">{un_planning.PLANNING_CONTENU}</span>
+                    <ul>
+                        <li>Date de début de collecte des disponibilités des enseignants&nbsp;:&nbsp;<input type="text"
+                                                                                                            placeholder="JJ/MM/AAAA HHhMM"
+                                                                                                            value="{un_planning.PLANNING_START_ENS_AFFICHAGE}"
+                                                                                                            name="PLANNING_START_ENS"
+                                                                                                            class="bfmw_no_style bind"
+                                                                                                            data-bfmw="{un_planning.PLANNING_ID}"/>
+                        </li>
+                        <li>Date de fin de collecte des disponibilités des enseignants&nbsp;:&nbsp;<input type="text"
+                                                                                                          placeholder="JJ/MM/AAAA HHhMM"
+                                                                                                          value="{un_planning.PLANNING_END_ENS_AFFICHAGE}"
+                                                                                                          name="PLANNING_END_ENS"
+                                                                                                          class="bfmw_no_style bind"
+                                                                                                          data-bfmw="{un_planning.PLANNING_ID}"/>
+                        </li>
+                        <li>Date de début de collecte des disponibilités des étudiants&nbsp;:&nbsp;<input type="text"
+                                                                                                          placeholder="JJ/MM/AAAA HHhMM"
+                                                                                                          value="{un_planning.PLANNING_START_ET_AFFICHAGE}"
+                                                                                                          name="PLANNING_START_ET"
+                                                                                                          class="bfmw_no_style bind"
+                                                                                                          data-bfmw="{un_planning.PLANNING_ID}"/>
+                        </li>
+                        <li>Date de fin de collecte des disponibilités des étudiants&nbsp;:&nbsp;<input type="text"
+                                                                                                        placeholder="JJ/MM/AAAA HHhMM"
+                                                                                                        value="{un_planning.PLANNING_END_ET_AFFICHAGE}"
+                                                                                                        name="PLANNING_END_ET"
+                                                                                                        class="bfmw_no_style bind"
+                                                                                                        data-bfmw="{un_planning.PLANNING_ID}"/>
+                        </li>
+                        <li>Date de début de la période de soutenance&nbsp;:&nbsp;<input type="text"
+                                                                                         placeholder="JJ/MM/AAAA HHhMM"
+                                                                                         value="{un_planning.PLANNING_SOUTENANCES_START_AFFICHAGE}"
+                                                                                         name="PLANNING_SOUTENANCES_START"
+                                                                                         class="bfmw_no_style bind"
+                                                                                         data-bfmw="{un_planning.PLANNING_ID}"/>
+                        </li>
+                        <li>Date de fin de la période de soutenance&nbsp;:&nbsp;<input type="text"
+                                                                                       placeholder="JJ/MM/AAAA HHhMM"
+                                                                                       value="{un_planning.PLANNING_SOUTENANCES_END_AFFICHAGE}"
+                                                                                       name="PLANNING_SOUTENANCES_END"
+                                                                                       class="bfmw_no_style bind"
+                                                                                       data-bfmw="{un_planning.PLANNING_ID}"/>
+                        </li>
+                        <li>Nombre de salles max en parallèle&nbsp;:&nbsp;<input type="number" min="0" step="1"
+                                                                                 value="{un_planning.PLANNING_SOUTENANCES_NB_SALLES}"
+                                                                                 name="PLANNING_SOUTENANCES_NB_SALLES"
+                                                                                 class="bfmw_no_style bind"
+                                                                                 data-bfmw="{un_planning.PLANNING_ID}"/>
+                        </li>
+                        <li>Créneaux&nbsp;:
+                            <ul id="id_list_creneau_{un_planning.PLANNING_ID}">
+                                <li><span>Générer automatiquement les créneaux</span>
+                                    <form class="specific_form_inline" method="post"
+                                          action="?p=front&amp;p2=soutenances" data-bfmw="{un_planning.PLANNING_ID}">
+                                        <span>de</span>
+                                        <input type="time" placeholder="HHhMM" name="CRENEAU_DEBUT" required
+                                               class="bfmw_no_style"/>
+                                        <span>à</span>
+                                        <input type="time" placeholder="HHhMM" name="CRENEAU_FIN" required
+                                               class="bfmw_no_style"/><br/>
+                                        <span>toutes les</span>
+                                        <input type="number" step="1" min="1" name="CRENEAU_PAS" required
+                                               class="bfmw_no_style specific_input_soutenances_4"/>
+                                        <span>minutes pour une durée de</span>
+                                        <input type="number" step="1" min="1" name="CRENEAU_DUREE" required
+                                               class="bfmw_no_style specific_input_soutenances_4"/>
+                                        <span>minutes</span><br/>
+                                        <input type="hidden" name="PLANNING_ID" value="{un_planning.PLANNING_ID}">
+                                        <input type="hidden" name="PLANNING_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                                        <input type="hidden" name="FORMATION_ID" value="{FORMATION_COURANTE}"/>
+                                        <input type="submit" name="auto" class="specific_input_soutenances_3"
+                                               value="Générer automatiquement"/>
+                                    </form>
+                                </li>
+                                <br/>
+                                <li><span>Créer manuellement un créneau</span>
+                                    <form class="specific_form_inline new_creneau"
+                                          data-bfmw="{un_planning.PLANNING_ID}"><span>de</span>
+                                        <input type="time" placeholder="HHhMM" name="CRENEAU_DEBUT" required
+                                               class="bfmw_no_style"/>
+                                        <span>à</span>
+                                        <input type="time" placeholder="HHhMM" name="CRENEAU_FIN" required
+                                               class="bfmw_no_style"/><br/>
+                                        <input type="submit" class="specific_input_soutenances_3" value="Créer"/>
+                                    </form>
+                                </li>
+                                <!-- BEGIN un_creneau -->
+                                <!-- IF un_creneau.CRENEAU_ID != "" -->
+                                <li>
+                                    <a href="?p=front&amp;p2=soutenances&amp;delcre={un_creneau.CRENEAU_ID}&amp;f={FORMATION_COURANTE}&amp;a={ANNEE_COURANTE}"
+                                       name="confirm_suppres_creneau"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                           alt="del" title="Supprimer ce creneau"/></a>
+                                    <span>De&nbsp;</span>
+                                    <a href="#" class="updater" data-bfmw="CRENEAU_DEBUT"
+                                       data-bfmw2="creneau_debut_{un_creneau.CRENEAU_ID}"
+                                       data-bfmw3="{un_creneau.CRENEAU_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                                 alt="update"
+                                                                                 title="Modifier ce creneau"/></a>
+                                    <span id="creneau_debut_{un_creneau.CRENEAU_ID}">{un_creneau.CRENEAU_DEBUT_AFFICHAGE}</span>
+                                    <span>&nbsp;à&nbsp;</span><a href="#" class="updater" data-bfmw="CRENEAU_FIN"
+                                                                 data-bfmw2="creneau_fin_{un_creneau.CRENEAU_ID}"
+                                                                 data-bfmw3="{un_creneau.CRENEAU_ID}"><img
+                                        src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier ce creneau"/></a>
+                                    <span id="creneau_fin_{un_creneau.CRENEAU_ID}">{un_creneau.CRENEAU_FIN_AFFICHAGE}</span>
+                                </li>
+                                <!-- ENDIF -->
+                                <!-- END un_creneau -->
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- END un_planning -->
+            </ul>
+            <hr/>
+            <!-- ENDIF -->
+            <form method="POST" action="?p=front&amp;p2=soutenances">
+                <span class="font_medium">Créer une soutenance : </span>
+                <input type="text" required class="specific_input_soutenances_1" name="*PLANNING_CONTENU"/>
+                <input type="hidden" name="*PLANNING_DEPT_ID" value="{DEPARTEMENT_COURANT}"/>
+                <input type="hidden" name="*PLANNING_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                <input type="hidden" name="FORMATION_ID" value="{FORMATION_COURANTE}"/>
+                <input type="submit" name="creer_planning" value="Valider"/>
+            </form>
+        </div>
+        <hr/>
+        <span class="font_large rouge">Configuration des grilles d'évaluations des soutenances</span>
+        <hr/>
+        <span>Choisissez la formation à configurer : </span>
+        <select name="formation" id="id_selecteur_form" data-bfmw="{ANNEE_COURANTE}">
+            <!-- BEGIN une_formation -->
+            <option {une_formation.SELECTED} value="{une_formation.FORM_ID}">{une_formation.FORM_NOM}</option>
+            <!-- END une_formation -->
+        </select>
+        <hr/>
+        <label class="vert">Liste des sessions :</label>
+        <div class="box">
+            <!-- IF HAS_SESSION -->
+            <ul class="font_small TreeView">
+                <!-- BEGIN une_session -->
+                <li>
+                    <a href="?p=front&amp;p2=soutenances&amp;delses={une_session.SESSION_ID}&amp;f={FORMATION_COURANTE}&amp;a={ANNEE_COURANTE}"
+                       name="confirm_suppres_session"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                           title="Supprimer cette session"/></a><a href="#"
+                                                                                                   class="updater"
+                                                                                                   data-bfmw="SESSION_CONTENU"
+                                                                                                   data-bfmw2="session_{une_session.SESSION_ID}"
+                                                                                                   data-bfmw3="{une_session.SESSION_ID}"><img
+                        src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                        title="Modifier cette session"/></a>&nbsp;<span id="session_{une_session.SESSION_ID}">{une_session.SESSION_CONTENU}</span>
+                    <ul>
+                        <li>
+                            <a href="?generate=GrillesDeSoutenance&amp;a={ANNEE_COURANTE}&amp;f={FORMATION_COURANTE}&amp;s={une_session.SESSION_ID}">Exporter
+                                la grille en fichier Excel</a></li>
+                        <li>Date de début de session&nbsp;:&nbsp;<input type="text" placeholder="JJ/MM/AAAA HHhMM"
+                                                                        value="{une_session.SESSION_START_AFFICHAGE}"
+                                                                        name="SESSION_START" class="bfmw_no_style bind"
+                                                                        data-bfmw="{une_session.SESSION_ID}"/></li>
+                        <li>Date de fin de session&nbsp;:&nbsp;<input type="text" placeholder="JJ/MM/AAAA HHhMM"
+                                                                      value="{une_session.SESSION_END_AFFICHAGE}"
+                                                                      name="SESSION_END" class="bfmw_no_style bind"
+                                                                      data-bfmw="{une_session.SESSION_ID}"/></li>
+                        <li>Date de début d'hamonisation&nbsp;:&nbsp;<input type="text" placeholder="JJ/MM/AAAA HHhMM"
+                                                                            value="{une_session.SESSION_HARMONISATION_START_AFFICHAGE}"
+                                                                            name="SESSION_HARMONISATION_START"
+                                                                            class="bfmw_no_style bind"
+                                                                            data-bfmw="{une_session.SESSION_ID}"/></li>
+                        <li>Date de fin d'hamonisation&nbsp;:&nbsp;<input type="text" placeholder="JJ/MM/AAAA HHhMM"
+                                                                          value="{une_session.SESSION_HARMONISATION_END_AFFICHAGE}"
+                                                                          name="SESSION_HARMONISATION_END"
+                                                                          class="bfmw_no_style bind"
+                                                                          data-bfmw="{une_session.SESSION_ID}"/></li>
+                        <!-- IF une_session.HAS_NOTES -->
+                        <li><span class="rouge">Publier {une_session.NB_NOTES} notes dans&nbsp;</span>
+                            <form method="post" class="confirm_valider specific_form_inline"
+                                  action="?p=front&amp;p2=soutenances">
+                                <select class="bfmw_no_style" name="MAT_ID">
+                                    <!-- BEGIN un_departement -->
+                                    <!-- BEGIN une_formation -->
+                                    <!-- BEGIN un_semestre -->
+                                    <optgroup class="bleu" label="{un_semestre.SEM_NOM}"></optgroup>
+                                    <!-- BEGIN une_ue -->
+                                    <optgroup class="jaune" label="&nbsp;{une_ue.UE_NOM}">
+                                        <!-- BEGIN une_hierarchie -->
+                                        {une_hierarchie.HIERARCHIE}
+                                        <!-- END une_hierarchie -->
+                                        <!-- END une_ue -->
+                                        <!-- END un_semestre -->
+                                        <!-- END une_formation -->
+                                        <!-- END un_departement -->
+                                </select>
+                                <span>avec détail :</span><input type="checkbox" value="detail" name="detail"
+                                                                 class="bfmw_no_style"/>
+                                <input type="hidden" value="{une_session.SESSION_ID}" name="session"/>
+                                <input type="hidden" value="{ANNEE_COURANTE}" name="a"/>
+                                <input type="hidden" value="{FORMATION_COURANTE}" name="f"/><br/>
+                                <div class="text_align_right">
+                                    <input type="submit" class="specific_input_soutenances_3" value="Publier"
+                                           name="publish" title="Publier les notes"/>
+                                </div>
+                            </form>
+                        </li>
+                        <!-- ENDIF -->
+                    </ul>
+                </li>
+                <!-- END une_session -->
+            </ul>
+            <hr/>
+            <!-- ENDIF -->
+            <form method="POST" action="?p=front&amp;p2=soutenances">
+                <span class="font_medium">Créer une session : </span>
+                <input type="text" required class="specific_input_soutenances_1" name="*SESSION_CONTENU"/>
+                <input type="hidden" name="*SESSION_FORM_ID" value="{FORMATION_COURANTE}"/>
+                <input type="hidden" name="*SESSION_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                <input type="submit" name="creer_session" value="Valider"/>
+            </form>
+        </div>
+        <!-- IF HAS_SESSION_PAS_VIDE -->
+        <label class="vert">Recopier une session à partir d'une autre :</label>
+        <div class="box">
+            <form method="POST" action="?p=front&amp;p2=soutenances">
+                <span class="font_medium">Session : </span>
+                <select name="SESSION_SOURCE" class="specific_input_soutenances_1">
+                    <!-- BEGIN une_formation_session -->
+                    <optgroup class="rouge" label="{une_formation_session.FORM_NOM}">
+                        <!-- BEGIN une_session_source -->
+                        <option class="noir" value="{une_session_source.SESSION_ID}">{une_session_source.ANNEE_NOM} -
+                            {une_session_source.SESSION_CONTENU}
+                        </option>
+                        <!-- END une_session_source -->
+                    </optgroup>
+                    <!-- END une_formation_session -->
+                </select><br/>
+                <span class="font_medium">à recopier vers : </span>
+                <select name="SESSION_DEST" class="specific_input_soutenances_1">
+                    <!-- BEGIN une_session_vide -->
+                    <option value="{une_session_vide.SESSION_ID}">{une_session_vide.SESSION_CONTENU}</option>
+                    <!-- END une_session_vide -->
+                </select><br/>
+                <input type="hidden" name="SESSION_FORM_ID" value="{FORMATION_COURANTE}"/>
+                <input type="hidden" name="SESSION_ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                <input type="submit" name="copier_session" value="Valider"/>
+            </form>
+        </div>
+        <!-- ENDIF -->
+        <!-- IF HAS_SESSION -->
+        <label class="vert">Liste des destinations :</label>
+        <div class="box">
+            <!-- IF HAS_DESTINATION -->
+            <ul class="font_small TreeView">
+                <!-- BEGIN une_session_dest -->
+                <li>{une_session_dest.SESSION_CONTENU}
+                    <ul>
+                        <!-- BEGIN une_destination -->
+                        <li>
+                            <a href="?p=front&amp;p2=soutenances&amp;deld={une_destination.DEST_ID}&amp;f={FORMATION_COURANTE}&amp;a={ANNEE_COURANTE}"
+                               name="confirm_suppres_section"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                                   title="Supprimer cette destination"/></a><a href="#"
+                                                                                                               class="updater"
+                                                                                                               data-bfmw="DEST_CONTENU"
+                                                                                                               data-bfmw2="destination_{une_destination.DEST_ID}"
+                                                                                                               data-bfmw3="{une_destination.DEST_ID}"><img
+                                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                title="Modifier cette destination"/></a>&nbsp;<span
+                                id="destination_{une_destination.DEST_ID}">{une_destination.DEST_CONTENU}</span>
+                            <ul>
+                                <li>
+                                    <span>Coefficient&nbsp;:&nbsp;</span><input type="text"
+                                                                                value="{une_destination.DEST_COEF}"
+                                                                                data-bfmw="{une_destination.DEST_ID}"
+                                                                                name="DEST_COEF"
+                                                                                class="bfmw_no_style bind"/>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END une_destination -->
+                    </ul>
+                </li>
+                <!-- END une_session_dest -->
+            </ul>
+            <hr/>
+            <!-- ENDIF -->
+            <form method="POST" action="?p=front&amp;p2=soutenances">
+                <span class="font_medium">Créer une destination : </span>
+                <input type="text" required class="specific_input_soutenances_1" name="*DEST_CONTENU"/>
+                <span class="font_medium">&nbsp;session : </span>
+                <select name="*DEST_SESSION_ID" class="specific_input_soutenances_1">
+                    <!-- BEGIN une_session -->
+                    <option value="{une_session.SESSION_ID}">{une_session.SESSION_CONTENU}</option>
+                    <!-- END une_session -->
+                </select><br/>
+                <span class="font_medium">&nbsp;coefficient : </span>
+                <input type="text" required pattern="^(-){0,1}[0-9]{1,2}(\.([0-9]{0,2}))?$"
+                       class="specific_input_soutenances_2" name="*DEST_COEF"/><br/>
+                <input type="hidden" name="*DEST_FORM_ID" value="{FORMATION_COURANTE}"/>
+                <input type="hidden" name="ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                <input type="submit" name="creer_destination" value="Valider"/>
+            </form>
+        </div>
+        <!-- ENDIF -->
+        <!-- IF HAS_DESTINATION -->
+        <label class="vert">Liste des sections :</label>
+        <div class="box">
+            <!-- IF HAS_SECTION -->
+            <ul class="font_small TreeView">
+                <!-- BEGIN une_session_sect -->
+                <li>{une_session_sect.SESSION_CONTENU}
+                    <ul>
+                        <!-- BEGIN une_dest -->
+                        <li>{une_dest.DEST_CONTENU}
+                            <ul>
+                                <!-- BEGIN une_section -->
+                                <li>
+                                    <a href="?p=front&amp;p2=soutenances&amp;dels={une_section.SECTION_ID}&amp;f={FORMATION_COURANTE}&amp;a={ANNEE_COURANTE}"
+                                       name="confirm_suppres_section"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                           alt="del"
+                                                                           title="Supprimer cette section"/></a><a
+                                        href="#" class="updater" data-bfmw="SECTION_CONTENU"
+                                        data-bfmw2="niveau_{une_section.SECTION_ID}"
+                                        data-bfmw3="{une_section.SECTION_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                                   alt="update"
+                                                                                   title="Modifier cette section"/></a>&nbsp;<span
+                                        id="niveau_{une_section.SECTION_ID}">{une_section.SECTION_CONTENU}</span></li>
+                                <!-- END une_section -->
+                            </ul>
+                        </li>
+                        <!-- END une_dest -->
+                    </ul>
+                </li>
+                <!-- END une_session_sect -->
+            </ul>
+            <hr/>
+            <!-- ENDIF -->
+            <form method="POST" action="?p=front&amp;p2=soutenances">
+                <span class="font_medium">Créer une section : </span>
+                <input type="text" required class="specific_input_soutenances_1" name="*SECTION_CONTENU"/>
+                <input type="hidden" name="FORM_ID" value="{FORMATION_COURANTE}"/><br/>
+                <span class="font_medium">&nbsp;destination : </span>
+                <select name="*SECTION_DEST_ID" class="specific_input_soutenances_1">
+                    <!-- BEGIN une_session_dest -->
+                    <optgroup class="rouge" label="{une_session_dest.SESSION_CONTENU}">
+                        <!-- BEGIN une_destination -->
+                        <option class="noir" value="{une_destination.DEST_ID}">{une_destination.DEST_CONTENU}</option>
+                        <!-- END une_destination -->
+                    </optgroup>
+                    <!-- END une_session_dest -->
+                </select>
+                <input type="hidden" name="ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                <input type="submit" name="creer_section" value="Valider"/>
+            </form>
+        </div>
+        <label class="vert">Liste des niveaux :</label>
+        <div class="box">
+            <!-- IF HAS_NIVEAU -->
+            <ul class="font_small TreeView">
+                <!-- BEGIN une_session_niveau -->
+                <li>{une_session_niveau.SESSION_CONTENU}
+                    <ul>
+                        <!-- BEGIN une_dest_filtre -->
+                        <li>{une_dest_filtre.DEST_CONTENU}
+                            <ul>
+                                <!-- BEGIN un_niveau -->
+                                <li>
+                                    <a href="?p=front&amp;p2=soutenances&amp;deln={un_niveau.NIVEAU_ID}&amp;f={FORMATION_COURANTE}&amp;a={ANNEE_COURANTE}"
+                                       name="confirm_suppres_niveau"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                                          title="Supprimer cette section"/></a><a
+                                        href="#" class="updater" data-bfmw="NIVEAU_CONTENU"
+                                        data-bfmw2="niveau_{un_niveau.NIVEAU_ID}"
+                                        data-bfmw3="{un_niveau.NIVEAU_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                                alt="update"
+                                                                                title="Modifier ce niveau"/></a>&nbsp;<span
+                                        id="niveau_{un_niveau.NIVEAU_ID}">{un_niveau.NIVEAU_CONTENU}</span>
+                                    <ul>
+                                        <li>Poids&nbsp;:&nbsp;<input type="number" value="{un_niveau.NIVEAU_POIDS}"
+                                                                     name="NIVEAU_POIDS" class="bfmw_no_style bind"
+                                                                     data-bfmw="{un_niveau.NIVEAU_ID}"/></li>
+                                        <li>Maximum&nbsp;:&nbsp;<input type="number" value="{un_niveau.NIVEAU_MAX}"
+                                                                       name="NIVEAU_MAX" class="bfmw_no_style bind"
+                                                                       data-bfmw="{un_niveau.NIVEAU_ID}"/></li>
+                                    </ul>
+                                </li>
+                                <!-- END un_niveau -->
+                            </ul>
+                        </li>
+                        <!-- END une_dest_filtre -->
+                    </ul>
+                </li>
+                <!-- END une_session_niveau -->
+            </ul>
+            <hr/>
+            <!-- ENDIF -->
+            <form method="POST" action="?p=front&amp;p2=soutenances">
+                <span class="font_medium">Créer un niveau : </span>
+                <input type="text" required class="specific_input_soutenances_1" name="*NIVEAU_CONTENU"/><br/>
+                <span class="font_medium">&nbsp;poids : </span>
+                <input type="text" required pattern="^(-){0,1}[0-9]{1,2}(\.([0-9]{0,2}))?$"
+                       class="specific_input_soutenances_2" name="*NIVEAU_POIDS"/><br/>
+                <span class="font_medium">&nbsp;destination : </span>
+                <select name="*NIVEAU_DEST_ID" class="specific_input_soutenances_1">
+                    <!-- BEGIN une_session_dest -->
+                    <optgroup class="rouge" label="{une_session_dest.SESSION_CONTENU}">
+                        <!-- BEGIN une_destination -->
+                        <option class="noir" value="{une_destination.DEST_ID}">{une_destination.DEST_CONTENU}</option>
+                        <!-- END une_destination -->
+                    </optgroup>
+                    <!-- END une_session_dest -->
+                </select>
+                <input type="hidden" name="*NIVEAU_FORM_ID" value="{FORMATION_COURANTE}"/>
+                <input type="hidden" name="ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                <input type="submit" name="creer_niveau" value="Valider"/>
+            </form>
+        </div>
+        <!-- IF HAS_SECTION -->
+        <label class="vert">Liste des critères :</label>
+        <div class="box">
+            <!-- IF HAS_CRITERE -->
+            <ul class="font_small TreeView">
+                <!-- BEGIN une_session_critere -->
+                <li>{une_session_critere.SESSION_CONTENU}
+                    <ul>
+                        <!-- BEGIN une_dest_critere -->
+                        <li>{une_dest_critere.DEST_CONTENU}
+                            <ul>
+                                <!-- BEGIN une_section -->
+                                <li>{une_section.SECTION_CONTENU}
+                                    <ul>
+                                        <!-- BEGIN un_critere -->
+                                        <li>
+                                            <a href="?p=front&amp;p2=soutenances&amp;delc={un_critere.CRITERE_ID}&amp;f={FORMATION_COURANTE}&amp;a={ANNEE_COURANTE}"
+                                               name="confirm_suppres_critere"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                                   alt="del"
+                                                                                   title="Supprimer ce critère"/></a><a
+                                                href="#" class="updater" data-bfmw="CRITERE_CONTENU"
+                                                data-bfmw2="critere_{un_critere.CRITERE_ID}"
+                                                data-bfmw3="{un_critere.CRITERE_ID}"><img
+                                                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                title="Modifier ce critère"/></a>&nbsp;<span
+                                                id="critere_{un_critere.CRITERE_ID}">{un_critere.CRITERE_CONTENU}</span>
+                                        </li>
+                                        <!-- END un_critere -->
+                                    </ul>
+                                </li>
+                                <!-- END une_section -->
+                            </ul>
+                        </li>
+                        <!-- END une_dest_critere -->
+                    </ul>
+                </li>
+                <!-- END une_session_critere -->
+            </ul>
+            <hr/>
+            <!-- ENDIF -->
+            <form method="POST" action="?p=front&amp;p2=soutenances">
+                <span class="font_medium">Créer un critère : </span>
+                <input type="text" required class="specific_input_soutenances_1" name="*CRITERE_CONTENU"/><br/>
+                <span class="font_medium">&nbsp;section : </span>
+                <select name="*CRITERE_SECTION_ID" class="specific_input_soutenances_1">
+                    <!-- BEGIN une_session_sect -->
+                    <optgroup class="rouge" label="{une_session_sect.SESSION_CONTENU}"></optgroup>
+                    <!-- BEGIN une_dest -->
+                    <optgroup class="bleu" label="-{une_dest.DEST_CONTENU}">
+                        <!-- BEGIN une_section -->
+                        <option class="noir" value="{une_section.SECTION_ID}">{une_section.SECTION_CONTENU}</option>
+                        <!-- END une_section -->
+                    </optgroup>
+                    <!-- END une_dest -->
+                    <!-- END une_session_sect -->
+                </select>
+                <input type="hidden" name="FORM_ID" value="{FORMATION_COURANTE}"/>
+                <input type="hidden" name="ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                <input type="submit" name="creer_critere" value="Valider"/>
+            </form>
+        </div>
+        <!-- ENDIF -->
+        <!-- IF HAS_CRITERE && HAS_NIVEAU -->
+        <label class="vert">Liste des explications :</label>
+        <div class="box">
+            <!-- IF HAS_EXPLICATION -->
+            <ul class="font_small TreeView">
+                <!-- BEGIN une_session_explication -->
+                <li>{une_session_explication.SESSION_CONTENU}
+                    <ul>
+                        <!-- BEGIN une_dest_explication -->
+                        <li>{une_dest_explication.DEST_CONTENU}
+                            <ul>
+                                <!-- BEGIN un_critere -->
+                                <li>{un_critere.CRITERE_CONTENU}
+                                    <ul>
+                                        <!-- BEGIN un_niveau -->
+                                        <li>{un_niveau.NIVEAU_CONTENU}
+                                            <ul>
+                                                <!-- BEGIN une_explication -->
+                                                <li class="wrap"><a
+                                                        href="?p=front&amp;p2=soutenances&amp;dele1={une_explication.EXPLICATION_CRITERE_ID}&amp;dele2={une_explication.EXPLICATION_NIVEAU_ID}&amp;f={FORMATION_COURANTE}&amp;a={ANNEE_COURANTE}"
+                                                        name="confirm_suppres_explication"><img
+                                                        src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                        title="Supprimer cette explication"/></a><a href="#"
+                                                                                                    class="updater"
+                                                                                                    data-bfmw="EXPLICATION_CONTENU"
+                                                                                                    data-bfmw2="explication_{une_explication.EXPLICATION_ID}"
+                                                                                                    data-bfmw3="{une_explication.EXPLICATION_ID}"><img
+                                                        src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                        title="Modifier cette explication"/></a>&nbsp;<span
+                                                        id="explication_{une_explication.EXPLICATION_ID}">{une_explication.EXPLICATION_CONTENU}</span>
+                                                </li>
+                                                <!-- END une_explication -->
+                                            </ul>
+                                        </li>
+                                        <!-- END un_niveau -->
+                                    </ul>
+                                </li>
+                                <!-- END un_critere -->
+                            </ul>
+                        </li>
+                        <!-- END une_dest_explication -->
+                    </ul>
+                </li>
+                <!-- END une_session_explication -->
+            </ul>
+            <hr/>
+            <!-- ENDIF -->
+            <form method="POST" action="?p=front&amp;p2=soutenances">
+                <span class="font_medium">Créer une explication : </span>
+                <input type="text" required class="specific_input_soutenances_1" name="*EXPLICATION_CONTENU"/><br/>
+                <span class="font_medium">critère : </span>
+                <select name="*EXPLICATION_CRITERE_ID" class="specific_input_soutenances_1">
+                    <!-- BEGIN une_session_critere -->
+                    <optgroup class="rouge" label="{une_session_critere.SESSION_CONTENU}"></optgroup>
+                    <!-- BEGIN une_dest_critere -->
+                    <optgroup class="bleu" label="-{une_dest_critere.DEST_CONTENU}"></optgroup>
+                    <!-- BEGIN une_section -->
+                    <optgroup class="jaune" label="--{une_section.SECTION_CONTENU}">
+                        <!-- BEGIN un_critere -->
+                        <option class="noir" value="{un_critere.CRITERE_ID}">{un_critere.CRITERE_CONTENU}</option>
+                        <!-- END un_critere -->
+                    </optgroup>
+                    <!-- END une_section -->
+                    <!-- END une_dest_critere -->
+                    <!-- END une_session_critere -->
+                </select><br/>
+                <span class="font_medium">&nbsp;niveau : </span>
+                <select name="*EXPLICATION_NIVEAU_ID" class="specific_input_soutenances_1">
+                    <!-- BEGIN une_session_niveau -->
+                    <optgroup class="rouge" label="{une_session_niveau.SESSION_CONTENU}"></optgroup>
+                    <!-- BEGIN une_dest_filtre -->
+                    <optgroup class="bleu" label="-{une_dest_filtre.DEST_CONTENU}">
+                        <!-- BEGIN un_niveau -->
+                        <option class="noir" value="{un_niveau.NIVEAU_ID}">{un_niveau.NIVEAU_CONTENU}</option>
+                        <!-- END un_niveau -->
+                    </optgroup>
+                    <!-- END une_dest_filtre -->
+                    <!-- END une_session_niveau -->
+                </select>
+                <input type="hidden" name="FORM_ID" value="{FORMATION_COURANTE}"/>
+                <input type="hidden" name="ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                <input type="submit" name="creer_explication" value="Valider"/>
+            </form>
+        </div>
+        <!-- ENDIF -->
+        <!-- ENDIF -->
+    </div>
+</div>

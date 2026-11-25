@@ -1,0 +1,34 @@
+<li><br/>
+    <!-- BEGIN un_niveau -->
+    <span class="resultat_niveau">{un_niveau.NIVEAU_NOM}</span>
+    <!-- BEGIN une_annee -->
+    <div class="resultat_ligne">
+        <span class="resultat_annee">{une_annee.ANNEE_NOM}</span>
+        <!-- BEGIN un_regroupement -->
+        <div class="resultat_regroupement">
+            <span class="resultat_nom_regroupement">{un_regroupement.REGROUP_NOM}</span>
+            <!-- BEGIN une_moyenne -->
+                <!-- IF une_moyenne.SPECIAL != "" -->
+                <span class="rouge resultat_moyenne">{une_moyenne.SPECIAL}</span>
+                <!-- ELSE -->
+                        <!-- IF une_moyenne.VALEUR < 8 -->
+                        <span class="jaune resultat_moyenne">
+                        <!-- ELSEIF une_moyenne.VALEUR < 10 -->
+                        <span class="bleu resultat_moyenne">
+                        <!-- ELSE -->
+                        <span class="vert resultat_moyenne">
+                        <!-- ENDIF -->
+                    {une_moyenne.VALEUR}
+                            <!-- IF une_moyenne.BARREE != "" -->
+                                        <br/>
+                                        <span class="text_barre">{une_moyenne.BARREE}</span>
+                            <!-- ENDIF -->
+                                        </span>
+                <!-- ENDIF -->
+            <!-- END une_moyenne -->
+        </div>
+        <!-- END un_regroupement -->
+    </div>
+    <!-- END une_annee -->
+    <!-- END un_niveau -->
+</li>

@@ -1,0 +1,52 @@
+<span class="font_large rouge">Notes pour </span><span class="font_large vert">{TEXTE}</span><span class="font_large rouge">&nbsp;:</span><br/>
+<ul class="TreeView">
+<!-- BEGIN un_controle -->
+    <li><span>&bull;&nbsp;</span><span>{un_controle.CONTROLE_NOM}</span><span>&nbsp;:&nbsp;</span><span class="rouge">{un_controle.NOTES_VALEUR}</span></li>
+<!-- END un_controle -->
+    <li><span>&bull;&nbsp;</span><span>Moyenne</span><span>&nbsp;:&nbsp;</span><span class="rouge"><b>{MOYENNE}</b></span></li>
+</ul>
+<span class="font_large rouge">Grille pour </span><span class="font_large vert">{TEXTE}</span><span class="font_large rouge">&nbsp;:</span><br/>
+<ul class="TreeView">
+<!-- BEGIN une_destination -->
+<li><span>&bull;&nbsp;{une_destination.DEST_CONTENU}</span>
+<ul>
+    <!-- BEGIN une_section -->
+    <li><span>&bull;&nbsp;{une_section.SECTION_CONTENU}</span>
+        <ul><li>
+    <table class="releve wrap">
+        <!-- BEGIN un_critere -->
+        <tr>
+            <th class="vert text_vertical_middle" rowspan="1">{un_critere.CRITERE_CONTENU}</th>
+            <!-- BEGIN un_niveau -->
+            <!-- BEGIN une_explication -->
+            <td>{une_explication.EXPLICATION_CONTENU}</td>
+            <!-- END une_explication -->
+            <!-- END un_niveau -->
+        </tr>
+        <tr>
+            <th class="vert text_vertical_middle no_border_top text_align_right" rowspan="1">
+
+            </th>
+            <!-- BEGIN un_niveau -->
+            <!-- BEGIN une_explication -->
+            <td class="no_border_top border_bottom rouge no_wrap" >
+                <!-- IF un_niveau.NIVEAU_NUMERIQUE != 0 -->
+                    {une_explication.SOUT_NIVEAU_NUMERIQUE}
+                <!-- ELSE -->
+                    <!-- IF une_explication.CHECKED == "checked" -->
+                    {une_explication.NIVEAU_CONTENU}
+                    <!-- ENDIF -->
+                <!-- ENDIF -->
+            </td>
+            <!-- END une_explication -->
+            <!-- END un_niveau -->
+        </tr>
+        <!-- END un_critere -->
+    </table>
+        </li></ul>
+    <!-- END une_section -->
+    </li>
+</ul>
+</li>
+<!-- END une_destination -->
+</ul>

@@ -1,0 +1,16 @@
+<div class="main">
+    <div class="limited">
+        <span>Année à afficher :</span>
+        <select class="specific_select_accueil_1" id="id_selection_annee">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <hr/>
+        <span>Présence à l'emploi du temps :</span><br/>
+        <!-- BEGIN un_creneau -->
+        <span class="vert">&nbsp;&nbsp;&nbsp;{un_creneau.EDT_NOM}</span><span> = {un_creneau.EDT_TOTAL}&nbsp;h</span><br/>
+        <!-- END un_creneau -->
+        <span class="bleu">Total&nbsp;:&nbsp;</span><span>{TOTAL}&nbsp;h</span>
+    </div>
+</div>

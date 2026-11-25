@@ -1,0 +1,19 @@
+<div class="specific_div_lire_1">
+    <span class="vert">{MAT_NOM}</span><span> - Nombre d'étudiants ayant répondu : </span><span class="vert">{TOTAL}</span>
+    <div class="box">
+    <table class="releve font_medium">
+        <tr>
+            <th >Question</th>
+            <th >Nombre étudiants</th>
+            <th class="text_align_left">Réponse</th>
+        </tr>
+    <!-- BEGIN une_ligne -->
+        <tr>
+            <td class="rouge"><b>{une_ligne.QUESTION}</b></td>
+            <td class="vert"><i>{une_ligne.POURCENT}% ({une_ligne.NOMBRE})</i></td>
+            <td class="bleu"><i>{une_ligne.REPONSE}</i></td>
+        </tr>
+    <!-- END une_ligne -->
+    </table>
+    </div>
+</div>

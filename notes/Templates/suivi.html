@@ -1,0 +1,56 @@
+<div class="main">
+    <div class="limited specific_div_bilan_1">
+        <span class="bleu font_large">Cette page permet de lister les étudiants sans note</span>
+        <form action="?generate=CompetencesMultiFormats" method="POST" id="id_formulaire">
+            <label>&bull;&nbsp;Sélectionnez l'année : </label>
+            <select id="id_selection_annee" name="a" data-bfmw="{GROUPE_COURANT}">
+                <!-- BEGIN une_annee -->
+                <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+                <!-- END une_annee -->
+            </select>
+
+            <label>&bull;&nbsp;Sélectionnez le groupe : </label>
+            <select id="id_selecteur_groupe" name="groupe" data-bfmw="{ANNEE_COURANTE}">
+                <!-- BEGIN une_formation -->
+                <optgroup label="{une_formation.FORM_NOM}">
+                    <!-- BEGIN un_groupe -->
+                    <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                    <!-- END un_groupe -->
+                    <!-- END une_formation -->
+            </select>
+
+            <label>&bull;&nbsp;Sélectionnez le semestre : </label>
+            <select id="id_selecteur_semestre" name="semestre" data-bfmw="{ANNEE_COURANTE}" data-bfmw2="{GROUPE_COURANT}">
+                <!-- BEGIN un_semestre -->
+                <option value="{un_semestre.SEM_ID}" {un_semestre.SELECTED}>{un_semestre.SEM_NOM}</option>
+                <!-- END un_semestre -->
+            </select>
+
+            <!-- IF HAS_SANS_NOTE -->
+            <ul>
+            <!-- BEGIN une_ue -->
+                <li class="jaune">
+                <span>{une_ue.UE_NOM}</span>
+                    <ul>
+                <!-- BEGIN une_matiere -->
+                        <li class="bleu">
+                    <span>{une_matiere.MAT_NOM}</span>
+                            <ul>
+                    <!-- BEGIN un_etudiant -->
+                                <li class="vert">
+                        <span>{un_etudiant.ET_NOM}</span>
+                                </li>
+                    <!-- END un_etudiant -->
+                            </ul>
+                        </li>
+                <!-- END une_matiere -->
+                    </ul>
+                </li>
+            <!-- END une_ue -->
+            </ul>
+            <!-- ELSE -->
+                <span class="vert">Toutes les étudiants ont des notes</span>
+            <!-- ENDIF -->
+        </form>
+    </div>
+</div>

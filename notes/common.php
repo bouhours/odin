@@ -1,0 +1,36 @@
+<?php
+/**
+ * Auteur : Cédric BOUHOURS
+ * Ce code est mis à disposition selon les termes de la Licence Creative Commons Attribution
+ * Pas d'Utilisation Commerciale - Pas de Modification 4.0 International.
+ *
+ * Attribution — Vous devez créditer l'Œuvre, intégrer un lien vers la licence. Vous devez indiquer ces informations par tous les moyens raisonnables, sans toutefois suggérer que l'Offrant vous soutient ou soutient la façon dont vous avez utilisé son Oeuvre.
+ *
+ * Pas d’Utilisation Commerciale — Vous n'êtes pas autorisé à faire un usage commercial de cette Oeuvre, tout ou partie du matériel la composant.
+ *
+ * Pas de modifications — Dans le cas où vous effectuez un remix, que vous transformez, ou créez à partir du matériel composant l'Oeuvre originale, vous n'êtes pas autorisé à distribuer ou mettre à disposition l'Oeuvre modifiée.
+ *
+ * Pas de restrictions complémentaires — Vous n'êtes pas autorisé à appliquer des conditions légales ou des mesures techniques qui restreindraient légalement autrui à utiliser l'Oeuvre dans les conditions décrites par la licence.
+ *
+ *
+ */
+
+define('CURRENT_VERSION', "0.0");
+
+if (CURRENT_USE != '') {
+    $req = "SELECT * FROM notes_access_enseignants WHERE ENS_LOGIN='" . CURRENT_USE . "'";
+    $res = $conn->query($req);
+
+    if ($tab = $res->fetch_assoc()) {
+        $_SESSION['notes_nom'] = $tab["ENS_NOM"];
+        define('CURRENT_ID', $tab["ENS_ID"]);
+        define('CURRENT_DEPT', $tab['DEPT_CODE']);
+        define('CURRENT_DEPT_ID', $tab['ACCESS_DEPT_ID']);
+    } else {
+        unset($_SESSION['notes_nom']);
+        define('CURRENT_ID', 0);
+        define('CURRENT_DEPT', 0);
+        define('CURRENT_DEPT_ID', 0);
+        die("Accès non autorisé");
+    }
+}

@@ -1,0 +1,25 @@
+<div class="main">
+    <div class="limited">
+        <div class="box">
+            <form action="?generate=Facture" method="POST">
+                <span>Choisissez l'année : </span>
+                <select id="selecteur_annee" name="a">
+                    <!-- BEGIN une_annee -->
+                    <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+                    <!-- END une_annee -->
+                </select>
+                <span>Choisissez la formation :</span>
+                <select name="formation">
+                    <!-- BEGIN une_formation -->
+                    <option value="{une_formation.FORM_ID}">{une_formation.FORM_NOM}</option>
+                    <!-- END une_formation -->
+                </select>
+                <span>Saisissez la date de début de la période :</span>
+                <input type="date" name="date_debut" required>
+                <span>Saisissez la date de fin de la période :</span>
+                <input type="date" name="date_fin" required>
+                <input type="submit" name="facturer" value="Générer les attestations de présence"/>
+            </form>
+        </div>
+    </div>
+</div>

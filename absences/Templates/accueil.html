@@ -1,0 +1,77 @@
+<div class="main">
+    <div class="limited specific_div_accueil_2">
+        <!-- IF NB > 0 -->
+        <form action="?p=front&amp;p2=accueil" method="POST" id="id_main_form">
+            <label><b>Date du cours : </b></label>
+            <input type="date" name="ABS_DATE" id="id_date_cours"/>
+
+            <label><b>Créneau horaire : </b></label>
+            <div class="box">
+                <!-- BEGIN un_creneau_frequent -->
+                <input type="checkbox" name="creneau[]" value="{un_creneau_frequent.CRENEAU_ID}"/>
+                {un_creneau_frequent.CRENEAU_NOM}<br/>
+                <!-- END un_creneau_frequent -->
+                <a href="#" class="font_large" id="id_show_creneau_rares">Cliquez ici, pour voir les créneaux plus
+                    rares</a>
+                <div id="id_afficher_creneaux_rares" class="specific_div_accueil_1">
+                    <hr/>
+                    <!-- BEGIN un_creneau -->
+                    <input type="checkbox" name="creneau[]" value="{un_creneau.CRENEAU_ID}"/>
+                    {un_creneau.CRENEAU_NOM}<br/>
+                    <!-- END un_creneau -->
+                    <a href="#" class="font_large" id="id_show_creneau">Cliquez ici, pour ajouter un créneau</a>
+                    <div id="ajouter_creneau_id" class="specific_div_accueil_1">
+                        <hr/>
+                        <span class="font_small">Cochez la case ci-dessous et saisissez le créneau en respectant le format : HHhMM - HHhMM</span><br/>
+                        <input type="checkbox" name="creneau_special" id="id_creneau_special"/>&nbsp;<input type="text"
+                                                                                                            class="specific_input_accueil_1"
+                                                                                                            placeholder="Nouveau créneau"
+                                                                                                            name="creneau_horaire"
+                                                                                                            id="special_text"/>&nbsp;<input
+                            type="radio" name="creneau_demi" checked="checked" value="matin" id="special_check_matin"
+                            disabled/>matin <input type="radio" name="creneau_demi" value="après-midi"
+                                                   id="special_check_aprem" disabled/>après-midi
+                    </div>
+                </div>
+            </div>
+
+            <label><b>Nom du cours : </b></label>
+            <div class="box">
+                <select id="selecteur_affectations" name="MAT_ID">
+                    <!-- BEGIN un_departement -->
+                    <!-- BEGIN une_formation -->
+                    <optgroup class="rouge" label="{une_formation.FORM_NOM}"></optgroup>
+                    <!-- BEGIN un_semestre -->
+                    <optgroup class="bleu" label="&nbsp;{un_semestre.SEM_NOM}"></optgroup>
+                    <!-- BEGIN une_ue -->
+                    <optgroup class="jaune" label="&nbsp;&nbsp;{une_ue.UE_NOM}"></optgroup>
+                    <!-- BEGIN une_hierarchie -->
+                    {une_hierarchie.HIERARCHIE}
+                    <!-- END une_hierarchie -->
+                    <!-- END une_ue -->
+                    <!-- END un_semestre -->
+                    <!-- END une_formation -->
+                    <!-- END un_departement -->
+                </select>
+            </div>
+
+            <label><b>Type du cours : </b></label><span class="font_small">(facultatif)</span>
+            <div class="box">
+                <select name="type">
+                    <option value="0">-- non renseigné --</option>
+                    <!-- BEGIN un_type-->
+                    <option value="{un_type.ABST_ID}">{un_type.ABST_NOM}</option>
+                    <!-- END un_type -->
+                </select>
+            </div>
+
+            <div id="id_generated_selecteur_etudiant"></div>
+        </form>
+        <!-- ELSE -->
+        <span class="vert font_large">Toutes les matières dans lesquelles vous intervenez sont vérouillées. Vous ne pouvez plus déclarer d'absences.</span>
+        <!-- ENDIF -->
+        <!-- IF IS_CHEF -->
+        <div id="chef"></div>
+        <!-- ENDIF -->
+    </div>
+</div>

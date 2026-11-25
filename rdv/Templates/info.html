@@ -1,0 +1,40 @@
+<div class="main">
+    <div class="limited">
+        <div class="text_align_center">
+            <span class="font_large">Le rendez-vous que vous avez choisi vous est réservé pendant 10 minutes.</span><br/>
+            <span class="font_large">Veuillez maintenant saisir et valider les renseignements ci-dessous.</span><br/>
+            <div class="box text_align_left">
+                <form method="POST" action="?p=front&amp;p2=end">
+                    <label for="nom">*Nom :</label>
+                    <input type="text" required id="nom" name="*RDV_NOM"/>
+                    <label for="prenom">*Prenom :</label>
+                    <input type="text" required id="prenom" name="*RDV_PRENOM"/>
+                    <label for="numero">*Numéro de dossier parcoursup :</label>
+                    <input type="text" required id="numero" name="*RDV_NUMERO"/>
+                    <label for="tel">*Numéro de téléphone :</label>
+                    <input type="text" required id="tel" name="*RDV_TEL"/>
+                    <label for="mail">*Adresse mail :</label>
+                    <input type="email" required id="mail" name="*RDV_MAIL"/>
+                    <label for="commentaire">Commentaire :</label>
+                    <textarea rows="3" id="commentaire" name="*RDV_COMMENTAIRE"> </textarea>
+                    <input type="hidden" value="{PLANNING_UID}" name="pl"/>
+                    <input type="hidden" value="{RDV_ID}" name="r"/>
+                    <hr/>
+                    <span>Vous aurez rendez-vous le&nbsp;</span><span class="vert">{DISPO_DATE_AFFICHAGE}</span><span>&nbsp;de&nbsp;</span><span
+                        class="vert">{CRENEAU_DEBUT_AFFICHAGE}</span><span>&nbsp;à&nbsp;</span><span class="vert">{CRENEAU_FIN_AFFICHAGE}</span><span>&nbsp;{TYPE_AFFICHAGE}</span><br/>
+                    <!-- IF RDV_TYPE == 1 -->
+                    <span>L'adresse du rendez-vous vous sera communiqué par mail.</span>
+                    <!-- ENDIF -->
+                    <!-- IF RDV_TYPE == 3 -->
+                    <span>Vous serez contacté au numéro de téléphone indiqué ci-dessous.</span>
+                    <!-- ENDIF -->
+                    <!-- IF RDV_TYPE == 2 -->
+                    <span>Vous recevez l'adresse de connexion en visio par mail.</span>
+                    <!-- ENDIF -->
+                    <hr/>
+                    <input type="submit" name="CONFIRM" value="Confirmer le rendez-vous"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="main">
+    <div class="limited specific_div_jury_2">
+        <table class="releve">
+            <tr  class="fixed">
+                <th>
+                    <select id="id_selecteur_groupe" data-bfmw="{CATEGORIE}">
+                        <!-- BEGIN un_groupe -->
+                        <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                        <!-- END un_groupe -->
+                    </select>
+
+
+                </th>
+                <th class="specific_th_jury_1">Avis</th>
+                <th class="specific_th_jury_1">Infos</th>
+                <th class="specific_th_jury_1">Bilan</th>
+            </tr>
+            <!-- BEGIN un_etudiant -->
+            <tr>
+                <th class="nowrap">
+                    <!-- IF IS_ADMIN -->
+                    <form method="post" class="bfmw_submit_ajax" action="?do=openvote"
+                          data-bfmw="ok_{un_etudiant.ET_ID}" data-bfmw2="ko_{un_etudiant.ET_ID}">
+                        <span class="blanc">Demander un vote </span>
+                        <input class="specific_input_vote_1 bfmw_no_style" type="text" name="*VOTE_NOM" value=""/>
+                        <input type="hidden" name="*VOTE_ET_ID" value="{un_etudiant.ET_ID}"/>
+                        <input type="hidden" name="*VOTE_CODE" value="{VOTE_CODE}"/>
+                        <input type="submit" class="specific_input_vote_0" name="creer_vote" value="Ouvrir"/>
+                        <img id="ok_{un_etudiant.ET_ID}" src="../bfmw/images/tick.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                             class="force_hide specific_img_vote_7" title="Ouverture validée" alt="ok"/>
+                        <img id="ko_{un_etudiant.ET_ID}" src="../bfmw/images/croix.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                             class="force_hide specific_img_vote_7" title="Impossible d'ouvrir le vote" alt="ko"/>
+                    </form>
+                    <hr/>
+                    <!-- ENDIF -->
+                    <span>{un_etudiant.ET_NOM}</span><br/>{un_etudiant.GROUPE_NOM}
+                    <div class="lazyLoad_absences" id="lazyLoad_absences_{un_etudiant.ET_ID}"
+                         data-bfmw="{un_etudiant.ET_ID}">
+                        <img src="images/loading.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Chargement en cours" class="specific_img_jury_5"
+                             title="Absences en chargement"/>
+                    </div>
+                </th>
+                <td class="bleu text_align_center specific_td_jury_1" id="id_cell_avis_{un_etudiant.ET_ID}">
+                    <span class="font_small">Avis&nbsp;:</span>
+                    <span id="id_avis_{un_etudiant.ET_ID}" class="vert">
+                    ?
+                </span>
+                    <div class="jaune" id="id_appreciation_{un_etudiant.ET_ID}">
+                    </div>
+
+                    <hr/>
+                    <span class="font_small">Total&nbsp;:</span>
+                    <div class="computed_total">
+                        <img src="images/loading.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Chargement en cours" class="specific_img_jury_5"
+                             title="Total en chargement"/>
+                    </div>
+                    <div id="vote_{un_etudiant.ET_ID}"></div>
+                    <div id="a_vote_{un_etudiant.ET_ID}"></div>
+                    <!-- IF IS_ADMIN -->
+                    <hr/>
+                    <form method="POST" class="bfmw_submit_ajax"
+                          action="?p=poursuite&amp;send_avis_modele={un_etudiant.ET_ID}&amp;a={ANNEE_COURANTE}"
+                          data-bfmw="ok_deposer_avis_{un_etudiant.ET_ID}"
+                          data-bfmw2="ko_deposer_avis_{un_etudiant.ET_ID}">
+                        <div class="lazyload_modele" id="lazyload_modele_{un_etudiant.ET_ID}">
+                            <img src="images/loading.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Chargement en cours" class="specific_img_jury_5"
+                                 title="Modèle d'avis en chargement"/>
+                        </div>
+                        <input type="hidden" value="{CATEGORIE}" name="categorie"/>
+                        <input type="submit" class="specific_input_modele_0" name="deposer_avis"
+                               value="Déposer l'avis"/>
+                        <img id="ok_deposer_avis_{un_etudiant.ET_ID}" src="../bfmw/images/tick.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                             class="force_hide specific_img_vote_7" title="Avis déposé" alt="ok"/>
+                        <img id="ko_deposer_avis_{un_etudiant.ET_ID}" src="../bfmw/images/croix.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                             class="force_hide specific_img_vote_7" title="Impossible de déposer l'avis" alt="ko"/><br/>
+                    </form>
+                    <input type="text" class="bind2" placeholder="Avis général" data-bfmw="{un_etudiant.ET_ID}"
+                           data-bfmw2="{CATEGORIE_NOM}" value="{un_etudiant.POURSUITE_APPRECIATION_G}"/>
+                    <!-- ENDIF -->
+                </td>
+                <td class="text_align_center specific_td_jury_1">
+                    <img src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" class="specific_img_jury_2"/><br/>
+                    Bac&nbsp;:&nbsp;<span class="vert">{un_etudiant.ET_BAC}</span>
+                    <!-- IF un_etudiant.ET_RED != "" -->
+                    <br/>{un_etudiant.ET_RED}
+                    <!-- ENDIF -->
+                    <!-- IF un_etudiant.ET_TIERS != 0 -->
+                    <br/>Tiers&nbsp;temps
+                    <!-- ENDIF -->
+                    <!-- IF un_etudiant.ET_PROFESSIONNALISATION != 0 -->
+                    <br/><span class="jaune">Alternant</span>
+                    <!-- ENDIF -->
+                </td>
+                <td class="specific_td_jury_1">
+                    <div class="lazyload_bilan" id="lazyload_bilan_{un_etudiant.ET_ID}" data-bfmw="{un_etudiant.ET_ID}"
+                         data-bfmw2="{ANNEE_COURANTE}" data-bfmw3="{GROUPE_CODE}" data-bfmw4="{CATEGORIE_NOM}">
+                        <img src="images/loading.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Chargement en cours" class="specific_img_jury_5"
+                             title="Bilan en chargement"/>
+                    </div>
+                </td>
+            </tr>
+            <!-- END un_etudiant -->
+        </table>
+        <!-- IF IS_GENERATEUR -->
+        <form action="?generate=Export" method="post" enctype="multipart/form-data">
+            <span class="font_medium">Fournissez ici le fichier modèle : </span>
+            <input type="file" name="fichier" id="fichier" accept=".xlsx" required class="bfmw_no_style"/><br/>
+            <input type="hidden" name="g" value="{GROUPE_ID}"/><br/>
+            <input type="submit" value="Générer les fiches" class="specific_select_jury_1"/>
+        </form>
+        <form action="?generate=RecapitulatifPoursuites" method="POST">
+            <input type="submit" value="Générer le tableau récapitulatif (tri alphabétique)"
+                   class="specific_select_jury_1" name="alpha"/><br/>
+            <input type="submit" value="Générer le tableau récapitulatif (tri fusion)" class="specific_select_jury_1"
+                   name="moyenne"/><br/>
+        </form>
+        <!-- ENDIF -->
+        <br/>
+    </div>
+    <input type="hidden" id="data_comp1" value="{VOTE_CODE}"/>
+</div>

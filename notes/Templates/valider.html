@@ -1,0 +1,29 @@
+<div class="main">
+    <div class="limited">
+        <div class="box">
+            <p class="font_small">Lorsque vous avez terminé la saisie de vos notes, utilisez cette page pour vérifier et
+                valider le contrôle. Pour ce faire cliquez sur le contrôle que vous souhaitez valider.</p>
+        </div>
+        <!-- BEGIN une_formation -->
+        <label class="bleu">{une_formation.FORM_NOM}</label>
+        <div class="box">
+            <!-- BEGIN une_matiere -->
+            <label class="vert">{une_matiere.MAT_NOM} : </label>
+            <div class="box">
+                <!-- BEGIN un_controle -->
+                <p class="font_small">&bull;&nbsp;<a
+                        href="?p=validerControle&amp;c={un_controle.CONTROLE_ID}&amp;m={une_matiere.MAT_ID}">{un_controle.CONTROLE_NOM}</a>
+                    ({un_controle.NB_NOTES} notes)&nbsp;<a
+                            href="?p=front&amp;p2=valider&amp;del={un_controle.CONTROLE_ID}&amp;m={une_matiere.MAT_ID}&amp;f={une_formation.FORM_ID}"
+                            class="confirm_supprimer"><img src="images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                           title="Supprimer ce contrôle"/></a></p>
+                <!-- END un_controle -->
+                <!-- BEGIN no_controle -->
+                <p class="font_small">Aucun contrôle restant à valider dans cette matière.</p>
+                <!-- END no_controle -->
+            </div>
+            <!-- END une_matiere -->
+        </div>
+        <!-- END une_formation -->
+    </div>
+</div>

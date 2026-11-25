@@ -2,5 +2,10 @@ workspace.xml
 cache
 .idea
 /*.php
+/etudiants/uploads/
+odin/local
+trombi/*
+self_server_concrete.php
+gestionlicence
 vendor
 composer.lock

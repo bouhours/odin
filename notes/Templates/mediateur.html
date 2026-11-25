@@ -1,0 +1,101 @@
+<div class="main">
+    <div class="limited specific_div_mediateur_2">
+        <span>Choisissez le semestre à afficher :&nbsp;</span>
+        <select id="id_selecteur_semestre" class="specific_div_mediateur_1" data-bfmw="{GROUPE_ID}"
+                data-bfmw2="{SELON}">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+                <!-- BEGIN un_semestre -->
+                <option value="{un_semestre.SEM_ID}" {un_semestre.SELECTED}>{un_semestre.SEM_NOM}</option>
+                <!-- END un_semestre -->
+                <!-- END une_formation -->
+        </select><br/>
+        <span>Choisissez le groupe à afficher :&nbsp;</span>
+        <select id="id_selecteur_promo" class="specific_div_mediateur_1" data-bfmw="{SEM_ID}" data-bfmw2="{SELON}">
+            <!-- BEGIN un_groupe -->
+            <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+            <!-- END un_groupe -->
+        </select>
+        <div class="specific_div_mediateur_1">
+            <table class="releve">
+                <tr class="fixed">
+                    <th class="specific_th_mediateur_1 fixed_col"><a class="{TRI_SELON_NOM}"
+                                                           href="?p=mediateur&amp;s={SEM_ID}&amp;g={GROUPE_ID}&amp;selon=NOM"
+                                                           title="Trier selon les noms des étudiants">NON PRÉNOM</a>
+                    </th>
+                    <!-- BEGIN un_semestre -->
+                    <!-- BEGIN une_ue -->
+                    <th class="specific_th_mediateur_1"><a class="{une_ue.TRI_SELON}"
+                                                           href="?p=mediateur&amp;s={SEM_ID}&amp;g={GROUPE_ID}&amp;selon=UE{une_ue.UE_ID}"
+                                                           title="Trier selon les moyennes de l'UE">{une_ue.UE_NOM}</a>
+                        <br/>
+                        <span class="bleu">Coef&nbsp;{une_ue.UE_COEF}</span>
+                    </th>
+                    <!-- BEGIN une_matiere -->
+                    <th class="specific_th_mediateur_2"><a class="{une_matiere.TRI_SELON}"
+                                                           href="?p=mediateur&amp;s={SEM_ID}&amp;g={GROUPE_ID}&amp;selon=MAT{une_matiere.MAT_ID}"
+                                                           title="Trier selon les moyennes de cette matière">{une_matiere.MAT_NOM}</a>
+                        <br/>
+                        <span class="bleu">Coef&nbsp;{une_matiere.MAT_COEF}</span>
+                    </th>
+                    <!-- END une_matiere -->
+                    <!-- END une_ue -->
+                    <!-- END un_semestre -->
+                </tr>
+                <!-- BEGIN un_etudiant -->
+                <tr>
+                    <th class="vert nowrap  fixed_col">
+                        <div class="tooltip">{un_etudiant.ET_NOM}
+                            <div class="tooltiptext"><img class="specific_img_mediateur_2"
+                                                                      src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                      loading="lazy"
+                                                                      alt="photo"/>
+                            </div>
+                        </div>
+                    </th>
+
+                    <!-- BEGIN un_semestre -->
+                    <!-- BEGIN une_ue -->
+                    <th class="vert specific_td_mediateur_1">
+                        <!-- IF un_etudiant.un_semestre.une_ue.MOYUE_VALEUR != "" -->
+                        <div class="tooltip">{un_etudiant.un_semestre.une_ue.MOYUE_VALEUR}
+                            <!-- IF un_etudiant.un_semestre.une_ue.MOYUE_BARREE != "" -->
+                            <br/><span class="text_barre">{un_etudiant.un_semestre.une_ue.MOYUE_BARREE}</span>
+                            <!-- ENDIF -->
+                            <div class="tooltiptext">Moyenne
+                                à<br/>l'{un_etudiant.un_semestre.une_ue.UE_NOM}<br/>pour<br/>{un_etudiant.ET_NOM}<br/><img
+                                        src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="photo"
+                                        loading="lazy"
+                                        class="specific_img_mediateur_2"/></div>
+                        </div>
+                        <!-- ENDIF -->
+                    </th>
+                    <!-- BEGIN une_matiere -->
+                    <td class="rouge text_align_center specific_td_mediateur_1">
+                        <!-- IF un_etudiant.un_semestre.une_ue.une_matiere.MOYMAT_VALEUR != "" -->
+                        <div class="tooltip">{un_etudiant.un_semestre.une_ue.une_matiere.MOYMAT_VALEUR}
+                            <div class="tooltiptext">Moyenne à la matière<br/>{un_etudiant.un_semestre.une_ue.une_matiere.MAT_NOM}<br/>pour<br/>{un_etudiant.ET_NOM}<br/><img
+                                    src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="photo"
+                                    loading="lazy"
+                                    class="specific_img_mediateur_2"/></div>
+                        </div>
+                        <!-- ELSE -->
+                        <!-- IF un_etudiant.un_semestre.une_ue.DISP || un_etudiant.un_semestre.une_ue.une_matiere.DISP -->
+                        <div class="tooltip">X
+                            <div class="tooltiptext">{un_etudiant.ET_NOM}<br/>est dispensé de<br/>{un_etudiant.un_semestre.une_ue.une_matiere.MAT_NOM}<br/><img
+                                    src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="photo"
+                                    loading="lazy"
+                                    class="specific_img_mediateur_2"/></div>
+                        </div>
+                        <!-- ENDIF -->
+                        <!-- ENDIF -->
+                    </td>
+                    <!-- END une_matiere -->
+                    <!-- END une_ue -->
+                    <!-- END un_semestre -->
+                </tr>
+                <!-- END un_etudiant -->
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="main">
+    <div class="limited">
+        <span>Planning à configurer :</span>
+        <select id="id_selection_session" data-bfmw="{ANNEE_COURANTE}">
+            <!-- BEGIN un_planning -->
+            <option value="{un_planning.PLANNING_ID}" {un_planning.SELECTED}>{un_planning.PLANNING_CONTENU}</option>
+            <!-- END un_planning -->
+        </select>
+        <!--
+        <hr/>
+        <form method="post" action="?p=front&amp;p2=disponibilites&amp;s={SESSION_COURANTE}&amp;a={ANNEE_COURANTE}">
+            <span class="vert">Indiquez ici les jours (entre le </span><span class="rouge">{SESSION_DEBUT}</span><span class="vert"> et le </span><span class="rouge">{SESSION_FIN}</span><span class="vert">),</span>
+            <span class="vert">où vous êtes disponibles&nbsp;:</span><br/>
+            <input type="text" name="date" class="specific_input_disponibilite_1" required pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]([2][0][123][0-9])$" placeholder="JJ/MM/AAAA" />
+            <input type="submit" name="creer_dispo" class="specific_input_disponibilite_2 text_vertical_bottom" value="Ajouter une disponibilité"/><br/>
+            <span class="rouge font_small">Vous pourrez choisir les créneaux horaires une fois les jours crées</span>
+        </form>
+        -->
+        <!-- IF HAS_DISPO -->
+        <hr/>
+        <span class="vert">Liste de vos disponibilités&nbsp;:</span><br/>
+        <!--<span  class="rouge font_small">Vous pouvez cocher les créneaux horaires de chaque jour en cliquant sur le "+"</span>-->
+        <div class="box">
+            <div class="specific_div_disponibilite_1">
+                <input type="hidden" value="{SESSION_COURANTE}" id="id_selecteur"/>
+                <span class="font_medium">Il vous reste </span><span class="font_medium vert" id="id_reste"></span><span
+                    class="font_medium"> soutenances à faire jusqu'à fin août.</span><br/>
+                <span class="font_medium">Vous devez cocher au moins </span><span class="font_medium vert"
+                                                                                  id="id_nombre"></span><span
+                    class="font_medium"> créneaux horaires disjoints pour cette session.</span><br/>
+                <span class="font_medium">Vous avez coché pour l'instant </span><span class="font_medium vert"
+                                                                                      id="id_coches"></span><span
+                    class="font_medium"> créneaux horaires disjoints.</span><br/>
+            </div>
+            <ul class="font_small">
+                <!-- BEGIN une_dispo -->
+                <li>
+                    <!--<a href="?p=front&amp;p2=disponibilites&amp;deldispo={une_dispo.DISPO_ID}&amp;s={SESSION_COURANTE}&amp;a={ANNEE_COURANTE}" name="confirm_suppres_dispo"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer cette disponibilité"/></a>-->
+                    {une_dispo.DISPO_DATE_AFFICHAGE}
+                    <ul>
+                        <!-- BEGIN un_creneau -->
+                        <li>
+                            <!-- IF un_creneau.DISPO_CRENEAU_STAGE_ID == "" -->
+                            <input type="checkbox" class="bind" value="1" {un_creneau.DISPO_CHECKED}
+                                   data-bfmw="{une_dispo.DISPO_ID}${un_creneau.CRENEAU_ID}" name="DISPO_ENS"/>
+                            <!-- ELSE -->
+                            <img src="../bfmw/images/lock.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_disponibilites_1"/>
+                            <!-- ENDIF -->
+                            <span>De<span>&nbsp;<span class="vert">{un_creneau.CRENEAU_DEBUT_AFFICHAGE}</span><span>&nbsp;à&nbsp;</span><span
+                                    class="vert">{un_creneau.CRENEAU_FIN_AFFICHAGE}</span></li>
+                        <!-- END un_creneau -->
+                    </ul>
+                </li>
+                <!-- END une_dispo -->
+            </ul>
+        </div>
+        <!-- ENDIF -->
+    </div>
+</div>

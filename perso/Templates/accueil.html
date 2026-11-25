@@ -1,0 +1,45 @@
+<div class="main">
+    <div class="limited">
+        <span>Année à afficher :</span>
+        <select class="specific_select_accueil_1" id="id_selection_annee">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <hr/>
+        <span>Prévisionnel :</span><span class="vert">&nbsp;&asymp;{TOTAL_ANNEE}</span><span>&nbsp;h</span><br/><span>Le calcul est imprécis car il nécessite de connaître des informations non saisies dans Odin.</span><br/>
+        <ul>
+            <!-- BEGIN une_formation -->
+            <li class="jaune">{une_formation.FORM_NOM}</li>
+            <ul>
+                <!-- BEGIN un_semestre -->
+                <li class="bleu">{un_semestre.SEM_NOM} :&nbsp;<span
+                        class="vert">&asymp;{un_semestre.TOTAL_SEMESTRE}</span><span>&nbsp;h</span></li>
+                <ul>
+                    <!-- BEGIN une_ue -->
+                    <li class="bleu">{une_ue.UE_NOM}</li>
+                    <ul>
+                        <!-- BEGIN une_matiere -->
+                        <li class="rouge">{une_matiere.MAT_NOM}&nbsp;<span class="vert font_small">{une_matiere.MAT_CODE_APOGE}</span>
+                        </li>
+                        <!-- IF une_matiere.CHARGE_MULTIPLIEE > 0 -->
+                        <ul>
+                            <!-- BEGIN une_charge -->
+                            <li><span
+                                    class="vert">{une_charge.CHARGE_MULTIPLIEE}</span><span>&nbsp;h de&nbsp;</span><span
+                                    class="vert">{une_charge.CHARGE_TYPE}</span><span> compté </span><span class="vert">&asymp;{une_charge.CHARGE_EQTD}</span><span>&nbsp;h</span>
+                            </li>
+                            <!-- END une_charge -->
+                            <li>Total : <span class="vert">&asymp;{une_matiere.TOTAL}</span> h eq TD</li>
+                        </ul>
+                        <!-- ENDIF -->
+                        <!-- END une_matiere -->
+                    </ul>
+                    <!-- END une_ue -->
+                </ul>
+                <!-- END un_semestre -->
+            </ul>
+            <!-- END une_formation -->
+        </ul>
+    </div>
+</div>

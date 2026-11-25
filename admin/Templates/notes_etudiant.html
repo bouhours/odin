@@ -1,0 +1,23 @@
+<!-- DETAIL -->
+<div id="detail">
+    <a class="show_master" href="#"><img src="../bfmw/images/fleche.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="masque_master" alt="Menu"/></a>
+    <!-- BEGIN show -->
+    <h2 class="rouge">Infos : </h2>
+
+
+    <h2 class="rouge">Absences : </h2>
+    <table class="releve">
+        <!-- BEGIN une_absence -->
+        <tr>
+            <td><b>{une_absence.TOTAL}</b> dont <b>{une_absence.JUST}</b> en <span class="vert">{une_absence.COURS_NOM}</span> avec {une_absence.ENS_NOM}</td>
+        </tr>
+        <!-- END une_absence -->
+        <tr>
+            <td>Soit un total de <span class="vert"><b>{NOMBRE}</b></span> sur <span class="vert"><b>{DEMI}</b></span> {TEXTE}</td>
+        </tr>
+    </table>
+
+    <h2 class="rouge">Notes : </h2>
+
+    <!-- END show -->
+</div>

@@ -1,0 +1,43 @@
+<div class="main">
+    <div class="limited">
+        <!-- BEGIN un_enseignant -->
+        <label class="font_large"><span class="vert">{un_enseignant.ENS_NOM}</span></label>
+        <div class="box">
+            <!-- BEGIN une_demande -->
+            <form action="?p=front&amp;p2=gestion_demande" method="POST">
+                <span>&bull;&nbsp;{une_demande.DEMANDE_TYPE}</span><br/>
+                <div class="box">
+                    <div class="font_small">
+                        <!-- IF une_demande.DEMANDE_DATE != "" -->
+                        &bull;&nbsp;Le&nbsp;<span class="vert">{une_demande.DEMANDE_DATE}</span> de&nbsp;<span
+                            class="rouge">{une_demande.DEMANDE_DEBUT}</span> à <span class="rouge">{une_demande.DEMANDE_FIN}</span><br/>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{une_demande.DEMANDE_NOM}</span> salle : <span
+                            class="bleu">{une_demande.DEMANDE_SALLE}</span><br/>
+                        <!-- ENDIF -->
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==&gt;&nbsp;{une_demande.DEMANDE_COMMENTAIRE}</p>
+                    </div>
+                    <input type="hidden" value="{une_demande.DEMANDE_ID}" name="DEMANDE_ID"/>
+                    <!-- IF une_demande.DEMANDE_EXECUTOR_ENS_ID == "" -->
+                    <input type="submit" value="Cliquez-ici pour indiquer que vous vous en occupez"
+                           class="specific_input_gestion_demande_1" name="submit_executor"/>
+                    <!-- ELSEIF une_demande.DEMANDE_EXECUTOR_ENS_ID == une_demande.CURRENT_ID && une_demande.DEMANDE_DONE == 0 -->
+                    <span class="font_small rouge">Vous vous en occupez</span><br/>
+                    <input type="submit" value="Cliquez ici lorsque c'est fait !"
+                           class="specific_input_gestion_demande_1" name="submit_done"/>
+                    <input type="submit" value="Cliquez ici si vous refusez la demande !"
+                           class="specific_input_gestion_demande_2" name="submit_refuse"/>
+                    <!-- ELSEIF une_demande.DEMANDE_EXECUTOR_ENS_ID != une_demande.CURRENT_ID && une_demande.DEMANDE_DONE == 0 -->
+                    <span class="font_small rouge">{une_demande.EXECUTOR_ENS_NOM} s'en occupe</span>
+                    <!-- ELSEIF une_demande.DEMANDE_EXECUTOR_ENS_ID != une_demande.CURRENT_ID && une_demande.DEMANDE_DONE == 1 -->
+                    <span class="font_small vert">{une_demande.EXECUTOR_ENS_NOM} s'en est occupé</span>
+                    <!-- ELSEIF une_demande.DEMANDE_EXECUTOR_ENS_ID == une_demande.CURRENT_ID && une_demande.DEMANDE_DONE == 1 -->
+                    <span class="font_small vert">Vous vous en êtes occupé</span>
+                    <!-- ENDIF -->
+                </div>
+            </form>
+            <!-- END une_demande -->
+        </div>
+        <br/><br/>
+        <!-- END un_enseignant -->
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<!-- MASTER -->
+<div class="complete_master" id="le_master">
+    <div class="filter" id="id_div_filter">
+        <select id="id_selecteur_annee"  data-bfmw="{GROUPE_ID}">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select><br/>
+        <select  id="id_select_groupe" data-bfmw="{ANNEE_ID}">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+            <!-- BEGIN un_groupe -->
+            <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+            <!-- END un_groupe -->
+            <!-- END une_formation -->
+        </select>
+    </div>
+    <div class="master">
+        <div>
+            <span class="bleu font_small" >* = a des justifications à valider</span><br/>
+            <a class="nomaster font_small rouge" href="#" id="id_cacher_absences">Cacher les étudiants sans absence</a><br/>
+            <!-- BEGIN un_etudiant -->
+            <div class="{un_etudiant.HIDDEN}">
+                <a id="{un_etudiant.ET_ID}" class="{un_etudiant.SELECTED}" href="?p=absences&amp;g={GROUPE}&amp;a={ANNEE_ID}&amp;e={un_etudiant.ET_ID}#{un_etudiant.ET_ID}">
+                <!-- IF un_etudiant.NB_JUSTIF > 0 -->
+                <span class="bleu">*</span>
+                <!-- ENDIF -->
+                {un_etudiant.ET_NOM}&nbsp;({un_etudiant.NB_ABSENCES})</a></div>
+            <!-- END un_etudiant -->
+        </div>
+    </div>
+</div>

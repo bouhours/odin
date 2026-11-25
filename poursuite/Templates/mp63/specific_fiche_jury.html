@@ -1,0 +1,24 @@
+<table class="releve bfmw_align_center">
+    <tr>
+        <td colspan="2" class="text_align_center"><img src="../trombi/{ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="" title="{ET_NOM}" class="specific_img_jury_2"/></td>
+    </tr>
+    <tr>
+        <th colspan="2" class="text_align_center">Fiche de {ET_NOM} (Groupe {GROUPE_NOM})</th>
+    </tr>
+    <tr>
+        <th class="font_small">MATIERES</th>
+        <th class="font_small">APPRECIATIONS</th>
+    </tr>
+    <!-- BEGIN une_ligne -->
+    <tr>
+        <td class="text_align_center text_vertical_middle font_small specific_td_jury_2"><b>{une_ligne.PMAT_NOM}</b>
+            <div>
+                <!-- BEGIN un_enseignant -->
+                {une_ligne.un_enseignant.ENS_NOM}<br/>
+                <!-- END un_enseignant -->
+            </div>
+        </td>
+        <td class="text_align_center text_vertical_middle font_small specific_td_jury_2">{une_ligne.AVIS_APPRECIATION}</td>
+    </tr>
+    <!-- END une_ligne -->
+</table>

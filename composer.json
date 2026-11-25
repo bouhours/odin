@@ -1,5 +1,11 @@
 {
-  "require": {
-    "b_fmw/bfmw": "dev-main"
-  }
+    "license": "CC-BY-NC-ND-4.0",
+    "require": {
+        "b_fmw/bfmw": "dev-main",
+        "phpoffice/phpspreadsheet": "^5.4.0",
+        "apereo/phpcas": "^1.6",
+        "johngrogg/ics-parser": "^3.3",
+        "tecnickcom/tcpdf": "^6.6",
+        "ext-gd": "*"
+    }
 }

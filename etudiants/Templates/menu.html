@@ -1,0 +1,39 @@
+<div class="top_page">
+    <div class="menu" id="GeneralMenu">
+        <a href=".." title="Retour au portail" class="not_menu retour_portail_menu"><img class="retour_portail" src="../bfmw/images/home.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"/></a>
+        <a href="?" class="not_menu">Accès étudiant</a>
+        <a href="?p=accueil{PARAM}" {ACTIVE_RENSEIGNEMENT}>Renseignements</a>
+        <!-- IF RENSEIGNEMENTS_OK -->
+        <a href="?p=notes{PARAM}" {ACTIVE_NOTES}>Notes</a>
+        <!-- IF (ABSENCES_AUTO || ABSENCES_PRO) && !(FORCE_ANNEE) -->
+        <a href="?p=signature{PARAM}" {ACTIVE_ABSENCES_AUTO}>Déclarer sa présence</a>
+        <!-- ENDIF -->
+        <!-- IF IS_INSCRIT_COURANT -->
+        <!-- IF !(FORCE_ANNEE) -->
+        <a href="?p=absences{PARAM}" {ACTIVE_ABSENCES}>Absences</a>
+        <!-- ENDIF -->
+        <!-- IF CODE == "inf63" && !(FORCE_ANNEE) -->
+        <a href="?p=emprunts{PARAM}" {ACTIVE_EMPRUNTS}>Emprunts</a>
+        <!-- ENDIF -->
+        <!-- IF IS_STAGES -->
+        <a href="?p=stages{PARAM}" {ACTIVE_STAGES}>Stages</a>
+        <!-- ENDIF -->
+        <!-- IF !(FORCE_ANNEE) -->
+        <a href="?p=edt{PARAM}" {ACTIVE_EDT}>Emploi du temps</a>
+        <!-- ENDIF -->
+        <!-- IF IS_POURSUITE -->
+        <a href="?p=poursuites{PARAM}" {ACTIVE_POURSUITE}>Poursuites d'études</a>
+        <!-- ENDIF -->
+        <!-- IF IS_RETOUR -->
+        <a href="?p=retour{PARAM}" {ACTIVE_RETOUR}>Votre avis compte !</a>
+        <!-- ENDIF -->
+        <!-- ENDIF -->
+        <!-- ELSE -->
+        <a href="#" class="global_menu_a" >Accès bloqué car fiche de renseignements incomplète</a>
+        <!-- ENDIF -->
+        <a href="https://jira.dsi.uca.fr/plugins/servlet/desk/portal/29" target="aide_odin">Aide</a>
+        <a href="?p=logout">Se déconnecter</a>
+        <a href="#" class="icon texte_menu"><img src="../bfmw/images/menu.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="image_menu" alt="Menu"/></a>
+    </div>
+</div>
+<div id="id_margin_top" ></div>

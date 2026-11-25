@@ -1,0 +1,67 @@
+<div class="main">
+    <div class="limited specific_div_bilan_1">
+        <form action="?generate=BilanMultiFormats" method="POST" id="id_formulaire">
+            <label>&bull;&nbsp;Sélectionnez l'année : </label>
+            <select id="id_selection_annee">
+                <!-- BEGIN une_annee -->
+                <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+                <!-- END une_annee -->
+            </select>
+
+            <label>&bull;&nbsp;Sélectionnez le groupe : </label>
+            <select id="id_selecteur_groupe" name="groupe" data-bfmw="{ANNEE_COURANTE}">
+                <!-- BEGIN une_formation -->
+                <optgroup label="{une_formation.FORM_NOM}">
+                    <!-- BEGIN un_groupe -->
+                    <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                    <!-- END un_groupe -->
+                    <!-- END une_formation -->
+            </select>
+
+            <!-- BEGIN matiere -->
+            <label>&bull;&nbsp;Sélectionnez les matières à inclure dans le bilan, ainsi que leur coefficient
+                : </label><br/>
+            <div class="box">
+                <!-- END matiere -->
+                <!-- BEGIN un_semestre -->
+                <input type="checkbox" class="select_all select_all_s{un_semestre.SEM_ID}"
+                       data-bfmw="s{un_semestre.SEM_ID}" data-bfmw2="-1"/>&nbsp;<span class="bleu font_large">{un_semestre.SEM_NOM}</span><br/>
+                <!-- BEGIN une_ue -->
+                &nbsp;&nbsp;&nbsp;<input type="checkbox" data-bfmw="u{une_ue.UE_ID}" data-bfmw2="s{un_semestre.SEM_ID}"
+                                         class="select_all select_all_u{une_ue.UE_ID} unselect_all_s{un_semestre.SEM_ID}"/>&nbsp;<span
+                    class="rouge font_large">&bull;&nbsp;{une_ue.UE_NOM}</span><span class="font_large">&nbsp;:&nbsp;coefficient pour le bilan&nbsp;:&nbsp;<input
+                    class="specific_input_bilan_1 to_check_ue" type="text" name="ue_coeff_{une_ue.UE_ID}" value="auto"/></span><br/>
+                <!-- BEGIN une_matiere -->
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="matiere[]"
+                                                                 value="{une_matiere.MAT_ID}"
+                                                                 class="select_all unselect_all_u{une_ue.UE_ID}"
+                                                                 data-bfmw="m{une_matiere.MAT_ID}"
+                                                                 data-bfmw2="u{une_ue.UE_ID}"/>&nbsp;<span
+                    class="vert font_large">{une_matiere.MAT_NOM}</span><span class="font_large">&nbsp;:&nbsp;coefficient pour le bilan&nbsp;:&nbsp;<input
+                    type="text" name="coeff_{une_matiere.MAT_ID}" value="{une_matiere.MAT_COEF}"
+                    class="specific_input_bilan_1 to_check"/></span><br/>
+                <!-- END une_matiere -->
+                <!-- END une_ue -->
+                <!-- END un_semestre -->
+                <!-- BEGIN matiere -->
+            </div>
+            <!-- END matiere -->
+            <!-- BEGIN no_matiere -->
+            <span class="rouge">A ce jour, aucune matière de ce groupe ne contient des notes.</span>
+            <!-- END no_matiere -->
+            <!-- BEGIN matiere -->
+            <label>&bull;&nbsp;Sélectionnez le tri que vous désirez : </label><br/>
+            <div class="box">
+                <input type="radio" name="tri" value="alpha" checked="checked"/>&nbsp;<span class="font_large">Tri alphabétique</span><br/>
+                <input type="radio" name="tri" value="groupe"/>&nbsp;<span class="font_large">Tri par groupe</span><br/>
+                <input type="radio" name="tri" value="moyenne"/>&nbsp;<span
+                    class="font_large">Tri par moyenne</span><br/>
+            </div>
+            <input type="submit" name="generer_bilan" value="Générer le bilan au format Excel"/>
+            <input type="submit" name="generer_bilan_ods" value="Générer le bilan au format OpenOffice"/>
+            <input type="submit" name="generer_bilan_csv" value="Générer le bilan au format CSV"/>
+            <input type="hidden" name="a" value="{ANNEE_COURANTE}"/>
+            <!-- END matiere -->
+        </form>
+    </div>
+</div>

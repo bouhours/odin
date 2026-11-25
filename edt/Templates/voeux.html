@@ -1,0 +1,27 @@
+<div class="main">
+    <div class="limited">
+        <!-- BEGIN une_periode -->
+        <label class="font_large"><span class="vert">Fiche de voeux {une_periode.PERIODE_NOM}</span> (date limite de
+            saisie : <span class="rouge">{une_periode.PERIODE_LIMIT_AFFICHAGE}</span>)</label>
+        <div class="box">
+            <div class="font_large">
+            <span class="font_small">Pour {une_periode.ANNEE_NOM} :<br/>
+                <!-- IF une_periode.HAS_FICHE == 1 -->
+                &bull;&nbsp;<a href="?p=fiche&amp;pe={une_periode.PERIODE_ID}">Consulter votre fiche</a>
+                <!-- ELSE -->
+                &bull;&nbsp;<a href="?p=fiche&amp;pe={une_periode.PERIODE_ID}">Créer une fiche</a>
+                <!-- ENDIF -->
+                <!-- IF une_periode.HAS_OLD_FICHE > 0 && (une_periode.HAS_FICHE == 0) -->
+                <br/>&bull;&nbsp;<a href="?p=fiche&amp;pe={une_periode.PERIODE_ID}&amp;copy=copy">Créer une fiche à partir de la fiche de l'année dernière</a>
+                <!-- ENDIF -->
+                <!-- IF une_periode.HAS_OLD_FICHE > 0 && (une_periode.HAS_FICHE == 1) -->
+                <br/>&bull;&nbsp;<a
+                        href="?p=fiche&amp;pe={une_periode.PERIODE_ID}&amp;read={une_periode.ANNEE_PRECEDENTE}">Consulter la fiche de l'année dernière</a>
+                <!-- ENDIF -->
+            </span>
+            </div>
+        </div>
+        <br/><br/>
+        <!-- END une_periode -->
+    </div>
+</div>

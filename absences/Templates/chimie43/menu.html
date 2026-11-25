@@ -1,0 +1,20 @@
+<div class="top_page">
+    <div class="menu" id="GeneralMenu">
+        <a href=".." title="Retour au portail" class="not_menu retour_portail_menu"><img class="retour_portail" src="../bfmw/images/home.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"/></a>
+        <a href=".." title="Retour au portail" class="not_menu">Gestion des absences</a>
+        <!-- BEGIN isIntervenant -->
+        <a href="?" {ACTIVE_DECLARE}>Déclarer une absence</a>
+        <a href="?p=lire" {ACTIVE_LIRE}>Consulter mes absences</a>
+        <!-- IF IS_ABSENCES_AUTO || IS_ABSENCES_PRO -->
+        <a href="?p=signature" {ACTIVE_ABSENCES_AUTO}>Fiches de présence</a>
+        <!-- ENDIF -->
+        <!-- END isIntervenant -->
+        <!-- BEGIN isChef -->
+        <a href="?p=accueil&amp;chef=p5fkhz6sd" {ACTIVE_CHEF}>Accès chef</a>
+        <!-- END isChef -->
+        <a href="?p=aide" {ACTIVE_AIDE}>Aide</a>
+        <a href="?p=logout">Déconnexion</a>
+        <a href="#" class="icon texte_menu"><img src="../bfmw/images/menu.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="image_menu" alt="Menu"/></a>
+    </div>
+</div>
+<div id="id_margin_top"></div>

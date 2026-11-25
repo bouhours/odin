@@ -1,0 +1,239 @@
+/*
+ * Auteur : Cédric BOUHOURS
+ * Ce code est mis à disposition selon les termes de la Licence Creative Commons Attribution
+ * Pas d'Utilisation Commerciale - Pas de Modification 4.0 International.
+ *
+ * Attribution — Vous devez créditer l'Œuvre, intégrer un lien vers la licence. Vous devez indiquer ces informations par tous les moyens raisonnables, sans toutefois suggérer que l'Offrant vous soutient ou soutient la façon dont vous avez utilisé son Oeuvre.
+ *
+ * Pas d’Utilisation Commerciale — Vous n'êtes pas autorisé à faire un usage commercial de cette Oeuvre, tout ou partie du matériel la composant.
+ *
+ * Pas de modifications — Dans le cas où vous effectuez un remix, que vous transformez, ou créez à partir du matériel composant l'Oeuvre originale, vous n'êtes pas autorisé à distribuer ou mettre à disposition l'Oeuvre modifiée.
+ *
+ * Pas de restrictions complémentaires — Vous n'êtes pas autorisé à appliquer des conditions légales ou des mesures techniques qui restreindraient légalement autrui à utiliser l'Oeuvre dans les conditions décrites par la licence.
+ *
+ *
+ */
+
+
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 10px;
+    line-height: 1.5;
+    background-color: white;
+    color : black;
+}
+
+/*******************************************
+Top of page
+********************************************/
+.top_page{
+    display : none;
+}
+
+/*******************************************
+Menu manager
+********************************************/
+.menu  {
+    display : none;
+}
+
+.not_menu{
+    display : none;
+}
+
+.menu a {
+    display : none;
+}
+
+.menu a:hover:not(.not_menu){
+    display : none;
+}
+
+.menu a.active {
+    display : none;
+}
+
+.menu .icon {
+    display: none;
+}
+
+/*******************************************
+Tooltip
+********************************************/
+.tooltip {
+}
+
+.tooltip .tooltiptext {
+    display : none;
+}
+
+.tooltip .tooltiptext::after {
+    display : none;
+}
+
+
+/*******************************************
+Alerts
+********************************************/
+.alert {
+    display : none;
+}
+
+.alert.success {background-color: #4CAF50;}
+.alert.info {background-color: #2196F3;}
+.alert.warning {background-color: #ff9800;}
+
+.closebtn {
+    display : none;
+}
+
+.modal {
+    display : none;
+}
+
+/* Modal Content */
+.modal-content {
+    display : none;
+}
+
+/* The Close Button */
+.close {
+    display : none;
+}
+
+.close:hover,
+.close:focus {
+    display : none;
+}
+
+.modal-header {
+    display : none;
+}
+
+.modal-body {
+    display : none;
+}
+
+
+/*******************************************
+Main document
+********************************************/
+.main {
+    margin-top: 80px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input[type=text]:not(.creneau_special), .box {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: large;
+}
+
+input[type=checkbox] {
+    transform: scale(2);
+    -ms-transform: scale(2);
+    -moz-transform: scale(2);
+    -webkit-transform: scale(2);
+    -o-transform: scale(2);
+    padding: 10px;
+}
+
+.creneau_special {
+    padding: 6px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: large;
+    width : 250px;
+}
+
+select {
+    font-size: large;
+}
+
+.box a.block{
+    width: 100%;
+    padding: 5px 20px;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    font-size: small;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type=submit]:hover {
+    opacity: 0.8;
+}
+
+/*******************************************
+Gestion master
+********************************************/
+.master {
+    display : none;
+}
+
+.master a {
+    display : none;
+}
+
+/*******************************************
+Gestion filtration
+********************************************/
+.filter{
+    
+    height: 10%;
+    position: fixed;
+}
+.filter select{
+    margin-left: 32px;
+    padding: 8px 8px 8px 8px;
+    font-size: 15px;
+}
+
+/*******************************************
+Gestion detail
+********************************************/
+#detail {
+    /*transition: .5s;*/
+}
+
+a.show_master {
+    color : white;
+    text-decoration: none;
+    font-size: 20px;
+    visibility: collapse;
+    display: none;
+}
+
+.complete_master{
+    display: none;
+}
+
+.vert {
+    color: #53aa53;
+}
+
+.bleu {
+    color : #a3a3ff;
+}
+
+.rouge {
+    color : #ff5353;
+}

@@ -1,0 +1,22 @@
+<div class="main">
+    <div class="limited">
+        <ul>
+            <!-- BEGIN un_enseignant -->
+            <li>{un_enseignant.ENS_NOM} ({un_enseignant.ENS_ID} - {un_enseignant.ENS_ADE} - {un_enseignant.ENS_LOGIN})
+                <form action="?p=front&amp;p2=do_update_enseignants" method="post">
+                    <input type="hidden" value="{un_enseignant.ENS_ID}" name="ENS_ID"/>
+                    <select name="login_to_update">
+                        <option value="NULL">--</option>
+                        <!-- BEGIN une_option -->
+                        <option value="{une_option.LDAP_LOGIN}">{une_option.LDAP_NOM} ({une_option.LDAP_LOGIN} -
+                            {une_option.LDAP_CODE_EMPLOYE})
+                        </option>
+                        <!-- END une_option -->
+                    </select>
+                    <input type="submit"/>
+                </form>
+            </li>
+            <!-- END un_enseignant -->
+        </ul>
+    </div>
+</div>

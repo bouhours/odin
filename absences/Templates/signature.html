@@ -1,0 +1,27 @@
+<div class="main">
+    <div class="limited">
+        <span>Liste des cours dont la fiche n'a pas été signée</span>
+        <div class="box">
+            <!-- BEGIN un_cours -->
+            <!-- IF un_cours.COMPOSANT != null -->
+            <div class="box">
+                Le <span class="rouge">{un_cours.DATE_DEBUT}</span>&nbsp;de&nbsp;<span class="rouge">{un_cours.HEURE_DEBUT}</span>
+                à <span class="rouge">{un_cours.HEURE_FIN}</span><br/>
+                <span class="vert">&nbsp;&nbsp;&nbsp;{un_cours.EDT_NOM}</span><br/>
+                &nbsp;&nbsp;&nbsp;salle : <span class="bleu">{un_cours.EDT_SALLE}</span><br/>
+                &nbsp;&nbsp;&nbsp;intervenant : <span class="bleu">{un_cours.ENS_NOM}</span><br/>
+                <form method="POST" action="?p=signer" data-bfmw="{un_cours.EDT_UID}">
+                    &nbsp;&nbsp;&nbsp;matière : {un_cours.COMPOSANT}<br/>
+                    <input type="hidden" value="{un_cours.EDT_UID}" name="d"/>
+                    <input type="submit" value="Consulter la fiche de présence" class="specific_input_signature_1 hide"
+                           id="{un_cours.EDT_UID}" name="signer_prof"/>
+                    <input type="hidden" value="{un_cours.EDT_ENS_ID}" name="p"/>
+                    <input type="hidden" value="{un_cours.ENS_NOM}" name="n"/>
+                    <input type="hidden" value="-1" name="g"/>
+                </form>
+            </div>
+            <!-- ENDIF -->
+            <!-- END un_cours -->
+        </div>
+    </div>
+</div>

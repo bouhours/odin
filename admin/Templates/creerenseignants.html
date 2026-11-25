@@ -1,0 +1,86 @@
+<div class="main">
+    <div class="limited specific_div_creerenseignants_1 ">
+        <div class="no_wrap">
+            <ul class="TreeView">
+                <!-- BEGIN un_enseignant -->
+                <!-- IF un_enseignant.ENS_LOGIN != USER_ADMIN -->
+                <li>
+                    <a href="?p=front&amp;p2=creerenseignants&amp;delens={un_enseignant.ENS_ID}"
+                       name="confirm_supress_enseignant"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                              title="Supprimer cet enseignant"/></a>
+                    <!-- IF IS_ADMIN -->
+                    <a href="#" class="updater" data-bfmw="ENS_NOM" data-bfmw2="ENS_NOM_{un_enseignant.ENS_ID}"
+                       data-bfmw3="{un_enseignant.ENS_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                                title="Modifier"/></a>
+                    <!-- ENDIF -->
+                    <span class="blanc" id="ENS_NOM_{un_enseignant.ENS_ID}">{un_enseignant.ENS_NOM}</span>&nbsp;
+                    <!-- IF IS_ADMIN -->
+                    <a href="#" class="updater" data-bfmw="ENS_LOGIN" data-bfmw2="ENS_LOGIN_{un_enseignant.ENS_ID}"
+                       data-bfmw3="{un_enseignant.ENS_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                                title="Modifier"/></a>
+                    <span class="blanc">(</span><a class="bleu" href="?&asUser={un_enseignant.ENS_LOGIN}"
+                                                   id="ENS_LOGIN_{un_enseignant.ENS_ID}">{un_enseignant.ENS_LOGIN}</a><span
+                        class="blanc">)&nbsp;</span>
+                    <!-- ELSE -->
+                    <span class="blanc">(</span><span class="bleu" id="ENS_LOGIN_{un_enseignant.ENS_ID}">{un_enseignant.ENS_LOGIN}</span><span
+                        class="blanc">)&nbsp;</span>
+                    <!-- ENDIF -->
+                    <!-- IF IS_ADMIN -->
+                    <a href="#" class="updater" data-bfmw="ENS_ADE" data-bfmw2="ENS_ADE_{un_enseignant.ENS_ID}"
+                       data-bfmw3="{un_enseignant.ENS_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                                title="Modifier"/></a>
+                    <span class="blanc" id="ENS_ADE_{un_enseignant.ENS_ID}">{un_enseignant.ENS_ADE}</span>&nbsp;
+                    <!-- ENDIF -->
+                    <ul>
+                        <li>mail :
+                            <a href="#" class="updater" data-bfmw="ENS_MAIL"
+                               data-bfmw2="ENS_MAIL_{un_enseignant.ENS_ID}" data-bfmw3="{un_enseignant.ENS_ID}"><img
+                                    src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier"/></a>
+                            <span id="ENS_MAIL_{un_enseignant.ENS_ID}">{un_enseignant.ENS_MAIL}</span>&nbsp;
+                        </li>
+                        <li>enseignant pouvant prêter du matériel ?&nbsp;<input type="checkbox"
+                                                                                class="specific_check_creerenseignants_1"
+                                                                                {un_enseignant.DISABLED}
+                                                                                {un_enseignant.ENS_PRETEUR} value="1"
+                                                                                name="ENS_PRETEUR"
+                                                                                data-bfmw="{un_enseignant.ENS_ID}"/>
+                        </li>
+                        <li>gestionnaire d'emploi du temps ?&nbsp;<input type="checkbox"
+                                                                         class="specific_check_creerenseignants_1"
+                                                                         {un_enseignant.DISABLED}
+                                                                         {un_enseignant.ENS_GESTIONNAIRE_ADE} value="1"
+                                                                         name="ENS_GESTIONNAIRE_ADE"
+                                                                         data-bfmw="{un_enseignant.ENS_ID}"/></li>
+                        <li>enseignant/chercheur ?&nbsp;<input type="checkbox" class="specific_check_creerenseignants_1"
+                                                               {un_enseignant.DISABLED} {un_enseignant.ENS_EC} value="1"
+                                                               name="ENS_EC" data-bfmw="{un_enseignant.ENS_ID}"/></li>
+                        <li>vacataire ?&nbsp;<input type="checkbox" class="specific_check_creerenseignants_1"
+                                                    {un_enseignant.DISABLED} {un_enseignant.ENS_VACATAIRE} value="1"
+                                                    name="ENS_DEPT_VACATAIRE" data-bfmw="{un_enseignant.ENS_ID}"/></li>
+                        <li>gestionnaire de stage et de professionnalisation ?&nbsp;<input type="checkbox"
+                                                                                           class="specific_check_creerenseignants_1"
+                                                                                           {un_enseignant.DISABLED}
+                                                                                           {un_enseignant.ENS_DEPT_STAGE}
+                                                                                           value="1"
+                                                                                           name="ENS_DEPT_STAGE"
+                                                                                           data-bfmw="{un_enseignant.ENS_ID}"/>
+                        </li>
+                    </ul>
+                </li>
+                <!-- ENDIF -->
+                <!-- END un_enseignant -->
+            </ul>
+        </div>
+        <div class="box">
+            <input type="text" placeholder="Nom de l'enseignant existant à l'université" id="nomachercher"/>
+            <input id="id_search" type="submit"
+                   value="Pour ajouter un enseignant existant à l'université, indiquez son nom SANS LE PRENOM dans le champ ci-dessus"/>
+            <div id="resultatrecherche"></div>
+        </div>
+        <div class="box">
+            <input type="text" placeholder="Nom de l'enseignant dont le dossier n'est pas encore prêt." id="nomacreer"/>
+            <input type="submit" class="specific_div_creerenseignants_2" id="id_manual_add"
+                   value="Pour ajouter un enseignant dont le dossier n'est pas encore prêt, indiquez son NOM et son Prénom dans le champ ci-dessus"/>
+        </div>
+    </div>
+</div>

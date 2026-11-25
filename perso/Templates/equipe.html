@@ -1,0 +1,42 @@
+<div class="main">
+    <div class="limited">
+        <span>Année à afficher :</span>
+        <select id="id_selection_annee" data-bfmw="{FORM_COURANTE}">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <span>Formation à afficher :</span>
+        <select id="id_selection_formation" data-bfmw="{ANNEE_COURANTE}">
+            <!-- BEGIN une_formation -->
+            <option value="{une_formation.FORM_ID}" {une_formation.SELECTED}>{une_formation.FORM_NOM}</option>
+            <!-- END une_formation -->
+        </select>
+        <hr/>
+        <ul>
+            <!-- BEGIN un_semestre -->
+            <li>{un_semestre.SEM_NOM}
+                <!-- BEGIN une_ue -->
+                <ul class="TreeView">
+                    <!-- BEGIN une_matiere -->
+                    <li>
+                        <span class="rouge">{une_matiere.MAT_NOM}</span>&nbsp;<span class="vert font_small">{une_matiere.MAT_CODE_APOGE}</span>
+                        <span>(&asymp;</span><span class="bleu" id="charge_{une_matiere.MAT_ID}"></span><span>&nbsp;h eqTD)</span>
+                        <ul id="{une_matiere.MAT_ID}">
+                            <!-- IF ! ANNEE_CLOSE -->
+                            <div>
+                                <span>&nbsp;&gt;&nbsp;</span>
+                                <a href="#" class="ajouter_un_enseignant">Cliquez ici pour ajouter un nouvel
+                                    enseignant</a>
+                            </div>
+                            <!-- ENDIF -->
+                        </ul>
+                    </li>
+                    <!-- END une_matiere -->
+                </ul>
+                <!-- END une_ue -->
+            </li>
+            <!-- END un_semestre -->
+        </ul>
+    </div>
+</div>

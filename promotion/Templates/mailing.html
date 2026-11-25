@@ -1,0 +1,50 @@
+<div class="main">
+    <div class="limited">
+        <div class="box text_align_center">
+            <form method="POST" action="?p=front&amp;p2=mailing&amp;mailing=mail" id="id_form"
+                  enctype="multipart/form-data">
+                <!-- IF AFFICHER_ANNEE -->
+                Sélectionnez l'année du groupe :
+                <select class="specific_div_mailing_1" name="choix_annee">
+                    <!-- BEGIN une_annee -->
+                    <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+                    <!-- END une_annee -->
+                </select><br/>
+                <!-- ELSE -->
+                <input type="hidden" name="choix_annee" value="{ANNEE_COURANTE}"/>
+                <!-- ENDIF -->
+                <!-- IF ! SIMPLE -->
+                Sélectionnez le groupe à contacter :
+                <select class="specific_div_mailing_1" name="choix_groupe">
+                    <!-- BEGIN une_formation -->
+                    <optgroup label="{une_formation.FORM_NOM}">
+                        <!-- BEGIN un_groupe -->
+                        <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                        <!-- END un_groupe -->
+                        <!-- END une_formation -->
+                </select><br/>
+                <!-- ELSE -->
+                Etudiant contacté :
+                <input type="text" class="specific_input_mailing_3" disabled value="{ET_NOM}"/>
+                <input type="hidden" value="{ET_ID}" name="simple"/><br/>
+                <!-- ENDIF -->
+                <hr/>
+                <input type="text" class="specific_input_mailing_1"
+                       placeholder="Destinataires en copie, séparés par une virgule" name="copie_mail"
+                       pattern="^([a-zA-Z0-9_\-\.]+)@((([a-zA-Z0-9\-]+\.)+))([a-zA-Z]+|[0-9]+)(\]?)(,([a-zA-Z0-9_\-\.]+)@((([a-zA-Z0-9\-]+\.)+))([a-zA-Z]+|[0-9]+)(\]?))*$"
+                       value=""/><br/>
+                <hr/>
+                <input type="text" class="specific_input_mailing_1" placeholder="Sujet du mail" name="sujet_mail"
+                       value="{SUJET_MAIL}"/><br/>
+                <textarea placeholder="Message" rows="15" name="message"
+                          id="id_saisie_message">{MESSAGE}</textarea><br/>
+                <input type="checkbox" id="id_add_piece_jointe"/> Ajouter une pièce jointe ? (maxi : {MAXI})
+                <div class="specific_input_mailing_2" id="id_div_piece_jointe">
+                    <input type="file" name="piece_jointe"/><br/>
+                </div>
+                <input type="submit" value="Envoyer le mail"/>
+            </form>
+        </div>
+
+    </div>
+</div>

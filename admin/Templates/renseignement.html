@@ -1,0 +1,61 @@
+<div class="main">
+    <div class="limited">
+        <span class="vert">Sélectionnez la formation à gérer :</span>
+        <select id="id_select_formation" class="specific_input_gererformation_1" data-bfmw="{ANNEE_COURANTE}">
+            <!-- BEGIN une_formation -->
+            <option value="{une_formation.FORM_ID}" {une_formation.SELECTED}>{une_formation.FORM_NOM}</option>
+            <!-- END une_formation -->
+        </select>
+        <hr/>
+        <!-- IF HAS_CHAMPS -->
+        <span class="vert">Liste des champs existants :</span>
+        <div class="box">
+            <ul>
+                <!-- BEGIN un_champ -->
+                <li class="font_small">
+                    <a href="?p=front&amp;p2=renseignement&amp;delchp={un_champ.CHAMPS_ID}&amp;f={FORMATION_COURANTE}&amp;a={ANNEE_COURANTE}"
+                       name="confirm_suppres_champ"><img src="../bfmw/images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                         title="Supprimer ce champ"/></a>
+                    <a href="#" class="updater" data-bfmw="CHAMPS_LABEL" data-bfmw2="champ_{un_champ.CHAMPS_ID}"
+                       data-bfmw3="{un_champ.CHAMPS_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                              title="Modifier ce champ"/></a>
+                    <span class="bleu" id="champ_{un_champ.CHAMPS_ID}">{un_champ.CHAMPS_LABEL}</span>
+                    <span> de type </span>
+                    <span class="bleu">{un_champ.CHAMPS_TYPE_AFF}</span>
+                    <span>. Ordre : </span>
+                    <a href="#" class="updater" data-bfmw="CHAMPS_ORDRE" data-bfmw2="champ_ordre_{un_champ.CHAMPS_ID}"
+                       data-bfmw3="{un_champ.CHAMPS_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                              title="Modifier l'ordre de ce champ"/></a>
+                    <span class="bleu" id="champ_ordre_{un_champ.CHAMPS_ID}">{un_champ.CHAMPS_ORDRE}</span>
+                    <!-- IF un_champ.CHAMPS_TYPE != "checkbox" -->
+                    <span>. Obligatoire ?</span>
+                    <input type="checkbox" value="1" class="bfmw_no_style bind" data-bfmw="{un_champ.CHAMPS_ID}"
+                           name="CHAMPS_OBLIGATOIRE" {un_champ.CHAMPS_OBLIGATOIRE_CHECKED}/>
+                    <!-- ENDIF -->
+                </li>
+                <!-- END un_champ -->
+            </ul>
+        </div>
+        <hr/>
+        <!-- ENDIF -->
+        <span class="vert">Créer des champs :</span>
+        <div class="box">
+            <form method="post" action="?p=front&amp;p2=renseignement" class="font_medium">
+                <label for="id_label_champ">Label du champ&nbsp;:</label>
+                <input type="text" required id="id_label_champ" name="*CHAMPS_LABEL"
+                       class="specific_input_renseignement_1"/><br/>
+                <label for="id_label_champ_ordre">Position du champ&nbsp;:</label>
+                <input type="number" step="1" required id="id_label_champ_ordre" name="*CHAMPS_ORDRE"
+                       class="specific_input_renseignement_3"/><br/>
+                <label for="id_type_champ">Type du champ&nbsp;:</label>
+                <select id="id_type_champ" name="*CHAMPS_TYPE" class="specific_input_renseignement_2">
+                    <option value="text">Texte</option>
+                    <option value="checkbox">Case à cocher</option>
+                </select><br/>
+                <input type="hidden" name="*CHAMPS_FORM_ID" value="{FORMATION_COURANTE}"/>
+                <input type="hidden" name="ANNEE_ID" value="{ANNEE_COURANTE}"/>
+                <input type="submit" name="creer_champ" value="Créer le champ"/>
+            </form>
+        </div>
+    </div>
+</div>

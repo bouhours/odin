@@ -1,15 +1,29 @@
-# Plateforme Odin
+# Odin
 
-La plateforme Odin est un ensemble d'outils permettant de faciliter la gestion d'un département en IUT. Cette plateforme permet aux différents acteurs d'un IUT (étudiant, enseignant, administratif) de gagner du temps dans les différents besoins qui peuvent s'offrir à eux.
+Plateforme Odin, outil dédié à la gestion des départements en IUT.
 
-## Contributing
+## Migration réalisée
 
-Contributions are welcome.
+Ce dépôt contient désormais la migration complète de `bouhours/plateforme-odin` (branche `prod`) vers `bouhours/odin`, intégrée sur la branche `migration`.
 
-Before opening an issue or pull request, please read:
+L'organisation reste orientée modules métier (ex: `admin`, `notes`, `absences`, `stage`) et respecte le cycle BFMW déjà utilisé dans la plateforme :
 
-- [Contributing Guidelines](CONTRIBUTING.md)
-- [Code of Conduct](CODE_OF_CONDUCT.md)
-- [Security Policy](SECURITY.md)
+- point d'entrée par module (`index.php`) ;
+- initialisation commune via `common/Initialisation.php` ;
+- enchaînement BFMW `overall_header -> menu -> page active -> overall_footer`.
 
-Bug reports and feature requests should use the provided GitHub issue templates.
+## Alignement framework BFMW
+
+Pour rester conforme aux paradigmes du framework `b_fmw/bfmw` (référence `sample`) tout en conservant le comportement existant :
+
+- un bootstrap unique `common/framework_bootstrap.php` centralise le chargement Composer et BFMW ;
+- `common/Initialisation.php` délègue explicitement au bootstrap commun ;
+- le chargement d'autoload BFMW supporte les deux modes d'installation (framework embarqué ou dépendance Composer).
+
+## Installation
+
+```bash
+composer install
+```
+
+Configurer ensuite les fichiers d'environnement de l'instance (`self_server_concrete.php`, configuration CAS et accès BDD) avant exécution.

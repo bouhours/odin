@@ -1,0 +1,28 @@
+    <!-- BEGIN un_creneau -->
+    <label class="font_large">
+        <!-- IF TODAY === un_creneau.DATE_DEBUT -->
+        *&nbsp;
+        <!-- ENDIF -->
+        <span class="vert">{un_creneau.JOUR_DATE_DEBUT}&nbsp;{un_creneau.NUMERO_DATE_DEBUT}&nbsp;{un_creneau.MOIS_DATE_DEBUT}&nbsp;{un_creneau.ANNEE_DATE_DEBUT}</span></label>
+    <div class="box">
+        <div class="font_large">
+            <!-- BEGIN un_jour -->
+            <span class="rouge">{un_jour.HEURE_DEBUT}</span> - <span class="rouge">{un_jour.HEURE_FIN}</span><br/>
+            <span class="">&nbsp;&nbsp;&nbsp;{un_jour.NOM}</span><br/>
+            <!-- IF un_jour.NB_ENS > 1 -->
+            <span class="bleu">&nbsp;&nbsp;&nbsp;enseignants&nbsp;:</span>
+            <!-- ELSE -->
+            <span class="bleu">&nbsp;&nbsp;&nbsp;enseignant&nbsp;:</span>
+            <!-- ENDIF -->
+            <span class="">{un_jour.ENSEIGNANTS}</span><br/>
+            <span class="bleu">&nbsp;&nbsp;&nbsp;salle&nbsp;: </span><span class="">{un_jour.SALLE}</span><br/>
+            <!-- END un_jour -->
+        </div>
+    </div>
+    <!-- END un_creneau -->
+    <!-- BEGIN rien -->
+    <span class="vert">Vous n'avez aucun enseignement sur les {SEMAINES} semaines à venir.</span>
+    <!-- END rien -->
+    <!-- BEGIN erreur -->
+    <span class="vert">Le logiciel d'emploi du temps n'a pas répondu. Réessayez.</span>
+    <!-- END erreur -->

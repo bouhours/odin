@@ -1,0 +1,42 @@
+<!-- IF IS_CHEF -->
+        <label><b>Enseignant : </b></label>
+        <div class="box">
+            <select name="ENS_ID">
+                <!-- BEGIN un_enseignant -->
+                <option value="{un_enseignant.ENS_ID}">{un_enseignant.ENS_NOM}</option>
+                <!-- END un_enseignant -->
+            </select>
+        </div>
+<!-- ENDIF -->
+        <label><b>Etudiants absents : </b></label>
+        <div class="box">
+            <!-- IF NB>0 -->
+            <p class="font_small">Vous pouvez modifier le groupe affiché, durant la saisie, afin de saisir plusieurs groupes à la fois.</p>
+            <select id="selecteur_promo">
+                <!-- BEGIN une_formation -->
+                <optgroup label="{une_formation.FORM_NOM}" >
+                <!-- BEGIN un_groupe -->
+                <option value="{un_groupe.GROUPE_ID}">{un_groupe.GROUPE_NOM}</option>
+                <!-- END un_groupe -->
+                </optgroup>
+                <!-- END une_formation -->
+            </select><br/><br/>
+            <!-- BEGIN un_etudiant -->
+            <!-- IF un_etudiant.DISP_UE_ID == "" && un_etudiant.DISP_MAT_ID == "" -->
+            <div class="filtrable" data-filter="id_{un_etudiant.GROUPE_ID}"><input class="checkable" type="checkbox" value="{un_etudiant.ET_ID}" name="etudiant[]"/>&nbsp;{un_etudiant.ET_NOM}</div>
+            <!-- ELSE -->
+            <!-- IF un_etudiant.DISP_UE_ID != "" -->
+            <div class="filtrable" data-filter="id_{un_etudiant.GROUPE_ID}" title="Cet étudiant ne fait pas l'UE"><span class="font_small rouge">(disp)</span>&nbsp;{un_etudiant.ET_NOM}</div>
+            <!-- ELSE -->
+            <div class="filtrable" data-filter="id_{un_etudiant.GROUPE_ID}" title="Cet étudiant ne fait pas la matière"><span class="font_small rouge">(disp)</span>&nbsp;{un_etudiant.ET_NOM}</div>
+            <!-- ENDIF -->
+            <!-- ENDIF -->
+            <!-- END un_etudiant -->
+        </div>
+
+<input type="submit" name="submit_absences" value="Déclarer l'absence" />
+</form>
+            <!-- ELSE -->
+            <p class="font_small">Aucun étudiant n'est inscrit à ce semestre.</p>
+            </div>
+            <!-- ENDIF -->

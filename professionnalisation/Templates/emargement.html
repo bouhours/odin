@@ -1,0 +1,76 @@
+<div class="main">
+    <div class="limited specific_div_emargement_1">
+        <span>Choisissez l'année : </span>
+        <select id="selecteur_annee" data-bfmw="{GROUPE_ID}">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <span>Choisissez le groupe : </span>
+        <select id="selecteur_groupe" data-bfmw="{ANNEE_ID}">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+                <!-- BEGIN un_groupe -->
+                <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                <!-- END un_groupe -->
+            </optgroup>
+            <!-- END une_formation -->
+        </select>
+
+        <div class="box">
+            <div class="box no_wrap specific_div_emargement_2">
+                <!-- IF !(PAS_DE_FICHE) -->
+                <!-- BEGIN un_cours -->
+                <div class="font_small">
+                    <a href="?p=fiche&amp;u={un_cours.EDT_UID}&amp;g={GROUPE_ID}&amp;a={ANNEE_ID}"
+                       class="text_vertical_top">
+                        <!-- IF un_cours.PUCE == 0 -->
+                        <img src="images/rond_rouge.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_emargement_2" alt="KO"
+                             title="L'enseignant n'a pas signé"/>
+                        <!-- ELSE -->
+                        <img src="images/rond_vert.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_emargement_1" alt="OK"
+                             title="La fiche est complète"/>
+                        <!-- ENDIF -->
+
+                    </a>
+                    &bull;&nbsp;{un_cours.EDT_NOM} (<span class="rouge">{un_cours.DEBUT}</span> de <span class="rouge">{un_cours.HORAIRE_START} à {un_cours.HORAIRE_END}</span>)
+                    &nbsp;Facturer :&nbsp;<input type="checkbox" class="specific_input_emargement_1 bind"
+                                                 {un_cours.FACTURER} data-bfmw="{un_cours.EDT_UID}" value="1"
+                                                 name="EDT_FACTURE"
+                                                 title="Indique si le cours doit être facturé ou non.">
+                </div>
+                <!-- END un_cours -->
+                <form action="?generate=FicheEmargement&amp;g={GROUPE_ID}&amp;a={ANNEE_ID}&amp;pro=1" method="post">
+                    <input type="submit" value="Imprimer les fiches d'émargement du groupe"/>
+                </form>
+                <form action="?generate=FicheEmargement&amp;g={GROUPE_ID}&amp;a={ANNEE_ID}&amp;pro=0" method="post">
+                    <input type="submit" value="Imprimer les fiches d'émargement du groupe en incluant les non alternants"/>
+                </form>
+                <div class="box">
+                    <span class="font_medium">Archiver des fiches :</span><br/>
+                    <form method="post" action="?p=front&amp;p2=emargement">
+                        Du&nbsp;<input type="text" class="specific_input_emargement_2" placeholder="JJ/MM/AAAA" required
+                                       pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]([2][0][123][0-9])$"
+                                       name="DATE_START"/>&nbsp;à&nbsp;<input type="text"
+                                                                              class="specific_input_emargement_3"
+                                                                              placeholder="HHhMM"
+                                                                              pattern="^([01]\d|2[0-3])h([0-5]\d)$"
+                                                                              required name="HEURE_START">&nbsp;au&nbsp;<input
+                            type="text" class="specific_input_emargement_2" placeholder="JJ/MM/AAAA"
+                            pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]([2][0][123][0-9])$" required
+                            name="DATE_END"/>&nbsp;à&nbsp;<input type="text" class="specific_input_emargement_3"
+                                                                 placeholder="HHhMM"
+                                                                 pattern="^([01]\d|2[0-3])h([0-5]\d)$" required
+                                                                 name="HEURE_END"><br/>
+                        <input type="hidden" value="{GROUPE_ID}" name="g"/>
+                        <input type="hidden" value="{ANNEE_ID}" name="a"/>
+                        <input type="submit" value="Archiver" name="archive"/>
+                    </form>
+                </div>
+                <!-- ELSE -->
+                <span class="font_small">Pas de fiche pour ce groupe</span><br/>
+                <!-- ENDIF -->
+            </div>
+        </div>
+    </div>
+</div>

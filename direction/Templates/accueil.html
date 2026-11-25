@@ -1,0 +1,93 @@
+<!-- MASTER -->
+<div class="complete_master" id="le_master">
+    <div class="filter" id="id_div_filter">
+        <!-- IF OPEN_ANNEE -->
+        <select id="id_selection_annee" data-bfmw="{GROUPE}" data-bfmw2="{FORMATION_COURANTE}">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <hr/>
+        <!-- ENDIF -->
+        <select id="id_selecteur_formation" data-bfmw="{ANNEE_COURANTE}" data-bfmw2="{GROUPE}" >
+            <!-- BEGIN un_departement -->
+            <optgroup label="{un_departement.DEPT_NOM}&nbsp;({un_departement.DEPT_CODE})">
+                <!-- BEGIN une_formation -->
+                <option value="{une_formation.FORM_ID}" {une_formation.SELECTED}>{une_formation.FORM_NOM}</option>
+                <!-- END une_formation -->
+            </optgroup>
+            <!-- END un_departement -->
+        </select>
+        <hr/>
+        <select id="id_selecteur_promo" data-bfmw="{ANNEE_COURANTE}" data-bfmw2="{FORMATION_COURANTE}">
+            <!-- BEGIN un_groupe -->
+            <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+            <!-- END un_groupe -->
+        </select>
+    </div>
+    <div class="master">
+        <div>
+            <!-- BEGIN un_etudiant -->
+            <a id="{un_etudiant.ET_ID}" class="{un_etudiant.SELECTED}" href="?p=accueil&amp;g={GROUPE}&amp;a={ANNEE_COURANTE}&amp;f={FORMATION_COURANTE}&amp;e={un_etudiant.ET_ID}#{un_etudiant.ET_ID}"><span class="vert">{un_etudiant.ME}</span>{un_etudiant.ET_NOM}</a><br/>
+            <!-- END un_etudiant -->
+        </div>
+    </div>
+</div>
+<!-- DETAIL -->
+<div id="detail">
+    <a class="show_master" href="#"><img src="../bfmw/images/fleche.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="masque_master" alt="Menu"/></a>
+    <!-- IF ! COMPLET -->
+    <div>
+        <div class="box specific_div_gereretudiants_2">
+            <!-- BEGIN un_etudiant_selected -->
+            <img class="specific_input_gereretudiants_2" src="../trombi/{un_etudiant_selected.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" title="{un_etudiant_selected.ET_NOM}" /><br/>
+            <span class="bleu">Nom : </span>{un_etudiant_selected.ET_NOM}<br/>
+            <!-- IF un_etudiant_selected.ET_DEM == 1 -->
+            <span class="rouge">A démissionné</span><br/>
+            <!-- ENDIF -->
+            <span class="bleu">Login : </span>{un_etudiant_selected.ET_LOGIN}<br/>
+            <span class="bleu">Numéro APOGEE : </span>{un_etudiant_selected.ET_NUMERO}<br/>
+            <span class="bleu">Mail : </span>{un_etudiant_selected.ET_MAIL}<br/>
+            <span class="bleu">Date de naissance : </span>{un_etudiant_selected.ET_NAISSANCE}<br/>
+            <span class="bleu">Fiche de renseignement : </span><span class="bfmw_auto_hidder" data-bfmw="clic_show_fiche"></span><br/>
+            <div class="box" id="clic_show_fiche">
+                <!-- BEGIN un_champ -->
+                <span class="font_small specific_div_gereretudiants_3">{un_champ.CHAMPS_LABEL}</span>
+                <span class="font_small">&nbsp;:&nbsp;</span>
+                <span class="font_small vert">{un_champ.CHAMPS_ET_VALEUR_AFF}</span>
+                <br/>
+                <!-- END un_champ -->
+            </div>
+            <span class="bleu">Bac : </span><span>{un_etudiant_selected.ET_BAC}</span><br/>
+            <span class="bleu">Inscriptions : </span>
+            <div class="box specific_div_gereretudiants_2">
+                <!-- BEGIN une_formation -->
+                <span class="font_small rouge">{une_formation.FORM_NOM}</span><br/>
+                <!-- BEGIN un_semestre -->
+                &bull;&nbsp;{un_semestre.SEM_NOM} :
+                <!-- BEGIN une_annee -->
+                <a href="?p=front&amp;p2=gereretudiants&amp;f={FORM_ID}&amp;a={une_annee.ANNEE_ID}&amp;e={un_etudiant_selected.ET_ID}&amp;retrieveSEM={un_semestre.SEM_ID}" title="Cliquez-ici pour faire remonter toutes les notes du semestre sur l'année suivante">{une_annee.ANNEE_NOM}</a>
+                <!-- END une_annee -->
+                <br/>
+                <!-- END un_semestre -->
+                <!-- END une_formation -->
+            </div>
+            <span class="bleu">Groupes : </span>
+            <div class="box specific_div_gereretudiants_2">
+                <!-- BEGIN une_formation_groupe -->
+                <span class="font_small rouge">{une_formation_groupe.FORM_NOM}</span><br/>
+                <!-- BEGIN un_groupe -->
+                &bull;&nbsp;{un_groupe.GROUPE_NOM} :
+                <!-- BEGIN une_annee -->
+                {une_annee.ANNEE_NOM}
+                <!-- END une_annee -->
+                <br/>
+                <!-- END un_groupe -->
+                <!-- END une_formation_groupe -->
+            </div>
+            <!-- END un_etudiant_selected -->
+        </div>
+    </div>
+    <!-- ENDIF -->
+
+</div>

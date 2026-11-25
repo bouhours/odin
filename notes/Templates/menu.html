@@ -1,0 +1,31 @@
+<div class="top_page">
+    <div class="menu" id="GeneralMenu">
+      <a href=".." title="Retour au portail" class="not_menu retour_portail_menu"><img class="retour_portail" src="../bfmw/images/home.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"/></a>
+      <a href=".." title="Retour au portail" class="not_menu">Gestion des notes</a>
+      <!-- BEGIN isNoteur -->
+      <a href="?{PARAM}&amp;itt=qlnqlsghf" {ACTIVE_SAISIR}>Contrôles</a>
+      <a href="?p=valider" {ACTIVE_VALIDER}>Valider un contrôle</a>
+      <!--<a href="?p=consulter{PARAM}" {ACTIVE_CONSULTER}>Modification</a>-->
+      <!-- END isNoteur -->
+      <a href="?p=mediateur" {ACTIVE_MEDIATEUR}>Promotions du département</a>
+      <!-- IF HAS_SOUTENANCES -->
+      <a href="?p=soutenances" {ACTIVE_SOUTENANCES}>Soutenances</a>
+      <!-- ENDIF -->
+      <!-- IF IS_MEDIATEUR || IS_SECRETAIRE -->
+      <a href="?p=bilan" {ACTIVE_BILAN}>Bilan</a>
+      <a href="?p=competences" {ACTIVE_COMPETENCE}>Compétences</a>
+      <a href="?p=suivi" {ACTIVE_SUIVI}>Suivi</a>
+      <!-- ENDIF -->
+      <!-- IF IS_SECRETAIRE -->
+      <a href="?p=export" {ACTIVE_EXPORT}>Export semestre</a>
+      <a href="?p=export&amp;f=f" {ACTIVE_EXPORT_FORMATION}>Export formation</a>
+      <!-- ENDIF -->
+      <!-- IF  IS_CHEF || IS_SECRETAIRE -->
+      <a href="?p=accueil&amp;chef=qlnqlsghf" {ACTIVE_APOGEE}>Accès chef</a>
+      <!-- ENDIF -->
+      <a href="?p=aide" {ACTIVE_AIDE}>Aide</a>
+      <a href="?p=logout">Déconnexion</a>
+      <a href="#" class="icon texte_menu"><img src="../bfmw/images/menu.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="image_menu" alt="Menu"/></a>
+    </div>
+</div>
+<div id="id_margin_top" ></div>

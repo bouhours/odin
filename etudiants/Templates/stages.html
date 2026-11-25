@@ -1,0 +1,109 @@
+<div class="main">
+    <div class="limited">
+        <div class="box">
+            <span class="font_medium">Candidatures&nbsp;:</span><br/>
+            <!-- IF NB_CANDIDATURES_ETUDIANT === 0 -->
+            <span class="rouge">Aucune</span>
+            <!-- ENDIF -->
+            <!-- BEGIN une_candidature -->
+            <div class="font_medium">
+                <span>&bull;&nbsp;</span><span class="vert">Stage </span><span> {une_candidature.STAGE_REF}</span>
+                <span class="vert">candidature le </span><span> {une_candidature.ET_STAGE_DATEF}</span>
+                <!-- IF une_candidature.ETUDIANT_AFFECTE == ETUDIANT_ID  -->
+                <span class="vert">sélectionné le </span><span> {une_candidature.STAGE_DATE_AFFECTATIONF}</span>
+                <!-- ELSEIF une_candidature.STAGE_DATE_AFFECTATIONF != "" -->
+                <span class="rouge">éliminé le </span><span> {une_candidature.STAGE_DATE_AFFECTATIONF}</span>
+                <!-- ENDIF -->
+            </div>
+            <!-- END une_candidature -->
+        </div>
+        <!-- IF STAGE_AFFECTE === -1 -->
+        <hr/>
+        <select id="selecteur_formation_id">
+            <!-- BEGIN une_formation -->
+            <option {une_formation.SELECTED} value="{une_formation.FORM_ID}">{une_formation.FORM_NOM}</option>
+            <!-- END une_formation -->
+        </select>
+        <span>Liste des stages</span><span>&nbsp;({NOMBRE_STAGES})&nbsp;:</span>
+        <!-- BEGIN un_stage -->
+        <!-- IF un_stage.STAGE_ET_ID == "" && un_stage.STAGE_REF !== "CSP" -->
+        <div class="box">
+            <div>
+                <p class="font_medium"><span class="vert">Référence : </span>{un_stage.STAGE_REF}<span>&nbsp;-&nbsp;{un_stage.NB_CANDIDATS}&nbsp;{un_stage.CANDIDATURES}</span>
+                </p>
+                <p class="font_small">{un_stage.STAGE_SUJET}</p>
+                <!-- IF un_stage.ETUDIANT_A_CANDIDATE == 1 -->
+                <span class="bleu font_small">Vous avez déjà candidaté à ce stage.</span>
+                <!-- ELSE -->
+                <!-- IF un_stage.NB_CANDIDATS >= FORM_CANDIDATURES_STAGE_MAX || NB_CANDIDATURES_ETUDIANT_NON_ELIMINE >= FORM_CANDIDATURES_STAGE_ET_MAX -->
+                <!-- IF un_stage.NB_CANDIDATS >= FORM_CANDIDATURES_STAGE_MAX -->
+                <span class="rouge font_small">Il y a déjà {FORM_CANDIDATURES_STAGE_MAX} candidats sur ce stage.</span>
+                <!-- ELSEIF NB_CANDIDATURES_ETUDIANT_NON_ELIMINE >= FORM_CANDIDATURES_STAGE_ET_MAX -->
+                <span class="rouge font_small">Vous avez déjà candidaté à {FORM_CANDIDATURES_STAGE_MAX} stages.</span>
+                <!-- ENDIF -->
+                <!-- ELSE -->
+                <form method="post" action="?p=front&amp;p2=stages&amp;a={ANNEE_COURANTE}&amp;nonclose={ANNEE_COURANTE}"
+                      enctype="multipart/form-data">
+                    <input type="hidden" value="{un_stage.STAGE_ID}" name="stage"/>
+                    <span class="font_small">Déposez votre cv (pdf uniquement)&nbsp;:&nbsp;</span>
+                    <input class="specific_stages_input_1" type="file" name="cv" required/><br/>
+                    <span class="font_small">Déposez votre lettre de motifivation (pdf uniquement)&nbsp;:&nbsp;</span>
+                    <input class="specific_stages_input_1" type="file" name="lm" required/><br/>
+                    <input class="font_small" type="submit" value="Candidater"/>
+                </form>
+                <!-- ENDIF -->
+                <!-- ENDIF -->
+            </div>
+        </div>
+        <!-- ENDIF -->
+        <!-- END un_stage -->
+        <!-- ELSE -->
+        <div class="box">
+            <div class="font_medium">
+                <span>Vous avez été affecté au stage&nbsp;</span><span
+                    class="vert">{STAGE_REF}</span><span>.</span><br/>
+                <!-- IF TUTEUR != "" -->
+                <span>Votre tuteur est </span><span class="vert">{TUTEUR}</span><br/>
+                <!-- ENDIF -->
+                <p>{STAGE_SUJET}</p>
+            </div>
+        </div>
+        <!-- BEGIN un_planning -->
+        <div class="box">
+            <!-- IF un_planning.STAGE_DATE_SOUTENANCE != "" -->
+            <div class="font_medium">
+                <span class="">Votre soutenance est prévue le</span>
+                <span class="vert">{un_planning.STAGE_DATE_SOUTENANCE_AFFICHAGE}</span>
+                <span class="">de&nbsp;</span><span class="vert">{un_planning.CRENEAU_DEBUT_AFFICHAGE}</span>
+                <span class="">à&nbsp;</span><span class="vert">{un_planning.CRENEAU_FIN_AFFICHAGE}</span><br/>
+                <span class="">avec&nbsp;</span><span class="vert">{TUTEUR}</span>
+                <span class="">et&nbsp;</span><span class="vert">{un_planning.JURY}</span>
+            </div>
+            <!-- ELSE -->
+            <!-- IF un_planning.PLANNING_CONTENU != "" -->
+            <form method="POST" action="?p=front&amp;p2=stages&amp;a={ANNEE_COURANTE}&amp;nonclose={ANNEE_COURANTE}"
+                  class="font_medium">
+                <span class="bleu">Votre soutenance est prévue pour la session :&nbsp;</span><span class="vert">{un_planning.PLANNING_CONTENU}</span>
+                <!-- IF un_planning.SELECTION_SOUTENANCE -->
+                <hr/>
+                <span class="rouge">En concertation avec votre tuteur entreprise, choisissez la date de votre soutenance&nbsp;:</span><br/>
+                <!-- BEGIN un_creneau -->
+                <input type="radio" name="selection_creneau"
+                       value="{un_creneau.DISPO_DATE}${un_creneau.CRENEAU_ID}${un_creneau.DISPO_ID}${un_planning.PLANNING_ID}"/><span
+                    class="vert">{un_creneau.CRENEAU_DATE_AFFICHAGE}</span><span> de </span><span class="vert">{un_creneau.CRENEAU_DEBUT_AFFICHAGE}</span><span> à </span><span
+                    class="vert">{un_creneau.CRENEAU_FIN_AFFICHAGE}</span><br/>
+                <!-- END un_creneau -->
+                <input type="submit" value="Confirmer la date de votre soutenance"/>
+                <!-- ELSEIF un_planning.SELECTION_OUVERTE -->
+                <br/><br/><span class="rouge">Aucun créneau n'étant disponible, vous ne pouvez pas encore choisir la date de votre soutenance. Réessayez demain.</span>
+                <!-- ELSE -->
+                <br/><br/><span class="rouge">La sélection des créneaux de soutenances n'est pas encore ouverte.</span>
+                <!-- ENDIF -->
+            </form>
+            <!-- ENDIF -->
+            <!-- ENDIF -->
+        </div>
+        <!-- END un_planning -->
+        <!-- ENDIF -->
+    </div>
+</div>

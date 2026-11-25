@@ -1,0 +1,86 @@
+<div class="main">
+    <div class="limited">
+        <!-- IF GENERIQUE -->
+        <span class="font_medium">Cette application vous permet de saisir vos disponibilités dans chacun des plannings du département.</span>
+        <span class="font_medium vert">Pour commencer, cliquez, dans le menu, sur le planning que vous souhaitez configurer.</span>
+        <!-- ELSE -->
+        <span class="vert">Liste de vos rendez-vous&nbsp;:</span><br/>
+        <div class="box font_medium">
+            <span class="font_medium">Vous avez </span><span class="font_medium vert">{NOMBRE_RDV}</span><span
+                class="font_medium"> rendez-vous.</span><br/>
+            <ul class="TreeView font_medium">
+                <!-- BEGIN une_date -->
+                <li>{une_date.DATE_AFFICHAGE}
+                    <ul>
+                        <!-- BEGIN un_rdv-->
+                        <li><span>De</span>&nbsp;<span class="vert">{un_rdv.CRENEAU_DEBUT_AFFICHAGE}</span><span>&nbsp;à&nbsp;</span><span
+                                class="vert">{un_rdv.CRENEAU_FIN_AFFICHAGE}&nbsp</span><span class="blanc">{un_rdv.TYPE_AFFICHAGE}</span><span
+                                class="blanc">&nbsp;avec&nbsp;</span><span
+                                class="vert">{un_rdv.RDV_NOM_AFFICHAGE}</span>
+                            <ul>
+                                <li><span class="bleu">Nom&nbsp;:&nbsp;</span>{un_rdv.RDV_NOM}</li>
+                                <li><span class="bleu">Prénom&nbsp;:&nbsp;</span>{un_rdv.RDV_PRENOM}</li>
+                                <li><span class="bleu">Numéro&nbsp;:&nbsp;</span>{un_rdv.RDV_NUMERO}</li>
+                                <li><span class="bleu">Téléphone&nbsp;:&nbsp;</span>{un_rdv.RDV_TEL}</li>
+                                <li><span class="bleu">Mail&nbsp;:&nbsp;</span>{un_rdv.RDV_MAIL}</li>
+                                <li class="specific_li_accueil_1"><span class="bleu">Commentaire&nbsp;:&nbsp;</span>{un_rdv.RDV_COMMENTAIRE}
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END un_rdv-->
+                    </ul>
+                    <!-- END une_date -->
+                </li>
+            </ul>
+        </div>
+        <span class="vert">Liste de vos disponibilités&nbsp;:</span><br/>
+        <!--<span  class="rouge font_small">Vous pouvez cocher les créneaux horaires de chaque jour en cliquant sur le "+"</span>-->
+        <div class="box">
+            <div class="specific_div_accueil_1">
+                <input type="hidden" value="{PLANNING_ID}" id="id_selecteur"/>
+                <span class="font_medium">Vous devez cocher au moins </span><span class="font_medium vert"
+                                                                                  id="id_nombre"></span><span
+                    class="font_medium"> créneaux horaires disjoints pour ce planning.</span><br/>
+                <span class="font_medium">Vous avez coché pour l'instant </span><span class="font_medium vert"
+                                                                                      id="id_coches"></span><span
+                    class="font_medium"> créneaux horaires disjoints.</span><br/>
+            </div>
+            <ul class="font_small">
+                <!-- BEGIN une_dispo -->
+                <li>
+                    {une_dispo.DISPO_DATE_AFFICHAGE}
+                    <ul>
+                        <!-- BEGIN un_creneau -->
+                        <li>
+                            <!-- IF un_creneau.RDV_ID == "" -->
+                            <input type="checkbox" class="bind tohide" value="1" {un_creneau.DISPO_CHECKED}
+                                   data-bfmw="{un_creneau.ENS_ID_INJECTED}${un_creneau.CRENEAU_ID}${une_dispo.DISPO_DATE}${PLANNING_ID}"
+                                   name="DISPO_ENS"/>
+                            <!-- ELSE -->
+                            <img src="../bfmw/images/lock.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_accueil_1"/>
+                            <!-- ENDIF -->
+                            <span>De<span>&nbsp;<span class="vert">{un_creneau.CRENEAU_DEBUT_AFFICHAGE}</span><span>&nbsp;à&nbsp;</span><span
+                                    class="vert">{un_creneau.CRENEAU_FIN_AFFICHAGE}&nbsp</span>
+                        <div class="specific_div_accueil_1 force_hide"
+                             id="{un_creneau.ENS_ID_INJECTED}${un_creneau.CRENEAU_ID}${une_dispo.DISPO_DATE}${PLANNING_ID}">
+                            <input type="checkbox" class="bind2" {un_creneau.PRESENTIEL} value="1"
+                                   data-bfmw="{un_creneau.ENS_ID_INJECTED}${un_creneau.CRENEAU_ID}${une_dispo.DISPO_DATE}${PLANNING_ID}"
+                                   name="DISPO_ENS_PRESENTIEL"/><span class="jaune">&nbsp;Présentiel</span>
+                            <input type="checkbox" class="bind2" {un_creneau.TELEPHONIQUE} value="1"
+                                   data-bfmw="{un_creneau.ENS_ID_INJECTED}${un_creneau.CRENEAU_ID}${une_dispo.DISPO_DATE}${PLANNING_ID}"
+                                   name="DISPO_ENS_TELEPHONIQUE"/><span class="bleu">&nbsp;Téléphonique</span>
+                            <input type="checkbox" class="bind2" {un_creneau.VISIO} value="1"
+                                   data-bfmw="{un_creneau.ENS_ID_INJECTED}${un_creneau.CRENEAU_ID}${une_dispo.DISPO_DATE}${PLANNING_ID}"
+                                   name="DISPO_ENS_VISIO"/><span class="rouge">&nbsp;Visio</span>
+                        </div>
+                        </li>
+                        <!-- END un_creneau -->
+                    </ul>
+                </li>
+                <!-- END une_dispo -->
+            </ul>
+        </div>
+        <!-- ENDIF -->
+
+    </div>
+</div>

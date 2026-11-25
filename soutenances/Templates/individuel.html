@@ -1,0 +1,28 @@
+<!-- MASTER -->
+<div class="complete_master" id="le_master">
+    <div class="filter" id="id_div_filter">
+        <select id="id_selecteur_promo" data-bfmw="{SESSION_ID}">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+                <!-- BEGIN un_groupe -->
+                <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                <!-- END un_groupe -->
+                <!-- END une_formation -->
+        </select>
+    </div>
+    <div class="master">
+        <div>
+            <!-- BEGIN un_etudiant -->
+            <a id="{un_etudiant.ET_ID}" class="{un_etudiant.SELECTED}" href="?p=individuel&amp;g={GROUPE}&amp;s={SESSION_ID}&amp;a={ANNEE_COURANTE}&amp;e={un_etudiant.ET_ID}#{un_etudiant.ET_ID}" >{un_etudiant.ET_NOM}</a><br/>
+            <!-- END un_etudiant -->
+        </div>
+    </div>
+</div>
+<!-- DETAIL -->
+<div id="detail">
+    <a class="show_master" href="#"><img src="../bfmw/images/fleche.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="masque_master" alt="Menu"/></a>
+    <!-- IF ETUDIANT_ID != -1 -->
+    {GRILLE}
+    <!-- ENDIF -->
+</div>
+

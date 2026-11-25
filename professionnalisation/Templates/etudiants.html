@@ -1,0 +1,99 @@
+<div class="main">
+    <div class="limited specific_div_etudiants_1">
+        <span>Choisissez la formation à afficher :</span>
+        <select class="specific_input_etudiants_1" id="selecteur_formation">
+            <!-- BEGIN une_formation_filtre -->
+            <option {une_formation_filtre.SELECTED} value="{une_formation_filtre.FORM_ID}">
+                {une_formation_filtre.FORM_NOM}
+            </option>
+            <!-- END une_formation_filtre -->
+        </select><br/>
+        <table class="releve text_align_center">
+            <tr class="fixed">
+                <th class="text_vertical_middle fixed_col">Nom</th>
+                <th class="text_vertical_middle">Mail</th>
+                <th class="text_vertical_middle">Origine</th>
+                <th class="text_vertical_middle">Num tel</th>
+                <th class="text_vertical_middle">Adresse perso</th>
+                <th class="text_vertical_middle">Code postal + ville</th>
+                <th class="text_vertical_middle">Alt.&nbsp;?</th>
+                <th class="text_vertical_middle">Tuteur universitaire</th>
+                <th class="text_vertical_middle">Nom entreprise</th>
+                <th class="text_vertical_middle">Adresse entreprise</th>
+                <th class="text_vertical_middle">Début contrat</th>
+                <th class="text_vertical_middle">Lieu de travail</th>
+                <th class="text_vertical_middle">Info d'accès</th>
+                <th class="text_vertical_middle">Nom tuteur entreprise</th>
+                <th class="text_vertical_middle">Mail tuteur entreprise</th>
+                <th class="text_vertical_middle">Tel tuteur entreprise</th>
+                <th class="text_vertical_middle">Heures max</th>
+                <th class="text_vertical_middle">Heures facturées</th>
+                <th class="text_vertical_middle">Heures max par semaine</th>
+            </tr>
+            <!-- BEGIN un_etudiant -->
+            <tr>
+                <td class="vert fixed_col">{un_etudiant.ET_NOM}</td>
+                <td>{un_etudiant.ET_MAIL}</td>
+                <td><input title="Lieu d'origine de {un_etudiant.ET_NOM}" type="text" value="{un_etudiant.ET_ORIGINE}"
+                           name="ET_ORIGINE" class="specific_input_etudiants_1 bind" data-bfmw="{un_etudiant.ET_ID}"/>
+                </td>
+                <td><input title="Numéro de téléphone de {un_etudiant.ET_NOM}" type="text" value="{un_etudiant.ET_TEL}"
+                           name="ET_TEL" class="specific_input_etudiants_1 bind" data-bfmw="{un_etudiant.ET_ID}"/></td>
+                <td><input type="text" title="Adresse perso de {un_etudiant.ET_NOM}" name="ET_ADRESSE"
+                           class="specific_input_etudiants_1 bind" data-bfmw="{un_etudiant.ET_ID}"
+                           value="{un_etudiant.ET_ADRESSE}"/></td>
+                <td><input type="text" title="Adresse perso de {un_etudiant.ET_NOM}" name="ET_ADRESSE_2"
+                           class="specific_input_etudiants_1 bind" data-bfmw="{un_etudiant.ET_ID}"
+                           value="{un_etudiant.ET_ADRESSE_2}"/></td>
+                <td><input title="Est-ce que {un_etudiant.ET_NOM} nécessite une facture ?" type="checkbox" value="1"
+                           name="ET_PROFESSIONNALISATION" {un_etudiant.ET_PRO} class="bind4"
+                           data-bfmw="{un_etudiant.ET_ID}"/></td>
+                <td><select title="Tuteur de {un_etudiant.ET_NOM}" class="specific_input_etudiants_1 bind2"
+                            data-bfmw="{un_etudiant.ET_ID}${ID_FORM}" name="ET_TUTEUR_ENS_ID">
+                    <option value="NULL">Aucun</option>
+                    <!-- BEGIN un_enseignant -->
+                    <option
+                    <!-- IF (un_etudiant.ET_TUTEUR_ENS_ID == un_enseignant.ENS_ID) -->
+                    selected
+                    <!-- ENDIF -->
+                    value="{un_enseignant.ENS_ID}">{un_enseignant.ENS_NOM}</option>
+                    <!-- END un_enseignant -->
+                </select></td>
+                <td><input title="Nom de l'entreprise de {un_etudiant.ET_NOM}" type="text"
+                           value="{un_etudiant.ET_ENTREPRISE}" name="ET_ENTREPRISE"
+                           class="specific_input_etudiants_1 bind" data-bfmw="{un_etudiant.ET_ID}"/></td>
+                <td><textarea title="Adresse de l'entreprise de de {un_etudiant.ET_NOM}" rows="3"
+                              name="ET_ADRESSE_ENTREPRISE" class="specific_input_etudiants_1 bind"
+                              data-bfmw="{un_etudiant.ET_ID}">{un_etudiant.ET_ADRESSE_ENTREPRISE}</textarea></td>
+                <td><input title="Date de début de contrat de {un_etudiant.ET_NOM}" type="text"
+                           value="{un_etudiant.ET_DEBUT}" name="ET_DEBUT" class="specific_input_etudiants_1 bind3"
+                           data-bfmw="{un_etudiant.ET_ID}"/></td>
+                <td><textarea title="Lieu de travail de {un_etudiant.ET_NOM}" rows="3" name="ET_LIEU"
+                              class="specific_input_etudiants_1 bind" data-bfmw="{un_etudiant.ET_ID}">{un_etudiant.ET_LIEU}</textarea>
+                </td>
+                <td><textarea title="Informations permettant l'accès à l'entreprise de {un_etudiant.ET_NOM}" rows="3"
+                              name="ET_INFO_LIEU" class="specific_input_etudiants_1 bind"
+                              data-bfmw="{un_etudiant.ET_ID}">{un_etudiant.ET_INFO_LIEU}</textarea></td>
+                <td><input title="Nom du tuteur entreprise de {un_etudiant.ET_NOM}" type="text"
+                           value="{un_etudiant.ET_TUTEUR}" name="ET_TUTEUR" class="specific_input_etudiants_1 bind"
+                           data-bfmw="{un_etudiant.ET_ID}"/></td>
+                <td><input title="Mail du tuteur d'entreprise de {un_etudiant.ET_NOM}" type="text"
+                           value="{un_etudiant.ET_MAIL_TUTEUR}" name="ET_MAIL_TUTEUR"
+                           class="specific_input_etudiants_1 bind" data-bfmw="{un_etudiant.ET_ID}"/></td>
+                <td><input title="Numéro de téléphone du tuteur d'entreprise de {un_etudiant.ET_NOM}" type="text"
+                           value="{un_etudiant.ET_TEL_TUTEUR}" name="ET_TEL_TUTEUR"
+                           class="specific_input_etudiants_1 bind" data-bfmw="{un_etudiant.ET_ID}"/></td>
+                <td><input title="Heures maximum de {un_etudiant.ET_NOM}" type="text"
+                           value="{un_etudiant.ET_HEURES_MAX}" name="ET_HEURES_MAX"
+                           class="specific_input_etudiants_1 bind" data-bfmw="{un_etudiant.ET_ID}"/></td>
+                <td><input title="Heures facturé&s de {un_etudiant.ET_NOM}" type="text"
+                           value="{un_etudiant.ET_HEURES_FACTUREES}" name="ET_HEURES_FACTUREES"
+                           class="specific_input_etudiants_1 bind" data-bfmw="{un_etudiant.ET_ID}"/></td>
+                <td><input title="Heures max par semaine de {un_etudiant.ET_NOM}" type="text"
+                           value="{un_etudiant.ET_MAX_SEMAINE}" name="ET_MAX_SEMAINE"
+                           class="specific_input_etudiants_1 bind" data-bfmw="{un_etudiant.ET_ID}"/></td>
+            </tr>
+            <!-- END un_etudiant -->
+        </table>
+    </div>
+</div>

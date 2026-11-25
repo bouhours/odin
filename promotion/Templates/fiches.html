@@ -1,0 +1,134 @@
+<div class="main">
+    <div class="limited">
+        <h2>Générer les fiches de présence</h2>
+        <form method="POST" action="?generate=FeuillesAppel">
+            Sélectionnez le semestre : <select name="s" id="id_selecteur_semestre">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+                <!-- BEGIN un_semestre -->
+                <option {un_semestre.SELECTED} value="{un_semestre.SEM_ID}">{un_semestre.SEM_NOM}</option>
+                <!-- END un_semestre -->
+            </optgroup>
+            <!-- END une_formation -->
+        </select>
+            Sélectionnez le groupe : <select name="g">
+            <!-- BEGIN un_groupe -->
+            <!-- IF un_groupe.GROUPE_PARENT == "" -->
+            <option value="{un_groupe.GROUPE_ID}">{un_groupe.GROUPE_NOM}</option>
+            <!-- ELSE -->
+            <!-- IF un_groupe.GROUPE_FEUILLE == 0 -->
+            <option value="{un_groupe.GROUPE_ID}">&nbsp;{un_groupe.GROUPE_NOM}</option>
+            <!-- ELSE -->
+            <option value="{un_groupe.GROUPE_ID}">&nbsp;&nbsp;&nbsp;{un_groupe.GROUPE_NOM}</option>
+            <!-- ENDIF -->
+            <!-- ENDIF -->
+            <!-- END un_groupe -->
+        </select>
+            <input type="submit" value="Générer les fiches d'appel"/>
+        </form>
+        <hr/>
+        <h2>Générer le récapitualtif de groupe</h2>
+        <form method="POST" action="?generate=RecapGroupes">
+            Sélectionnez le semestre : <select name="f">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+                <!-- BEGIN un_semestre -->
+                <option {un_semestre.SELECTED} value="{un_semestre.SEM_ID}">{un_semestre.SEM_NOM}</option>
+                <!-- END un_semestre -->
+            </optgroup>
+            <!-- END une_formation -->
+        </select>
+            <input type="submit" value="Générer le récapitulatif de groupe"/>
+        </form>
+        <hr/>
+        <h2>Générer les trombinoscopes</h2>
+        <form method="POST" action="?generate=Trombi">
+            Sélectionnez le semestre : <select name="s" id="id_selecteur_semestre_trombi">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+                <!-- BEGIN un_semestre -->
+                <option {un_semestre.SELECTED} value="{un_semestre.SEM_ID}">{un_semestre.SEM_NOM}</option>
+                <!-- END un_semestre -->
+            </optgroup>
+            <!-- END une_formation -->
+        </select>
+            Sélectionnez le groupe : <select name="g">
+            <!-- BEGIN un_groupe -->
+            <!-- IF un_groupe.GROUPE_PARENT == "" -->
+            <option value="{un_groupe.GROUPE_CODE}">{un_groupe.GROUPE_NOM}</option>
+            <!-- ELSE -->
+            <!-- IF un_groupe.GROUPE_FEUILLE == 0 -->
+            <option value="{un_groupe.GROUPE_CODE}">&nbsp;{un_groupe.GROUPE_NOM}</option>
+            <!-- ELSE -->
+            <option value="{un_groupe.GROUPE_CODE}">&nbsp;&nbsp;&nbsp;{un_groupe.GROUPE_NOM}</option>
+            <!-- ENDIF -->
+            <!-- ENDIF -->
+            <!-- END un_groupe -->
+        </select>
+            <input type="submit" value="Générer le trombinoscope"/>
+        </form>
+        <hr/>
+        <h2>Générer des relevés de notes temporaires</h2>
+        <form method="POST" action="?generate=ReleveNotes">
+            Sélectionnez l'année :
+            <select name="a" class="specific_input_fiches_1" id="id_selection_fiche">
+                <!-- BEGIN une_annee -->
+                <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+                <!-- END une_annee -->
+            </select><br/>
+            <label for="id_rang">Afficher le rang&nbsp;:&nbsp;</label><input id="id_rang" name="rang" value="1"
+                                                                             type="checkbox"/><br/>
+            Sélectionnez l'étudiant :
+            <select name="etudiant" class="specific_input_fiches_1">
+                <!-- BEGIN une_formation_releve -->
+                <optgroup label="{une_formation_releve.FORM_NOM}">
+                    <!-- BEGIN un_etudiant -->
+                    <option value="{un_etudiant.ET_ID}">{un_etudiant.ET_NOM}</option>
+                    <!-- END un_etudiant -->
+                </optgroup>
+                <!-- END une_formation_releve -->
+            </select><br/>
+            <label for="id_break">Position à partir de laquelle il faut créer une nouvelle page&nbsp;:&nbsp;</label>
+            <input id="id_break" name="break" value="50" class="specific_input_fiches_1" type="number" min="0" max="200" step="1"/><br/>
+            <input type="submit" value="Générer les relevés temporaires"/>
+        </form>
+        <hr/>
+        <h2>Générer les fichiers enseignant pour importer dans Karuta</h2>
+        <form method="POST" action="?generate=FeuilleEnseignantKaruta">
+            <input type="submit" value="Générer les fiches d'import des enseignants dans Karuta"/>
+        </form>
+        <hr/>
+        <h2>Générer les fichiers étudiants pour importer dans Karuta</h2>
+        <form method="POST" action="?generate=FeuilleEtudiantKaruta">
+            Sélectionnez le semestre : <select name="s" id="id_selecteur_semestre_karuta">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+                <!-- BEGIN un_semestre -->
+                <option {un_semestre.SELECTED} value="{un_semestre.SEM_ID}">{un_semestre.SEM_NOM}</option>
+                <!-- END un_semestre -->
+            </optgroup>
+            <!-- END une_formation -->
+        </select>
+            Sélectionnez le groupe : <select name="g">
+            <!-- BEGIN un_groupe -->
+            <!-- IF un_groupe.GROUPE_PARENT == "" -->
+            <option value="{un_groupe.GROUPE_ID}">{un_groupe.GROUPE_NOM}</option>
+            <!-- ELSE -->
+            <!-- IF un_groupe.GROUPE_FEUILLE == 0 -->
+            <option value="{un_groupe.GROUPE_ID}">&nbsp;{un_groupe.GROUPE_NOM}</option>
+            <!-- ELSE -->
+            <option value="{un_groupe.GROUPE_ID}">&nbsp;&nbsp;&nbsp;{un_groupe.GROUPE_NOM}</option>
+            <!-- ENDIF -->
+            <!-- ENDIF -->
+            <!-- END un_groupe -->
+        </select>
+            <span>Année de la cohorte :</span>
+            <input type="text" name="annee"/>
+            <span>Code du projet :</span>
+            <input type="text" name="codeProjet"/>
+            <span>Code du modèle de portfolio :</span>
+            <input type="text" name="codePortfolioModele"/>
+            <input type="submit" value="Générer les fiches d'import des étudiants dans Karuta"/>
+        </form>
+    </div>
+</div>

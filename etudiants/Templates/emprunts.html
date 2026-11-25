@@ -1,0 +1,53 @@
+<div class="main">
+    <div class="limited">
+        <form method="POST" action="?p=front&amp;p2=emprunts&amp;a={ANNEE_COURANTE}&amp;nonclose={ANNEE_COURANTE}">
+            <label><b>Objet emprunté : </b></label>
+            <select name="*EMPRUNT_OBJ_ID" id="id_select_objs">
+                <!-- BEGIN un_objet -->
+                <option value="{un_objet.OBJ_ID}" data-reste="{un_objet.OBJ_RESTE}">{un_objet.OBJ_RESTE}
+                    {un_objet.OBJ_NOM}
+                </option>
+                <!-- END un_objet -->
+            </select>
+
+            <label><b>Nombre emprunté : </b></label>
+            <input type="number" id="id_nombre" name="*EMPRUNT_NOMBRE" value="1" step="1" min="1"/>
+
+            <label><b>Date de rendu : </b></label>
+            <input type="text" placeholder="JJ/MM/AAAA" required name="*EMPRUNT_DATE_RETOUR"
+                   pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]([2][0][123][0-9])$"/>
+
+            <label><b>Avec l'autorisation de : </b></label>
+            <select name="*EMPRUNT_ENS_ID" id="selecteur_enseignant">
+                <!-- BEGIN un_enseignant -->
+                <option value="{un_enseignant.ENS_ID}">{un_enseignant.ENS_NOM}</option>
+                <!-- END un_enseignant -->
+            </select>
+
+            <input type="submit" value="Enregistrer l'emprunt" name="emprunter"/>
+        </form>
+        <!-- BEGIN show -->
+        <hr/>
+
+        <label class="rouge">Objets en votre possession</label>
+        <table class="releve width_100 text_align_center">
+            <tr>
+                <th>Nombre</th>
+                <th>Objet</th>
+                <th>Date d'emprunt</th>
+                <th>Date de rendue</th>
+                <th>A rendre à</th>
+            </tr>
+            <!-- BEGIN un_objet_emprunte -->
+            <tr>
+                <td class="vert">{un_objet_emprunte.EMPRUNT_NOMBRE}</td>
+                <td class="vert">{un_objet_emprunte.OBJ_NOM}</td>
+                <td>{un_objet_emprunte.EMPRUNT_DATE_OUT}</td>
+                <td class="bleu">{un_objet_emprunte.EMPRUNT_DATE_RETOUR}</td>
+                <td>{un_objet_emprunte.ENS_NOM}</td>
+            </tr>
+            <!-- END un_objet_emprunte -->
+        </table>
+        <!-- END show -->
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="main">
+    <div class="limited">
+        <span class="bleu">{NOM_MATIERE}</span>
+        <table class="releve">
+            <tr>
+                <th>Nom</th>
+                <th>Groupe</th>
+                <th>Photo</th>
+                <th>Signature</th>
+            </tr>
+            <!-- BEGIN un_etudiant -->
+            <tr>
+                <td class="text_vertical_middle text_align_center font_large">{un_etudiant.ET_NOM}</td>
+                <td class="text_vertical_middle text_align_center font_large">{un_etudiant.GROUPE_NOM}</td>
+                <td class="text_vertical_middle text_align_center">
+                    <img class="specific_img_signer_2" alt="" title=""  loading="lazy" src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"/>
+                </td>
+                <td class="text_vertical_middle">
+                    <!-- IF un_etudiant.HAS_SIGNED -->
+                    <div class="to_hide_{un_etudiant.SIGNATURE_ID}">
+                    <a href="#" data-bfmw="{un_etudiant.SIGNATURE_EDT_UID}"
+                       data-bfmw2="{un_etudiant.SIGNATURE_GROUPE_ID}" data-bfmw3="{un_etudiant.SIGNATURE_ID}"
+                       class="do_del to_hide_{un_etudiant.SIGNATURE_ID} specific_img_signer_3"><img src="images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                              alt="Supprimer la signature"
+                                                                              title="Supprimer la signature"/></a>
+                    {un_etudiant.SIGNATURE}
+                    </div>
+                    <img class="specific_img_signer_2 hide to_show_{un_etudiant.SIGNATURE_ID}" src="images/croix.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                         alt="Absent" title="Absent"/>
+                    <!-- ELSE -->
+                    <img class="specific_img_signer_2" src="images/croix.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Absent" title="Absent"/>
+                    <!-- ENDIF -->
+                </td>
+            </tr>
+            <!-- END un_etudiant -->
+            <!-- IF ENSEIGNANT -->
+            <!-- IF ! HAS_SIGNED -->
+            <tr>
+                <td colspan="4" class="text_align_center">
+                    <span class="vert">{NOM_MATIERE}</span><br/>
+                    <span class="blanc">Nombre de présents : </span><span class="bleu"
+                                                                          id="compteur">{NOMBRE_SIGNATURE}</span><br/>
+                    <button class="button do_sign" id="{ENS_ID}_bouton" data-bfmw2="{EDT_UID}" data-bfmw="0"
+                            data-bfmw3="{ENS_ID}" data-bfmw4="{GROUPE_ID}" data-bfmw5="{ENS_NOM}" data-bfmw6="{MAT_ID}">
+                        Signer
+                    </button>
+                    <img class="hide specific_img_signer_1" id="{ENS_ID}_ok" src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Signé"
+                         title="Signature enregistrée"/>
+                </td>
+            </tr>
+            <!-- ELSE -->
+            <tr>
+                <td colspan="3" class="text_align_center">
+                    <img class="specific_img_signer_1" src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Signé"
+                         title="Signature enregistrée"/>
+                </td>
+            </tr>
+            <!-- ENDIF -->
+            <!-- ENDIF -->
+        </table>
+
+
+    </div>
+</div>

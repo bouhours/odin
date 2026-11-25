@@ -1,0 +1,33 @@
+<div class="main">
+    <div class="limited">
+        <div class="box">
+            <form action="?p=recapitulatif" method="POST">
+                <span>Choisissez la formation :</span>
+                <select name="formation">
+                    <!-- BEGIN une_formation -->
+                    <option value="{une_formation.FORM_ID}" {une_formation.SELECTED}>{une_formation.FORM_NOM}</option>
+                    <!-- END une_formation -->
+                </select>
+                <span>Saisissez la date de début de la période :</span>
+                <input type="date" name="date_debut" value="{DATE_DEBUT}" required>
+                <span>Saisissez la date de fin de la période :</span>
+                <input type="date" name="date_fin" value="{DATE_FIN}" required>
+                <input type="submit" name="afficher" value="Afficher les enseignants qui n'ont pas signé"/>
+            </form>
+        </div>
+        <div class="box">
+            <!-- BEGIN un_enseignant -->
+            <div class="font_medium bleu bfmw_auto_hidder" data-bfmw="liste_{un_enseignant.ENS_ID}">
+                &bull;&nbsp;{un_enseignant.ENS_NOM}
+                <div class="font_small blanc" id="liste_{un_enseignant.ENS_ID}">
+                <!-- BEGIN un_cours -->
+
+                    &bull;&nbsp;{un_cours.EDT_NOM} (<span class="rouge">{un_cours.DEBUT}</span> de
+                    <span class="rouge">{un_cours.HORAIRE_START} à {un_cours.HORAIRE_END}</span>)<br/>
+                <!-- END un_cours -->
+                </div>
+            </div>
+            <!-- END un_enseignant -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="main">
+    <div class="limited">
+        Année à afficher :
+        <select id="id_selection_annee">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <!-- BEGIN un_departement -->
+        <span class="vert">{un_departement.DEPT_NOM}</span><br/>
+        <!-- BEGIN une_formation -->
+        <span class="rouge">&nbsp;&bull;&nbsp;{une_formation.FORM_NOM}</span><br/>
+        <!-- BEGIN un_semestre -->
+        <span>&nbsp;&nbsp;&nbsp;&bull;&nbsp;{un_semestre.SEM_NOM}&nbsp;:&nbsp;{un_semestre.INSCRITS}</span>
+        <form method="post" action="?p=front&amp;p2=gererinscriptions">
+            <div class="box">
+                <input type="hidden" name="ANNEE_ID" value="{ANNEE_ID}"/>
+                <input type="hidden" name="SEM_ID" value="{un_semestre.SEM_ID}"/>
+                <span class="font_small">Vous pouvez ajouter ou supprimer des numéros d'étudiants dans la colonne de gauche :</span><br/>
+                <textarea name="etudiants" rows="10" class="specific_input_inscriptions_1 synchro"
+                          id="x_{un_semestre.SEM_ID}" data-bfmw="{un_semestre.SEM_ID}"><!-- BEGIN un_etudiant -->{un_etudiant.ET_NUMERO}{un_etudiant.RETURN}<!-- END un_etudiant --></textarea>
+                <textarea rows="10" readonly class="specific_input_inscriptions_2 synchro" id="y_{un_semestre.SEM_ID}"
+                          data-bfmw="{un_semestre.SEM_ID}"><!-- BEGIN un_etudiant -->{un_etudiant.ET_NOM}{un_etudiant.RETURN}<!-- END un_etudiant --></textarea>
+                <input type="submit" value="Inscrire" name="inscription"/>
+            </div>
+        </form>
+        <!-- END un_semestre -->
+        <!-- END une_formation -->
+        <!-- END un_departement -->
+        <!-- IF IS_ADMIN -->
+        <div class="box">
+            <span class="font_small">Inscription manuelle </span><span class="vert font_small">à n'utiliser qu'en attendant les inscriptions APOGEE !!</span><span
+                class="font_small">&nbsp;:</span>
+            <form method="POST" action="?p=front&amp;p2=gererinscriptions">
+                <select name="SEM_ID" id="selecteur_semestre">
+                    <!-- BEGIN un_departement -->
+                    <optgroup label="{un_departement.DEPT_NOM}"></optgroup>
+                    <!-- BEGIN une_formation -->
+                    <optgroup label="{une_formation.FORM_NOM}">
+                        <!-- BEGIN un_semestre -->
+                        <option value="{un_semestre.SEM_ID}">{un_semestre.SEM_NOM}</option>
+                        <!-- END un_semestre -->
+                    </optgroup>
+                    <!-- END une_formation -->
+                    <!-- END un_departement -->
+                </select>
+                <input type="text" id="inscription_manuelle" placeholder="Nom de l'étudiant" required name="*ET_NOM"/>
+                <div class="box specific_div_gererinscriptions_1 hide" id="resultats" data-bfmw="{ANNEE_ID}"></div>
+                <div class="rouge hide" id="erreur_temporaire">
+                    Numéro temporaire déjà existant !
+                </div>
+                <input type="text" id="numero_temporaire" placeholder="Numéro temporaire de l'étudiant" required
+                       name="*ET_NUMERO"/>
+                <input type="text" placeholder="Mail de l'étudiant" required name="*ET_MAIL"/>
+                <input type="hidden" name="ANNEE_COURANTE" value="{ANNEE_ID}"/>
+                <input type="submit" value="Créer un étudiant" name="creeretudiant"
+                       class="specific_input_inscriptions_2"/>
+            </form>
+        </div>
+        <form method="POST" action="?p=front&amp;p2=gererinscriptions">
+            <input type="submit" value="Rechercher les logins" name="logins" class="specific_input_inscriptions_2"/>
+        </form>
+        <!-- ENDIF -->
+    </div>
+</div>

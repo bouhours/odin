@@ -1,0 +1,98 @@
+<div class="main">
+    <div class="limited">
+        <div class="box">
+            <form method="POST" action="?p=recherche_ldap">
+                <input type="text" name="nom" placeholder="Nom à chercher"/>
+                <input type="submit" value="Recherche LDAP">
+            </form>
+        </div>
+        <div class="box">
+            <form method="POST" action="?p=recherche_login">
+                <input type="text" name="nom" placeholder="Nom à chercher"/>
+                <input type="hidden" name="ens" value="1"/>
+                <input type="submit" value="Recherche login enseignant">
+            </form>
+        </div>
+        <div class="box">
+            <form method="POST" action="?p=recherche_login">
+                <input type="text" name="nom" placeholder="Nom à chercher"/>
+                <input type="hidden" name="et" value="1"/>
+                <input type="submit" value="Recherche login étudiant">
+            </form>
+        </div>
+        <div class="box">
+            <form method="POST" action="?p=do_show_edt">
+                <select name="ENS">
+                    <!-- BEGIN un_enseignant -->
+                    <option value="{un_enseignant.ENS_ADE}${un_enseignant.ENS_ID}">{un_enseignant.ENS_NOM} -
+                        {un_enseignant.ENS_ID} - {un_enseignant.ENS_LOGIN}
+                    </option>
+                    <!-- END un_enseignant -->
+                </select>
+                <input type="submit" value="Affichage EDT">
+            </form>
+        </div>
+        <div class="box">
+            <form method="POST" action="?p=do_show_edt">
+                <select name="GROUPE">
+                    <!-- BEGIN un_groupe -->
+                    <option value="{un_groupe.GROUPE_ADE}${un_groupe.GROUPE_ID}">{un_groupe.GROUPE_ID} -
+                        {un_groupe.GROUPE_NOM}
+                    </option>
+                    <!-- END un_groupe -->
+                </select>
+                <input type="submit" value="Affichage EDT">
+            </form>
+        </div>
+        <div class="box">
+            <form method="POST" action="?p=upd_enseignant">
+                <input type="submit" value="Synchronisation code ADE et code Employé">
+            </form>
+        </div>
+        <div class="box">
+            <form method="POST" action="?p=do_update_enseignants">
+                <input type="submit" value="Synchronisation des enseignants manuels">
+            </form>
+        </div>
+        <div class="box">
+            <form method="POST" action="?p=do_extract_groupes">
+                <input type="submit" value="Mise à jour des groupes ADE">
+            </form>
+        </div>
+        <div class="box">
+            <form method="POST" action="?p=manual_backup_edt_enseignants" enctype="multipart/form-data">
+                <input type="submit" value="Mise à jour complète edt enseignant">
+            </form>
+        </div>
+        <div class="box">
+            <form method="POST" action="?p=manual_backup_edt_etudiants" enctype="multipart/form-data">
+                <input type="submit" value="Mise à jour complète edt étudiant">
+            </form>
+        </div>
+        <div class="box">
+            <form method="POST" action="?p=user_agent">
+                <input type="submit" value="Afficher le user_agent">
+            </form>
+        </div>
+        <div class="box">
+            <form method="POST" action="?p=moulinette">
+                <input type="submit" value="Test Bateau">
+            </form>
+        </div>
+        <!--<div class="box">
+        <form method="POST" action="?p=upd_prenom">
+            <input type="submit" value="Mise à jour des prénoms des étudiants">
+        </form>
+        </div>
+        <div class="box">
+            <form method="POST" action="?p=upd_prenom_ens">
+                <input type="submit" value="Mise à jour des prénoms des enseignants">
+            </form>
+        </div>-->
+        <div class="box">
+            <form method="POST" action="?p=upd_etudiants">
+                <input type="submit" value="Syncrhonisation des étudiants avec APOGEE">
+            </form>
+        </div>
+    </div>
+</div>

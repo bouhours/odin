@@ -1,0 +1,21 @@
+    <!-- BEGIN annee_matieres -->
+    <li><span class="vert">{annee_matieres.ANNEE_NOM}</span>
+    <ul>
+        <!-- BEGIN un_semestre -->
+        <li><span class="jaune">{un_semestre.SEM_NOM}</span>
+            <ul>
+                <!-- BEGIN une_ue -->
+                <li><span class="bleu">{une_ue.UE_NOM}</span>
+                    <br/>
+                        <!-- BEGIN une_matiere -->
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;{une_matiere.MAT_NOM} : </span><span class="rouge">{une_matiere.MOYMAT_VALEUR}</span>
+                            <br/>
+                        <!-- END une_matiere -->
+                </li>
+                <!-- END une_ue -->
+            </ul>
+        </li>
+        <!-- END un_semestre -->
+    </ul>
+    </li>
+    <!-- END annee_matieres -->

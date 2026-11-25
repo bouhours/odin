@@ -1,0 +1,108 @@
+<div class="main">
+    <div class="limited">
+        <select id="selecteur_formation_id" data-bfmw="{ANNEE_COURANTE}">
+            <!-- BEGIN une_formation -->
+            <option {une_formation.SELECTED} value="{une_formation.FORM_ID}">{une_formation.FORM_NOM}</option>
+            <!-- END une_formation -->
+        </select>
+        <img src="../trombi/{ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_accueil_1"/>
+        <img src="data:image/png;base64,{QR_ET_QR}" class="specific_img_accueil_2" title="Code d'accès à ODIN+" />
+        <span class="font_large bleu no_wrap">{ET_NOM}</span><br/>
+        <span>Adresse mail&nbsp;: </span><span class="vert">{ET_MAIL}</span><br/>
+        <span>Date de naissance&nbsp;: </span><span class="vert">{ET_NAISSANCE}</span><br/>
+        <span>Liste des spécialités au Bac (ou série)</span>
+        <span class="rouge" title="Champ obligatoire">*</span>
+        <span>&nbsp;:&nbsp;</span>
+        <a href="#" class="updater" data-bfmw="ET_BAC" data-bfmw2="bac" data-bfmw3=""><img
+                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier le bac"/></a>
+        <span class="vert" id="bac">{ET_BAC}</span><br/>
+        <span>Tiers temps&nbsp;: </span><span class="vert">{ET_TIERS_AFF}</span><br/>
+        <span>Sport de haut niveau&nbsp;: </span><span class="vert">{ET_SPORTIF_AFF}</span><br/>
+        <!-- BEGIN un_champ -->
+        <span>{un_champ.CHAMPS_LABEL}</span>
+        <!-- IF un_champ.CHAMPS_OBLIGATOIRE == 1 -->
+        <span class="rouge" title="Champ obligatoire">*</span>
+        <!-- ENDIF -->
+        <span>&nbsp;:&nbsp;</span>
+        <!-- IF un_champ.CHAMPS_TYPE == "text" -->
+        <a href="#" class="updater" data-bfmw="CHAMPS_ET_VALEUR" data-bfmw2="champ_{un_champ.CHAMPS_ID}"
+           data-bfmw3="{un_champ.CHAMPS_ID}"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update"
+                                                  title="Modifier ce champ"/></a>
+        <span class="vert" id="champ_{un_champ.CHAMPS_ID}">{un_champ.CHAMPS_ET_VALEUR}</span>
+        <!-- ENDIF -->
+        <!-- IF un_champ.CHAMPS_TYPE == "checkbox" -->
+        <!-- IF un_champ.CHAMPS_ET_VALEUR == 1 -->
+        <input type="checkbox" checked value="1" class="bind" name="CHAMPS_ET_VALEUR" data-bfmw="{un_champ.CHAMPS_ID}"/>
+        <!-- ELSE -->
+        <input type="checkbox" value="1" class="bind" name="CHAMPS_ET_VALEUR" data-bfmw="{un_champ.CHAMPS_ID}"/>
+        <!-- ENDIF -->
+        <!-- ENDIF -->
+        <br/>
+        <!-- END un_champ -->
+        <hr/>
+        <!-- IF FORM_PRO -->
+        <label for="adresse_id">Adresse postale de l'étudiant</label>
+        <span class="rouge" title="Champ obligatoire">*</span>
+        <span> :&nbsp;</span>
+        <a href="#" class="updater" data-bfmw="ET_ADRESSE" data-bfmw2="adresse_id" data-bfmw3=""><img
+                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier ce champ"/></a>
+        <span class="vert" id="adresse_id">{ET_ADRESSE}</span><br/>
+        <label for="adresse_2_id">Adresse postale de l'étudiant (code postal + ville)</label>
+        <span class="rouge" title="Champ obligatoire">*</span>
+        <span> :&nbsp;</span>
+        <a href="#" class="updater" data-bfmw="ET_ADRESSE_2" data-bfmw2="adresse_2_id" data-bfmw3=""><img
+                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier ce champ"/></a>
+        <span class="vert" id="adresse_2_id">{ET_ADRESSE_2}</span><br/>
+        <label>Tuteur universitaire :&nbsp;</label>
+        {ENS_NOM}&nbsp;({ENS_MAIL})<br/>
+        <label for="entreprise_id">Nom de l'entreprise</label>
+        <span class="rouge" title="Champ obligatoire">*</span>
+        <span> :&nbsp;</span>
+        <a href="#" class="updater" data-bfmw="ET_ENTREPRISE" data-bfmw2="entreprise_id" data-bfmw3=""><img
+                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier ce champ"/></a>
+        <span class="vert" id="entreprise_id">{ET_ENTREPRISE}</span><br/>
+        <label for="entreprise_adresse_id">Adresse de l'entreprise</label>
+        <span class="rouge" title="Champ obligatoire">*</span>
+        <span> :&nbsp;</span><br/>
+        <a href="#" class="updater" data-bfmw="ET_ADRESSE_ENTREPRISE" data-bfmw2="entreprise_adresse_id" data-bfmw3=""
+           data-bfmw4="area"><img src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier ce champ"/></a>
+        <span class="vert" id="entreprise_adresse_id">{ET_ADRESSE_ENTREPRISE}</span><br/>
+        <label for="date_id">Date de début de contrat</label>
+        <span class="rouge" title="Champ obligatoire">*</span>
+        <span> :&nbsp;</span>
+        <a href="#" class="updater" data-bfmw="ET_DEBUT" data-bfmw2="date_id" data-bfmw3=""><img
+                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier ce champ"/></a>
+        <span class="vert" id="date_id">{ET_DEBUT}</span><br/>
+        <label for="lieu_id">Lieu de travail quotidien</label>
+        <span class="rouge" title="Champ obligatoire">*</span>
+        <span> :&nbsp;</span><br/>
+        <a href="#" class="updater" data-bfmw="ET_LIEU" data-bfmw2="lieu_id" data-bfmw3="" data-bfmw4="area"><img
+                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier ce champ"/></a>
+        <span class="vert" id="lieu_id">{ET_LIEU}</span><br/>
+        <label for="info_id">Informations utiles pour le tuteur universitaire permettant d'atteindre le lieu de
+            travail</label>
+        <span> :&nbsp;</span><br/>
+        <a href="#" class="updater" data-bfmw="ET_INFO_LIEU" data-bfmw2="info_id" data-bfmw3="" data-bfmw4="area"><img
+                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier ce champ"/></a>
+        <span class="vert" id="info_id">{ET_INFO_LIEU}</span><br/>
+        <label for="tuteur_id">Nom et Prénom du tuteur entreprise</label>
+        <span class="rouge" title="Champ obligatoire">*</span>
+        <span> :&nbsp;</span>
+        <a href="#" class="updater" data-bfmw="ET_TUTEUR" data-bfmw2="tuteur_id" data-bfmw3=""><img
+                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier ce champ"/></a>
+        <span class="vert" id="tuteur_id">{ET_TUTEUR}</span><br/>
+        <label for="mail_tuteur_id">Mail du tuteur entreprise</label>
+        <span class="rouge" title="Champ obligatoire">*</span>
+        <span> :&nbsp;</span>
+        <a href="#" class="updater" data-bfmw="ET_MAIL_TUTEUR" data-bfmw2="mail_tuteur_id" data-bfmw3=""><img
+                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier ce champ"/></a>
+        <span class="vert" id="mail_tuteur_id">{ET_MAIL_TUTEUR}</span><br/>
+        <label for="tel_tuteur_id">Téléphone du tuteur entreprise</label>
+        <span class="rouge" title="Champ obligatoire">*</span>
+        <span> :&nbsp;</span>
+        <a href="#" class="updater" data-bfmw="ET_TEL_TUTEUR" data-bfmw2="tel_tuteur_id" data-bfmw3=""><img
+                src="../bfmw/images/icon_update.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="update" title="Modifier ce champ"/></a>
+        <span class="vert" id="tel_tuteur_id">{ET_TEL_TUTEUR}</span><br/>
+        <!-- ENDIF -->
+    </div>
+</div>

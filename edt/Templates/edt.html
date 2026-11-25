@@ -1,0 +1,37 @@
+<!-- BEGIN un_creneau -->
+<label class="font_large">
+    <!-- IF TODAY === un_creneau.DATE_DEBUT -->
+    *&nbsp;
+    <!-- ENDIF -->
+    <span class="vert">{un_creneau.JOUR_DATE_DEBUT}&nbsp;{un_creneau.NUMERO_DATE_DEBUT}&nbsp;{un_creneau.MOIS_DATE_DEBUT}&nbsp;{un_creneau.ANNEE_DATE_DEBUT}</span></label>
+<div class="box">
+    <div class="font_large">
+        <!-- BEGIN un_jour -->
+        <!-- IF SELECTOR -->
+        <input type="checkbox" value="{un_jour.UID}" name="creneau[]" />&nbsp;
+        <!-- ENDIF -->
+        <span class="rouge">{un_jour.HEURE_DEBUT}</span> - <span class="rouge">{un_jour.HEURE_FIN}</span><br/>
+        <span>&nbsp;&nbsp;&nbsp;{un_jour.NOM}</span><br/>
+        &nbsp;&nbsp;&nbsp;salle : <span class="bleu">{un_jour.SALLE}</span><br/>
+        <!-- IF RECAP -->
+        <input type="hidden" value="{un_jour.UID}" name="commentaire[]" />
+        <input type="hidden" value="{un_creneau.JOUR_DATE_DEBUT}&nbsp;{un_creneau.NUMERO_DATE_DEBUT}&nbsp;{un_creneau.MOIS_DATE_DEBUT}&nbsp;{un_creneau.ANNEE_DATE_DEBUT}" name="date_{un_jour.UID}" />
+        <input type="hidden" value="{un_jour.HEURE_DEBUT}" name="heure_deb_{un_jour.UID}" />
+        <input type="hidden" value="{un_jour.HEURE_FIN}" name="heure_fin_{un_jour.UID}" />
+        <input type="hidden" value="{un_jour.NOM}" name="nom_{un_jour.UID}" />
+        <input type="hidden" value="{un_jour.SALLE}" name="salle_{un_jour.UID}" />
+        <textarea placeholder="Commentaire" name="commentaire_{un_jour.UID}"></textarea>
+        <!-- ENDIF -->
+        <!-- END un_jour -->
+    </div>
+</div>
+<!-- END un_creneau -->
+<!-- BEGIN no_ade -->
+<span class="rouge">Votre emploi du temps est inconnu, contactez le responsable de la formation pour qu'il configure votre compte.</span>
+<!-- END no_ade -->
+<!-- BEGIN rien -->
+<span class="vert">Vous n'avez aucun enseignement planifié.</span>
+<!-- END rien -->
+<!-- BEGIN erreur -->
+<span class="vert">Le logiciel d'emploi du temps n'a pas répondu. Réessayez.</span>
+<!-- END erreur -->

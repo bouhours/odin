@@ -1,0 +1,36 @@
+<div class="main">
+    <div class="limited text_align_center">
+        <!-- BEGIN un_cours -->
+        <div class="box text_align_left">
+            Le <span class="rouge">{un_cours.DATE_DEBUT}</span>&nbsp;de&nbsp;<span
+                class="rouge">{un_cours.HEURE_DEBUT}</span> à <span class="rouge">{un_cours.HEURE_FIN}</span><br/>
+            <span class="vert">&nbsp;&nbsp;&nbsp;{un_cours.EDT_NOM}</span><br/>
+            &nbsp;&nbsp;&nbsp;groupe : <span class="bleu">{un_cours.GROUPE_NOM}</span><br/>
+            &nbsp;&nbsp;&nbsp;salle : <span class="bleu">{un_cours.EDT_SALLE}</span><br/>
+            &nbsp;&nbsp;&nbsp;intervenant : <span class="bleu">{un_cours.ENS_NOM}</span><br/>
+            <form method="POST" action="?p=signer" class="specific_input_signature_2">
+                <input type="hidden" value="{un_cours.EDT_UID}" name="d"/>
+                <input type="submit" value="Déclarez votre présence" class="specific_input_signature_1"
+                       name="signer_eleves"/>&nbsp;
+                <input type="hidden" value="{un_cours.GROUPE_NOM}" name="groupe_nom"/>
+                <input type="hidden" value="{un_cours.GROUPE_PRO}" name="groupe_pro"/>
+                <input type="hidden" value="{un_cours.EDT_NOM}" name="cours"/>
+                <input type="hidden" value="{un_cours.ENS_NOM}" name="n"/>
+                <input type="hidden" value="{un_cours.EDT_ENS_ID}" name="p"/>
+                <input type="hidden" value="{un_cours.GROUPE_ID}" name="g"/>
+            </form>
+            <form method="POST" action="?p=choisir_matiere" class="specific_input_signature_2">
+                <input type="hidden" value="{un_cours.EDT_UID}" name="d"/>
+                <input type="submit" value="Faire signer l'enseignant" class="specific_input_signature_1"
+                       id="{un_cours.EDT_UID}" name="signer_prof"/>
+                <input type="hidden" value="{un_cours.EDT_ENS_ID}" name="p"/>
+                <input type="hidden" value="{un_cours.ENS_NOM}" name="n"/>
+                <input type="hidden" value="-1" name="g"/>
+            </form>
+        </div>
+        <!-- END un_cours -->
+        <!-- IF VIDE -->
+        <span class="font_large">Tout est signé pour le moment !</span>
+        <!-- ENDIF -->
+    </div>
+</div>

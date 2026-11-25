@@ -1,0 +1,106 @@
+<div class="main">
+    <div class="limited">
+        <table class="releve">
+            <!-- BEGIN un_creneau -->
+            <tr>
+                <td colspan ="4" >
+                    <span class="bleu">{un_creneau.GROUPE_NOM}</span><br/>
+                    <div>{un_creneau.EDT_NOM} (<span class="rouge">{un_creneau.DEBUT}</span><span>&nbsp;de&nbsp;</span><span
+                            class="rouge">{un_creneau.HORAIRE_START}</span><span>&nbsp;à&nbsp;</span><span class="rouge">{un_creneau.HORAIRE_END}</span>)
+                    </div>
+                </td>
+            </tr>
+            <!-- BEGIN un_enseignant -->
+            <tr>
+                <td class="text_vertical_middle text_align_center">
+                    <span>{un_enseignant.ENS_NOM}</span>
+                </td>
+                <td></td>
+                <td class="text_align_center">
+                    <!-- IF un_enseignant.SIGNATURE == "" -->
+                    <img src="images/croix.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Pas signé" title="L'enseignant n'a pas signé la fiche"
+                         class="specific_img_fiche_1"/>
+                    <!-- ELSE -->
+                    {un_enseignant.SIGNATURE}
+                    <!-- ENDIF -->
+                </td>
+                <td class="text_vertical_middle">
+                    <!-- IF un_enseignant.SIGNATURE !== "" -->
+                    <a href="?p=front&amp;p2=fiche&amp;u={un_enseignant.SIGNATURE_EDT_UID}&amp;g={un_enseignant.SIGNATURE_GROUPE_ID}&amp;del={un_enseignant.SIGNATURE_ID}&amp;ens=eikjs"
+                       class="warn_delete"><img src="images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Supprimer la signature"
+                                                title="Supprimer la signature"/></a>
+                    <!-- ENDIF -->
+                </td>
+            </tr>
+            <!-- END un_enseignant -->
+            <!-- END un_creneau -->
+            <tr class="fixed">
+                <th>Etudiant</th>
+                <th>Photo</th>
+                <th>Signature</th>
+                <th></th>
+            </tr>
+            <!-- BEGIN un_etudiant -->
+            <tr>
+                <td class="text_vertical_middle text_align_center">
+                    <span>{un_etudiant.ET_NOM}</span>
+                </td>
+                <td class="text_vertical_middle text_align_center">
+                    <img class="specific_img_fiche_2" alt="" title="" src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy"/>
+                </td>
+                <td class="text_align_center">
+                    <!-- IF un_etudiant.SIGNATURE == "" -->
+                    <!-- IF un_etudiant.ABS_JUSTIFICATION == "non" || un_etudiant.ABS_JUSTIFICATION == "" -->
+                    <!-- IF un_etudiant.ABS_ID == "" && un_etudiant.SIGNATURE != "" -->
+                    <img class="specific_img_fiche_1" src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Signé"
+                         title="L'enseignant a supprimé l'absence"/>
+                    <!-- ELSE -->
+                    <a href="#" title="Faire signer a posteriori" id="{un_etudiant.ET_ID}_bouton" class="do_sign"
+                       data-bfmw2="{un_etudiant.SIGNATURE_EDT_UID}" data-bfmw="{un_etudiant.ET_ID}" data-bfmw3="0"
+                       data-bfmw4="{un_etudiant.SIGNATURE_GROUPE_ID}" data-bfmw5="{un_etudiant.ET_NOM}" data-bfmw6="{un_etudiant.SIGNATURE_MAT_ID}"><img
+                            src="images/croix.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Absent" class="specific_img_fiche_1"/></a>
+                    <img class="hide specific_img_fiche_1" id="{un_etudiant.ET_ID}_ok" src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                         alt="Signé" title="Signature enregistrée"/>
+                    <span>Sans motif</span>
+                    <!-- ENDIF -->
+                    <!-- ELSE -->
+                    <!-- IF un_etudiant.ABS_JUSTIFICATION == "medical" -->
+                    <img src="images/medical.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_fiche_1" alt="Justifiée pour raisons médicales"
+                         title="Cette absence est justifiée pour raisons médicales"/>
+                    <!-- ENDIF -->
+                    <!-- IF un_etudiant.ABS_JUSTIFICATION == "convocation" -->
+                    <img src="images/convocation.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_fiche_1"
+                         alt="Justifiée par convocation administrative"
+                         title="Cette absence est justifiée par une convocation administrative"/>
+                    <!-- ENDIF -->
+                    <!-- IF un_etudiant.ABS_JUSTIFICATION == "chef" -->
+                    <img src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_fiche_1"
+                         alt="Justifiée par le responsable de la formation"
+                         title="Cette absence est justifiée par le responsable de la formation"/>
+                    <!-- ENDIF -->
+                    <!-- IF un_etudiant.ABS_JUSTIFICATION == "credit" -->
+                    <img src="../bfmw/images/credit.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_fiche_1"
+                         alt="Justifiée avec un crédit-jour"
+                         title="Cette absence est justifiée avec un crédit-jour"/>
+                    <!-- ENDIF -->
+
+                    <span>{un_etudiant.ABS_EXCUSE}</span>
+                    <!-- ENDIF -->
+                    <!-- ELSE -->
+                    {un_etudiant.SIGNATURE}
+                    <!-- ENDIF -->
+                </td>
+                <td class="text_vertical_middle">
+                    <!-- IF un_etudiant.SIGNATURE !== "" -->
+                    <a href="?p=front&amp;p2=fiche&amp;u={un_etudiant.SIGNATURE_EDT_UID}&amp;g={un_etudiant.SIGNATURE_GROUPE_ID}&amp;e={un_etudiant.ET_ID}&amp;del={un_etudiant.SIGNATURE_ID}&amp;m={un_etudiant.SIGNATURE_MAT_ID}"
+                       class="warn_delete_2"><img src="images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Supprimer la signature"
+                                                  title="Supprimer la signature"/></a>
+                    <!-- ELSE -->
+                    &nbsp;
+                    <!-- ENDIF -->
+                </td>
+            </tr>
+            <!-- END un_etudiant -->
+        </table>
+    </div>
+</div>

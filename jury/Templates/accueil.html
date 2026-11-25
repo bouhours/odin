@@ -1,0 +1,260 @@
+<!-- MASTER -->
+<div class="complete_master" id="le_master">
+    <div class="filter" id="id_div_filter">
+        <!-- IF OPEN_ANNEE -->
+        <select id="id_selection_annee" data-bfmw="{GROUPE}">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <hr/>
+        <!-- ENDIF -->
+        <select id="id_selecteur_promo" data-bfmw="{ANNEE_ID}">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+            <!-- BEGIN un_groupe -->
+            <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+            <!-- END un_groupe -->
+            <!-- END une_formation -->
+        </select><br/>
+        <span class="vert" >* = Vous avez donné une note à cet étudiant</span>
+    </div>
+    <div class="master">
+        <div>
+            <!-- BEGIN un_etudiant -->
+            <a id="{un_etudiant.ET_ID}" class="{un_etudiant.SELECTED}" href="?p=accueil&amp;g={GROUPE}&amp;a={ANNEE_ID}&amp;e={un_etudiant.ET_ID}#{un_etudiant.ET_ID}"><span class="vert">{un_etudiant.ME}</span>{un_etudiant.ET_NOM}</a><br/>
+            <!-- END un_etudiant -->
+        </div>
+    </div>
+</div>
+<!-- DETAIL -->
+<div id="detail">
+    <a class="show_master" href="#"><img src="../bfmw/images/fleche.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="masque_master" alt="Menu"/></a>
+    <!-- BEGIN show -->
+    <h3 class="rouge">Infos</h3>
+    <table class="releve">
+        <tr>
+            <td><img src="../trombi/{ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" class="specific_img_accueil_2"/></td>
+        </tr>
+        <tr>
+            <td class="vert"><b>{ET_NOM}</b></td>
+        </tr>
+        <tr>
+            <td><a href="../promotion/?p=mailing&amp;e={ET_ID}">Envoyer un mail</a></td>
+        </tr>
+        <!-- IF IS_RESPONSABLE -->
+        <tr>
+            <td><a href="../admin/?p=gereretudiants&amp;f={GROUPE_FORM_ID}&amp;a={ANNEE_ID}&amp;e={ET_ID}">Accéder à son administration</a></td>
+        </tr>
+        <!-- ENDIF -->
+        <tr>
+            <td>Date de naissance : <span class="vert"><b>{ET_NAISSANCE}</b></span> soit <span class="vert">{ET_AGE}</span> ans</td>
+        </tr>
+        <tr>
+            <td>BAC : <span class="vert"><b>{ET_BAC}</b></span></td>
+        </tr>
+        <!-- IF ET_RED != "" -->
+        <tr>
+            <td><span class="vert"><b>{ET_RED}</b></span></td>
+        </tr>
+        <!-- ENDIF -->
+        <!-- IF ET_TIERS != 0 -->
+        <tr>
+            <td><span class="vert"><b>Tiers temps</b></span></td>
+        </tr>
+        <!-- ENDIF -->
+        <!-- IF ET_SPORTIF != 0 -->
+        <tr>
+            <td><span class="vert"><b>Sportif de haut niveau</b></span></td>
+        </tr>
+        <!-- ENDIF -->
+        <!-- IF ET_DEM != 0 -->
+        <tr>
+            <td><span class="rouge"><b>Démissionnaire</b></span></td>
+        </tr>
+        <!-- ENDIF -->
+    </table>
+    <h3 class="rouge"><span class="font_medium bfmw_auto_hidder" data-bfmw="id_groupes"></span>Groupes</h3>
+    <table id="id_groupes" class="releve">
+        <!-- BEGIN une_formation_groupe -->
+        <tr><td>
+            <span class="vert"><b>{une_formation_groupe.FORM_NOM}</b></span><br/>
+            <!-- BEGIN un_groupe -->
+            <span>&bull;&nbsp;{un_groupe.GROUPE_NOM} :
+                <!-- BEGIN une_annee -->
+            {une_annee.ANNEE_NOM}</span>
+            <!-- END une_annee -->
+            <br/>
+            <!-- END un_groupe -->
+        </td></tr>
+        <!-- END une_formation_groupe -->
+        <tr><td></td></tr>
+    </table>
+
+    <h3 class="rouge"><span class="font_medium bfmw_auto_hidder" data-bfmw="id_old_absences"></span>Anciennes absences</h3>
+    <table class="releve" id="id_old_absences">
+        <!-- BEGIN une_absence_expiree -->
+        <tr>
+            <td><b>{une_absence_expiree.TOTAL}</b> dont <b>{une_absence_expiree.JUST}</b> en <span class="vert">{une_absence_expiree.MAT_NOM}</span> avec {une_absence_expiree.ENS_NOM}</td>
+        </tr>
+        <!-- END une_absence_expiree -->
+        <tr>
+            <td>Soit un total de {NOMBRE_ABSENCES_EXPIREES}</td>
+        </tr>
+    </table>
+
+    <h3 class="rouge"><span class="font_medium bfmw_auto_hidder" data-bfmw="id_absences"></span>Absences pour le semestre courant</h3>
+    <table class="releve" id="id_absences">
+        <!-- BEGIN une_absence -->
+        <tr>
+            <td><b>{une_absence.TOTAL}</b> dont <b>{une_absence.JUST}</b> en <span class="vert">{une_absence.MAT_NOM}</span> avec {une_absence.ENS_NOM}</td>
+        </tr>
+        <!-- END une_absence -->
+        <tr>
+            <td>Soit un total de {NOMBRE_ABSENCES}</td>
+        </tr>
+    </table>
+
+    <h3 class="rouge"><span class="font_medium bfmw_auto_hidder" data-bfmw="id_competences"></span>Bilan de compétences</h3>
+    <div id="id_competences">
+        <!-- BEGIN un_niveau -->
+        <span class="resultat_niveau">{un_niveau.NIVEAU_NOM}</span>
+        <!-- BEGIN une_annee -->
+        <div class="resultat_ligne">
+            <span class="resultat_annee">{une_annee.ANNEE_NOM}</span>
+            <!-- BEGIN un_regroupement -->
+            <div class="resultat_regroupement">
+                <span class="resultat_nom_regroupement">{un_regroupement.REGROUP_NOM}</span>
+                <!-- BEGIN une_moyenne -->
+                    <!-- IF une_moyenne.SPECIAL != "" -->
+                    <span class="rouge resultat_moyenne">{une_moyenne.SPECIAL}</span>
+                    <!-- ELSE -->
+                        <!-- IF une_moyenne.VALEUR < 8 -->
+                        <span class="jaune resultat_moyenne">
+                        <!-- ELSEIF une_moyenne.VALEUR < 10 -->
+                            <span class="bleu resultat_moyenne">
+                        <!-- ELSE -->
+                            <span class="vert resultat_moyenne">
+                        <!-- ENDIF -->
+                        {une_moyenne.VALEUR}
+                                <!-- IF une_moyenne.BARREE != "" -->
+                                        <br/>
+                                        <span class="text_barre">{une_moyenne.BARREE}</span>
+                                <!-- ENDIF -->
+                                        </span>
+                    <!-- ENDIF -->
+                <!-- END une_moyenne -->
+            </div>
+            <!-- END un_regroupement -->
+        </div>
+        <!-- END une_annee -->
+        <!-- END un_niveau -->
+
+    </div>
+
+    <h3 class="rouge"><span class="font_medium bfmw_auto_hidder" data-bfmw="id_notes"></span>Notes</h3>
+    <div id="id_notes">
+        <!-- BEGIN releve -->
+        <span class="bfmw_auto_hidder" data-bfmw="releve_{releve.SEM_ID}_{releve.INSCRIPT_ANNEE_ID}"></span><span>{releve.SEM_NOM} ({releve.ANNEE_NOM})</span><br/>
+        <table class="releve" id="releve_{releve.SEM_ID}_{releve.INSCRIPT_ANNEE_ID}">
+            <tr>
+                <td colspan="10" class="text_align_center"><img  loading="lazy" src="../trombi/{releve.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="photo" class="specific_img_accueil_2"/></td>
+            </tr>
+            <tr>
+                <td colspan="5" class="text_align_right">{releve.ET_NOM}</td>
+                <th class="vert text_align_center">{releve.GENERAL_NOTE}</th>
+                <th class="text_align_center">{releve.GENERAL_RANK}</th>
+                <th class="text_align_center">{releve.GENERAL_MOY}</th>
+                <th class="text_align_center">{releve.GENERAL_MAX}</th>
+                <th class="text_align_center">{releve.GENERAL_MIN}</th>
+            </tr>
+            <tr>
+                <th colspan="4" class="text_align_left">{releve.SEM_NOM}</th>
+                <th class="text_align_center">Coeff</th>
+                <th class="text_align_center">Note</th>
+                <th class="text_align_center">Rang</th>
+                <th class="text_align_center">Moy</th>
+                <th class="text_align_center">Maxi</th>
+                <th class="text_align_center">Mini</th>
+            </tr>
+            <!-- BEGIN une_ue -->
+            <tr>
+                <td colspan="4" class="bleu text_vertical_middle">{une_ue.UE_NOM}</td>
+                <td class="text_align_center text_vertical_middle ">{une_ue.UE_COEF}</td>
+                <td class="text_align_center">{une_ue.UE_NOTE}<br/><span class="text_barre">{une_ue.UE_BARREE}</span></td>
+                <td class="text_align_center text_vertical_middle">{une_ue.UE_RANK}</td>
+                <th class="text_align_center text_vertical_middle">{une_ue.UE_MOY}</th>
+                <th class="text_align_center text_vertical_middle ">{une_ue.UE_MAX}</th>
+                <th class="text_align_center text_vertical_middle">{une_ue.UE_MIN}</th>
+            </tr>
+            <!-- BEGIN un_module -->
+            <tr>
+                <td>&nbsp;</td>
+                <!-- IF un_module.MAT_SURMAT_ID != null -->
+                <td>&nbsp;</td>
+                <td colspan="2">
+                    <!-- IF un_module.MAT_HAS_NOTE == 1 -->
+                    <span class="bfmw_auto_hidder" data-bfmw="specific_afficher_note_{un_module.MAT_ID}_{releve.INSCRIPT_ANNEE_ID}"></span>
+                    <!-- ENDIF -->
+                    <span class="vert">{un_module.MAT_NOM}</span>
+                    <!-- ELSE -->
+                <td colspan="3">
+                    <!-- IF un_module.MAT_HAS_NOTE == 1 -->
+                    <span class="bfmw_auto_hidder" data-bfmw="specific_afficher_note_{un_module.MAT_ID}_{releve.INSCRIPT_ANNEE_ID}"></span>
+                    <!-- ENDIF -->
+                    <span class="vert">{un_module.MAT_NOM}</span>
+                    <!-- ENDIF -->
+                </td>
+                <td class="text_align_center">{un_module.MAT_COEF}</td>
+                <td class="vert text_align_center">{un_module.MAT_NOTE}</td>
+                <td class="text_align_center">{un_module.MAT_RANK}</td>
+                <th class="text_align_center">{un_module.MAT_MOY}</th>
+                <th class="text_align_center">{un_module.MAT_MAX}</th>
+                <th class="text_align_center">{un_module.MAT_MIN}</th>
+            </tr>
+            <!-- BEGIN une_note -->
+            <tr class="specific_th_accueil_1 specific_afficher_note_{un_module.MAT_ID}_{releve.INSCRIPT_ANNEE_ID}">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>
+                    <!-- IF une_note.CONTROLE_MOYENNE == "2" -->
+                    {une_note.CONTROLE_NOM}
+                    <!-- ELSE -->
+                    {une_note.CONTROLE_NOM}&nbsp;(sur&nbsp;{une_note.CONTROLE_BAREME})
+                    <!-- ENDIF -->
+                    <!-- BEGIN moyenne -->
+                    <img src="images/sum.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" title="Compte dans la moyenne" alt="moyenne" class="specific_img_accueil_4"/>
+                    <!-- END moyenne -->
+                    <!-- BEGIN nonvisible -->
+                    <img src="images/hidden.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" title="Non visible aux étudiants" alt="Non visible aux étudiants" class="specific_img_accueil_5"/>
+                    <!-- END nonvisible-->
+                    <!-- IF une_note.NOTES_AVIS != "" -->
+                    <div class="tooltip">
+                        <span class="tooltiptext specific_span_accueil_1">{une_note.ENS_NOM} :<br/>{une_note.NOTES_AVIS}</span>
+                        <img src="../bfmw/images/bulle.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_accueil_6" alt="info"/>
+                    </div>
+                    <!-- ENDIF -->
+                </td>
+                <td class="text_align_center">
+                    <!-- IF une_note.CONTROLE_MOYENNE == "1" -->
+                    {une_note.CONTROLE_COEFF}
+                    <!-- ENDIF -->
+                </td>
+                <td class="rouge text_align_center"><b>{une_note.NOTES_AFFICHE}{une_note.NOTES_SPECIAL}</b></td>
+                <td class="text_align_center">{une_note.NOTE_RANK}</td>
+                <th class="text_align_center">{une_note.NOTE_MOY}</th>
+                <th class="text_align_center">{une_note.NOTE_MAXI}</th>
+                <th class="text_align_center">{une_note.NOTE_MINI}</th>
+            </tr>
+            <!-- END une_note -->
+            <!-- END un_module -->
+            <tr>
+                <td colspan="10"></td>
+            </tr>
+            <!-- END une_ue -->
+        </table>
+        <!-- END releve -->
+    </div>
+    <!-- END show -->
+</div>

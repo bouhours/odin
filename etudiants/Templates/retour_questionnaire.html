@@ -1,0 +1,25 @@
+<div class="main">
+    <div class="limited">
+        <form action="?p=front&amp;p2=retour&amp;a={ANNEE_COURANTE}&amp;nonclose={ANNEE_COURANTE}" method="POST">
+            <span class="rouge">{MAT_NOM}</span>&nbsp;avec&nbsp;<span class="rouge">{ENS_NOM}</span>
+            <!-- BEGIN une_question -->
+            <div class="box">
+                <span class="vert">{une_question.EVALQ_QUESTION}</span>
+                <div class="box">
+                    <!-- IF une_question.EVALQ_EVALT_ID == 1 -->
+                    <!-- BEGIN une_reponse -->
+                    <input id="r_{une_reponse.EVALR_ID}" type="radio" name="reponse_q_{une_question.EVALQ_ID}"
+                           value="{une_reponse.EVALR_REPONSE}" required/>
+                    <label for="r_{une_reponse.EVALR_ID}">{une_reponse.EVALR_REPONSE}</label>
+                    <!-- END une_reponse -->
+                    <!-- ELSE -->
+                    <textarea name="reponse_q_{une_question.EVALQ_ID}" rows="5"></textarea>
+                    <!-- ENDIF -->
+                </div>
+            </div>
+            <!-- END une_question -->
+            <input type="hidden" value="{ID}" name="val"/>
+            <input type="submit" value="Valider vos réponses" name="SUBMIT_RESPONSES"/>
+        </form>
+    </div>
+</div>

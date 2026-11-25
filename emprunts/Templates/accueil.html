@@ -1,0 +1,33 @@
+<div class="main">
+    <div class="limited">
+        <form method="POST" action="?p=front&amp;p2=accueil">
+            <label><b>Objet emprunté : </b></label>
+            <select name="*EMPRUNT_OBJ_ID" id="id_select_obj">
+                <!-- BEGIN un_objet -->
+                <option value="{un_objet.OBJ_ID}" data-reste="{un_objet.OBJ_RESTE}">{un_objet.OBJ_RESTE}
+                    {un_objet.OBJ_NOM} ({un_objet.OBJ_LIEU})
+                </option>
+                <!-- END un_objet -->
+            </select>
+
+            <label><b>Nombre emprunté : </b></label>
+            <input type="number" id="id_nombre" name="*EMPRUNT_NOMBRE" value="1" step="1" min="1"/>
+
+            <label><b>Date de rendu (si connue) : </b></label>
+            <input type="date" name="*EMPRUNT_DATE_RETOUR"/>
+
+            <label><b>Emprunteur : </b></label>
+            <select name="*EMPRUNT_ENS_ID" id="selecteur_enseignant">
+                <!-- BEGIN un_enseignant -->
+                <option value="{un_enseignant.ENS_ID}" {un_enseignant.SELECTED}>{un_enseignant.ENS_NOM}</option>
+                <!-- END un_enseignant -->
+            </select>
+
+            <label><b>Si l'emprunteur (non-étudiant) ne fait pas partie de la liste ci-dessus, donnez son nom
+                : </b></label>
+            <input type="text" id="id_emprunteur_externe" name="*EMPRUNT_EXTERNE"/>
+
+            <input type="submit" value="Enregistrer l'emprunt" name="emprunter"/>
+        </form>
+    </div>
+</div>

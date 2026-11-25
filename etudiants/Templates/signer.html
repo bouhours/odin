@@ -1,0 +1,35 @@
+<div class="main">
+    <div class="limited">
+        {GROUPE_NOM}
+        <table class="releve">
+            <tr>
+                <th>Nom</th>
+                <th>Photo</th>
+                <th>Signature</th>
+            </tr>
+            <!-- BEGIN un_etudiant -->
+            <tr>
+                <td class="text_vertical_middle text_align_center font_large">{un_etudiant.ET_NOM}</td>
+                <td class="text_vertical_middle text_align_center">
+                    <img class="specific_img_signer_2" alt="" title=""  loading="lazy" src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"/>
+                </td>
+                <td>
+                    <!-- IF un_etudiant.HAS_SIGNED -->
+                    <img class="specific_img_signer_1" src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="Signé"
+                         title="Signature enregistrée"/>
+                    <!-- ELSE -->
+                    <button class="button do_sign" id="{un_etudiant.ET_ID}_bouton" data-bfmw2="{un_etudiant.EDT_UID}"
+                            data-bfmw="{un_etudiant.ET_ID}" data-bfmw3="0" data-bfmw4="{GROUPE_ID}"
+                            data-bfmw5="{un_etudiant.ET_NOM}">Signer
+                    </button>
+                    <img class="hide specific_img_signer_1" id="{un_etudiant.ET_ID}_ok" src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                         alt="Signé" title="Signature enregistrée"/>
+                    <!-- ENDIF -->
+                </td>
+            </tr>
+            <!-- END un_etudiant -->
+        </table>
+
+
+    </div>
+</div>

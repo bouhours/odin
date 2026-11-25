@@ -1,0 +1,262 @@
+<!-- DETAIL -->
+<div id="detail">
+    <a class="show_master" href="#"><img src="../bfmw/images/fleche.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_1"
+                                         alt="Menu"/></a>
+    <!-- BEGIN show -->
+    <label>Liste des excuses présentées : </label>
+    <div class="box">
+        <div class="font_medium">
+            <!-- BEGIN une_justification -->
+            <a href="?p=front&amp;p2=absences&amp;g={GROUPE_ID}&amp;delj={une_justification.JUSTIF_ID}&amp;e={une_justification.JUSTIF_ET_ID}"
+               class="confirm_suppr"><img src="images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del" title="Supprimer cette justification"/></a>
+            <span>Du</span><span class="vert">&nbsp;{une_justification.DATE_START}</span><span>&nbsp;à&nbsp;</span><span
+                class="vert">{une_justification.HEURE_START}</span>
+            <span>&nbsp;au&nbsp;</span><span
+                class="vert">{une_justification.DATE_END}</span><span>&nbsp;à&nbsp;</span><span class="vert">{une_justification.HEURE_END}&nbsp;</span>
+            <!-- IF une_justification.DATE_DEPOT != "" -->
+            <span>(Déposée le </span><span class="rouge">{une_justification.DATE_DEPOT}</span><span>&nbsp;à&nbsp;</span><span
+                class="rouge">{une_justification.HEURE_DEPOT}</span><span>)</span>
+            <!-- ENDIF -->
+            <!-- IF une_justification.JUSTIF_JUSTIFICATION == 'non' && ! une_justification.JUSTIF_ATTENTE -->
+            <img src="images/hidden.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3" alt="Non justifiée"
+                 title="Cette absence n'est pas justifiée"/>
+            <!-- ENDIF -->
+            <!-- IF une_justification.JUSTIF_JUSTIFICATION == 'non' && une_justification.JUSTIF_ATTENTE -->
+            <img src="images/loading.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3" alt="Non justifiée"
+                 title="Cette justification est en cours de validation"/>
+            <!-- ENDIF -->
+            <!-- IF une_justification.JUSTIF_JUSTIFICATION == 'medical' -->
+            <img src="images/medical.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3" alt="Justifiée pour raisons médicales"
+                 title="Cette absence est justifiée pour raisons médicales"/>
+            <!-- ENDIF -->
+            <!-- IF une_justification.JUSTIF_JUSTIFICATION == 'convocation' -->
+            <img src="images/convocation.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3"
+                 alt="Justifiée par convocation administrative"
+                 title="Cette absence est justifiée par une convocation administrative"/>
+            <!-- ENDIF -->
+            <!-- IF une_justification.JUSTIF_JUSTIFICATION == 'chef' -->
+            <img src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3"
+                 alt="Justifiée par le responsable de la formation"
+                 title="Cette absence est justifiée par le responsable de la formation"/>
+            <!-- ENDIF -->
+            <!-- IF une_justification.JUSTIF_JUSTIFICATION == 'credit' -->
+            <img src="../bfmw/images/credit.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3" alt="Justifiée par les crédits-jour"
+                 title="Cette absence est justifiée par les crédits-jour"/>
+            <!-- ENDIF -->
+            <span>motif : </span><span class="rouge">{une_justification.JUSTIF_EXCUSE}</span><br/>
+            <!-- IF une_justification.JUSTIF_JUSTIFICATION == 'non' && une_justification.JUSTIF_ATTENTE -->
+            <span class="rouge">Validez-vous la justification de l'absence ci-dessus (</span><a href="#"
+                                                                                                class="justif_a_voir"
+                                                                                                data-bfmw="{une_justification.JUSTIF_ID}">Cliquez
+            ici pour la voir</a><span class="rouge">) ?</span>
+            <a href="?p=front&amp;p2=absences&amp;g={GROUPE_ID}&amp;e={ET_ID}&amp;justif={une_justification.JUSTIF_ID}&amp;yes=medical&amp;acceptation=1"><img
+                    src="images/medical.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3" alt="Justifiée pour raisons médicales"
+                    title="Cette absence est justifiée pour raisons médicales"/></a>&nbsp;
+            <a href="?p=front&amp;p2=absences&amp;g={GROUPE_ID}&amp;e={ET_ID}&amp;justif={une_justification.JUSTIF_ID}&amp;yes=convocation&amp;acceptation=1"><img
+                    src="images/convocation.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3"
+                    alt="Justifiée par convocation administrative"
+                    title="Cette absence est justifiée par une convocation administrative"/></a>&nbsp;
+            <a href="?p=front&amp;p2=absences&amp;g={GROUPE_ID}&amp;e={ET_ID}&amp;justif={une_justification.JUSTIF_ID}&amp;yes=chef&amp;acceptation=1"><img
+                    src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3"
+                    alt="Justifiée par le responsable de la formation"
+                    title="Cette absence est justifiée par le responsable de la formation"/></a>&nbsp;
+            <a href="?p=front&amp;p2=absences&amp;g={GROUPE_ID}&amp;e={ET_ID}&amp;justif={une_justification.JUSTIF_ID}&amp;yes=credit&amp;acceptation=1"><img
+                    src="../bfmw/images/credit.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3" alt="Justifiée avec un crédit-jour"
+                    title="Cette absence est justifiée avec un crédit-jour"/></a>&nbsp;
+            <a href="?p=front&amp;p2=absences&amp;g={GROUPE_ID}&amp;e={ET_ID}&amp;justif={une_justification.JUSTIF_ID}&amp;yes=non&amp;acceptation=1"><img
+                    src="images/hidden.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3" alt="Non justifiée"
+                    title="Cette absence n'est pas justifiée"/></a><br/>
+            <!-- ENDIF -->
+            <!-- IF une_justification.JUSTIF_CHEMIN != '' &&  ! une_justification.JUSTIF_ATTENTE -->
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="justif_a_voir"
+                                                               data-bfmw="{une_justification.JUSTIF_ID}"
+                                                               data-bfmw2="{ANNEE_ID}">Cliquez ici pour voir la
+            justification</a><br/>
+            <!-- ENDIF -->
+            <!-- END une_justification -->
+        </div>
+    </div>
+    <label>Créer une excuse pour cet étudiant : </label>
+    <div class="box">
+        <form method="post" action="?p=front&amp;p2=absences">
+            Du&nbsp;<input type="date" class="specific_input_mediateur_1" placeholder="JJ/MM/AAAA" required
+                           pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]([2][0][123][0-9])$"
+                           name="DATE_START"/>&nbsp;à&nbsp;<input type="time" class="specific_img_mediateur_2"
+                                                                  placeholder="HHhMM"
+                                                                  pattern="^([01]\d|2[0-3])h([0-5]\d)$" required
+                                                                  name="HEURE_START">&nbsp;au&nbsp;<input type="date"
+                                                                                                          class="specific_input_mediateur_1"
+                                                                                                          placeholder="JJ/MM/AAAA"
+                                                                                                          pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]([2][0][123][0-9])$"
+                                                                                                          required
+                                                                                                          name="DATE_END"/>&nbsp;à&nbsp;<input
+                type="time" class="specific_img_mediateur_2" placeholder="HHhMM" pattern="^([01]\d|2[0-3])h([0-5]\d)$"
+                required name="HEURE_END"><br/>
+            justification :&nbsp;<input type="radio" name="*JUSTIF_JUSTIFICATION" value="non" checked/><img
+                src="images/hidden.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3" alt="Non justifiée"
+                title="Cette absence n'est pas justifiée"/><input type="radio" name="*JUSTIF_JUSTIFICATION"
+                                                                  value="medical"/> <img src="images/medical.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                                         class="specific_img_mediateur_3"
+                                                                                         alt="Justifiée pour raisons médicales"
+                                                                                         title="Cette absence est justifiée pour raisons médicales"/><input
+                type="radio" name="*JUSTIF_JUSTIFICATION" value="convocation"/><img src="images/convocation.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                                    class="specific_img_mediateur_3"
+                                                                                    alt="Justifiée par convocation administrative"
+                                                                                    title="Cette absence est justifiée par une convocation administrative"/><input
+                type="radio" name="*JUSTIF_JUSTIFICATION" value="chef"/> <img src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                              class="specific_img_mediateur_3"
+                                                                              alt="Justifiée par le responsable de la formation"
+                                                                              title="Cette absence est justifiée par le responsable de la formation"/><input
+                type="radio" name="*JUSTIF_JUSTIFICATION" value="credit"/> <img src="../bfmw/images/credit.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"
+                                                                                class="specific_img_mediateur_3"
+                                                                                alt="Justifiée avec un crédit-jour"
+                                                                                title="Cette absence est justifiée avec un crédit-jour"/><br/>
+            motif de l'absence&nbsp;:&nbsp;<input type="text" class="specific_input_mediateur_1" name="*JUSTIF_EXCUSE"/>
+            <input type="hidden" value="{ET_ID}" name="*JUSTIF_ET_ID"/>
+            <input type="hidden" value="{GROUPE_ID}" name="g"/>
+            <input type="submit" value="Enregistrer" name="autojustif"/>
+        </form>
+    </div>
+    <h2 class="bleu">{ET_NOM}</h2>
+    <img src="../trombi/{ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy" alt="photo" class="specific_img_mediateur_2"/><br/><br/>
+    <label>{NOMBRE_ABSENCES}</label>
+    <div class="box">
+        <!-- BEGIN une_absence -->
+        <p class="font_small">{une_absence.REAL_DATE} : {une_absence.ABST_NOM} {une_absence.MAT_NOM} (avec
+            {une_absence.ENS_NOM}) : {une_absence.CRENEAU_NOM}&nbsp;
+            <!-- IF une_absence.ABS_JUSTIFICATION == 'non' -->
+            <a name="id_justif_medic"
+               href="?p=front&amp;p2=absences&amp;g={une_absence.ET_GROUPE}&amp;e={une_absence.ABS_ET_ID}&amp;justif={une_absence.ABS_ID}&amp;justification=medical"><img
+                    src="images/medical.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3" alt="Justification médicale"
+                    title="Indiquer que cette absence est justifiée pour raisons médicales"/></a>
+            <a name="id_justif_convoc"
+               href="?p=front&amp;p2=absences&amp;g={une_absence.ET_GROUPE}&amp;e={une_absence.ABS_ET_ID}&amp;justif={une_absence.ABS_ID}&amp;justification=convocation"><img
+                    src="images/convocation.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3" alt="Justification par convocation"
+                    title="Indiquer que cette absence est justifiée par une convocation administrative"/></a>
+            <a name="id_justif_chef"
+               href="?p=front&amp;p2=absences&amp;g={une_absence.ET_GROUPE}&amp;e={une_absence.ABS_ET_ID}&amp;justif={une_absence.ABS_ID}&amp;justification=chef"><img
+                    src="images/a_valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3" alt="Justification par le chef"
+                    title="Indiquer que cette absence est justifiée par le responsable de la formation"/></a>
+            <a name="id_justif_crédit"
+               href="?p=front&amp;p2=absences&amp;g={une_absence.ET_GROUPE}&amp;e={une_absence.ABS_ET_ID}&amp;justif={une_absence.ABS_ID}&amp;justification=credit"><img
+                    src="../bfmw/images/credit.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3" alt="Justification avec un crédit-jour"
+                    title="Indiquer que cette absence est justifiée avec un crédit-jour"/></a>
+            <!-- ELSE -->
+            <!-- IF une_absence.ABS_JUSTIFICATION == "medical" -->
+            <img src="images/medical.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_4" alt="Justifiée pour raisons médicales"
+                 title="Cette absence est justifiée pour raisons médicales"/>
+            <!-- ENDIF -->
+            <!-- IF une_absence.ABS_JUSTIFICATION == "convocation" -->
+            <img src="images/convocation.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_4"
+                 alt="Justifiée par convocation administrative"
+                 title="Cette absence est justifiée par une convocation administrative"/>
+            <!-- ENDIF -->
+            <!-- IF une_absence.ABS_JUSTIFICATION == "chef" -->
+            <img src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_4"
+                 alt="Justifiée par le responsable de la formation"
+                 title="Cette absence est justifiée par le responsable de la formation"/>
+            <!-- ENDIF -->
+            <!-- IF une_absence.ABS_JUSTIFICATION == "credit" -->
+            <img src="../bfmw/images/credit.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_4" alt="Justifiée avec un crédit-jour"
+                 title="Cette absence est justifiée avec un crédit-jour"/>
+            <!-- ENDIF -->
+            <a href="?p=front&amp;p2=absences&amp;g={GROUPE_ID}&amp;e={ET_ID}&amp;del_justif={une_absence.ABS_ID}"
+               class="confirm_suppr_justif"><img src="images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                 title="Supprimer la justification"/></a>
+            <!-- ENDIF -->
+            &nbsp;<input type="text" data-bfmw="{une_absence.ABS_ID}" name="name_justification"
+                         class="specific_input_mediateur_1" title="Vous pouvez donner ici un commentaire"
+                         value="{une_absence.ABS_EXCUSE}"/>
+        </p>
+        <!-- END une_absence -->
+    </div>
+    <!-- END show -->
+    <!-- BEGIN global -->
+    <label>Générer un état des absences : </label>
+    <div class="box">
+        <form action="?generate=EtatAbsences" method="post">
+            <span class="font_medium">Du </span>
+            <input required type="date" name="date_start" class="specific_input_mediateur_2"/>
+            <span class="font_medium"> au </span>
+            <input required type="date" name="date_end" class="specific_input_mediateur_2"/>
+            <input type="hidden" value="{GROUPE}" name="groupe_id"/>
+            <input type="hidden" value="{ANNEE_ID}" name="annee_id"/>
+            <input type="submit" class="specific_input_mediateur_3" value="Générer l'état"/>
+        </form>
+    </div>
+    <!-- BEGIN un_groupe -->
+    <label class="vert"><b>{un_groupe.GROUPE_NOM}</b></label>
+    <div>
+        <ul class="TreeView">
+            <!-- BEGIN un_etudiant -->
+            <li>
+                <a class="rouge tooltip" href="?p=absences&amp;g={un_groupe.GROUPE_ID}&amp;e={un_etudiant.ET_ID}">{un_etudiant.ET_NOM}<img
+                        class="tooltiptext specific_img_mediateur_2" src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"  loading="lazy"
+                        alt="photo"/></a>
+                <label class="bleu font_small">({un_etudiant.NOMBRE_ABSENCES})</label>
+                <ul>
+
+                    <div>
+                        <!-- BEGIN une_absence -->
+                        <p class="font_small">&bull;&nbsp;{une_absence.REAL_DATE} : {une_absence.ABST_NOM}
+                            {une_absence.MAT_NOM} (avec {une_absence.ENS_NOM}) : {une_absence.CRENEAU_NOM}&nbsp;
+                            <!-- IF une_absence.ABS_JUSTIFICATION == 'non' && false==true -->
+                            <a name="id_justif_medic"
+                               href="?p=front&amp;p2=absences&amp;g={une_absence.GROUPE_ID}&amp;r={une_absence.ABS_ET_ID}&amp;justif={une_absence.ABS_ID}&amp;justification=medical"><img
+                                    src="images/medical.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3"
+                                    alt="Justification médicale"
+                                    title="Indiquer que cette absence est justifiée pour raisons médicales"/></a>
+                            <a name="id_justif_convoc"
+                               href="?p=front&amp;p2=absences&amp;g={une_absence.GROUPE_ID}&amp;r={une_absence.ABS_ET_ID}&amp;justif={une_absence.ABS_ID}&amp;justification=convocation"><img
+                                    src="images/convocation.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3"
+                                    alt="Justification par convocation"
+                                    title="Indiquer que cette absence est justifiée par une convocation administrative"/></a>
+                            <a name="id_justif_chef"
+                               href="?p=front&amp;p2=absences&amp;g={une_absence.GROUPE_ID}&amp;r={une_absence.ABS_ET_ID}&amp;justif={une_absence.ABS_ID}&amp;justification=chef"><img
+                                    src="images/a_valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3"
+                                    alt="Justification par le chef"
+                                    title="Indiquer que cette absence est justifiée par le responsable de la formation"/></a>
+                            <a name="id_justif_crédit"
+                               href="?p=front&amp;p2=absences&amp;g={une_absence.GROUPE_ID}&amp;r={une_absence.ABS_ET_ID}&amp;justif={une_absence.ABS_ID}&amp;justification=credit"><img
+                                    src="../bfmw/images/credit.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_3"
+                                    alt="Justification avec un crédit-jour"
+                                    title="Indiquer que cette absence est justifiée avec un crédit-jour"/></a>
+                            <!-- ELSE -->
+                            <!-- IF une_absence.ABS_JUSTIFICATION == "medical" -->
+                            <img src="images/medical.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_4"
+                                 alt="Justifiée pour raisons médicales"
+                                 title="Cette absence est justifiée pour raisons médicales"/>
+                            <!-- ENDIF -->
+                            <!-- IF une_absence.ABS_JUSTIFICATION == "convocation" -->
+                            <img src="images/convocation.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_4"
+                                 alt="Justifiée par convocation administrative"
+                                 title="Cette absence est justifiée par une convocation administrative"/>
+                            <!-- ENDIF -->
+                            <!-- IF une_absence.ABS_JUSTIFICATION == "chef" -->
+                            <img src="images/valider.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_4"
+                                 alt="Justifiée par le responsable de la formation"
+                                 title="Cette absence est justifiée par le responsable de la formation"/>
+                            <!-- ENDIF -->
+                            <!-- IF une_absence.ABS_JUSTIFICATION == "credit" -->
+                            <img src="../bfmw/images/credit.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" class="specific_img_mediateur_4"
+                                 alt="Justifiée avec un crédit-jour"
+                                 title="Cette absence est justifiée avec un crédit-jour"/>
+                            <!-- ENDIF -->
+                            <!-- IF false==true -->
+                            <a href="?p=front&amp;p2=absences&amp;g={un_groupe.GROUPE_ID}&amp;e={un_etudiant.ET_ID}&amp;del_justif={une_absence.ABS_ID}"
+                               class="confirm_suppr_justif"><img src="images/icon_delete.gif?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" alt="del"
+                                                                 title="Supprimer la justification"/></a>
+                            <!-- ENDIF -->
+                            <!-- ENDIF -->
+                            &nbsp;<span class="rouge" title="Commentaire">{une_absence.ABS_EXCUSE}</span>
+                            <!-- END une_absence -->
+                    </div>
+
+                </ul>
+            </li>
+            <!-- END un_etudiant -->
+        </ul>
+    </div>
+    <!-- END un_groupe -->
+    <!-- END global -->
+</div>

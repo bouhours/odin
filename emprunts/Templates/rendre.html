@@ -1,0 +1,32 @@
+<div class="main">
+    <div class="limited specific_div_rendre_1">
+        <table class="releve">
+            <tr>
+                <th>Nombre</th>
+                <th>Objet (Lieu)</th>
+                <th>Emprunteur</th>
+                <th>Date d'emprunt</th>
+                <th>Date de rendue</th>
+                <th>&nbsp;</th>
+            </tr>
+            <!-- BEGIN un_objet -->
+            <tr>
+                <td class="vert">{un_objet.EMPRUNT_NOMBRE}</td>
+                <td class="vert">{un_objet.OBJ_NOM} ({un_objet.OBJ_LIEU})</td>
+                <td class="bleu">{un_objet.EMPRUNTEUR}</td>
+                <td>{un_objet.EMPRUNT_DATE_OUT}</td>
+                <td>{un_objet.EMPRUNT_DATE_RETOUR}</td>
+                <td>
+                    <!-- BEGIN emprunteur -->
+                    <form method="POST" action="?p=front&amp;p2=rendre">
+                        <input type="hidden" name="*EMPRUNT_OBJ_ID" value="{un_objet.OBJ_ID}"/>
+                        <input type="hidden" name="*EMPRUNT_ET_ID" value="{un_objet.EMPRUNT_ET_ID}"/>
+                        <input type="submit" name="rendre" value="Rendre 1">
+                    </form>
+                    <!-- END emprunteur -->
+                </td>
+            </tr>
+            <!-- END un_objet -->
+        </table>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="main">
+    <div class="limited specific_div_demission_1">
+        <div class="text_align_center"><span>Effectif&nbsp;:&nbsp;</span><span>{EFFECTIF}</span>
+            <!-- IF ALTERNANTS == 1 -->
+            <span>( dont {ALTERNANTS} alternant)</span>
+            <!-- ELSE -->
+            <!-- IF ALTERNANTS > 1 -->
+            <span>( dont {ALTERNANTS} alternants)</span>
+            <!-- ENDIF -->
+            <!-- ENDIF -->
+        </div>
+        <div class="specific_div_demission_3">
+            <!-- BEGIN un_etudiant -->
+            <div class="specific_div_demission_2">
+                <img class="specific_img_demission_1"  loading="lazy" src="../trombi/{un_etudiant.ET_NUMERO}.jpg?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}"/><br/>
+                <div class="specific_div_demission_4 text_align_center">{un_etudiant.ET_NOM}<br/>
+                    <span class="vert">{un_etudiant.ET_NAISSANCE}<br/>{un_etudiant.ET_AGE} ans</span><br/><span
+                            class="rouge">BAC {un_etudiant.ET_BAC}</span><br/>
+                    <!-- IF un_etudiant.ET_RED != "" -->
+                    <span class="rouge">{un_etudiant.ET_RED}</span><br/>
+                    <!-- ENDIF -->
+                    <!-- IF un_etudiant.ET_TIERS == 1 -->
+                    <span class="vert">Tiers temps</span><br/>
+                    <!-- ENDIF -->
+                    <span class="vert">{un_etudiant.FORM_NOM}</span><br/>
+                </div>
+            </div>
+            <!-- END un_etudiant -->
+        </div>
+    </div>
+</div>

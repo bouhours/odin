@@ -1,0 +1,38 @@
+<div class="main">
+    <div class="limited specific_div_emargement_1">
+        <span>Choisissez l'année : </span>
+        <select id="selecteur_annee" data-bfmw="{GROUPE_ID}">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <span>Choisissez le groupe : </span>
+        <select id="selecteur_groupe" data-bfmw="{ANNEE_ID}">
+            <!-- BEGIN une_formation -->
+            <optgroup label="{une_formation.FORM_NOM}">
+                <!-- BEGIN un_groupe -->
+                <option value="{un_groupe.GROUPE_ID}" {un_groupe.SELECTED}>{un_groupe.GROUPE_NOM}</option>
+                <!-- END un_groupe -->
+            </optgroup>
+            <!-- END une_formation -->
+        </select>
+
+        <div class="box no_wrap specific_div_emargement_2">
+            <!-- IF true -->
+            <!-- BEGIN une_archive -->
+            <form action="?p=front&amp;p2=archives" method="POST">
+                <span class="font_small">&bull;&nbsp;Bloc de fiches archivées le {une_archive.DATE_ARCHIVAGE}</span>
+                <input type="hidden" name="archive" value="{une_archive.EDT_ARCHIVE}">
+                <input type="hidden" name="g" value="{GROUPE_ID}">
+                <input type="hidden" name="a" value="{ANNEE_ID}">
+                <input type="submit" name="do_restaurer_archive" class="specific_input_archives_1" value="Restaurer">
+            </form>
+            <!-- END une_archive -->
+            <!-- ELSE -->
+            <span class="font_small">Pas d'archives pour ce groupe</span><br/>
+            <!-- ENDIF -->
+        </div>
+
+
+    </div>
+</div>

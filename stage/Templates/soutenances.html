@@ -1,0 +1,64 @@
+<div class="main">
+    <div class="limited">
+        <div class="no_print">
+            <span>Année à afficher :</span>
+            <select class="specific_select_accueil_1" id="id_selection_annee">
+                <!-- BEGIN une_annee -->
+                <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+                <!-- END une_annee -->
+            </select>
+            <span>Sélectionnez le planning :</span>
+            <select id="id_selection_session" data-bfmw="{ANNEE_COURANTE}">
+                <!-- BEGIN un_planning -->
+                <option value="{un_planning.PLANNING_ID}" {un_planning.SELECTED}>{un_planning.PLANNING_CONTENU}</option>
+                <!-- END un_planning -->
+            </select>
+            <hr/>
+        </div>
+        <ul>
+            <!-- BEGIN un_stage -->
+            <!-- IF un_stage.DISPO_DATE_AFFICHAGE != "" -->
+            <li><span class="rouge">{un_stage.DISPO_DATE_AFFICHAGE}</span>
+                <ul>
+                    <!-- BEGIN un_creneau -->
+                    <li><span>De </span><span
+                            class="vert">{un_creneau.CRENEAU_DEBUT_AFFICHAGE}</span><span> à </span><span class="vert">{un_creneau.CRENEAU_FIN_AFFICHAGE}</span>
+                        <ul>
+                            <!-- BEGIN un_etudiant -->
+                            <li>{un_etudiant.ET_NOM}
+                                <ul class="jaune">
+                                    <li>{un_etudiant.TUTEUR}</li>
+                                    <li>{un_etudiant.JURY}</li>
+                                </ul>
+                            </li>
+                            <!-- END un_etudiant -->
+                        </ul>
+                        <!-- END un_creneau -->
+                </ul>
+            </li>
+            <!-- ELSE -->
+            <li><span class="rouge">Non planifiée</span>
+                <ul>
+                    <!-- BEGIN un_creneau -->
+                    <!-- BEGIN un_etudiant -->
+                    <li>{un_etudiant.ET_NOM} -
+                        <!-- IF un_etudiant.NB_CRENEAUX_POSSIBLES > 1 -->
+                        <span class="">{un_etudiant.NB_CRENEAUX_POSSIBLES}</span>
+                        <span>possibilités</span>
+                        <!-- ELSE -->
+                        <span class="rouge">{un_etudiant.NB_CRENEAUX_POSSIBLES}</span>
+                        <span class="rouge">possibilité</span>
+                        <!-- ENDIF -->
+                    </li>
+                    <ul class="jaune">
+                        <li>{un_etudiant.TUTEUR}</li>
+                    </ul>
+                    <!-- END un_etudiant -->
+                    <!-- END un_creneau -->
+                </ul>
+            </li>
+            <!-- ENDIF -->
+            <!-- END un_stage -->
+        </ul>
+    </div>
+</div>

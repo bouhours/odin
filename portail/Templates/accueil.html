@@ -1,0 +1,20 @@
+<!-- ACCUEIL -->
+<div class="bg" id="id_background">
+    <div class="text_align_center specific_div_accueil_1" id="id_applis">
+        <h1>Portail applicatif</h1>
+        <!-- BEGIN plusieurs_departement -->
+        <span class="font_large">Choisissez votre département : </span>
+        <select class="specific_select_accueil_1" id="dept_selector">
+            <!-- BEGIN un_departement -->
+            <option value="{un_departement.DEPT_ID}" {un_departement.SELECTED}>{un_departement.DEPT_NOM}&nbsp;({un_departement.DEPT_CODE})</option>
+            <!-- END un_departement -->
+        </select><br/>
+        <!-- END plusieurs_departement -->
+        <!-- BEGIN appli -->
+        <button class="button" name="appli" data-bfmw="{appli.ACCESS_ADRESS}" ><span>{appli.ACCESS_NOM}</span></button>
+        <!-- END appli -->
+    </div>
+    <div class="licence" >
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licence Creative Commons" title="L'intégralité du site https:///odin.iut-clermont.uca.fr est mis à disposition selon les termes de la Licence Creative Commons Attribution - Pas d&#39;Utilisation Commerciale - Pas de Modification 4.0 International" src="../bfmw/images/CC.png?bfmw_version_cache={BFMW_GLOBAL_DAYTIME}" /></a>
+    </div>
+</div>

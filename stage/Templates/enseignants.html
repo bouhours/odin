@@ -1,0 +1,52 @@
+<div class="main">
+    <div class="limited">
+        <span>Année à afficher :</span>
+        <select class="specific_select_accueil_1" id="id_selection_annee">
+            <!-- BEGIN une_annee -->
+            <option value="{une_annee.ANNEE_ID}" {une_annee.SELECTED}>{une_annee.ANNEE_NOM}</option>
+            <!-- END une_annee -->
+        </select>
+        <hr/>
+        <ul class="TreeView">
+            <!-- BEGIN une_categorie -->
+            <!-- BEGIN un_enseignant -->
+            <li><span>{un_enseignant.ENS_NOM}</span><br/>
+                <ul>
+                    <li>Nombre de soutenances maximums&nbsp;:&nbsp;<input type="text"
+                                                                          value="{un_enseignant.PLANNING_SOUT_MAX}"
+                                                                          class="bfmw_no_style bind"
+                                                                          name="PLANNING_SOUT_MAX"
+                                                                          data-bfmw="{un_enseignant.ENS_ID}"></li>
+                    <li>Nombre de soutenances déjà effectuées&nbsp;:&nbsp;<input type="text"
+                                                                                 value="{un_enseignant.PLANNING_SOUT_FAITES}"
+                                                                                 class="bfmw_no_style bind"
+                                                                                 name="PLANNING_SOUT_FAITES"
+                                                                                 data-bfmw="{un_enseignant.ENS_ID}">
+                    </li>
+                    <li>Nombre de soutenances totales placées&nbsp;:&nbsp;{un_enseignant.TOTAL_PLACE}</li>
+                    <li>Spécialiste&nbsp;:&nbsp;<input type="checkbox" value="1" {un_enseignant.PLANNING_SPE_AFFICHAGE}
+                                                       name="PLANNING_SPE" class="bind2"
+                                                       data-bfmw="{un_enseignant.ENS_ID}"></li>
+                    <!-- IF un_enseignant.HAS_SESSION > 0 -->
+                    <!-- BEGIN un_planning -->
+                    <li>Soutenances : {un_planning.PLANNING_CONTENU}
+                        <ul>
+                            <!-- BEGIN un_etudiant -->
+                            <li>{un_etudiant.ET_NOM} <span class="vert">{un_etudiant.ET_SITUATION}</span><span> ({un_etudiant.INSCRIPT_FORMATION})</span>
+                                <!-- IF un_etudiant.STAGE_SUGGESTION_ENS_ID != "" -->
+                                <span>(suggestion : </span><span>{un_etudiant.ENS_NOM_SUGGERE}</span><span>)</span>
+                                <!-- ENDIF -->
+                            </li>
+                            <!-- END un_etudiant -->
+                        </ul>
+                    </li>
+                    <!-- END un_planning -->
+                    <!-- ENDIF -->
+                </ul>
+            </li>
+            <!-- END un_enseignant -->
+            <hr/>
+            <!-- END une_categorie -->
+        </ul>
+    </div>
+</div>
